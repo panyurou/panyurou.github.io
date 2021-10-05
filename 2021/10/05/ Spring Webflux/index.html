@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="spring,java," />
 
 
 
@@ -79,17 +79,21 @@
 
 
 
-<meta name="description" content="1.响应式编程是什么？响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式  本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的）  1int sum2 &#x3D; IntStream.of(nums).parallel().sum();  将数组中的数据变成数据流，通过显式声明调用.sum">
+<meta name="description" content="1.响应式编程是什么？  响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式 本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的,如： 1int sum2 &#x3D; IntStream.of(nums).parallel().sum();  ​      将数组中的数据变成数据流，通过显">
 <meta property="og:type" content="article">
-<meta property="og:title" content="楼上有只喵">
-<meta property="og:url" content="http://example.com/2019/11/15/webflux/index.html">
+<meta property="og:title" content="Spring Webflux">
+<meta property="og:url" content="http://example.com/2021/10/05/%20Spring%20Webflux/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="1.响应式编程是什么？响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式  本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的）  1int sum2 &#x3D; IntStream.of(nums).parallel().sum();  将数组中的数据变成数据流，通过显式声明调用.sum">
+<meta property="og:description" content="1.响应式编程是什么？  响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式 本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的,如： 1int sum2 &#x3D; IntStream.of(nums).parallel().sum();  ​      将数组中的数据变成数据流，通过显">
 <meta property="og:locale">
-<meta property="article:published_time" content="2019-11-15T05:46:12.000Z">
-<meta property="article:modified_time" content="2021-10-04T07:00:00.434Z">
+<meta property="og:image" content="https://spring.io/images/diagram-reactive-1290533f3f01ec9c57baf2cc9ea9fa2f.svg">
+<meta property="article:published_time" content="2021-10-05T08:38:43.000Z">
+<meta property="article:modified_time" content="2021-10-05T15:35:58.796Z">
 <meta property="article:author" content="Panyurou">
+<meta property="article:tag" content="spring">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://spring.io/images/diagram-reactive-1290533f3f01ec9c57baf2cc9ea9fa2f.svg">
 
 
 
@@ -119,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2019/11/15/webflux/"/>
+  <link rel="canonical" href="http://example.com/2021/10/05/ Spring Webflux/"/>
 
 
 
 
 
-  <title> | 楼上有只喵</title>
+  <title>Spring Webflux | 楼上有只喵</title>
   
 
 
@@ -252,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2019/11/15/webflux/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/05/%20Spring%20Webflux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -269,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Spring Webflux</h1>
         
 
         <div class="post-meta">
@@ -281,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-15T13:46:12+08:00">
-                2019-11-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-05T16:38:43+08:00">
+                2021-10-05
               </time>
             
 
@@ -291,6 +295,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringWebflux/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringWebflux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -319,13 +345,49 @@
       
 
       
-        <h3 id="1-响应式编程是什么？"><a href="#1-响应式编程是什么？" class="headerlink" title="1.响应式编程是什么？"></a>1.响应式编程是什么？</h3><p>响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式</p>
+        <p><strong>1.响应式编程是什么？</strong></p>
+<ul>
+<li><p>响应式编程（<strong>reactive programming</strong>）是一种基于数据流和变化传递的声明式的编程范式</p>
+<p>本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过<strong>API</strong>去处理数据流中的数据（是声明式的,如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum2 = IntStream.of(nums).parallel().sum();</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>​      将数组中的数据变成数据流，通过显式声明调用**.sum()**来处理数据流中的数据，得到最终的结果。</p>
+<ul>
+<li><p>响应式编程是关于非阻塞应用程序的，这些应用程序是异步的、事件驱动的，并且需要少量的线程来垂直伸缩(即在 JVM 中)，而不是水平伸缩(即通过集群)。</p>
 <blockquote>
-<p>本来数据是我们自行处理的，后来我们把要<strong>处理的数据抽象出来</strong>（变成了数据流），然后<strong>通过API去处理</strong>数据流中的数据（是声明式的）</p>
+<p>工作太多，做不完时，水平伸缩就相当于加人，垂直伸缩相当于加班。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> sum2 = IntStream.of(nums).parallel().sum();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-响应式流（Reactive-Streams）-是什么"><a href="#2-响应式流（Reactive-Streams）-是什么" class="headerlink" title="2.响应式流（Reactive Streams） 是什么?"></a>2.响应式流（Reactive Streams） 是什么?</h3><span id="more"></span>
 
-<p>将数组中的数据变成<strong>数据流</strong>，通过显式声明调用<code>.sum()</code>来处理数据流中的数据，得到最终的结果。</p>
+<ul>
+<li><p>响应式流是JDK9引入的，基于发布-订阅者模式的一套数据处理的机制。</p>
+</li>
+<li><p>响应式流从2013年开始，作为提供非阻塞背压的异步流处理标准的倡议。 它旨在解决处理元素流的问题——如何将元素流从发布者传递到订阅者，而不需要发布者阻塞，或订阅者有无限制的缓冲区或丢弃。</p>
+</li>
+</ul>
+<blockquote>
+<p>背压：说白了就是一种反馈，发布者和订阅者之间的一种互动</p>
+</blockquote>
+<blockquote>
+<p>之前的老模式，订阅者很被动，发布者给订阅者多少他就消费多少，不能多也不能多少。</p>
+<p>Reactive Streams就可以做到发布者和订阅者之间可以进行交流，订阅者可以告诉发布者我需要多少数据，订阅者处理完了，可以再向发布者要，没处理完就不要给我。</p>
+<p>起到了一种调节流量的作用，不会导致发布者数据太多，订阅者处理不完浪费，或者直接把订阅者压垮的场景。</p>
+</blockquote>
+<h3 id="2-Spring-Webflux-是什么？"><a href="#2-Spring-Webflux-是什么？" class="headerlink" title="2. Spring Webflux 是什么？"></a>2. Spring Webflux 是什么？</h3><p>Spring WebFlux是<a target="_blank" rel="noopener" href="https://rumenz.com/java-topic/spring-mvc-tutorial/index.html">Spring MVC</a>并行版本，并支持完全无阻塞的反应流的web框架。 它支持背压概念，可以处理大量的并发连接，并使用**<a target="_blank" rel="noopener" href="https://netty.io/">Netty</a>**作为内置服务器来运行响应式应用程序。 </p>
+<h3 id="3-Spring-Webflux-和Spring-mvc-的关系"><a href="#3-Spring-Webflux-和Spring-mvc-的关系" class="headerlink" title="3.Spring Webflux 和Spring mvc 的关系"></a>3.Spring Webflux 和Spring mvc 的关系</h3><img src="https://spring.io/images/diagram-reactive-1290533f3f01ec9c57baf2cc9ea9fa2f.svg" style="zoom: 25%;" />
+
+<p>Spring MVC</p>
+<ul>
+<li>构建于 Servlet API 之上</li>
+<li>同步阻塞 I/O 模型, 认为应用会阻塞当前线程，所以一个 Request 对应一个 Thread，需要有一个含有大量线程的线程池</li>
+</ul>
+<p>Spring WebFlux</p>
+<ul>
+<li>构建于 Reactive Streams Adapters 之上</li>
+<li>异步非阻塞 I/O 模型，认为应用不会阻塞当前线程，所以只是需要一个包含少数固定线程数的线程池 (event loop workers) 来处理请求</li>
+</ul>
 
       
     </div>
@@ -341,6 +403,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/spring/" rel="tag"><i class="fa fa-google"></i> spring</a>
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-google"></i> java</a>
+          
+        </div>
+      
 
       
       
@@ -350,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/15/zookeeper%E9%9B%86%E7%BE%A4/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2021/10/04/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BStream%E6%B5%81/" rel="next" title="Java8新特性之Stream流">
+                <i class="fa fa-chevron-left"></i> Java8新特性之Stream流
               </a>
             
           </div>
@@ -359,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/09/22/zookeeper/" rel="prev" title="zookeeper">
-                zookeeper <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -441,7 +507,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -463,7 +529,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -506,7 +572,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1.响应式编程是什么？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%93%8D%E5%BA%94%E5%BC%8F%E6%B5%81%EF%BC%88Reactive-Streams%EF%BC%89-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">2.响应式流（Reactive Streams） 是什么?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Spring-Webflux-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">2. Spring Webflux 是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Spring-Webflux-%E5%92%8CSpring-mvc-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.</span> <span class="nav-text">3.Spring Webflux 和Spring mvc 的关系</span></a></li></ol></div>
             
 
           </div>
