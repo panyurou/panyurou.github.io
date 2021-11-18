@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="rabbitMQ," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是RabbitMQ？RabbitMQ是一款开源的，Erlang编写的，基于AMQP协议的消息中间件 rabbitmq 的使用场景（1）服务间异步通信  （2）顺序消费  （3）定时任务  （4）请求削峰">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ学习笔记">
+<meta property="og:url" content="http://example.com/2021/10/27/RabbitMQ%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="楼上有只喵">
+<meta property="og:description" content="什么是RabbitMQ？RabbitMQ是一款开源的，Erlang编写的，基于AMQP协议的消息中间件 rabbitmq 的使用场景（1）服务间异步通信  （2）顺序消费  （3）定时任务  （4）请求削峰">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-10-27T13:35:27.000Z">
+<meta property="article:modified_time" content="2021-11-18T14:34:33.120Z">
+<meta property="article:author" content="Panyurou">
+<meta property="article:tag" content="rabbitMQ">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/10/27/RabbitMQ学习笔记/"/>
+
+
+
+
+
+  <title>RabbitMQ学习笔记 | 楼上有只喵</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">楼上有只喵</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/27/RabbitMQ%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/girl.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="楼上有只喵">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RabbitMQ学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-27T21:35:27+08:00">
+                2021-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">中间件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是RabbitMQ？"><a href="#什么是RabbitMQ？" class="headerlink" title="什么是RabbitMQ？"></a><strong>什么是RabbitMQ？</strong></h1><p>RabbitMQ是一款开源的，Erlang编写的，基于AMQP协议的消息中间件</p>
+<h1 id="rabbitmq-的使用场景"><a href="#rabbitmq-的使用场景" class="headerlink" title="rabbitmq 的使用场景"></a><strong>rabbitmq 的使用场景</strong></h1><p>（1）服务间异步通信 </p>
+<p>（2）顺序消费 </p>
+<p>（3）定时任务 </p>
+<p>（4）请求削峰 </p>
+<span id="more"></span>
+
+<h1 id="rabbitmq-的优点"><a href="#rabbitmq-的优点" class="headerlink" title="rabbitmq 的优点"></a>rabbitmq 的优点</h1><ul>
+<li>异步解偶。并行执行，可以提高吞吐量</li>
+<li>流量削峰。可以通过消息队列长度控制请求量；可以缓解短时间内的高并发请 求。</li>
+<li>应用解偶。系统间通过消息通信，不用关心其他系统的处理。 </li>
+</ul>
+<h1 id="为什么选择rabbitmq？"><a href="#为什么选择rabbitmq？" class="headerlink" title="为什么选择rabbitmq？"></a>为什么选择rabbitmq？</h1><ul>
+<li>支撑高并发、高吞吐、性能很高，同时有非常完善便捷的后台管理界面可以使用。 </li>
+<li>支持集群化、高可用部署架构、消息高可靠支持，功能较为完善。</li>
+<li>开 源的，比较稳定的支持，活跃度也高</li>
+</ul>
+<blockquote>
+<p>缺点： 确实 erlang 语言阻止了大量的 Java 工程师 去深入研究和掌控它，对公司而言，几乎处于不可控的状态，</p>
+</blockquote>
+<h1 id="RabbitMQ的基本概念"><a href="#RabbitMQ的基本概念" class="headerlink" title="RabbitMQ的基本概念"></a>RabbitMQ的基本概念</h1><ul>
+<li><p>Broker： 简单来说就是消息队列服务器实体 </p>
+</li>
+<li><p>Exchange： 消息交换机，它指定消息按什么规则，路由到哪个队列 </p>
+</li>
+<li><p>Queue： 消息队列载体，每个消息都会被投入到一个或多个队列 </p>
+</li>
+<li><p>Binding： 绑定，它的作用就是把exchange和queue按照路由规则绑定起来 </p>
+</li>
+<li><p>Routing Key： 路由关键字，exchange根据这个关键字进行消息投递 </p>
+</li>
+<li><p>VHost： vhost 可以理解为虚拟 broker ，即 mini-RabbitMQ server。其内部 均含有独立的 queue、exchange 和 binding 等，但最最重要的是，其拥有独立的 权限系统，可以做到 vhost 范围的用户控制。当然，从 RabbitMQ 的全局角度，类似mysql中的database创建一个table 需要指明用哪个数据库。</p>
+</li>
+</ul>
+<h1 id="channel信道"><a href="#channel信道" class="headerlink" title="channel信道"></a>channel信道</h1><ul>
+<li>信道是生产者/消费者与rbabitmq通信的渠道。生产者publish或者消费者consume一个队列都是通过信道完成的。</li>
+<li>多线程时，rabbitMQ在一条tcp上建立多个信道来处理多线程。</li>
+<li>每个信道在rabbitmq上有唯一的id,保证一个信道对应一个线程使用。</li>
+</ul>
+<h1 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h1><ul>
+<li><p>交换机就类似是路由器，他会根据路由键（在rabbitMQ就是routing key），将消息分发到相应的队列上去。</p>
+</li>
+<li><p>交换机的四种类型</p>
+<ul>
+<li>fanout: 把所有发送到该交换器的消息路由到所有与该交换器绑定的队列中。(1:N)</li>
+<li>Direct :   把消息路由到BindingKey和RoutingKey完全匹配的队列中。(1:1)</li>
+<li>topic: 可以根据模糊匹配，可以将多个消息路由到同一个队列，比如一个队列的routing_key是’’.test”那么凡是到达路由器的消息的后缀为“.test”，都会进到这个队列。<ul>
+<li>“* ”只能是一个单词，如“”aa.test“</li>
+<li>“#”可以是&gt;= 0的单词，如“”test“,”aa.bb.test”</li>
+</ul>
+</li>
+<li><code>headers</code>:不依赖路由键匹配规则路由消息。是根据发送消息内容中的<code>headers</code>属性进行匹配。性能差，基本用不到。</li>
+</ul>
+</li>
+</ul>
+<h1 id="RabbitMQ的6种工作模式"><a href="#RabbitMQ的6种工作模式" class="headerlink" title="RabbitMQ的6种工作模式"></a><strong>RabbitMQ的6种工作模式</strong></h1><p><strong>一.simple模式（即最简单的收发模式）</strong></p>
+<p>一个生产者，一个消费者，通过队列收发消息。不常用</p>
+<p><strong>二.work工作模式(资源的竞争)</strong> </p>
+<ul>
+<li><p>一个生产者，多个消费者。</p>
+</li>
+<li><p>消费者1,消费者2同时监听同一 个队列,消息被消费。C1 C2共同争抢当前的消息队列内容,谁先拿到谁负责消费 消息</p>
+</li>
+<li><p>(隐患：高并发情况下,默认会产生某一个消息被多个消费者共同使用,可以设置一个开关(syncronize) 保证一条消息只能被一个消费者使用)。 </p>
+</li>
+</ul>
+<p><strong>三.publish/subscribe发布订阅(共享资源)</strong></p>
+<p>1、每个消费者监听自己的队列； </p>
+<p>2、生产者将消息发给broker，由交换机将消息转发到绑定此交换机的每个队列，每个绑定交换机的队列都将接收到消息。</p>
+<p><strong>四.routing路由模式</strong> </p>
+<p>根据routing_key 进行匹配，生产者，发送消息的时候会制定routing_key，交换机根据routing_key，去匹配绑定改routing_key的队列</p>
+<p>,只能匹配上路由key对应 的消息队列,对应的消费者才能消费消息</p>
+<p><strong>五.topic 主题模式(路由模式的一种)</strong> </p>
+<p>.交换机根据key的规则模糊匹配到对应的队列,由队列的监听消费者接收消息消费。类似sq l的模糊匹配</p>
+<p><strong>六.RPC模式(路由模式的一种)</strong> </p>
+<p>实现不同服务间的远程调用</p>
+<h2 id="消息的分发策略"><a href="#消息的分发策略" class="headerlink" title="消息的分发策略"></a>消息的分发策略</h2><ul>
+<li><p>消息的分发策略</p>
+<p>  假设队列里有100条消息，有 A,B,C   3个队列</p>
+<ul>
+<li>发布订阅。三个队列都收到100条</li>
+<li>轮训分发。3个队列都是至少33条，剩下一条随机，不论你数据库性能怎么样，大家接受的都是公平的</li>
+<li>公平分发。根据服务器性能，去分发，哪个性能高，哪个处理的消息可能就多，能者多劳，会造成数据倾斜</li>
+<li>重发。发送消息中出现了异常后，消息没有得到应答，就会重发，kafka不支持</li>
+<li>消息拉取。就是RPC去拉取数据</li>
+</ul>
+<blockquote>
+<p>Rabbitmq以上集中策略都支持，且是开源的</p>
+<p>kafka速度最快</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="RabbitMQ的高级特性"><a href="#RabbitMQ的高级特性" class="headerlink" title="RabbitMQ的高级特性"></a>RabbitMQ的高级特性</h1><h2 id="1-1-消息的可靠性投递"><a href="#1-1-消息的可靠性投递" class="headerlink" title="1.1 消息的可靠性投递"></a>1.1 消息的可靠性投递</h2><ol>
+<li><p>作为发送方，我们希望杜绝任何消息丢失或者投递失败，因此rabbitMQ 给我们提供了两种方式，来控制消息投递的可靠性。</p>
+<ul>
+<li>confirm确认机制</li>
+<li>return 退回模式</li>
+</ul>
+</li>
+<li><p>rabbitMQ 的整个消息投递的路径为：<code>producer-&gt; rabbitmq broker -&gt; exchange-&gt;queue-&gt;consumer</code></p>
+<ul>
+<li><p>消息从producer -&gt;  exchange 会返回一个confirmCallBack</p>
+</li>
+<li><p>消息从exchange -&gt; queue 会反回一个returnCallBack</p>
+<p>我们将利用这两个CallBack来控制消息的可靠性投递</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-2-Consumer-Ack-消费端收到消息后的确认方式"><a href="#1-2-Consumer-Ack-消费端收到消息后的确认方式" class="headerlink" title="1.2 Consumer Ack 消费端收到消息后的确认方式"></a>1.2 Consumer Ack 消费端收到消息后的确认方式</h2><ol>
+<li>有三种确认方式<ul>
+<li>自动确认 acknowledge = “none”。 消息一旦到达consumer就会被确认，并将对应的message 从消息缓存中移除，实际场景中，很可能消息被收到，但是处理业务时异常，这种确认机制下，消息就会丢失。</li>
+<li>手动确认acknowledge = “manual”。设置了手动确认，则需要在业务处理成成功后，手动调用<code>channer.basicAck()</code>,如果出现异常则调用<code>channer.basicNAck()</code>,设置消息是重新返回队列，还是直接丢掉。</li>
+<li>根据异常情况确认 acknowledge = “auto”</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-3-消费端限流"><a href="#1-3-消费端限流" class="headerlink" title="1.3  消费端限流"></a>1.3  消费端限流</h2><ul>
+<li>在<a href="rabbit:listener-container">rabbit:listener-container</a> 中配置<code>prefetch</code>属性设置消费端一次拉取多少消息</li>
+<li>消费端的确认模式需要是手动确认</li>
+</ul>
+<h2 id="1-4-TTL"><a href="#1-4-TTL" class="headerlink" title="1.4 TTL"></a>1.4 TTL</h2><ol>
+<li>time to live 消息存活时间， 消息达到了存活时间后，如果还没被消费，会被自动移除</li>
+</ol>
+<h2 id="1-5-死信队列"><a href="#1-5-死信队列" class="headerlink" title="1.5 死信队列"></a>1.5 死信队列</h2><ul>
+<li><p>当消息成为死信后，可以被重新发送到一个交换机，这个交换机就是死信交换机，它绑定的队列就是死信队列</p>
+</li>
+<li><p>成为死信的条件：</p>
+<ul>
+<li>消息达到了存活时间，还没有被消费。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-6-延迟队列"><a href="#1-6-延迟队列" class="headerlink" title="1.6 延迟队列"></a>1.6 延迟队列</h2><p>延迟队列，消息进入队列后，不会立即被消费，而是等到一定的时间，才会被消费。</p>
+<p>使用场景：</p>
+<ol>
+<li>用户下单后，30分钟未支付，取消订单，回滚库存</li>
+<li>新用户注册7天后，发送短信问候</li>
+</ol>
+<blockquote>
+<p>当然上面的场景也可以用定时器实现</p>
+</blockquote>
+<hr/>
+
+
+
+<h2 id="1-中间件"><a href="#1-中间件" class="headerlink" title="1. 中间件"></a>1. 中间件</h2><ul>
+<li>中间件<ul>
+<li>是一种应用于分布式系统的基础软件。</li>
+<li>常见的中间件：mysql，rabbit MQ</li>
+</ul>
+</li>
+<li>怎么选择中间件<ul>
+<li>可以通信，跨平台。比方两个项目一个java，一个go之间要通信，就要遵循同一种协议</li>
+<li>高可用<ul>
+<li>是否拥有持久化。比方中间件挂了，重启后是否可以把消息重新存储起来的能力</li>
+<li>支持集群。系统cpu不够用了，就得搭集群</li>
+</ul>
+</li>
+<li>有分发能力，多个系统，往那个系统去发送消息</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-协议"><a href="#2-协议" class="headerlink" title="2. 协议"></a>2. 协议</h2><ul>
+<li><p>网络协议三要素：</p>
+<ul>
+<li>语法：用户数据的结构与形式，如：http中规定了请求和响应报文的格式</li>
+<li>语义：规定了何种信息需要对应发出何种响应，如：请求get要把参数放在url中，post把参数放在body中</li>
+<li>时序：事件的执行顺序，如：先有请求后有响应</li>
+</ul>
+</li>
+<li><p>为什么消息中间件不用http？</p>
+<ul>
+<li>http的请求和响应报文比较复杂，有cookie, 状态码，响应码这些，但消息中间件：只需要接受消息，存储消息，分发消息，不需要这么复杂</li>
+<li>http大部分是短链接，不利于出现故障时消息持久化</li>
+</ul>
+</li>
+<li><p>AMQP（advanced message. Queuing protocol） 高级消息队列协议</p>
+<ul>
+<li>采用Erlang，底层是C，速度很快</li>
+<li>特性<ul>
+<li>支持分布式事务</li>
+<li>消息持久化</li>
+<li>高性能高可靠的消息处理优势</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>kafka 协议</p>
+<ul>
+<li>基于TCP/IP的二进制协议，消息内部由长度分割，由基本数据类型构成</li>
+<li>特性<ul>
+<li>结构简单</li>
+<li>解析速度快</li>
+<li>消息持久化</li>
+<li>不支持事务</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><ul>
+<li>持久化：就是把数据 放在磁盘中，而不是单独放在内存中，让数据永久保存</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rabbitMQ/" rel="tag"><i class="fa fa-google"></i> rabbitMQ</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/10/14/%E7%A7%92%E6%9D%80%E6%A8%A1%E5%9D%97%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" rel="next" title="秒杀模块面试准备">
+                <i class="fa fa-chevron-left"></i> 秒杀模块面试准备
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/11/04/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="Redis学习笔记">
+                Redis学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/girl.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/panyurou" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFRabbitMQ%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是RabbitMQ？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rabbitmq-%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">rabbitmq 的使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rabbitmq-%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">rabbitmq 的优点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9rabbitmq%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">为什么选择rabbitmq？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RabbitMQ%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">5.</span> <span class="nav-text">RabbitMQ的基本概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#channel%E4%BF%A1%E9%81%93"><span class="nav-number">6.</span> <span class="nav-text">channel信道</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="nav-number">7.</span> <span class="nav-text">交换机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RabbitMQ%E7%9A%846%E7%A7%8D%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">8.</span> <span class="nav-text">RabbitMQ的6种工作模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E7%9A%84%E5%88%86%E5%8F%91%E7%AD%96%E7%95%A5"><span class="nav-number">8.1.</span> <span class="nav-text">消息的分发策略</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7"><span class="nav-number">9.</span> <span class="nav-text">RabbitMQ的高级特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7%E6%8A%95%E9%80%92"><span class="nav-number">9.1.</span> <span class="nav-text">1.1 消息的可靠性投递</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Consumer-Ack-%E6%B6%88%E8%B4%B9%E7%AB%AF%E6%94%B6%E5%88%B0%E6%B6%88%E6%81%AF%E5%90%8E%E7%9A%84%E7%A1%AE%E8%AE%A4%E6%96%B9%E5%BC%8F"><span class="nav-number">9.2.</span> <span class="nav-text">1.2 Consumer Ack 消费端收到消息后的确认方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E6%B6%88%E8%B4%B9%E7%AB%AF%E9%99%90%E6%B5%81"><span class="nav-number">9.3.</span> <span class="nav-text">1.3  消费端限流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-TTL"><span class="nav-number">9.4.</span> <span class="nav-text">1.4 TTL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E6%AD%BB%E4%BF%A1%E9%98%9F%E5%88%97"><span class="nav-number">9.5.</span> <span class="nav-text">1.5 死信队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-%E5%BB%B6%E8%BF%9F%E9%98%9F%E5%88%97"><span class="nav-number">9.6.</span> <span class="nav-text">1.6 延迟队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-number">9.7.</span> <span class="nav-text">1. 中间件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%8D%8F%E8%AE%AE"><span class="nav-number">9.8.</span> <span class="nav-text">2. 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">9.9.</span> <span class="nav-text">持久化</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Panyurou</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
