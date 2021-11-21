@@ -320,7 +320,7 @@
       
         
           
-            <h1 id="redis集群"><a href="#redis集群" class="headerlink" title="redis集群"></a>redis集群</h1>
+            
           
         
       
@@ -461,18 +461,17 @@
       
         
           <h1 id="什么是RabbitMQ？"><a href="#什么是RabbitMQ？" class="headerlink" title="什么是RabbitMQ？"></a><strong>什么是RabbitMQ？</strong></h1><p>RabbitMQ是一款开源的，Erlang编写的，基于AMQP协议的消息中间件</p>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwlc69jt74j30gy05kglp.jpg"></p>
 <h1 id="rabbitmq-的使用场景"><a href="#rabbitmq-的使用场景" class="headerlink" title="rabbitmq 的使用场景"></a><strong>rabbitmq 的使用场景</strong></h1><blockquote>
-<p>服务间异步通信 </p>
-</blockquote>
-<blockquote>
-<p>顺序消费 </p>
-</blockquote>
-<blockquote>
-<p>定时任务 </p>
-</blockquote>
-<blockquote>
-<p>请求削峰 </p>
+<ul>
+<li><p>服务间异步通信 </p>
+</li>
+<li><p>顺序消费</p>
+</li>
+<li><p>定时任务 </p>
+</li>
+<li><p>请求削峰 </p>
+</li>
+</ul>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
@@ -608,18 +607,6 @@
 <li>队列里面存的消息message，有两个变量用户和商品id,</li>
 <li>receiver监听该队列，减库存，减库存成功了，根据用户和商品id,下订单</li>
 <li>contoller需要的就是给队列发消息，最终给前端返回一个状态值（排队中）</li>
-</ul>
-</li>
-<li>前端轮询：是否生成了订s<ul>
-<li>查询该笔订单是否存在<ul>
-<li>存在 -》 生成</li>
-<li>不存在 -〉查看商品是否已经秒杀完了<ul>
-<li>没秒杀完，就是排队中——–</li>
-<li>完了，就返回该商品已经卖完了，并且在缓存中记录下该商品已经售罄了。goods_over+goodsId, true</li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -1935,6 +1922,8 @@
   
 
 
+  
+
 
 
 
@@ -1962,6 +1951,9 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
