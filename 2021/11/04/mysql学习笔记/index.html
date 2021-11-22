@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="测试,zookeeper," />
+  <meta name="keywords" content="mysql索引," />
 
 
 
@@ -79,21 +79,23 @@
 
 
 
-<meta name="description" content="zookeeper1. zookeeper的产生？ 单体向分布式服务转变，会产生多个节点间协同问题，如：   假设有3个节点，1个job，该job该由哪个节点执行？  若该job由节点1执行，要是1挂了，现在该2还是3执行？     上游和下游服务的发现，如：   上游挂了，下游怎么知道？ 下游服务新增，上游怎么知道？    多节点的协调问题，如：并发产生了请求，该怎么保证请求的幂等性？    由">
+<meta name="description" content="索引的本质 索引是帮助Mysql高效获取数据的排好序的数据结构  索引的数据结构二叉树：单边增长的场景会导致全表扫描。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zookeeper">
-<meta property="og:url" content="http://example.com/2021/09/22/zookeeper/index.html">
+<meta property="og:title" content="Mysql学习">
+<meta property="og:url" content="http://example.com/2021/11/04/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="zookeeper1. zookeeper的产生？ 单体向分布式服务转变，会产生多个节点间协同问题，如：   假设有3个节点，1个job，该job该由哪个节点执行？  若该job由节点1执行，要是1挂了，现在该2还是3执行？     上游和下游服务的发现，如：   上游挂了，下游怎么知道？ 下游服务新增，上游怎么知道？    多节点的协调问题，如：并发产生了请求，该怎么保证请求的幂等性？    由">
+<meta property="og:description" content="索引的本质 索引是帮助Mysql高效获取数据的排好序的数据结构  索引的数据结构二叉树：单边增长的场景会导致全表扫描。">
 <meta property="og:locale">
-<meta property="og:image" content="http://example.com/2021/09/22/zookeeper/images/cute.jpeg">
-<meta property="article:published_time" content="2021-09-22T14:43:51.000Z">
-<meta property="article:modified_time" content="2021-10-06T11:32:11.715Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoa8e7thzj30am0dkwek.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoabk973sj30dy08cjrf.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoaf7s92lj30ne07oq3a.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoarcvziwj30r80bwjs3.jpg">
+<meta property="article:published_time" content="2021-11-04T13:22:22.000Z">
+<meta property="article:modified_time" content="2021-11-22T14:43:31.995Z">
 <meta property="article:author" content="Panyurou">
-<meta property="article:tag" content="测试">
-<meta property="article:tag" content="zookeeper">
+<meta property="article:tag" content="mysql索引">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/09/22/zookeeper/images/cute.jpeg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoa8e7thzj30am0dkwek.jpg">
 
 
 
@@ -123,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2021/09/22/zookeeper/"/>
+  <link rel="canonical" href="http://example.com/2021/11/04/mysql学习笔记/"/>
 
 
 
 
 
-  <title>zookeeper | 楼上有只喵</title>
+  <title>Mysql学习 | 楼上有只喵</title>
   
 
 
@@ -256,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/22/zookeeper/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/04/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -273,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">zookeeper</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql学习</h1>
         
 
         <div class="post-meta">
@@ -285,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-22T22:43:51+08:00">
-                2021-09-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-04T21:22:22+08:00">
+                2021-11-04
               </time>
             
 
@@ -308,8 +310,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/zookeeper/" itemprop="url" rel="index">
-                    <span itemprop="name">zookeeper</span>
+                  <a href="/categories/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/" itemprop="url" rel="index">
+                    <span itemprop="name">性能调优</span>
                   </a>
                 </span>
 
@@ -345,62 +347,43 @@
       
 
       
-        <h1 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h1><h3 id="1-zookeeper的产生？"><a href="#1-zookeeper的产生？" class="headerlink" title="1. zookeeper的产生？"></a>1. zookeeper的产生？</h3><ol>
-<li><p>单体向分布式服务转变，会产生多个节点间协同问题，如：</p>
-<blockquote>
-<ul>
-<li><p>假设有3个节点，1个job，该job该由哪个节点执行？</p>
-</li>
-<li><p>若该job由节点1执行，要是1挂了，现在该2还是3执行？</p>
-</li>
-</ul>
+        <h2 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h2><blockquote>
+<p>索引是帮助Mysql高效获取数据的排好序的数据结构</p>
 </blockquote>
-</li>
-<li><p>上游和下游服务的发现，如：</p>
-<blockquote>
-<ul>
-<li>上游挂了，下游怎么知道？</li>
-<li>下游服务新增，上游怎么知道？</li>
-</ul>
-</blockquote>
-</li>
-<li><p>多节点的协调问题，如：并发产生了请求，该怎么保证请求的幂等性？</p>
-</li>
-</ol>
-<blockquote>
-<p><strong>由于节点自身协调不可靠，性能不高，故需要一个独立服务来做协调，他必须可靠且保证性能。</strong></p>
-</blockquote>
+<h2 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h2><h4 id="二叉树：单边增长的场景会导致全表扫描。"><a href="#二叉树：单边增长的场景会导致全表扫描。" class="headerlink" title="二叉树：单边增长的场景会导致全表扫描。"></a>二叉树：单边增长的场景会导致全表扫描。</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwoa8e7thzj30am0dkwek.jpg" style="zoom: 67%;" />
+
 <span id="more"></span>
 
+<h4 id="红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。"><a href="#红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。" class="headerlink" title="红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。"></a>红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwoabk973sj30dy08cjrf.jpg"  />
 
-<h4 id="2-zookeeper的概要"><a href="#2-zookeeper的概要" class="headerlink" title="2. zookeeper的概要"></a>2. zookeeper的概要</h4><ol>
-<li>用于分布式服务的协调服务</li>
-<li>由java编写，对外公布API，分布式应用程序可以基于这些API，用于同步节点状态，节点配置，服务注册等信息</li>
+<h4 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h4><h4 id="B-tree："><a href="#B-tree：" class="headerlink" title="B-tree："></a>B-tree：</h4><ol>
+<li><strong>特点：</strong></li>
 </ol>
-<h4 id="3-zookeeper的工作机制"><a href="#3-zookeeper的工作机制" class="headerlink" title="3.zookeeper的工作机制"></a>3.zookeeper的工作机制</h4><p>从设计模式的角度理解，zookeeper基于观察者模式。他负责存储和管路大家都关心的数据，然后接受观察，一旦数据状态发生变化，zookeeper就通知注册者。</p>
-<h4 id="4-zookeeper-的特点"><a href="#4-zookeeper-的特点" class="headerlink" title="4.zookeeper 的特点"></a>4.zookeeper 的特点</h4><ol>
-<li>zookeeper是由一个leader和多个follower组成的集群</li>
-<li>半数以上节点存活，zookeeper 即可以正常服务</li>
-<li>每个server的数据一致</li>
-<li>来自同一个client的请求依次执行</li>
-<li>原子性，数据更新要么成功，要么失败</li>
-<li>zookeeper数据量少，故同步快，一定时间内，client可以读到最新数据</li>
-</ol>
-<h4 id="5-zookeeper-选举机制"><a href="#5-zookeeper-选举机制" class="headerlink" title="5.zookeeper 选举机制"></a>5.zookeeper 选举机制</h4><blockquote>
-<p>原则：</p>
-<ol>
-<li>节点获得半数以上的票数，可被选举</li>
-<li>节点一上来就选自己，发现不到半数，就会选离自己最近的myId大于自己的节点</li>
-</ol>
+<blockquote>
+<ul>
+<li>叶子结点具有相同的深度，叶子结点指针为空。</li>
+<li>所有索引元素不重复</li>
+<li>节点中的数据索引从左到右递增</li>
+</ul>
 </blockquote>
-<p>案例1. 假设节点总数为3，最终的leader节点是2</p>
-<ol>
-<li><p>第一轮：每个节点都给自己投，所以节点1，节点2，节点3 的票数均为1，投票数未达一半，继续下一轮</p>
-</li>
-<li><p>第二轮：节点1给离自己最近的节点投，此时为2，2依旧给自己投，节点2的票数过半，选举结束，最终leader为2</p>
+<ol start="2">
+<li>如果使用了innoDb存储引擎，结点的data元素就可能存储的是除了索引外的其他所有列，会占用比较大的存储空间，对于一个大结点而言，可以存放的结点数量就会比较小</li>
+</ol>
+<img src="https://tva1.sinaimg.cn/large/008i3skNly1gwoaf7s92lj30ne07oq3a.jpg"  />
+
+<h4 id="B-tree-B-tree变种"><a href="#B-tree-B-tree变种" class="headerlink" title="B+tree(B-tree变种)"></a>B+tree(B-tree变种)</h4><ol>
+<li><p>特点：</p>
+<blockquote>
+<ul>
+<li>翡叶子结点不存储data ,只存储索引（冗余），可以存放更多的索引。</li>
+<li>叶子结点包含所有的索引字段。</li>
+<li>叶子结点用指针连接，提高区间访问的性能。</li>
+</ul>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwoarcvziwj30r80bwjs3.jpg"></p>
 </li>
 </ol>
-<p><img src="images/cute.jpeg"></p>
+<h2 id="索引是怎么支持千万级表快速查找？"><a href="#索引是怎么支持千万级表快速查找？" class="headerlink" title="索引是怎么支持千万级表快速查找？"></a>索引是怎么支持千万级表快速查找？</h2><p>mysql建议一个结点大小为16kb,这样一次iO速度比较快，一个大结点下的一个索引元素大约是14b，所以一个大结点里面约有1170个索引元素，对于一个高度为3的b+树，可以存储16* 1170* 1170 = 2000万。</p>
 
       
     </div>
@@ -418,9 +401,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag"><i class="fa fa-google"></i> 测试</a>
-          
-            <a href="/tags/zookeeper/" rel="tag"><i class="fa fa-google"></i> zookeeper</a>
+            <a href="/tags/mysql%E7%B4%A2%E5%BC%95/" rel="tag"><i class="fa fa-google"></i> mysql索引</a>
           
         </div>
       
@@ -433,15 +414,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2021/10/27/RabbitMQ%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="RabbitMQ学习笔记">
+                <i class="fa fa-chevron-left"></i> RabbitMQ学习笔记
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/09/26/oauth2/" rel="prev" title="oauth2">
-                oauth2 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -585,7 +566,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#zookeeper"><span class="nav-number">1.</span> <span class="nav-text">zookeeper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-zookeeper%E7%9A%84%E4%BA%A7%E7%94%9F%EF%BC%9F"><span class="nav-number">1.0.1.</span> <span class="nav-text">1. zookeeper的产生？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-zookeeper%E7%9A%84%E6%A6%82%E8%A6%81"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">2. zookeeper的概要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-zookeeper%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">3.zookeeper的工作机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-zookeeper-%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">4.zookeeper 的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-zookeeper-%E9%80%89%E4%B8%BE%E6%9C%BA%E5%88%B6"><span class="nav-number">1.0.1.4.</span> <span class="nav-text">5.zookeeper 选举机制</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.</span> <span class="nav-text">索引的本质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">索引的数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%9A%E5%8D%95%E8%BE%B9%E5%A2%9E%E9%95%BF%E7%9A%84%E5%9C%BA%E6%99%AF%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%85%A8%E8%A1%A8%E6%89%AB%E6%8F%8F%E3%80%82"><span class="nav-number">2.0.1.</span> <span class="nav-text">二叉树：单边增长的场景会导致全表扫描。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%9A%E7%9B%B8%E5%AF%B9%E5%B9%B3%E8%A1%A1%EF%BC%8C%E6%AF%94%E4%BA%8C%E5%8F%89%E6%A0%91%E6%80%A7%E8%83%BD%E5%A5%BD%EF%BC%8C%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B8%8B%EF%BC%8C%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E9%AB%98%E5%BA%A6%E8%BF%87%E9%AB%98%EF%BC%8C%E4%BC%9A%E9%80%A0%E6%88%90%E7%A3%81%E7%9B%98IO%E9%A2%91%E7%B9%81%E3%80%82"><span class="nav-number">2.0.2.</span> <span class="nav-text">红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hash"><span class="nav-number">2.0.3.</span> <span class="nav-text">Hash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-tree%EF%BC%9A"><span class="nav-number">2.0.4.</span> <span class="nav-text">B-tree：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-tree-B-tree%E5%8F%98%E7%A7%8D"><span class="nav-number">2.0.5.</span> <span class="nav-text">B+tree(B-tree变种)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E6%98%AF%E6%80%8E%E4%B9%88%E6%94%AF%E6%8C%81%E5%8D%83%E4%B8%87%E7%BA%A7%E8%A1%A8%E5%BF%AB%E9%80%9F%E6%9F%A5%E6%89%BE%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">索引是怎么支持千万级表快速查找？</span></a></li></ol></div>
             
 
           </div>
