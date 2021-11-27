@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Explain详解与索引最佳实现</title>
+    <link href="/2021/11/27/Explain-%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E7%8E%B0/"/>
+    <url>/2021/11/27/Explain-%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E7%8E%B0/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="explain工具介绍">explain工具介绍</span></h1><ul><li><p>使用EXPLAIN关键字可以模拟优化器执行SQL语句，分析你的查询语句或是结构的性能瓶颈 </p></li><li><p>在 select 语句之前增加 explain 关键字，MySQL 会在查询上设置一个标记，执行查询会返回执行计划的信息，而不是执行这条SQL </p></li></ul><p>注意：如果 from 中包含子查询，仍会执行该子查询，将结果放入临时表中</p><h2><span id="每列信息">每列信息</span></h2><h3><span id="1-id">1. id</span></h3><ul><li><p>id列的编号就是select的序列号，有几个select就有几个id</p></li><li><p>id的顺序是按select 出现的顺序增长的</p></li><li><p>Id列越大执行优先级越高，id相同则从上往下执行，id为NULL最后执行</p></li></ul><p>衍生表： 查询结果生成的表</p><p>![image-20211127155359884](/Users/panyurou/Library/Application Support/typora-user-images/image-20211127155359884.png)</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>性能调优</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Explain详解</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Mysql学习</title>
     <link href="/2021/11/04/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <url>/2021/11/04/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
