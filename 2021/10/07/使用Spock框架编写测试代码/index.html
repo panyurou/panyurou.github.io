@@ -1,85 +1,35 @@
+
+
 <!DOCTYPE html>
+<html lang="zh-Hans" data-default-color-scheme=auto>
 
 
 
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Spock 介绍
+
+Spock是一个为groovy和java语言应用程序来测试和规范的框架。
+
+这个框架的突出点在于它美妙和高效表达规范的语言。
+
+得益于JUnit runner，Spock能够在大多数IDE、编译工具、持续集成服务下工作。
+
+Spock的灵感源于JUnit,jMock, RSpec, Groovy, Scala, Vulcans以及其他优秀的框架形态。
 
 
 
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="Spock 介绍  Spock是一个为groovy和java语言应用程序来测试和规范的框架。  这个框架的突出点在于它美妙和高效表达规范的语言。  得益于JUnit runner，Spock能够在大多数IDE、编译工具、持续集成服务下工作。  Spock的灵感源于JUnit,jMock, RSpec, Groovy, Scala, Vulcans以及其他优秀的框架形态。    基本操作 a sim">
+基本操作
+a sim">
+  <meta name="author" content="Panyurou">
+  <meta name="keywords" content="">
+  <meta name="description" content="Spock 介绍  Spock是一个为groovy和java语言应用程序来测试和规范的框架。  这个框架的突出点在于它美妙和高效表达规范的语言。  得益于JUnit runner，Spock能够在大多数IDE、编译工具、持续集成服务下工作。  Spock的灵感源于JUnit,jMock, RSpec, Groovy, Scala, Vulcans以及其他优秀的框架形态。    基本操作 a sim">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Spock框架编写测试代码">
 <meta property="og:url" content="http://example.com/2021/10/07/%E4%BD%BF%E7%94%A8Spock%E6%A1%86%E6%9E%B6%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81/index.html">
@@ -89,259 +39,217 @@
 <meta property="article:published_time" content="2021-10-07T11:02:07.000Z">
 <meta property="article:modified_time" content="2021-10-07T11:17:34.172Z">
 <meta property="article:author" content="Panyurou">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>使用Spock框架编写测试代码 - 楼上有只喵</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '',
-    scheme: 'Gemini',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
 
-
-
-  <link rel="canonical" href="http://example.com/2021/10/07/使用Spock框架编写测试代码/"/>
-
-
-
-
-
-  <title>使用Spock框架编写测试代码 | 楼上有只喵</title>
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
 
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">楼上有只喵</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
 </nav>
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/07/%E4%BD%BF%E7%94%A8Spock%E6%A1%86%E6%9E%B6%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/girl.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="楼上有只喵">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">使用Spock框架编写测试代码</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-07T19:02:07+08:00">
-                2021-10-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spock/" itemprop="url" rel="index">
-                    <span itemprop="name">spock</span>
-                  </a>
-                </span>
-
-                
-                
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="使用Spock框架编写测试代码">
               
             </span>
-          
 
-          
             
-          
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-07 19:02" pubdate>
+        October 7, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      10 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
 
           
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
-      
-        <h2 id="Spock-介绍"><a href="#Spock-介绍" class="headerlink" title="Spock 介绍"></a>Spock 介绍</h2><blockquote>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">使用Spock框架编写测试代码</h1>
+            
+            <div class="markdown-body">
+              <h2><span id="spock-介绍">Spock 介绍</span></h2><blockquote>
 <ul>
 <li><p>Spock是一个为groovy和java语言应用程序来测试和规范的框架。</p>
 </li>
@@ -353,63 +261,63 @@
 </li>
 </ul>
 </blockquote>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
+<h2><span id="基本操作">基本操作</span></h2><ul>
 <li>a simple assertion</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should be a simple assertion&quot;</span>() &#123;</span><br><span class="line">    <span class="symbol">expect:</span></span><br><span class="line">    <span class="number">1</span> == <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should be a simple assertion&quot;</span>() &#123;<br>    <span class="hljs-symbol">expect:</span><br>    <span class="hljs-number">1</span> == <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <span id="more"></span>
 
 <ul>
 <li>given when then 使用</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should demo given-when-then&quot;</span>()&#123;</span><br><span class="line">     <span class="symbol">given:</span></span><br><span class="line">     <span class="keyword">def</span> user = <span class="keyword">new</span> Polygon(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">     <span class="symbol">when:</span></span><br><span class="line">     <span class="keyword">int</span> age = user.numberOfSides</span><br><span class="line"></span><br><span class="line">     <span class="symbol">then:</span></span><br><span class="line">     age == <span class="number">10</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should demo given-when-then&quot;</span>()&#123;<br>     <span class="hljs-symbol">given:</span><br>     <span class="hljs-keyword">def</span> user = <span class="hljs-keyword">new</span> Polygon(<span class="hljs-number">10</span>)<br><br>     <span class="hljs-symbol">when:</span><br>     <span class="hljs-keyword">int</span> age = user.numberOfSides<br><br>     <span class="hljs-symbol">then:</span><br>     age == <span class="hljs-number">10</span><br> &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>expecting exceptions</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should expect exceptions&quot;</span>()&#123;</span><br><span class="line">     <span class="symbol">when:</span></span><br><span class="line">     <span class="keyword">new</span> Polygon(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">     <span class="symbol">then:</span></span><br><span class="line">     thrown(TooFewSidesException)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should expect exceptions&quot;</span>()&#123;<br>     <span class="hljs-symbol">when:</span><br>     <span class="hljs-keyword">new</span> Polygon(<span class="hljs-number">0</span>)<br><br>     <span class="hljs-symbol">then:</span><br>     thrown(TooFewSidesException)<br> &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>data pipes.     where设置所有期望值</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should expect an exception to be throw for a number of invalid inputs&quot;</span>()&#123;</span><br><span class="line">       <span class="symbol">when:</span></span><br><span class="line">       <span class="keyword">new</span> Polygon(sides)</span><br><span class="line"></span><br><span class="line">       <span class="symbol">then:</span></span><br><span class="line">       thrown(TooFewSidesException)</span><br><span class="line"></span><br><span class="line">       <span class="comment">//The where block says &quot;run this test with each of the following values: a negative value, zero, one and two&quot;.</span></span><br><span class="line">       <span class="comment">// where设置所有期望值</span></span><br><span class="line">       <span class="symbol">where:</span></span><br><span class="line">       sides &lt;&lt; [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should expect an exception to be throw for a number of invalid inputs&quot;</span>()&#123;<br>       <span class="hljs-symbol">when:</span><br>       <span class="hljs-keyword">new</span> Polygon(sides)<br><br>       <span class="hljs-symbol">then:</span><br>       thrown(TooFewSidesException)<br><br>       <span class="hljs-comment">//The where block says &quot;run this test with each of the following values: a negative value, zero, one and two&quot;.</span><br>       <span class="hljs-comment">// where设置所有期望值</span><br>       <span class="hljs-symbol">where:</span><br>       sides &lt;&lt; [<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]<br>   &#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should be able to create polygon with valid inputs&quot;</span>()&#123;</span><br><span class="line">      <span class="symbol">expect:</span></span><br><span class="line">      <span class="keyword">new</span> Polygon(sides).numberOfSides == sides</span><br><span class="line"></span><br><span class="line">      <span class="comment">//The where block says &quot;run this test with each of the following values: a negative value, zero, one and two&quot;.</span></span><br><span class="line">      <span class="symbol">where:</span></span><br><span class="line">      sides &lt;&lt; [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should be able to create polygon with valid inputs&quot;</span>()&#123;<br>      <span class="hljs-symbol">expect:</span><br>      <span class="hljs-keyword">new</span> Polygon(sides).numberOfSides == sides<br><br>      <span class="hljs-comment">//The where block says &quot;run this test with each of the following values: a negative value, zero, one and two&quot;.</span><br>      <span class="hljs-symbol">where:</span><br>      sides &lt;&lt; [<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]<br>  &#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <ul>
 <li>data tables</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should use data tables for calculating max&quot;</span>()&#123;</span><br><span class="line">      <span class="comment">// 如果我们只有一条语句设置了测试和断言，我们可以直接使用`expect`标签</span></span><br><span class="line">      <span class="symbol">expect:</span></span><br><span class="line">      Math.max(a,b) == max</span><br><span class="line"></span><br><span class="line">      <span class="symbol">where:</span></span><br><span class="line">      a | b | max</span><br><span class="line">      <span class="number">1</span> | <span class="number">2</span> | <span class="number">2</span></span><br><span class="line">      <span class="number">3</span> | <span class="number">4</span> | <span class="number">4</span></span><br><span class="line">      <span class="number">5</span> | <span class="number">9</span> | <span class="number">9</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should use data tables for calculating max&quot;</span>()&#123;<br>      <span class="hljs-comment">// 如果我们只有一条语句设置了测试和断言，我们可以直接使用`expect`标签</span><br>      <span class="hljs-symbol">expect:</span><br>      Math.max(a,b) == max<br><br>      <span class="hljs-symbol">where:</span><br>      a | b | max<br>      <span class="hljs-number">1</span> | <span class="hljs-number">2</span> | <span class="hljs-number">2</span><br>      <span class="hljs-number">3</span> | <span class="hljs-number">4</span> | <span class="hljs-number">4</span><br>      <span class="hljs-number">5</span> | <span class="hljs-number">9</span> | <span class="hljs-number">9</span><br>  &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>mocks 模拟出类或API来声明预期的行为</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should be able to mock a specific class&quot;</span>() &#123;</span><br><span class="line">        <span class="symbol">given:</span></span><br><span class="line">        Renderer renderer = Mock()</span><br><span class="line"></span><br><span class="line">        <span class="comment">//@Subject只是为了标记我们正在测试的对象，对代码没有任何影响</span></span><br><span class="line">        <span class="meta">@Subject</span></span><br><span class="line">        <span class="keyword">def</span> ploygon = <span class="keyword">new</span> Polygon(<span class="number">4</span>, renderer)</span><br><span class="line"></span><br><span class="line">        <span class="symbol">when:</span></span><br><span class="line">        ploygon.draw()</span><br><span class="line"></span><br><span class="line">        <span class="symbol">then:</span></span><br><span class="line">        <span class="number">4</span> * renderer.drawLine()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should be able to mock a specific class&quot;</span>() &#123;<br>        <span class="hljs-symbol">given:</span><br>        Renderer renderer = Mock()<br><br>        <span class="hljs-comment">//@Subject只是为了标记我们正在测试的对象，对代码没有任何影响</span><br>        <span class="hljs-meta">@Subject</span><br>        <span class="hljs-keyword">def</span> ploygon = <span class="hljs-keyword">new</span> Polygon(<span class="hljs-number">4</span>, renderer)<br><br>        <span class="hljs-symbol">when:</span><br>        ploygon.draw()<br><br>        <span class="hljs-symbol">then:</span><br>        <span class="hljs-number">4</span> * renderer.drawLine()<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>stubs 在测试的代码里提供数据或者值</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should be able to create a stubs&quot;</span>() &#123;</span><br><span class="line">       <span class="symbol">given:</span></span><br><span class="line">       Palette palette = Stub()</span><br><span class="line">       palette.getPrimaryColor() &gt;&gt; Color.red</span><br><span class="line"></span><br><span class="line">       <span class="keyword">def</span> renderer =  <span class="keyword">new</span> Renderer(palette)</span><br><span class="line"></span><br><span class="line">       <span class="symbol">expect:</span></span><br><span class="line">       renderer.getForeGroundColor() == Color.red</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should be able to create a stubs&quot;</span>() &#123;<br>       <span class="hljs-symbol">given:</span><br>       Palette palette = Stub()<br>       palette.getPrimaryColor() &gt;&gt; Color.red<br><br>       <span class="hljs-keyword">def</span> renderer =  <span class="hljs-keyword">new</span> Renderer(palette)<br><br>       <span class="hljs-symbol">expect:</span><br>       renderer.getForeGroundColor() == Color.red<br>   &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li> help methods</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should use a helper methods&quot;</span>() &#123;</span><br><span class="line">    <span class="symbol">given:</span></span><br><span class="line">    Renderer renderer = Mock()</span><br><span class="line">    <span class="keyword">def</span> shapeFactory = <span class="keyword">new</span> ShapeFactory(renderer)</span><br><span class="line"></span><br><span class="line">    <span class="symbol">when:</span></span><br><span class="line">    <span class="keyword">def</span> polygon = shapeFactory.createDefaultPolygon()</span><br><span class="line"></span><br><span class="line">    <span class="symbol">then:</span></span><br><span class="line">    checkDefaultShape(polygon, renderer)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="keyword">void</span> checkDefaultShape(Polygon polygon, Renderer renderer) &#123;</span><br><span class="line">    <span class="keyword">assert</span> polygon.numberOfSides == <span class="number">4</span></span><br><span class="line">    <span class="keyword">assert</span> renderer == renderer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should use a helper methods&quot;</span>() &#123;<br>    <span class="hljs-symbol">given:</span><br>    Renderer renderer = Mock()<br>    <span class="hljs-keyword">def</span> shapeFactory = <span class="hljs-keyword">new</span> ShapeFactory(renderer)<br><br>    <span class="hljs-symbol">when:</span><br>    <span class="hljs-keyword">def</span> polygon = shapeFactory.createDefaultPolygon()<br><br>    <span class="hljs-symbol">then:</span><br>    checkDefaultShape(polygon, renderer)<br>&#125;<br><br><span class="hljs-keyword">def</span> <span class="hljs-keyword">void</span> checkDefaultShape(Polygon polygon, Renderer renderer) &#123;<br>    <span class="hljs-keyword">assert</span> polygon.numberOfSides == <span class="hljs-number">4</span><br>    <span class="hljs-keyword">assert</span> renderer == renderer<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>with 测试但个对象的多个属性</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should use #with()&quot;</span>() &#123;</span><br><span class="line">        <span class="symbol">given:</span></span><br><span class="line">        Renderer renderer = Mock()</span><br><span class="line">        <span class="keyword">def</span> shapeFactory = <span class="keyword">new</span> ShapeFactory(renderer)</span><br><span class="line"></span><br><span class="line">        <span class="symbol">when:</span></span><br><span class="line">        <span class="keyword">def</span> polygon = shapeFactory.createDefaultPolygon()</span><br><span class="line"></span><br><span class="line">        <span class="symbol">then:</span></span><br><span class="line">        with(polygon)&#123;</span><br><span class="line">            numberOfSides == <span class="number">4</span></span><br><span class="line">            renderer == render</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should use #with()&quot;</span>() &#123;<br>        <span class="hljs-symbol">given:</span><br>        Renderer renderer = Mock()<br>        <span class="hljs-keyword">def</span> shapeFactory = <span class="hljs-keyword">new</span> ShapeFactory(renderer)<br><br>        <span class="hljs-symbol">when:</span><br>        <span class="hljs-keyword">def</span> polygon = shapeFactory.createDefaultPolygon()<br><br>        <span class="hljs-symbol">then:</span><br>        with(polygon)&#123;<br>            numberOfSides == <span class="hljs-number">4</span><br>            renderer == render<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><p>verifyAll() 确保所有断言都在执行，而不管其中之一是否失败了。</p>
 <p>当使用with时，第一行测试失败了，第二行测试就不会执行了，而verifyAll 会运行所有行测试</p>
 </li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="string">&quot;should use #verifyAll()&quot;</span>() &#123;</span><br><span class="line">       <span class="symbol">given:</span></span><br><span class="line">       Renderer renderer = Mock()</span><br><span class="line">       <span class="keyword">def</span> shapeFactory = <span class="keyword">new</span> ShapeFactory(renderer)</span><br><span class="line"></span><br><span class="line">       <span class="symbol">when:</span></span><br><span class="line">       <span class="keyword">def</span> polygon = shapeFactory.createDefaultPolygon()</span><br><span class="line"></span><br><span class="line">       <span class="symbol">then:</span></span><br><span class="line">       verifyAll(polygon)&#123;</span><br><span class="line">           numberOfSides == <span class="number">5</span></span><br><span class="line">           renderer == <span class="literal">null</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs groovy"><span class="hljs-keyword">def</span> <span class="hljs-string">&quot;should use #verifyAll()&quot;</span>() &#123;<br>       <span class="hljs-symbol">given:</span><br>       Renderer renderer = Mock()<br>       <span class="hljs-keyword">def</span> shapeFactory = <span class="hljs-keyword">new</span> ShapeFactory(renderer)<br><br>       <span class="hljs-symbol">when:</span><br>       <span class="hljs-keyword">def</span> polygon = shapeFactory.createDefaultPolygon()<br><br>       <span class="hljs-symbol">then:</span><br>       verifyAll(polygon)&#123;<br>           numberOfSides == <span class="hljs-number">5</span><br>           renderer == <span class="hljs-literal">null</span><br>       &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><p>setup-and-teardown</p>
@@ -421,351 +329,153 @@
 </ul>
 </li>
 <li><p>and可以增加多个使代码根据可读性：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">given: &quot;test method&quot;</span><br><span class="line">// code ....</span><br><span class="line"></span><br><span class="line">and: &quot;test method with user1&quot;</span><br><span class="line">// code ...</span><br><span class="line"></span><br><span class="line">and: &quot;test method with user2&quot;</span><br><span class="line">// code ...</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk">given: <span class="hljs-string">&quot;test method&quot;</span><br><span class="hljs-regexp">//</span> code ....<br><br>and: <span class="hljs-string">&quot;test method with user1&quot;</span><br><span class="hljs-regexp">//</span> code ...<br><br>and: <span class="hljs-string">&quot;test method with user2&quot;</span><br><span class="hljs-regexp">//</span> code ...<br></code></pre></td></tr></table></figure></li>
 </ul>
-<p>​    </p>
+<p>​</p>
 
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2021/10/06/kotlin%E5%AD%A6%E4%B9%A0/" rel="next" title="kotlin学习">
-                <i class="fa fa-chevron-left"></i> kotlin学习
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/10/14/%E7%A7%92%E6%9D%80%E6%A8%A1%E5%9D%97%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" rel="prev" title="秒杀模块学习">
-                秒杀模块学习 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/girl.jpg"
-                alt="" />
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/panyurou" target="_blank" title="GitHub">
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
                     
-                      <i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
+                      <a class="hover-with-bg" href="/categories/spock/">spock</a>
+                    
+                  </div>
+                
+                
+              </div>
               
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/14/%E7%A7%92%E6%9D%80%E6%A8%A1%E5%9D%97%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">秒杀模块学习</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/06/kotlin%E5%AD%A6%E4%B9%A0/">
+                        <span class="hidden-mobile">kotlin学习</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
             
-          </div>
-
-          
-          
-
-          
-          
-
-          
-
+          </article>
         </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spock-%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">Spock 介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">基本操作</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Panyurou</span>
-
-  
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
       </div>
     
-
-    
-
   </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
 
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
   
+</footer>
 
 
+  <!-- SCRIPTS -->
   
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
 
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
 
 
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
-
-
+    <script  src="/js/img-lazyload.js" ></script>
   
-
-
-
-
-	
-
-
 
 
 
@@ -773,8 +483,17 @@
 
 
 
-
-
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
   
 
 
@@ -782,26 +501,34 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
 
 
-  
 
 
 
 
 
-  
 
-  
 
-  
-  
 
-  
 
-  
 
-  
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
 
 </body>
 </html>

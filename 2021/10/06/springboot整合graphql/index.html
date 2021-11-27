@@ -1,85 +1,23 @@
+
+
 <!DOCTYPE html>
+<html lang="zh-Hans" data-default-color-scheme=auto>
 
 
 
-  
-
-
-<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="graphql," />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="GraphQL是比REST更高效、强大和灵活的新一代API标准。详细的可以看官网GraphQL。 下面介绍一个Spring boot整合graphql简单的例子。">
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="GraphQL是比REST更高效、强大和灵活的新一代API标准。详细的可以看官网GraphQL。
+下面介绍一个Spring boot整合graphql简单的例子。">
+  <meta name="author" content="Panyurou">
+  <meta name="keywords" content="">
+  <meta name="description" content="GraphQL是比REST更高效、强大和灵活的新一代API标准。详细的可以看官网GraphQL。 下面介绍一个Spring boot整合graphql简单的例子。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="springboot整合graphql">
 <meta property="og:url" content="http://example.com/2021/10/06/springboot%E6%95%B4%E5%90%88graphql/index.html">
@@ -92,660 +30,421 @@
 <meta property="article:modified_time" content="2021-10-06T11:33:36.035Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="graphql">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/images/resolver.png">
+  
+  <title>springboot整合graphql - 楼上有只喵</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
 
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '',
-    scheme: 'Gemini',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
 
-
-
-  <link rel="canonical" href="http://example.com/2021/10/06/springboot整合graphql/"/>
-
-
-
-
-
-  <title>springboot整合graphql | 楼上有只喵</title>
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
   
 
 
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
 
 
 
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
 
 
+<link  rel="stylesheet" href="/css/main.css" />
 
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
 <meta name="generator" content="Hexo 5.4.0"></head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
 
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">楼上有只喵</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle"></p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
     </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
 </nav>
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/06/springboot%E6%95%B4%E5%90%88graphql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/girl.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="楼上有只喵">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">springboot整合graphql</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-10-06T17:49:08+08:00">
-                2021-10-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springboot/" itemprop="url" rel="index">
-                    <span itemprop="name">springboot</span>
-                  </a>
-                </span>
-
-                
-                
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="springboot整合graphql">
               
             </span>
-          
 
-          
             
-          
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-06 17:49" pubdate>
+        October 6, 2021 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
 
           
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      </div>
+    </div>
+  </header>
 
+  <main>
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
-      
-        <p> GraphQL是比REST更高效、强大和灵活的<strong>新一代API标准</strong>。详细的可以看官网<a target="_blank" rel="noopener" href="https://graphql.cn/">GraphQL</a>。</p>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">springboot整合graphql</h1>
+            
+            <div class="markdown-body">
+              <p>GraphQL是比REST更高效、强大和灵活的<strong>新一代API标准</strong>。详细的可以看官网<a target="_blank" rel="noopener" href="https://graphql.cn/">GraphQL</a>。</p>
 <p>下面介绍一个Spring boot整合graphql简单的例子。</p>
 <span id="more"></span>
 
 <ul>
 <li><p>项目准备：相关依赖的引入：</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&lt;dependencies&gt;</span></span><br><span class="line">		<span class="meta">&lt;!--web</span> <span class="string">--&gt;</span></span><br><span class="line">		<span class="attr">&lt;dependency&gt;</span></span><br><span class="line">			<span class="attr">&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span></span><br><span class="line">			<span class="attr">&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span></span><br><span class="line">		<span class="attr">&lt;/dependency&gt;</span></span><br><span class="line">		<span class="meta">&lt;!--lombok</span> <span class="string">--&gt;</span></span><br><span class="line">		<span class="attr">&lt;dependency&gt;</span></span><br><span class="line">			<span class="attr">&lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span></span><br><span class="line">			<span class="attr">&lt;artifactId&gt;lombok&lt;/artifactId&gt;</span></span><br><span class="line">			<span class="attr">&lt;optional&gt;true&lt;/optional&gt;</span></span><br><span class="line">		<span class="attr">&lt;/dependency&gt;</span></span><br><span class="line">		<span class="meta">&lt;!--graphql</span> <span class="string">--&gt;</span></span><br><span class="line">		<span class="attr">&lt;dependency&gt;</span></span><br><span class="line">			<span class="attr">&lt;groupId&gt;com.graphql-java-kickstart&lt;/groupId&gt;</span></span><br><span class="line">			<span class="attr">&lt;artifactId&gt;graphql-spring-boot-starter&lt;/artifactId&gt;</span></span><br><span class="line">			<span class="attr">&lt;version&gt;11.0.0&lt;/version&gt;</span></span><br><span class="line">		<span class="attr">&lt;/dependency&gt;</span></span><br><span class="line">		<span class="meta">&lt;!--playground</span> <span class="string">--&gt;</span></span><br><span class="line">		<span class="attr">&lt;dependency&gt;</span></span><br><span class="line">			<span class="attr">&lt;groupId&gt;com.graphql-java-kickstart&lt;/groupId&gt;</span></span><br><span class="line">			<span class="attr">&lt;artifactId&gt;playground-spring-boot-starter&lt;/artifactId&gt;</span></span><br><span class="line">			<span class="attr">&lt;version&gt;11.0.0&lt;/version&gt;</span></span><br><span class="line">		<span class="attr">&lt;/dependency&gt;</span></span><br><span class="line"><span class="attr">&lt;/dependencies&gt;</span></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">&lt;dependencies&gt;</span><br>		<span class="hljs-meta">&lt;!--web</span> <span class="hljs-string">--&gt;</span><br>		<span class="hljs-attr">&lt;dependency&gt;</span><br>			<span class="hljs-attr">&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br>			<span class="hljs-attr">&lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br>		<span class="hljs-attr">&lt;/dependency&gt;</span><br>		<span class="hljs-meta">&lt;!--lombok</span> <span class="hljs-string">--&gt;</span><br>		<span class="hljs-attr">&lt;dependency&gt;</span><br>			<span class="hljs-attr">&lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br>			<span class="hljs-attr">&lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br>			<span class="hljs-attr">&lt;optional&gt;true&lt;/optional&gt;</span><br>		<span class="hljs-attr">&lt;/dependency&gt;</span><br>		<span class="hljs-meta">&lt;!--graphql</span> <span class="hljs-string">--&gt;</span><br>		<span class="hljs-attr">&lt;dependency&gt;</span><br>			<span class="hljs-attr">&lt;groupId&gt;com.graphql-java-kickstart&lt;/groupId&gt;</span><br>			<span class="hljs-attr">&lt;artifactId&gt;graphql-spring-boot-starter&lt;/artifactId&gt;</span><br>			<span class="hljs-attr">&lt;version&gt;11.0.0&lt;/version&gt;</span><br>		<span class="hljs-attr">&lt;/dependency&gt;</span><br>		<span class="hljs-meta">&lt;!--playground</span> <span class="hljs-string">--&gt;</span><br>		<span class="hljs-attr">&lt;dependency&gt;</span><br>			<span class="hljs-attr">&lt;groupId&gt;com.graphql-java-kickstart&lt;/groupId&gt;</span><br>			<span class="hljs-attr">&lt;artifactId&gt;playground-spring-boot-starter&lt;/artifactId&gt;</span><br>			<span class="hljs-attr">&lt;version&gt;11.0.0&lt;/version&gt;</span><br>		<span class="hljs-attr">&lt;/dependency&gt;</span><br><span class="hljs-attr">&lt;/dependencies&gt;</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h4><ul>
+<h4><span id="query">Query</span></h4><ul>
 <li><p>定义schema，分别为：</p>
 <p><code>query.graphqls</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Query&#123;</span><br><span class="line">  billingAccount(id: ID): BillingAccount</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">type Query&#123;<br>  billingAccount(id: ID): BillingAccount<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><code>billingAccount.graphqls</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type BillingAccount &#123;</span><br><span class="line">  id: ID!</span><br><span class="line">  name: String!</span><br><span class="line">  currency: Currency</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">type BillingAccount &#123;<br>  id: ID!<br>  name: String!<br>  currency: Currency<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><code>currency.graphqls</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Currency</span></span>&#123;</span><br><span class="line">    RMB,</span><br><span class="line">    USD</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Currency</span></span>&#123;<br>    RMB,<br>    USD<br>&#125;<br></code></pre></td></tr></table></figure></li>
 <li><p>定义基础要操作的模型</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span></span><br><span class="line"><span class="meta">@Value</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BillingAccount</span> </span>&#123;</span><br><span class="line">    UUID id;</span><br><span class="line">    String name;</span><br><span class="line">    Currency currency;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Builder</span><br><span class="hljs-meta">@Value</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BillingAccount</span> </span>&#123;<br>    UUID id;<br>    String name;<br>    Currency currency;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">Currency</span> </span>&#123;</span><br><span class="line">    RMB, USD</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Currency</span> </span>&#123;<br>    RMB, USD<br>&#125;<br></code></pre></td></tr></table></figure></li>
 <li><p>定义resolver</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BillingAccountResolver</span> <span class="keyword">implements</span> <span class="title">GraphQLQueryResolver</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> BillingAccount <span class="title">billingAccount</span><span class="params">(UUID id)</span></span>&#123;</span><br><span class="line">        log.info(<span class="string">&quot;receive billingAccount id is: &quot;</span>+ id);</span><br><span class="line">        <span class="keyword">return</span> BillingAccount.builder()</span><br><span class="line">                .id(id)</span><br><span class="line">                .currency(Currency.RMB)</span><br><span class="line">                .name(<span class="string">&quot;张三&quot;</span>)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Slf4j</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BillingAccountResolver</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">GraphQLQueryResolver</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> BillingAccount <span class="hljs-title">billingAccount</span><span class="hljs-params">(UUID id)</span></span>&#123;<br>        log.info(<span class="hljs-string">&quot;receive billingAccount id is: &quot;</span>+ id);<br>        <span class="hljs-keyword">return</span> BillingAccount.builder()<br>                .id(id)<br>                .currency(Currency.RMB)<br>                .name(<span class="hljs-string">&quot;张三&quot;</span>)<br>                .build();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 <ul>
 <li>效果图</li>
 </ul>
-<p><img src="/images/resolver.png" alt="img"></p>
-<h4 id="mutation"><a href="#mutation" class="headerlink" title="mutation"></a>mutation</h4><ul>
+<p><img src="/images/resolver.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h4><span id="mutation">mutation</span></h4><ul>
 <li>定义schema</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Mutation&#123;</span><br><span class="line">    createBillingAccount(input: CreateBillingAccountInput): BillingAccount</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs elm"><span class="hljs-keyword">type</span> <span class="hljs-type">Mutation</span>&#123;<br>    createBillingAccount(input: <span class="hljs-type">CreateBillingAccountInput</span>): <span class="hljs-type">BillingAccount</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>定义input</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">input CreateBillingAccountInput&#123;</span><br><span class="line">    name: String</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">input</span> CreateBillingAccountInput&#123;<br>    name: String<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>定义input 对应的model</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateBillingAccountInput</span> </span>&#123;</span><br><span class="line">  String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateBillingAccountInput</span> </span>&#123;<br>  String name;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>定义mutationResolver</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BillingAccountMutation</span> <span class="keyword">implements</span> <span class="title">GraphQLMutationResolver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> BillingAccount <span class="title">createBillingAccount</span><span class="params">(CreateBillingAccountInput input)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> BillingAccount.builder()</span><br><span class="line">      .id(UUID.randomUUID())</span><br><span class="line">      .currency(Currency.RMB)</span><br><span class="line">      .name(input.getName())</span><br><span class="line">      .build();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BillingAccountMutation</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">GraphQLMutationResolver</span> </span>&#123;<br><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> BillingAccount <span class="hljs-title">createBillingAccount</span><span class="hljs-params">(CreateBillingAccountInput input)</span></span>&#123;<br><br>    <span class="hljs-keyword">return</span> BillingAccount.builder()<br>      .id(UUID.randomUUID())<br>      .currency(Currency.RMB)<br>      .name(input.getName())<br>      .build();<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
 <p>效果图</p>
-<p>!<img src="/images/mutation.png" alt="mutation"></p>
+<p>!<img src="/images/mutation.png" srcset="/img/loading.gif" lazyload alt="mutation"></p>
 
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/graphql/" rel="tag"><i class="fa fa-google"></i> graphql</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2021/10/05/%20Spring%20Webflux/" rel="next" title="Spring Webflux">
-                <i class="fa fa-chevron-left"></i> Spring Webflux
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/10/06/kotlin%E5%AD%A6%E4%B9%A0/" rel="prev" title="kotlin学习">
-                kotlin学习 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/girl.jpg"
-                alt="" />
-            
-              <p class="site-author-name" itemprop="name"></p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">12</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/panyurou" target="_blank" title="GitHub">
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
                     
-                      <i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
+                      <a class="hover-with-bg" href="/categories/springboot/">springboot</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/graphql/">graphql</a>
+                    
+                  </div>
+                
+              </div>
               
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/06/kotlin%E5%AD%A6%E4%B9%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">kotlin学习</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/05/%20Spring%20Webflux/">
+                        <span class="hidden-mobile">Spring Webflux</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
             
-          </div>
-
-          
-          
-
-          
-          
-
-          
-
+          </article>
         </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Query"><span class="nav-number">1.</span> <span class="nav-text">Query</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mutation"><span class="nav-number">2.</span> <span class="nav-text">mutation</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Panyurou</span>
-
-  
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
 </div>
 
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.3</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
       </div>
     
-
-    
-
   </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
 
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
   
+</footer>
 
 
+  <!-- SCRIPTS -->
   
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
 
 
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
 
 
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
   
-
-
+    <script  src="/js/img-lazyload.js" ></script>
   
-
-
-
-
-	
-
-
 
 
 
@@ -753,8 +452,17 @@
 
 
 
-
-
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
   
 
 
@@ -762,26 +470,34 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
 
 
-  
 
 
 
 
 
-  
 
-  
 
-  
-  
 
-  
 
-  
 
-  
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
 
 </body>
 </html>
