@@ -190,26 +190,62 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/11/27/Explain-%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E7%8E%B0/" target="_self">
-          Explain详解与索引最佳实现
+        <a href="/2021/12/05/%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" target="_self">
+          索引最佳实践
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/11/27/Explain-%E8%AF%A6%E8%A7%A3%E4%B8%8E%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E7%8E%B0/" target="_self">
+        <a href="/2021/12/05/%E7%B4%A2%E5%BC%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" target="_self">
           
           
             
           
-          explain工具介绍
+          ![image-20211130213919210](/Users/panyurou/Library/Application Support/typora-user-images/image-20211130213919210.png)
+走了索引，因为大于zzz的数据量很小
+根据trace工具分析下，预估这条数据走索引的成本，来确定这个索引是不是最优的，调优sql
+范围和范围右边的字段不会走索引，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-05 22:08" pubdate>
+              2021-12-05
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/11/27/Explain-%E8%AF%A6%E8%A7%A3/" target="_self">
+          Explain详解
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/11/27/Explain-%E8%AF%A6%E8%A7%A3/" target="_self">
+          
+          
+            
+          
+          explain使用介绍
 使用EXPLAIN关键字可以模拟优化器执行SQL语句，分析你的查询语句或是结构的性能瓶颈 
 
-在 select 语句之前增加 explain 关键字，MySQL 会在查询上设置一个标记，执行查询会返回执行计划的信息，而不是执行这条SQL 
+在 select 语句之前增加 explain 关键字，MySQL 会在查询上设置一个标记，执行查询会返回执行计划的信息，而不是执行这条SQL （如果 from 中包含子查询，仍会执行该子查询，将结果放入临时表中）。
 
-
-注意：如果 from 中包含子查询，仍会执行该子查询，将结果放入临时表中
-每列信息1. id
-id列的编号就是select的序列号，
+在查询中的每个表会输出一行，如果有两个表通过 join 连接查
         </a>
       </p>
 
@@ -248,13 +284,13 @@ id列的编号就是select的序列号，
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/11/04/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-          Mysql学习
+        <a href="/2021/11/04/mysql%E7%B4%A2%E5%BC%95%E4%BB%8B%E7%BB%8D/" target="_self">
+          Mysql索引介绍
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/11/04/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
+        <a href="/2021/11/04/mysql%E7%B4%A2%E5%BC%95%E4%BB%8B%E7%BB%8D/" target="_self">
           
           
             
@@ -660,64 +696,6 @@ a sim
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/stream%E6%B5%81/">stream流</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/10/04/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Blambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
-          Java8的新特性之lambda表达式
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/10/04/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Blambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
-          
-          
-            
-          
-          1.函数接口函数接口（@FunctionalInterface）需要满足两个条件：
-
-类型是接口
-有且只有一个抽象方法
-
-例如：Runnable接口
-1234@FunctionalInterfacepublic interface Runnable &#123;    public abstract void run();&#125;
-
-其实这也是要求我们接口的设计尽量小，符合单一责任制，一个接口
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-04 22:32" pubdate>
-              2021-10-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/">java8新特性</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">lambda表达式</a>
             
           </div>
         
