@@ -13,32 +13,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="1.响应式编程是什么？
-
-响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式
-本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的,如：
-1int sum2 = IntStream.of(nums).parallel().sum();
-
-​      将数组中的数据变成数据流，通过显">
+  <meta name="description" content="">
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
-  <meta name="description" content="1.响应式编程是什么？  响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式 本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的,如： 1int sum2 &#x3D; IntStream.of(nums).parallel().sum();  ​      将数组中的数据变成数据流，通过显">
+  <meta name="description" content="常见sql优化 如果索引了多列，要遵守最左前缀法则。指的是查询从索引的最左前列开始并且不跳过索引中的列。  尽量使用覆盖索引（只访问索引的查询（索引列包含查询列）），减少select * 语句  尽量不使用不等于（！&#x3D;或者&lt;&gt;），这些无法使用索引，会导致全表扫描   尽量不使用 is null,is not null ，这些无法使用索引，会导致全表扫描   like以通配符开头（’$a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring Webflux">
-<meta property="og:url" content="http://example.com/2021/10/05/%20Spring%20Webflux/index.html">
+<meta property="og:title" content="常见sql优化">
+<meta property="og:url" content="http://example.com/2021/12/05/%E5%B8%B8%E8%A7%81sql%E4%BC%98%E5%8C%96/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="1.响应式编程是什么？  响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式 本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的,如： 1int sum2 &#x3D; IntStream.of(nums).parallel().sum();  ​      将数组中的数据变成数据流，通过显">
+<meta property="og:description" content="常见sql优化 如果索引了多列，要遵守最左前缀法则。指的是查询从索引的最左前列开始并且不跳过索引中的列。  尽量使用覆盖索引（只访问索引的查询（索引列包含查询列）），减少select * 语句  尽量不使用不等于（！&#x3D;或者&lt;&gt;），这些无法使用索引，会导致全表扫描   尽量不使用 is null,is not null ，这些无法使用索引，会导致全表扫描   like以通配符开头（’$a">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://spring.io/images/diagram-reactive-1290533f3f01ec9c57baf2cc9ea9fa2f.svg">
-<meta property="article:published_time" content="2021-10-05T08:38:43.000Z">
-<meta property="article:modified_time" content="2021-10-06T11:26:05.448Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gx4g3b8iklj31m606ejsx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gx4g3oc8zsj31ek06cgmu.jpg">
+<meta property="article:published_time" content="2021-12-05T14:08:58.000Z">
+<meta property="article:modified_time" content="2021-12-07T14:01:52.316Z">
 <meta property="article:author" content="Panyurou">
-<meta property="article:tag" content="spring">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="mysql索引">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://spring.io/images/diagram-reactive-1290533f3f01ec9c57baf2cc9ea9fa2f.svg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gx4g3b8iklj31m606ejsx.jpg">
   
-  <title>Spring Webflux - 楼上有只喵</title>
+  <title>常见sql优化 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -184,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Spring Webflux">
+            <span class="h2" id="subtitle" title="常见sql优化">
               
             </span>
 
@@ -194,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-05 16:38" pubdate>
-        2021年10月5日 下午
+      <time datetime="2021-12-05 22:08" pubdate>
+        2021年12月5日 晚上
       </time>
     </span>
   
@@ -205,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1k 字
+      2.5k 字
     </span>
   
 
@@ -214,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      8 分钟
     </span>
   
 
@@ -243,52 +237,77 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Spring Webflux</h1>
+            <h1 style="display: none">常见sql优化</h1>
             
             <div class="markdown-body">
-              <p><strong>1.响应式编程是什么？</strong></p>
-<ul>
-<li><p>响应式编程（<strong>reactive programming</strong>）是一种基于数据流和变化传递的声明式的编程范式</p>
-<p>本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过<strong>API</strong>去处理数据流中的数据（是声明式的,如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> sum2 = IntStream.of(nums).parallel().sum();<br></code></pre></td></tr></table></figure></li>
-</ul>
-<p>​      将数组中的数据变成数据流，通过显式声明调用**.sum()**来处理数据流中的数据，得到最终的结果。</p>
-<ul>
-<li><p>响应式编程是关于非阻塞应用程序的，这些应用程序是异步的、事件驱动的，并且需要少量的线程来垂直伸缩(即在 JVM 中)，而不是水平伸缩(即通过集群)。</p>
-<blockquote>
-<p>工作太多，做不完时，水平伸缩就相当于加人，垂直伸缩相当于加班。</p>
-</blockquote>
+              <h2><span id="常见sql优化">常见sql优化</span></h2><ul>
+<li><p>如果索引了多列，要遵守最左前缀法则。指的是查询从索引的最左前列开始并且不跳过索引中的列。</p>
+</li>
+<li><p>尽量使用覆盖索引（只访问索引的查询（索引列包含查询列）），减少select * 语句</p>
+</li>
+<li><p>尽量不使用不等于（！=或者&lt;&gt;），这些无法使用索引，会导致全表扫描 </p>
+</li>
+<li><p>尽量不使用 is null,is not null ，这些无法使用索引，会导致全表扫描 </p>
+</li>
+<li><p>like以通配符开头（’$abc…’）mysql索引失效会变成全表扫描操作</p>
+</li>
+<li><p>少用or或in，用它查询时，mysql不一定使用索引，mysql内部优化器会根据检索比例、表大小等多个因素整体评估是否使用索引。</p>
+</li>
+<li><p>尽量将大范围拆分成多个小范围。单次数据量查询过大可能导致优化器最终选择不走索引</p>
+</li>
+<li><p>范围和范围右边的字段不会走索引，只有范围和范围之前的等值字段会走索引</p>
+</li>
+<li><p>不在索引列上做任何操作。（计算、函数、（自动or手动）类型转换），会导致索引失效而转向全表扫描。</p>
 </li>
 </ul>
-<h3><span id="2响应式流reactive-streams-是什么">2.响应式流（Reactive Streams） 是什么?</span></h3><span id="more"></span>
+<p>准备工作：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs mysql">CREATE TABLE `employees` (<br>  `id` int(11) NOT NULL AUTO_INCREMENT,<br>  `name` varchar(24) NOT NULL DEFAULT &#x27;&#x27; COMMENT &#x27;姓名&#x27;,<br>  `age` int(11) NOT NULL DEFAULT &#x27;0&#x27; COMMENT &#x27;年龄&#x27;,<br>  `position` varchar(20) NOT NULL DEFAULT &#x27;&#x27; COMMENT &#x27;职位&#x27;,<br>  `hire_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT &#x27;入职时 间&#x27;,<br>  PRIMARY KEY (`id`),<br>  KEY `idx_name_age_position` (`name`,`age`,`position`) USING BTREE) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT=&#x27;员工记录表&#x27;;<br>  <br>  INSERT INTO employees(name,age,position,hire_time) VALUES(&#x27;LiLei&#x27;,22,&#x27;mana ger&#x27;,NOW());<br>  INSERT INTO employees(name,age,position,hire_time) VALUES(&#x27;HanMeimei&#x27;, 23,&#x27;dev&#x27;,NOW());<br>  INSERT INTO employees(name,age,position,hire_time) VALUES(&#x27;Lucy&#x27;,23,&#x27;dev&#x27;,NOW());<br></code></pre></td></tr></table></figure>
 
-<ul>
-<li><p>响应式流是JDK9引入的，基于发布-订阅者模式的一套数据处理的机制。</p>
-</li>
-<li><p>响应式流从2013年开始，作为提供非阻塞背压的异步流处理标准的倡议。 它旨在解决处理元素流的问题——如何将元素流从发布者传递到订阅者，而不需要发布者阻塞，或订阅者有无限制的缓冲区或丢弃。</p>
-</li>
-</ul>
-<blockquote>
-<p>背压：说白了就是一种反馈，发布者和订阅者之间的一种互动</p>
-</blockquote>
-<blockquote>
-<p>之前的老模式，订阅者很被动，发布者给订阅者多少他就消费多少，不能多也不能多少。</p>
-<p>Reactive Streams就可以做到发布者和订阅者之间可以进行交流，订阅者可以告诉发布者我需要多少数据，订阅者处理完了，可以再向发布者要，没处理完就不要给我。</p>
-<p>起到了一种调节流量的作用，不会导致发布者数据太多，订阅者处理不完浪费，或者直接把订阅者压垮的场景。</p>
-</blockquote>
-<h3><span id="2-spring-webflux-是什么">2. Spring Webflux 是什么？</span></h3><p>Spring WebFlux是<a target="_blank" rel="noopener" href="https://rumenz.com/java-topic/spring-mvc-tutorial/index.html">Spring MVC</a>并行版本，并支持完全无阻塞的反应流的web框架。 它支持背压概念，可以处理大量的并发连接，并使用**<a target="_blank" rel="noopener" href="https://netty.io/">Netty</a>**作为内置服务器来运行响应式应用程序。 </p>
-<h3><span id="3spring-webflux-和spring-mvc-的关系">3.Spring Webflux 和Spring mvc 的关系</span></h3><img src="https://spring.io/images/diagram-reactive-1290533f3f01ec9c57baf2cc9ea9fa2f.svg" srcset="/img/loading.gif" lazyload style="zoom: 25%;">
+<p>Eg1: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; EXPLAIN SELECT * FROM employees WHERE name = &#x27;LiLei&#x27;;<br></code></pre></td></tr></table></figure>
 
-<p>Spring MVC</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gx4g3b8iklj31m606ejsx.jpg" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; EXPLAIN SELECT * FROM employees WHERE left(name,3) = &#x27;LiLei&#x27;;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gx4g3oc8zsj31ek06cgmu.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>Eg2:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; EXPLAIN select * from employees where date(hire_time) =&#x27;2018-09-30&#x27;;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">mysql&gt; EXPLAIN select * from employees where hire_time &gt;=&#x27;2018-09-30 00:00:00&#x27; and hire_time &lt;=&#x27;2018-09-30 23:59:59&#x27;;<br></code></pre></td></tr></table></figure>
+
+<p>给hire_time增加一个普通索引，上面的sql由于进行了date运算所以不会走索引，下面的会走。</p>
+<h2><span id="using-filesort文件排序原理详解"><strong>Using filesort文件排序原理详解</strong></span></h2><ul>
+<li><p>MySQL支持两种方式的排序filesort和index，Using index是指MySQL扫描索引本身完成排序。index效率高，filesort效率低。 </p>
+</li>
+<li><p>filesort文件排序方式</p>
 <ul>
-<li>构建于 Servlet API 之上</li>
-<li>同步阻塞 I/O 模型, 认为应用会阻塞当前线程，所以一个 Request 对应一个 Thread，需要有一个含有大量线程的线程池</li>
+<li>单路排序：是一次性取出满足条件行的所有字段，然后在sort buffer中进行排序；用trace工具可以看到sort_mode信息里显示&lt; sort_key, additional_fields &gt;或者&lt; sort_key, packed_additional_fields &gt;</li>
+<li>双路排序（又叫<strong>回表</strong>排序模式）：是首先根据相应的条件取出相应的<strong>排序字段</strong>和<strong>可以直接定位行</strong> <strong>数据的行 ID</strong>(主键)，然后在 sort buffer 中进行排序，排序完后需要再次通过主键回到原表查询需要的字段。用trace工具 可以看到sort_mode信息里显示&lt; sort_key, rowid &gt; </li>
 </ul>
-<p>Spring WebFlux</p>
+<blockquote>
+<p> MySQL 通过比较系统变量 max_length_for_sort_data(<strong>默认1024字节</strong>) 的大小和需要查询的字段总大小来 判断使用哪种排序模式。</p>
 <ul>
-<li>构建于 Reactive Streams Adapters 之上</li>
-<li>异步非阻塞 I/O 模型，认为应用不会阻塞当前线程，所以只是需要一个包含少数固定线程数的线程池 (event loop workers) 来处理请求</li>
+<li><p> 如果 max_length_for_sort_data 比查询字段的总长度大，那么使用 单路排序模式； </p>
+</li>
+<li><p> 如果 max_length_for_sort_data 比查询字段的总长度小，那么使用 双路排序模式。</p>
+</li>
 </ul>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>单路排序 和 双路排序的选择</p>
+<ul>
+<li><p>如果 MySQL 排序内存配置的比较小并且没有条件继续增加了，可以适当max_length_for_sort_data 配 置小点，让优化器选择使用<strong>双路排序</strong>算法，可以在sort_buffer 中一次排序更多的行，只是需要再根据主键回到原表取数据。 </p>
+</li>
+<li><p>如果 MySQL 排序内存有条件可以配置比较大，可以适当增大 max_length_for_sort_data 的值，让优化器 优先选择全字段排序(<strong>单路排序</strong>)，把需要的字段放到 sort_buffer 中，这样排序后就会直接从内存里返回查 询结果了。 </p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>所以，MySQL通过 <strong>max_length_for_sort_data</strong> 这个参数来控制排序，在不同场景使用不同的排序模式， 从而提升排序效率。</p>
+</blockquote>
 
             </div>
             <hr>
@@ -298,7 +317,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/SpringWebflux/">SpringWebflux</a>
+                      <a class="hover-with-bg" href="/categories/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">性能调优</a>
                     
                   </div>
                 
@@ -306,9 +325,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/spring/">spring</a>
-                    
-                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                      <a class="hover-with-bg" href="/tags/mysql%E7%B4%A2%E5%BC%95/">mysql索引</a>
                     
                   </div>
                 
@@ -325,9 +342,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/06/springboot%E6%95%B4%E5%90%88graphql/">
+                      <a href="/2021/12/07/%E5%B8%B8%E8%A7%81sql%E4%BC%98%E5%8C%96-%E4%BA%8C/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">springboot整合graphql</span>
+                        <span class="hidden-mobile">常见sql优化(二)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -335,8 +352,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/04/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BStream%E6%B5%81/">
-                        <span class="hidden-mobile">Java8新特性之Stream流</span>
+                      <a href="/2021/11/27/Explain-%E8%AF%A6%E8%A7%A3/">
+                        <span class="hidden-mobile">Explain详解</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
