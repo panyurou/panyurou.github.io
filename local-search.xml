@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>第一个SpringBoot项目</title>
+    <link href="/2021/12/25/%E7%AC%AC%E4%B8%80%E4%B8%AAspringboot%E9%A1%B9%E7%9B%AE/"/>
+    <url>/2021/12/25/%E7%AC%AC%E4%B8%80%E4%B8%AAspringboot%E9%A1%B9%E7%9B%AE/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="编写代码">编写代码</span></h1><ul><li>进入官网 <a href="https://start.spring.io/">Spring Initializr</a> 初始化项目</li><li>编写控制HelloController</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather.controller;<br><br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><br><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">helloController</span> </span>&#123;<br><br>  <span class="hljs-meta">@RequestMapping(&quot;/hello&quot;)</span><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">hello</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello World!&quot;</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h1><span id="编写测试用例">编写测试用例</span></h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather.controller;<br><br><span class="hljs-keyword">import</span> org.junit.jupiter.api.Test;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;<br><span class="hljs-keyword">import</span> org.springframework.boot.test.context.SpringBootTest;<br><span class="hljs-keyword">import</span> org.springframework.http.MediaType;<br><span class="hljs-keyword">import</span> org.springframework.test.web.servlet.MockMvc;<br><span class="hljs-keyword">import</span> org.springframework.test.web.servlet.request.MockMvcRequestBuilders;<br><br><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.hamcrest.Matchers.equalTo;<br><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;<br><span class="hljs-keyword">import</span> <span class="hljs-keyword">static</span> org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;<br><br><span class="hljs-meta">@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)</span><br><span class="hljs-meta">@AutoConfigureMockMvc</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">helloControllerTest</span> </span>&#123;<br><br>  <span class="hljs-meta">@Autowired</span><br>  <span class="hljs-keyword">private</span> MockMvc mockMvc;<br><br>  <span class="hljs-meta">@Test</span><br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;<br>    mockMvc.perform(MockMvcRequestBuilders.get(<span class="hljs-string">&quot;/hello&quot;</span>).accept(MediaType.APPLICATION_JSON))<br>      .andExpect(status().isOk())<br>      .andExpect(content().string(equalTo(<span class="hljs-string">&quot;hello World!&quot;</span>)));<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h1><span id="启动项目">启动项目</span></h1><ul><li>idea 里面右击项目</li><li>build/libs下运行 <code>Java -jar xxx</code></li><li>项目目录下运行：<code>gradle bootRun</code></li></ul><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gxr8m9n86ij30sq08ujrx.jpg"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>springboot</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>springboot</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>mysql锁与事务隔离级别</title>
     <link href="/2021/12/18/mysql%E9%94%81%E4%B8%8E%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/"/>
     <url>/2021/12/18/mysql%E9%94%81%E4%B8%8E%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</url>
