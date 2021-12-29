@@ -190,6 +190,52 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/10/14/%E7%A7%92%E6%9D%80%E6%A8%A1%E5%9D%97%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" target="_self">
+          秒杀模块学习
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/10/14/%E7%A7%92%E6%9D%80%E6%A8%A1%E5%9D%97%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/" target="_self">
+          
+          
+            
+          
+          秒杀模块1. 秒杀接口优化
+用户是否登陆
+判断库存（备份在redis中一份）
+在初始化contoller接口的时候，就把商品id和对应的库存数存入到redis
+
+
+判断是否已经秒杀到了
+减缓存， 下订单（订单和秒杀订单）
+队列里面存的消息message，有两个变量用户和商品id,
+receiver监听该队列，减库存，减库存成功了，根据用户和商品id,下订单
+contoller需要的就是给队列发消息
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-14 22:30" pubdate>
+              2021-10-14
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/10/07/%E4%BD%BF%E7%94%A8Spock%E6%A1%86%E6%9E%B6%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81/" target="_self">
           使用Spock框架编写测试代码
         </a>
