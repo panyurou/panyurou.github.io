@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gycegg0aihj30u00v0wgk.jpg">
 <meta property="og:image" content="http://example.com/Users/panyurou/Library/Application%20Support/typora-user-images/image-20220116230200083.png">
 <meta property="article:published_time" content="2021-09-22T14:43:51.000Z">
-<meta property="article:modified_time" content="2022-01-16T15:14:51.643Z">
+<meta property="article:modified_time" content="2022-01-17T14:41:25.877Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="分布式框架">
 <meta name="twitter:card" content="summary_large_image">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.8k 字
+      6.4k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      12 分钟
+      20 分钟
     </span>
   
 
@@ -396,8 +396,177 @@
 <h4><span id="ephemeral_sequential临时序号节点">EPHEMERAL_SEQUENTIAL（临时序号节点）</span></h4><p>与持久序号节点类似，不同之处在于EPHEMERAL_SEQUENTIAL是临时的会在会话断开后删除。创建时添加 -e -s </p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>seq<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">2</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c1<br>Created <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c10000000000<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">3</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c1<br>Created <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c10000000001<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">4</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c1<br>Created <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c10000000002<br></code></pre></td></tr></table></figure>
 
+<h3><span id="节点属性">节点属性</span></h3><ul>
+<li>查看节点属性</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">stat <span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure>
 
+<ul>
+<li>属性说明</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql">cZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x2</span>   #创建节点的事务ID<br>ctime <span class="hljs-operator">=</span> Mon Jan <span class="hljs-number">17</span> <span class="hljs-number">21</span>:<span class="hljs-number">09</span>:<span class="hljs-number">16</span> CST <span class="hljs-number">2022</span> #创建节点的时间<br>mZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x2</span> #修改当前节点数据的事务ID<br>mtime <span class="hljs-operator">=</span> Mon Jan <span class="hljs-number">17</span> <span class="hljs-number">21</span>:<span class="hljs-number">09</span>:<span class="hljs-number">16</span> CST <span class="hljs-number">2022</span> #最后修改时间<br>pZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x5</span> #子节点变更（包括自节点的删除和增加，不包括修改）的事务ID<br>cversion <span class="hljs-operator">=</span> <span class="hljs-number">3</span>  #这表示对此znode的子节点进行的更改次数，只包括自节点的删除和增加<br>dataVersion <span class="hljs-operator">=</span> <span class="hljs-number">0</span> #数据版本，当前节点数据变更次数<br>aclVersion <span class="hljs-operator">=</span> <span class="hljs-number">0</span> #权限版本，变更次数<br>ephemeralOwner <span class="hljs-operator">=</span> <span class="hljs-number">0x0</span> #临时节点所属会话ID，永久节点值为<span class="hljs-number">0x0</span><br>dataLength <span class="hljs-operator">=</span> <span class="hljs-number">0</span> #数据长度<br>numChildren <span class="hljs-operator">=</span> <span class="hljs-number">3</span> #子节点数(不包括子子节点)<br></code></pre></td></tr></table></figure>
+
+<h3><span id="节点的监听">节点的监听</span></h3><p>客户添加 -w 参数可实时监听节点与子节点的变化，并且实时收到通知。非常适用保障分布式情况下的数据一致性。其使用方式如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ls -w path</td>
+<td align="left">监听子节点的变化（增，删）</td>
+</tr>
+<tr>
+<td align="left">get -w path</td>
+<td align="left">监听节点数据的变化</td>
+</tr>
+<tr>
+<td align="left">stat -w path</td>
+<td align="left">监听节点属性的变化</td>
+</tr>
+<tr>
+<td align="left">printwatches on|off</td>
+<td align="left">触发监听后，是否打印监听事件(默认on)</td>
+</tr>
+</tbody></table>
+<h4><span id="监听节点数据的变化">监听节点数据的变化</span></h4><ul>
+<li><p>step1：打开客户端A</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">get</span> <span class="hljs-operator">-</span>w  <span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure></li>
+<li><p>Step2：打开客户端B:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> <span class="hljs-operator">/</span>temp &quot;aaa&quot;<br></code></pre></td></tr></table></figure></li>
+<li><p>此时客户端A，出现：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">8</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">-</span>w  <span class="hljs-operator">/</span>temp<br><span class="hljs-keyword">null</span><br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">9</span>]<br>WATCHER::<br><br>WatchedEvent state:SyncConnected type:NodeDataChanged path:<span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure></li>
+<li><p>再次在客户端B输入：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> <span class="hljs-operator">/</span>temp &quot;ddd&quot;<br></code></pre></td></tr></table></figure>
+
+<p>此时可以发现，客户端A没有收到任何通知，故这里的watch是一次性的，第二次触发不再生效。</p>
+</li>
+</ul>
+<h4><span id="监听子节点的变化">监听子节点的变化</span></h4><ul>
+<li><p>step1：打开客户端A</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">ls <span class="hljs-operator">-</span>w  <span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure></li>
+<li><p>Step2：打开客户端B:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c1<br></code></pre></td></tr></table></figure></li>
+<li><p>此时客户端A，出现：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">9</span>] ls <span class="hljs-operator">-</span>w <span class="hljs-operator">/</span>temp<br>[c10000000000, c10000000001, c10000000002]<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">10</span>]<br>WATCHER::<br><br>WatchedEvent state:SyncConnected type:NodeChildrenChanged path:<span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure>
+
+<h3><span id="acl权限设置">ACL权限设置</span></h3></li>
+<li><p>ACL全称为Access Control List（访问控制列表），用于控制资源的访问权限。   </p>
+</li>
+<li><p>ZooKeeper使用ACL来控制对其znode的防问。</p>
+</li>
+<li><p>基于<code>scheme:id:permission</code>的方式进行权限控制。scheme表示授权模式、id模式对应值、permission即具体的增删改权限位。</p>
+</li>
+</ul>
+<h4><span id="scheme授权模型">scheme:授权模型</span></h4><table>
+<thead>
+<tr>
+<th align="left">方案</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">world</td>
+<td align="left">开放模式，world表示全世界都可以访问（这是默认设置）</td>
+</tr>
+<tr>
+<td align="left">ip</td>
+<td align="left">ip模式，限定客户端IP防问</td>
+</tr>
+<tr>
+<td align="left">auth</td>
+<td align="left">用户密码认证模式，只有在会话中添加了认证才可以防问</td>
+</tr>
+<tr>
+<td align="left">digest</td>
+<td align="left">与auth类似，区别在于auth用明文密码，而digest 用sha-1+base64加密后的密码。在实际使用中digest 更常见。</td>
+</tr>
+</tbody></table>
+<h4><span id="permission权限位"><strong>permission权限位</strong></span></h4><table>
+<thead>
+<tr>
+<th align="left">权限位</th>
+<th align="left">权限</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">c</td>
+<td align="left">CREATE</td>
+<td align="left">可以创建子节点</td>
+</tr>
+<tr>
+<td align="left">d</td>
+<td align="left">DELETE</td>
+<td align="left">可以删除子节点（仅下一级节点）</td>
+</tr>
+<tr>
+<td align="left">r</td>
+<td align="left">READ</td>
+<td align="left">可以读取节点数据及显示子节点列表</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">WRITE</td>
+<td align="left">可以设置节点数据</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">ADMIN</td>
+<td align="left">可以设置节点访问控制列表权限</td>
+</tr>
+</tbody></table>
+<h4><span id="acl-相关命令">acl 相关命令</span></h4><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">使用方式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">getAcl</td>
+<td align="left">getAcl <path></path></td>
+<td align="left">读取ACL权限</td>
+</tr>
+<tr>
+<td align="left">setAcl</td>
+<td align="left">setAcl <path></path> <acl></acl></td>
+<td align="left">设置ACL权限</td>
+</tr>
+<tr>
+<td align="left">addauth</td>
+<td align="left">addauth <scheme> <auth></auth></scheme></td>
+<td align="left">添加认证用户</td>
+</tr>
+</tbody></table>
+<h4><span id="示例">示例</span></h4><ul>
+<li>world</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">11</span>] getAcl <span class="hljs-operator">/</span>temp<br><span class="hljs-string">&#x27;world,&#x27;</span>anyone<br>: cdrwa<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">12</span>] setAcl <span class="hljs-operator">/</span>temp world:anyone:rwa<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">13</span>] getAcl <span class="hljs-operator">/</span>temp<br><span class="hljs-string">&#x27;world,&#x27;</span>anyone<br>: rwa<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">14</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>temp<br>ddd<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">15</span>] <span class="hljs-keyword">set</span> <span class="hljs-operator">/</span>temp &quot;bbb&quot;<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">16</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>t<br>Insufficient permission : <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>t<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>IP</p>
+<p>语法： setAcl <path></path> ip:&lt;ip地址|地址段&gt;:&lt;权限位&gt;</p>
+</li>
+</ul>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">[zk: localhost<span class="hljs-function">:2181</span><span class="hljs-params">(CONNECTED)</span> 18] <span class="hljs-keyword">set</span>Acl <span class="hljs-string">/temp</span> ip<span class="hljs-function">:192.168.2.103</span><span class="hljs-function">:ra</span><br>[zk: localhost<span class="hljs-function">:2181</span><span class="hljs-params">(CONNECTED)</span> 19] getAcl <span class="hljs-string">/temp</span><br>Insufficient permission : <span class="hljs-string">/temp</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>auth</p>
+<p>语法： </p>
+<ol>
+<li>setAcl <path></path> auth:&lt;用户名&gt;:&lt;密码&gt;:&lt;权限位&gt;</li>
+<li>addauth digest &lt;用户名&gt;:&lt;密码&gt;</li>
+</ol>
+</li>
+<li><p>digest</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">➜  <span class="hljs-operator">~</span> echo <span class="hljs-operator">-</span>n pyr:<span class="hljs-number">123456</span> <span class="hljs-operator">|</span> openssl dgst <span class="hljs-operator">-</span><span class="hljs-type">binary</span> <span class="hljs-operator">-</span>sha1 <span class="hljs-operator">|</span> openssl base64<br>zj9LbzdoKijw<span class="hljs-operator">/</span>kCo1pQJnXBFiq4<span class="hljs-operator">=</span><br></code></pre></td></tr></table></figure></li>
+</ul>
 
             </div>
             <hr>
@@ -432,9 +601,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/09/26/oauth2/">
+                      <a href="/2021/09/24/zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%9B%86%E7%BE%A4%E7%89%B9%E6%80%A7/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">oauth2</span>
+                        <span class="hidden-mobile">zookeeper客户端使用与集群特性</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
