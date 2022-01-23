@@ -190,6 +190,75 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2021/09/25/zookeeper%E5%85%B8%E5%9E%8B%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" target="_self">
+          zookeeper典型使用场景
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/09/25/zookeeper%E5%85%B8%E5%9E%8B%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF/" target="_self">
+          
+          
+            
+          
+          课程概要：
+
+分布式集群管理
+分布式注册中心
+分布式JOB
+分布式锁
+
+一、 分布式集群管理
+分布式集群管理的需求：
+主动查看线上服务节点
+查看服务节点资源使用情况
+服务离线通知
+服务资源（CPU、内存、硬盘）超出阀值通知
+
+架构设计：节点结构：
+
+tuling-manger // 根节点
+server00001 : //服务节点 1
+server00002 ://服务节点 2
+server…….
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-25 19:52" pubdate>
+              2021-09-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/zookeeper/">zookeeper</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2021/09/24/zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%9B%86%E7%BE%A4%E7%89%B9%E6%80%A7/" target="_self">
           zookeeper客户端使用与集群特性
         </a>
@@ -201,7 +270,26 @@
           
             
           
-          
+          主要内容：
+
+客户端
+zookeeper客户端简介，C客户端
+客户端连接参数说明
+客户端CRUD
+客户端监听
+
+
+集群
+集群架构说明
+集群配置及参数说明
+选举投票机制
+主从复制机制
+
+
+
+一、客户端API常规应用
+zookeeper 提供了java与C两种语言的客户端。我们要学习的就是java客户端。引入最新的maven依赖：
+12345&lt;dependency&gt;            
         </a>
       </p>
 
