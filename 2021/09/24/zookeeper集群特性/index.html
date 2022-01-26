@@ -16,24 +16,24 @@
   <meta name="description" content="">
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
-  <meta name="description" content="主要内容：  客户端 zookeeper客户端简介，C客户端 客户端连接参数说明 客户端CRUD 客户端监听   集群 集群架构说明 集群配置及参数说明 选举投票机制 主从复制机制    一、客户端API常规应用 zookeeper 提供了java与C两种语言的客户端。我们要学习的就是java客户端。引入最新的maven依赖： 12345&lt;dependency&gt;">
+  <meta name="description" content="二、Zookeeper集群 知识点：  集群部署 集群角色说明 选举机制 数据提交机制 集群配置说明  zookeeper集群的目的是为了保证系统的性能承载更多的客户端连接设专门提供的机制。通过集群可以实现以下功能：  读写分离：提高承载，为更多的客户端提供连接，并保障性能。 主从自动切换：提高服务容错性，部分节点故障不会影响整个服务集群。  半数以上运行机制说明：集群至少需要三台服务器，并且强烈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zookeeper客户端使用与集群特性">
-<meta property="og:url" content="http://example.com/2021/09/24/zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8%E4%B8%8E%E9%9B%86%E7%BE%A4%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:title" content="zookeeper集群特性">
+<meta property="og:url" content="http://example.com/2021/09/24/zookeeper%E9%9B%86%E7%BE%A4%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="主要内容：  客户端 zookeeper客户端简介，C客户端 客户端连接参数说明 客户端CRUD 客户端监听   集群 集群架构说明 集群配置及参数说明 选举投票机制 主从复制机制    一、客户端API常规应用 zookeeper 提供了java与C两种语言的客户端。我们要学习的就是java客户端。引入最新的maven依赖： 12345&lt;dependency&gt;">
+<meta property="og:description" content="二、Zookeeper集群 知识点：  集群部署 集群角色说明 选举机制 数据提交机制 集群配置说明  zookeeper集群的目的是为了保证系统的性能承载更多的客户端连接设专门提供的机制。通过集群可以实现以下功能：  读写分离：提高承载，为更多的客户端提供连接，并保障性能。 主从自动切换：提高服务容错性，部分节点故障不会影响整个服务集群。  半数以上运行机制说明：集群至少需要三台服务器，并且强烈">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://uploader.shimo.im/f/ChMbWt0DhF4NL7nA.png!thumbnail">
 <meta property="og:image" content="https://uploader.shimo.im/f/k2Dqe4W0OCoumzf3.png!thumbnail">
 <meta property="og:image" content="https://uploader.shimo.im/f/zQHJd478VV8GoCaK.png!thumbnail">
-<meta property="article:published_time" content="2021-09-24T13:51:20.000Z">
-<meta property="article:modified_time" content="2022-01-23T12:07:05.273Z">
+<meta property="article:published_time" content="2021-09-24T12:41:20.000Z">
+<meta property="article:modified_time" content="2022-01-26T14:49:55.756Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="分布式框架">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://uploader.shimo.im/f/ChMbWt0DhF4NL7nA.png!thumbnail">
   
-  <title>zookeeper客户端使用与集群特性 - 楼上有只喵</title>
+  <title>zookeeper集群特性 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -179,7 +179,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="zookeeper客户端使用与集群特性">
+            <span class="h2" id="subtitle" title="zookeeper集群特性">
               
             </span>
 
@@ -189,7 +189,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-24 21:51" pubdate>
+      <time datetime="2021-09-24 20:41" pubdate>
         2021年9月24日 晚上
       </time>
     </span>
@@ -200,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.7k 字
+      4.7k 字
     </span>
   
 
@@ -209,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21 分钟
+      15 分钟
     </span>
   
 
@@ -238,169 +238,10 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">zookeeper客户端使用与集群特性</h1>
+            <h1 style="display: none">zookeeper集群特性</h1>
             
             <div class="markdown-body">
-              <p><strong>主要内容：</strong></p>
-<ul>
-<li>客户端<ul>
-<li>zookeeper客户端简介，C客户端</li>
-<li>客户端连接参数说明</li>
-<li>客户端CRUD</li>
-<li>客户端监听</li>
-</ul>
-</li>
-<li>集群<ul>
-<li>集群架构说明</li>
-<li>集群配置及参数说明</li>
-<li>选举投票机制</li>
-<li>主从复制机制</li>
-</ul>
-</li>
-</ul>
-<h2><span id="一-客户端api常规应用">一、客户端API常规应用</span></h2><hr>
-<p>zookeeper 提供了java与C两种语言的客户端。我们要学习的就是java客户端。引入最新的maven依赖：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.zookeeper<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>zookeeper<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.5.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p><strong>知识点：</strong></p>
-<ol>
-<li>初始连接</li>
-<li>创建、查看节点</li>
-<li>监听节点</li>
-<li>设置节点权限</li>
-<li>第三方客户端ZkClient</li>
-</ol>
-<p><strong>初始连接：</strong><br>常规的客户端类是 org.apache.zookeeper.ZooKeeper，实例化该类之后将会自动与集群建立连接。构造参数说明如下：<br>| 参数名称   | 类型   | 说明   |<br>|:—-|:—-|:—-|:—-:|<br>| connectString   | String    | 连接串，包括ip+端口 ,集群模式下用逗号隔开  192.168.0.149:2181,192.168.0.150:2181   |<br>| sessionTimeout   | **int **   | 会话超时时间，该值不能超过服务端所设置的  <em>minSessionTimeout 和maxSessionTimeout</em>   |<br>| watcher   | Watcher    | 会话监听器，服务端事件将会触该监听   |<br>| sessionId   | **long **   | 自定义会话ID   |<br>| sessionPasswd   | <strong>byte</strong>[]   | 会话密码   |<br>| canBeReadOnly   | **boolean **   | 该连接是否为只读的   |<br>| hostProvider   | HostProvider    | 服务端地址提供者，指示客户端如何选择某个服务来调用，默认采用StaticHostProvider实现   | </p>
-<h3><span id="2创建-查看节点">2.创建、查看节点</span></h3><p><strong>创建节点</strong><br>通过org.apache.zookeeper.ZooKeeper#create()即可创建节点，其参数说明如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">参数名称</th>
-<th align="left">类型</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">path</td>
-<td align="left">String</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">data</td>
-<td align="left">byte[]</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">acl</td>
-<td align="left">List<acl></acl></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">createMode</td>
-<td align="left">CreateMode</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">cb</td>
-<td align="left">StringCallback</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">ctx</td>
-<td align="left">Object</td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<p><strong>查看节点：</strong><br>通过org.apache.zookeeper.ZooKeeper#getData()即可创建节点，其参数说明如下：</p>
-<table>
-<thead>
-<tr>
-<th align="left">参数名称</th>
-<th align="left">类型</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">path</td>
-<td align="left">String</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">watch</td>
-<td align="left">**boolean **</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">watcher</td>
-<td align="left">Watcher</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">cb</td>
-<td align="left">DataCallback</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">ctx</td>
-<td align="left">Object</td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<p><strong>查看子节点：</strong><br>通过org.apache.zookeeper.ZooKeeper#getChildren()即可获取子节点，其参数说明如下：</p>
-<table>
-<thead>
-<tr>
-<th align="center">参数名称</th>
-<th align="center">类型</th>
-<th align="left">说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">path</td>
-<td align="center">String</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">watch</td>
-<td align="center">**boolean **</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">watcher</td>
-<td align="center">Watcher</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">cb</td>
-<td align="center">Children2Callback</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">ctx</td>
-<td align="center">Object</td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<h3><span id="3监听节点">3.监听节点</span></h3><p>在getData() 与getChildren()两个方法中可分别设置监听数据变化和子节点变化。通过设置watch为true，当前事件触发时会调用zookeeper()构建函数中Watcher.process()方法。也可以添加watcher参数来实现自定义监听。一般采用后者。<br>注：所有的监听都是一次性的，如果要持续监听需要触发后在添加一次监听。</p>
-<h3><span id="4设置节点acl权限">4.设置节点ACL权限</span></h3><p>ACL包括结构为scheme:id:permission（有关ACL的介绍参照第一节课关于ACL的讲解）<br>客户端中由org.apache.zookeeper.data.ACL 类表示，类结构如下：</p>
-<ol>
-<li>ACL </li>
-<li>Id<pre><code>1. scheme       // 对应权限模式scheme
-       2. id                 // 对应模式中的id值
-</code></pre>
-</li>
-<li>perms               // 对应权限位permission</li>
-</ol>
-<p>关于权限位的表示方式：<br>每个权限位都是一个唯一数字，将其合时通过或运行生成一个全新的数字即可</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@InterfaceAudience.<span class="hljs-built_in">Public</span><br><span class="hljs-built_in">public</span> interface Perms &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-keyword">READ</span> = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-keyword">WRITE</span> = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">1</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-keyword">CREATE</span> = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-keyword">DELETE</span> = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">3</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-keyword">ADMIN</span> = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>;<br><br>    <span class="hljs-type">int</span> <span class="hljs-keyword">ALL</span> = <span class="hljs-keyword">READ</span> | <span class="hljs-keyword">WRITE</span> | <span class="hljs-keyword">CREATE</span> | <span class="hljs-keyword">DELETE</span> | <span class="hljs-keyword">ADMIN</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3><span id="5第三方客户端zkclient">5.第三方客户端ZkClient</span></h3><p>zkClient 是在zookeeper客户端基础之上封装的，使用上更加友好。主要变化如下：</p>
-<ul>
-<li>可以设置持久监听，或删除某个监听</li>
-<li>可以插入JAVA对象，自动进行序列化和反序列化</li>
-<li>简化了基本的增删改查操作。</li>
-</ul>
-<h2><span id="二-zookeeper集群">二、Zookeeper集群</span></h2><hr>
+              <h2><span id="二-zookeeper集群">二、Zookeeper集群</span></h2><hr>
 <p>知识点：</p>
 <ol>
 <li>集群部署</li>
@@ -582,8 +423,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/09/22/zookeeper/">
-                        <span class="hidden-mobile">zookeeper特性与节点介绍</span>
+                      <a href="/2021/09/23/zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8/">
+                        <span class="hidden-mobile">zookeeper客户端使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
