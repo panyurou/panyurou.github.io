@@ -16,25 +16,25 @@
   <meta name="description" content="">
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
-  <meta name="description" content="ClickHouse 是什么？ClickHouse 是俄罗斯的 Yandex 于 2016 年开源的列式存储数据库（DBMS），使用 C++ 语言编写，主要用于在线分析处理查询（OLAP），能够使用 SQL 查询实时生成分析数据报 告。   OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle这种传统的关系型数据库的主要应用，适合做">
+  <meta name="description" content="clickhouse基本数据类型整型固定长度的整型，包括有符号整型或无符号整型。 整型范围（-2n-1~2n-1-1）： Int8 - [-128 : 127] Int16 - [-32768 : 32767] Int32 - [-2147483648 : 2147483647] Int64 - [-9223372036854775808 : 9223372036854775807] 无符号整型范">
 <meta property="og:type" content="article">
-<meta property="og:title" content="clickhouse入门">
-<meta property="og:url" content="http://example.com/2022/02/01/clickhouse/index.html">
+<meta property="og:title" content="clickhouse基本数据类型">
+<meta property="og:url" content="http://example.com/2022/02/01/clickhouse%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="ClickHouse 是什么？ClickHouse 是俄罗斯的 Yandex 于 2016 年开源的列式存储数据库（DBMS），使用 C++ 语言编写，主要用于在线分析处理查询（OLAP），能够使用 SQL 查询实时生成分析数据报 告。   OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle这种传统的关系型数据库的主要应用，适合做">
+<meta property="og:description" content="clickhouse基本数据类型整型固定长度的整型，包括有符号整型或无符号整型。 整型范围（-2n-1~2n-1-1）： Int8 - [-128 : 127] Int16 - [-32768 : 32767] Int32 - [-2147483648 : 2147483647] Int64 - [-9223372036854775808 : 9223372036854775807] 无符号整型范">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyy3x95nv3j31580est9i.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyy3xu1e5zj315s05igm7.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyy3yqqgzzj315405kjrz.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyy4aob591j314o0hg0uk.jpg">
-<meta property="article:published_time" content="2022-02-01T06:27:15.000Z">
-<meta property="article:modified_time" content="2022-02-01T12:37:46.454Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyye8yqx9pj30u00u9mz9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyye7wjb2nj30qw0g83zh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyye721a9uj30ry0hkgn4.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyye7bn8x2j30oo0ecwfg.jpg">
+<meta property="article:published_time" content="2022-02-01T14:18:40.000Z">
+<meta property="article:modified_time" content="2022-02-01T14:48:09.759Z">
 <meta property="article:author" content="Panyurou">
-<meta property="article:tag" content="clickhouse">
+<meta property="article:tag" content="分布式框架">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyy3x95nv3j31580est9i.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gyye8yqx9pj30u00u9mz9.jpg">
   
-  <title>clickhouse入门 - 楼上有只喵</title>
+  <title>clickhouse基本数据类型 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -180,7 +180,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="clickhouse入门">
+            <span class="h2" id="subtitle" title="clickhouse基本数据类型">
               
             </span>
 
@@ -190,8 +190,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-02-01 14:27" pubdate>
-        2022年2月1日 下午
+      <time datetime="2022-02-01 22:18" pubdate>
+        2022年2月1日 晚上
       </time>
     </span>
   
@@ -201,7 +201,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      2.1k 字
     </span>
   
 
@@ -210,7 +210,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5 分钟
+      6 分钟
     </span>
   
 
@@ -239,77 +239,102 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">clickhouse入门</h1>
+            <h1 style="display: none">clickhouse基本数据类型</h1>
             
             <div class="markdown-body">
-              <h1><span id="clickhouse-是什么"><strong>ClickHouse</strong> 是什么？</span></h1><p>ClickHouse 是俄罗斯的 Yandex 于 2016 年开源的列式存储数据库（DBMS），使用 C++</p>
-<p>语言编写，主要用于在线分析处理查询（OLAP），能够使用 SQL 查询实时生成分析数据报</p>
-<p>告。</p>
+              <h1><span id="clickhouse基本数据类型">clickhouse基本数据类型</span></h1><h2><span id="整型"><strong>整型</strong></span></h2><p>固定长度的整型，包括有符号整型或无符号整型。</p>
+<p>整型范围（-2n-1~2n-1-1）：</p>
+<p>Int8 - [-128 : 127]</p>
+<p>Int16 - [-32768 : 32767]</p>
+<p>Int32 - [-2147483648 : 2147483647]</p>
+<p>Int64 - [-9223372036854775808 : 9223372036854775807]</p>
+<p>无符号整型范围（0~2n-1）：</p>
+<p>UInt8 - [0 : 255]</p>
+<p>UInt16 - [0 : 65535]</p>
+<p>UInt32 - [0 : 4294967295]</p>
+<p>UInt64 - [0 : 18446744073709551615]</p>
 <blockquote>
+<p>使用场景： 个数、数量、也可以存储型id</p>
+</blockquote>
+<h2><span id="浮点型"><strong>浮点型</strong></span></h2><p>Float32 - float</p>
+<p>Float64 – double</p>
+<p>建议尽可能以整数形式存储数据。例如，将固定精度的数字转换为整数值，如时间用毫秒为单位表示，因为浮点型进行计算时可能引起四舍五入的误差。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">46</span>bb792f7762 :) <span class="hljs-keyword">select</span> <span class="hljs-number">1.0</span><span class="hljs-number">-0.9</span>;<br><br><span class="hljs-keyword">SELECT</span> <span class="hljs-number">1.</span> <span class="hljs-operator">-</span> <span class="hljs-number">0.9</span><br><br>Query id: <span class="hljs-number">82</span>a9fb29<span class="hljs-number">-9</span>ac3<span class="hljs-number">-41</span>a1<span class="hljs-number">-918</span>d<span class="hljs-operator">-</span>a37ec7bff333<br><br>┌──────minus(<span class="hljs-number">1.</span>, <span class="hljs-number">0.9</span>)─┐<br>│ <span class="hljs-number">0.09999999999999998</span> │<br>└─────────────────────┘<br><br><span class="hljs-number">1</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> set. Elapsed: <span class="hljs-number">0.010</span> sec.<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>使用场景：一般数据值比较小，不涉及大量的统计计算，精度要求不高的时候。比如保存商品的重量。</p>
+</blockquote>
+<h2><span id="布尔型">布尔型</span></h2><p>没有单独的类型来存储布尔值。可以使用 UInt8 类型，取值限制为 0 或 1。</p>
+<h2><span id="decimal-型"><strong>Decimal</strong> <strong>型</strong></span></h2><p>有符号的浮点数，可在加、减和乘法运算过程中保持精度。对于除法，最低有效数字会</p>
+<p>被丢弃（不舍入）。</p>
+<p>有三种声明：</p>
+<p>➢ Decimal32(s)，相当于 Decimal(9-s,s)，有效位数为 1~9</p>
+<p>➢ Decimal64(s)，相当于 Decimal(18-s,s)，有效位数为 1~18</p>
+<p>➢ Decimal128(s)，相当于 Decimal(38-s,s)，有效位数为 1~38</p>
+<p><strong>s 标识小数位</strong></p>
+<blockquote>
+<p>使用场景： 一般金额字段、汇率、利率等字段为了保证小数点精度，都使用 Decimal</p>
+<p>进行存储。</p>
+</blockquote>
+<h2><span id="字符串"><strong>字符串</strong></span></h2><ul>
+<li>String</li>
+</ul>
+<p>字符串可以任意长度的。它可以包含任意的字节集，包含空字节。</p>
 <ul>
-<li>OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle这种传统的关系型数据库的主要应用，适合做基本的日常的事务处理，增删改查等操作。</li>
-<li>OLAP：联机分析处理（Online Analytical Processing)，支持复杂的分析操作，侧重决策支持，并且提供直观易懂的查询结果。适合做一次插入多次查询，适合分析，聚合的场景，但是对更新，删除不擅长。</li>
+<li>FixedString(N)</li>
 </ul>
+<p>固定长度 N 的字符串，N 必须是严格的正自然数。当服务端读取长度小于 N 的字符</p>
+<p>串时候，通过在字符串末尾添加空字节来达到 N 字节长度。 当服务端读取长度大于 N 的</p>
+<p>字符串时候，将返回错误消息。</p>
+<p>与 String 相比，极少会使用 FixedString，因为使用起来不是很方便。</p>
+<blockquote>
+<p>使用场景：名称、文字描述、字符型编码。 固定长度的可以保存一些定长的内容，比</p>
+<p>如一些编码，性别等但是考虑到一定的变化风险，带来收益不够明显，所以定长字符串使用意义有限。</p>
 </blockquote>
-<h1><span id="clickhouse-的特点">ClickHouse <strong>的特点</strong></span></h1><h2><span id="1列式存储">1.<strong>列式存储</strong></span></h2><h3><span id="行式存储和列式存储的对比">行式存储和列式存储的对比</span></h3><ul>
-<li><p>行式存储的好处是想查某个人所有的属性时，可以通过一次磁盘查找加顺序读取就可以。但是当想查所有人的年龄时，需要不停的查找，或者全表扫描才行，遍历的很多数据都是不需要的。</p>
-</li>
-<li><p>列式存储，想查所有人的年龄只需把年龄那一列拿出来就可以了</p>
-</li>
-</ul>
-<p>以下面的表为例：</p>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gyy3x95nv3j31580est9i.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2><span id="枚举类型"><strong>枚举类型</strong></span></h2><p>包括 Enum8 和 Enum16 类型。Enum 保存 ‘string’= integer 的对应关系。</p>
 <ul>
-<li><p>采用行式存储时，数据在磁盘上的组织结构为：</p>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gyy3xu1e5zj315s05igm7.jpg" srcset="/img/loading.gif" lazyload></p>
+<li><p>Enum8 用 ‘String’= Int8 对描述。</p>
 </li>
-<li><p>采用列式存储时，数据在磁盘上的组织结构为：</p>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gyy3yqqgzzj315405kjrz.jpg" srcset="/img/loading.gif" lazyload></p>
+<li><p>Enum16 用 ‘String’= Int16 对描述。</p>
 </li>
 </ul>
-<h3><span id="列式储存的好处"><strong>列式储存的好处：</strong></span></h3><ul>
-<li><p>对于列的聚合，计数，求和等统计操作原因优于行式存储。</p>
-</li>
-<li><p>由于某一列的数据类型都是相同的，针对于数据存储更容易进行数据压缩，每一列</p>
-<p>选择更优的数据压缩算法，大大提高了数据的压缩比重。</p>
-</li>
-<li><p>由于数据压缩比更好，一方面节省了磁盘空间，另一方面对于 cache 也有了更大的</p>
-</li>
+<h3><span id="用法示例">用法示例</span></h3><ul>
+<li><p>创建一个带有一个枚举 Enum8(‘hello’ = 1, ‘world’ = 2) 类型的列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">46</span>bb792f7762 :) <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> t_enum<br>                (<br>                x Enum8(<span class="hljs-string">&#x27;hello&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;world&#x27;</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>)<br>                )<br>                ENGINE <span class="hljs-operator">=</span> TinyLog;<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>这个</strong> <strong>x</strong> 列只能存储类型定义中列出的值：hello或world</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">46</span>bb792f7762 :) <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> t_enum <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;hello&#x27;</span>), (<span class="hljs-string">&#x27;world&#x27;</span>), (<span class="hljs-string">&#x27;hello&#x27;</span>);<br></code></pre></td></tr></table></figure></li>
 </ul>
-<p>发挥空间</p>
-<h2><span id="dbms-的功能"><strong>DBMS</strong> <strong>的功能</strong></span></h2><p>几乎覆盖了标准 SQL 的大部分语法，包括 DDL 和 DML，以及配套的各种函数，用户管</p>
-<p>理及权限管理，数据的备份与恢复。 </p>
-<blockquote>
-<p>数据库管理系统（英语：database management system，缩写：DBMS）即数据库管理软件，是一种针对对象数据库，为管理数据库而设计的大型计算机软件管理系统。</p>
-<p>具有代表性的数据管理系统有：Oracle、Microsoft SQL Server、Access、MySQL及PostgreSQL等。通常数据库管理师会使用数据库管理系统来创建数据库系统。</p>
-</blockquote>
-<h2><span id="多样化引擎"><strong>多样化引擎</strong></span></h2><p>ClickHouse 和 MySQL 类似，把表级的存储引擎插件化，根据表的不同需求可以设定不同</p>
-<p>的存储引擎。目前包括合并树、日志、接口和其他四大类 20 多种引擎。</p>
-<h2><span id="高吞吐写入能力">高吞吐写入能力</span></h2><ul>
-<li><p>ClickHouse 采用类 LSM Tree的结构，数据写入后定期在后台 Compaction。通过类 LSM tree的结构，ClickHouse 在数据导入时全部是顺序 append 写，写入后数据段不可更改，在后台compaction 时也是多个段 merge sort 后顺序写回磁盘。顺序写的特性，充分利用了磁盘的吞吐能力，即便在 HDD 上也有着优异的写入性能。</p>
-</li>
-<li><p>官方公开 benchmark 测试显示能够达到 50MB-200MB/s 的写入吞吐能力，按照每行</p>
-</li>
-</ul>
-<p>100Byte 估算，大约相当于 50W-200W 条/s 的写入速度。</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/415799237">深入浅出分析LSM树（日志结构合并树） - 知乎 (zhihu.com)</a></p>
-<blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gyy4aob591j314o0hg0uk.jpg" srcset="/img/loading.gif" lazyload></p>
-</blockquote>
-<h3><span id="数据分区与线程级并行"><strong>数据分区与线程级并行</strong></span></h3><ul>
-<li>ClickHouse 将数据划分为多个 partition，每个 partition 再进一步划分为多个 index </li>
-</ul>
-<p>granularity(索引粒度)，然后通过多个 CPU核心分别处理其中的一部分来实现并行数据处理。</p>
-<p>在这种设计下，<strong>单条 Query 就能利用整机所有 CPU</strong>。极致的并行处理能力，极大的降低了查</p>
-<p>询延时。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gyye8yqx9pj30u00u9mz9.jpg" srcset="/img/loading.gif" lazyload></p>
 <ul>
-<li>所以，ClickHouse 即使对于大量数据的查询也能够化整为零平行处理。但是有一个弊端</li>
+<li><strong>如果需要看到对应行的数值，则必须将</strong> <strong>Enum</strong> <strong>值转换为整数类型</strong></li>
 </ul>
-<p>就是对于单条查询使用多 cpu，就不利于同时并发多条查询。所以对于高 qps 的查询业务，</p>
-<p>ClickHouse 并不是强项。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-number">46</span>bb792f7762 :)  <span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">CAST</span>(x, <span class="hljs-string">&#x27;Int8&#x27;</span>) <span class="hljs-keyword">FROM</span> t_enum;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gyye7wjb2nj30qw0g83zh.jpg" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
-<p>QPS（<strong>Query Per Second</strong>）：每秒请求数，就是说服务器在一秒的时间内处理了多少个请求。</p>
+<p>使用场景：对一些状态、类型的字段算是一种空间优化，也算是一种数据约束。但是实</p>
+<p>际使用中往往因为一些数据内容的变化增加一定的维护成本，甚至是数据丢失问题。所以谨慎使用。</p>
 </blockquote>
+<h2><span id="时间类型"><strong>时间类型</strong></span></h2><p>目前 ClickHouse 有三种时间类型</p>
+<p>➢ Date 接受<code>年-月-日</code>的字符串比如 ‘2019-12-16’ </p>
+<p>➢ Datetime 接受<code>年-月-日 时:分:秒</code>的字符串比如 ‘2019-12-16 20:50:10’ </p>
+<p>➢ Datetime64 接受<code>年-月-日 时:分:秒.亚秒</code>的字符串比如‘2019-12-16 20:50:10.66’</p>
+<h2><span id="数组"><strong>数组</strong></span></h2><p>Array(T)：由 T 类型元素组成的数组。</p>
+<p>T 可以是任意类型，包含数组类型。 但不推荐使用多维数组，ClickHouse 对多维数组</p>
+<p>的支持有限。例如，不能在 MergeTree 表中存储多维数组。</p>
+<ul>
+<li>创建数组方式 1，使用 array 函数</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">array</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">AS</span> x, toTypeName(x) ;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gyye721a9uj30ry0hkgn4.jpg" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>创建数组方式 2：使用方括号</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] <span class="hljs-keyword">AS</span> x, toTypeName(x);<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gyye7bn8x2j30oo0ecwfg.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>还有很多数据结构，可以参考官方文档：<a target="_blank" rel="noopener" href="https://clickhouse.com/docs/zh/sql-reference/data-types/">简介 | ClickHouse文档</a></p>
 
             </div>
             <hr>
@@ -319,7 +344,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+                      <a class="hover-with-bg" href="/categories/clickhouse/">clickhouse</a>
                     
                   </div>
                 
@@ -327,7 +352,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/clickhouse/">clickhouse</a>
+                      <a class="hover-with-bg" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
                     
                   </div>
                 
@@ -344,18 +369,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/02/01/docker-%E5%AE%89%E8%A3%85clickhouse/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">docker 安装clickhouse</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/28/Redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84/">
-                        <span class="hidden-mobile">Redis主从架构</span>
+                      <a href="/2022/02/01/docker-%E5%AE%89%E8%A3%85clickhouse/">
+                        <span class="hidden-mobile">docker 安装clickhouse</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
