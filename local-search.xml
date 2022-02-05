@@ -4,6 +4,69 @@
   
   
   <entry>
+    <title>Elasticsearch安装</title>
+    <link href="/2022/02/05/Elasticsearch%E5%AE%89%E8%A3%85/"/>
+    <url>/2022/02/05/Elasticsearch%E5%AE%89%E8%A3%85/</url>
+    
+    <content type="html"><![CDATA[<p>Es 下载链接： <a href="https://www.elastic.co/cn/downloads/elasticsearch">Download Elasticsearch | Elastic</a></p><p>Kibana 下载链接：<a href="https://www.elastic.co/cn/downloads/kibana">Download Kibana Free | Get Started Now | Elastic</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ElasticSearch集群搭建</title>
+    <link href="/2022/02/05/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/"/>
+    <url>/2022/02/05/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="elasticsearch集群搭建">ElasticSearch集群搭建</span></h1><h2><span id="相关概念">相关概念</span></h2><h3><span id="集群cluster">集群cluster</span></h3><p>一个集群就是由一个或多个节点组织在一起，它们共同持有整个的数据，并一起提供索引和搜索功能</p><h3><span id="节点node">节点node</span></h3><ul><li>一个节点是集群中的一个服务器，作为集群的一部分，它存储数据。参与集群的索引和搜索功能。</li><li>一个节点可以通过配置集群名称的方式来加入一个指定的集群。默认情况下，每个节点都会被安排加入到一个叫做“elasticsearch”的集群中。这意味着，如果在网络中启动了若干个节点，并假定它们能够相互发现彼此，它们将会自动地形成并加入到一个叫做“elasticsearch”的集群中。</li><li>在一个集群里，可以拥有任意多个节点。而且，如果当前网络中没有运行任何Elasticsearch节点，这时启动一个节点，会默认创建并加入一个叫做“elasticsearch”的集群。</li></ul><h3><span id="分片和副本shardsampreplicas">分片和副本shards&amp;replicas</span></h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>ElasticSearch</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分布式框架</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>SQL操作</title>
+    <link href="/2022/02/03/SQL%E6%93%8D%E4%BD%9C/"/>
+    <url>/2022/02/03/SQL%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="sql操作">SQL操作</span></h1><p>基本上来说传统关系型数据库（以 MySQL 为例）的 SQL 语句，ClickHouse 基本都支持，这里不会从头讲解 SQL 语法只介绍 ClickHouse 与标准 SQL（MySQL）不一致的地方</p><h2><span id="insert">Insert</span></h2><p>基本与标准 SQL（MySQL）基本一致</p><p>（1）标准</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> [table_name] <span class="hljs-keyword">values</span>(…),(….)<br></code></pre></td></tr></table></figure><p>（2）从表到表的插入</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> [table_name] <span class="hljs-keyword">select</span> a,b,c <span class="hljs-keyword">from</span> [table_name_2]<br></code></pre></td></tr></table></figure><h2><span id="update-和delete">Update 和Delete</span></h2><ul><li><p>ClickHouse 提供了 Delete 和 Update 的能力，这类操作被称为 Mutation 查询，它可以看做 Alter 的一种。</p></li><li><p>虽然可以实现修改和删除，但是和一般的 OLTP 数据库不一样，<strong>Mutation</strong> 语句是一种很重的操作，而且不支持事务。</p><blockquote><p>“重”的原因主要是每次修改或者删除都会导致放弃目标数据的原有分区，重建新分区。合并的时候才会删除原有分区，所以尽量做批量的变更，不要进行频繁小数据的操作。</p></blockquote></li></ul><h3><span id="删除操作">删除操作</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> t_order_smt <span class="hljs-keyword">delete</span> <span class="hljs-keyword">where</span> sku_id <span class="hljs-operator">=</span><span class="hljs-string">&#x27;sku_001&#x27;</span>;<br></code></pre></td></tr></table></figure><h3><span id="修改操作">修改操作</span></h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> t_order_smt update total_amount<span class="hljs-operator">=</span>toDecimal32(<span class="hljs-number">2000.00</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span><span class="hljs-number">102</span>;<br></code></pre></td></tr></table></figure><h3><span id="开发建议">开发建议</span></h3><p>clickhouse虽然支持 Delete 和 Update 的能力，但是这类操作很重，一般建议不要使用，如果要使用，都可以采用增加数据的方式来实现，如更新的话，可以给列新加版本号；删除的话，可以增加一列删除标记为：delete_at，但这样会造成数据膨胀，可以定期删除失效的数据。</p><h2><span id="查询">查询</span></h2><p>ClickHouse 基本上与标准 SQL 差别不大</p><p>➢ 支持子查询</p><p>➢ 支持 CTE(Common Table Expression 公用表表达式 with 子句) </p><p>➢ 支持各种 JOIN，但是 JOIN 操作无法使用缓存，所以即使是两次相同的 JOIN 语句，ClickHouse 也会视为两条新 SQL</p><p>➢ 窗口函数</p><p>➢ 不支持自定义函数</p><p>➢ GROUP BY 操作增加了 with rollup\with cube\with total 用来计算小计和总计。</p><p><strong>演示</strong></p><p>（1）插入数据</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql">bfdf602492c9 :)  <span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> t_order_mt <span class="hljs-keyword">delete</span> <span class="hljs-keyword">where</span> <span class="hljs-number">1</span><span class="hljs-operator">=</span><span class="hljs-number">1</span>;<br>bfdf602492c9 :) <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> t_order_mt <span class="hljs-keyword">values</span><br>                (<span class="hljs-number">101</span>,<span class="hljs-string">&#x27;sku_001&#x27;</span>,<span class="hljs-number">1000.00</span>,<span class="hljs-string">&#x27;2020-06-01 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">101</span>,<span class="hljs-string">&#x27;sku_002&#x27;</span>,<span class="hljs-number">2000.00</span>,<span class="hljs-string">&#x27;2020-06-01 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">103</span>,<span class="hljs-string">&#x27;sku_004&#x27;</span>,<span class="hljs-number">2500.00</span>,<span class="hljs-string">&#x27;2020-06-01 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">104</span>,<span class="hljs-string">&#x27;sku_002&#x27;</span>,<span class="hljs-number">2000.00</span>,<span class="hljs-string">&#x27;2020-06-01 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">105</span>,<span class="hljs-string">&#x27;sku_003&#x27;</span>,<span class="hljs-number">600.00</span>,<span class="hljs-string">&#x27;2020-06-02 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">106</span>,<span class="hljs-string">&#x27;sku_001&#x27;</span>,<span class="hljs-number">1000.00</span>,<span class="hljs-string">&#x27;2020-06-04 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">107</span>,<span class="hljs-string">&#x27;sku_002&#x27;</span>,<span class="hljs-number">2000.00</span>,<span class="hljs-string">&#x27;2020-06-04 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">108</span>,<span class="hljs-string">&#x27;sku_004&#x27;</span>,<span class="hljs-number">2500.00</span>,<span class="hljs-string">&#x27;2020-06-04 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">109</span>,<span class="hljs-string">&#x27;sku_002&#x27;</span>,<span class="hljs-number">2000.00</span>,<span class="hljs-string">&#x27;2020-06-04 12:00:00&#x27;</span>),<br>                (<span class="hljs-number">110</span>,<span class="hljs-string">&#x27;sku_003&#x27;</span>,<span class="hljs-number">600.00</span>,<span class="hljs-string">&#x27;2020-06-01 12:00:00&#x27;</span>);<br></code></pre></td></tr></table></figure><p>（2）with rollup：从右至左去掉维度进行小计</p><p>可以看出分别根据  【id,sku_id】【id】【(空)】 进行了分组</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">bfdf602492c9 :) <span class="hljs-keyword">select</span> id , sku_id,<span class="hljs-built_in">sum</span>(total_amount) <span class="hljs-keyword">from</span> t_order_mt <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> id,sku_id <span class="hljs-keyword">with</span> <span class="hljs-keyword">rollup</span>;<br></code></pre></td></tr></table></figure><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gz1rqitalcj30hg0tamz1.jpg"></p><p>（3）with cube : 从右至左去掉维度进行小计，再从左至右去掉维度进行小计</p><p>可以看出分别根据  【id,sku_id】【id】【sku_id】【(空)】 进行了分组</p><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gz1rt0556dj30hu0x0di6.jpg"></p><p>（4）with totals: 只计算合计</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">bfdf602492c9 :)  <span class="hljs-keyword">select</span> id , sku_id,<span class="hljs-built_in">sum</span>(total_amount) <span class="hljs-keyword">from</span> t_order_mt <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span><br>                id,sku_id <span class="hljs-keyword">with</span> totals;<br></code></pre></td></tr></table></figure><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gz1rutq1qaj30j20im75i.jpg"></p><h2><span id="alter操作">alter操作</span></h2><p>同 MySQL 的修改字段基本一致</p><p>1）新增字段</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tableName <span class="hljs-keyword">add</span> <span class="hljs-keyword">column</span> newcolname String after col1; <br></code></pre></td></tr></table></figure><p>2）修改字段类型</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tableName modify <span class="hljs-keyword">column</span> newcolname String; <br></code></pre></td></tr></table></figure><p>3）删除字段</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tableName <span class="hljs-keyword">drop</span> <span class="hljs-keyword">column</span> newcolname; <br></code></pre></td></tr></table></figure><blockquote><p>更多语法参考：<a href="https://clickhouse.com/docs/en/sql-reference/">ClickHouse Documentation</a></p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>click house</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数据库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>clickhouse表引擎</title>
     <link href="/2022/02/03/clickhouse%E8%A1%A8%E5%BC%95%E6%93%8E/"/>
     <url>/2022/02/03/clickhouse%E8%A1%A8%E5%BC%95%E6%93%8E/</url>
@@ -534,23 +597,23 @@
   
   
   <entry>
-    <title>分布式引擎基础</title>
-    <link href="/2021/09/28/%E5%88%86%E5%B8%83%E5%BC%8F%E5%BC%95%E6%93%8E%E5%9F%BA%E7%A1%80/"/>
-    <url>/2021/09/28/%E5%88%86%E5%B8%83%E5%BC%8F%E5%BC%95%E6%93%8E%E5%9F%BA%E7%A1%80/</url>
+    <title>ElasticSearch简介</title>
+    <link href="/2021/09/28/ElasticSearch%E7%AE%80%E4%BB%8B/"/>
+    <url>/2021/09/28/ElasticSearch%E7%AE%80%E4%BB%8B/</url>
     
-    <content type="html"><![CDATA[<h1><span id="搜索引擎">搜索引擎</span></h1><h2><span id="搜索引擎是什么">搜索引擎是什么？</span></h2><p>是一个检索服务，主要分全文检索和垂直检索。</p><h2><span id="es是什么">Es是什么？</span></h2><ul><li>ElasticSearch，分布式的索引库，Nosql。mysql</li><li>-对外提供检索服务，http或者transport协议对外提供搜索。Restful的json。Es6.6.0  es2.x。</li><li>对内就是一个数据库，nosql</li></ul><blockquote><p>缺点：nosql 非关系型的s没有办法链接查询的，也就是跨索引查询。</p></blockquote><h1><span id></span></h1>]]></content>
+    <content type="html"><![CDATA[<h1><span id="elasticsearch简介">ElasticSearch简介</span></h1><h2><span id="es是什么">Es是什么？</span></h2><ul><li>Elasticsearch是用Java开发并且是当前最流行的开源的企业级搜索引擎。</li><li>能够达到实时搜索，稳定，可靠，快速，安装使用方便。</li><li>客户端支持Java、.NET（C#）、PHP、Python、Ruby等多种语言。</li></ul><h2><span id="应用场景">应用场景</span></h2><p>关键词搜索。</p><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gz2w2u8asuj30vt0u044p.jpg"></p><blockquote><p>从上面的搜索结果，可以看出不是根据模糊匹配去进行搜索的</p></blockquote><h2><span id="elasticsearch与lucene的关系">ElasticSearch与Lucene的关系</span></h2><ul><li>Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库（框架）</li></ul><h3><span id="lucene缺点">Lucene缺点：</span></h3><ul><li>想要使用Lucene，必须使用Java来作为开发语言并将其直接集成到你的应用中。</li><li>Lucene的配置及使用非常复杂，你需要深入了解检索的相关知识来理解它是如何工作的。</li><li>使用非常复杂-创建索引和搜索索引代码繁杂。</li><li>不支持集群环境-索引数据不同步（不支持大型项目）</li><li>索引数据如果太多就不行，索引库和应用所在同一个服务器,共同占用硬盘.共用空间少.</li></ul><p><strong>上述Lucene框架中的缺点,ES全部都能解决.</strong></p><h2><span id="哪些公司在使用elasticsearch">哪些公司在使用Elasticsearch</span></h2><img src="https://tva1.sinaimg.cn/large/008i3skNly1gz2vhwoyi1j309q0isq3h.jpg" style="zoom:50%;"><h2><span id="es-vs-solr比较">ES vs Solr比较</span></h2><ul><li>当单纯的对已有数据进行搜索时，Solr更快。</li><li>当实时建立索引时,Solr会产生io阻塞，查询性能较差,Elasticsearch具有明显的优势。</li><li>Solr利用Zookeeper进行分布式管理，而Elasticsearch自身带有分布式协调管理功能。</li><li>Solr支持更多格式的数据，比如JSON、XML、CSV，而Elasticsearch仅支持json文件格式。</li><li>Solr在传统的搜索应用中表现好于Elasticsearch，但在处理实时搜索应用时效率明显低于Elasticsearch。</li><li>Solr是传统搜索应用的有力解决方案，但Elasticsearch更适用于新兴的实时搜索应用。</li></ul><h2><span id="esvs关系型数据库">ESvs关系型数据库</span></h2><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gz2vkt8j0jj30zu0fsgn8.jpg"></p><h2><span id="lucene全文检索框架">Lucene全文检索框架</span></h2><h3><span id="什么是全文检索">什么是全文检索</span></h3><ul><li>全文检索是指：通过一个程序扫描文本中的每一个单词，针对单词建立索引，并保存该单词在文本中的位置、以及出现的次数。</li><li>用户查询时，通过之前建立好的索引来查询，将索引中单词对应的文本位置、出现的次数返回给用户，因为有了具体文本的位置，所以就可以将具体内容读取出来了</li></ul><h3><span id="词原理之倒排索引">词原理之倒排索引</span></h3><p>对于关系型数据库mysql来说，<strong>普通的索引结构就是“id-&gt;题目-&gt;内容”，</strong>在我们搜索的时候，如果我们知道id或者题目<strong>，那么检索效率是很高效的，因为“id”、“题目”是很方便创建索引的。</strong></p><p>那么<strong>倒排序索引</strong>的结构是怎样的呢？简单来讲<strong>就是“以内容的关键词”建立索引，</strong>映射关系为<strong>“内容的关键词-&gt;ID”。</strong>这样的话，我们只需要在“关键词”中进行检索</p><p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gz2vpv36j1j30z40em40a.jpg"></p><blockquote><p>对于上面的场景，输入为hello，会根据hello定位到此时数据的id为1和2，进而查出对应的数据。</p></blockquote><h2><span id="elasticsearch中的核心概念">Elasticsearch中的核心概念</span></h2><h3><span id="索引index">索引index</span></h3><ul><li>一个索引就是一个拥有几分相似特征的文档的集合。比如说，可以有一个客户数据的索引，另一个产品目录的索引，还有一个订单数据的索引</li><li>一个索引由一个名字来标识（必须全部是小写字母的），并且当我们要对对应于这个索引中的文档进行索引、搜索、更新和删除的时候，都要使用到这个名字</li></ul><h3><span id="映射mapping">映射mapping</span></h3><ul><li><p>ElasticSearch中的映射（Mapping）用来定义一个文档</p></li><li><p>mapping是处理数据的方式和规则方面做一些限制，如某个字段的数据类型、默认值、分词器、是否被索引等等，这些都是映射里面可以设置的</p></li></ul><h3><span id="字段field">字段Field</span></h3><ul><li>相当于是数据表的字段|列</li></ul><h3><span id="字段类型type">字段类型Type</span></h3><p>每一个字段都应该有一个对应的类型，例如：Text、Keyword、Byte等</p><h3><span id="文档document">文档document</span></h3><p>一个文档是一个可被索引的基础信息单元，类似一条记录。文档以JSON（JavascriptObjectNotation）格式来表示；</p><h3><span id></span></h3>]]></content>
     
     
     <categories>
       
-      <category>分布式搜索引擎</category>
+      <category>ElasticSearch</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>分布式搜索引擎</tag>
+      <tag>分布式框架</tag>
       
     </tags>
     
