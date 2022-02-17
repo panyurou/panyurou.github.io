@@ -190,6 +190,121 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/02/12/ES%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/" target="_self">
+          Elasticsearch数据管理
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/12/ES%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/" target="_self">
+          
+          
+            
+          
+          ES数据管理ES数据管理概述
+ES是面向文档(document oriented)的，这意味着它可以存储整个对象或文档 (document)。
+然而它不仅仅是存储，还会索引(index)每个文档的内容使之可以被搜索。
+在ES中，你可以对文档（而非成行成列的数据）进行索引、搜索、排序、过滤。
+ES使用JSON作为文档序列化格式。 
+
+ES存储的一个员工文档的格式示例： 
+123456&#123;  
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-12 23:02" pubdate>
+              2022-02-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ElasticSearch/">ElasticSearch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/05/Elasticsearch%E5%AE%89%E8%A3%85/" target="_self">
+          Elasticsearch安装
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/05/Elasticsearch%E5%AE%89%E8%A3%85/" target="_self">
+          
+          
+            
+          
+          Elasticsearch安装1.下载es.  Es 下载链接： Download Elasticsearch | Elastic
+
+2.解压后在bin路径下，运行
+1➜  bin ./elasticsearch -d
+
+3.访问localhost:9200,看到下面的页面即启动成功
+
+Kibana安装
+Kibana 下载链接：Download Kibana Free | Get Started 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-05 20:08" pubdate>
+              2022-02-05
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ElasticSearch/">ElasticSearch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/02/05/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" target="_self">
           ElasticSearch集群搭建
         </a>
@@ -243,13 +358,13 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/03/ClickHouse%E7%9A%84SQL%E6%93%8D%E4%BD%9C/" target="_self">
-          ClickHouse的SQL操作
+        <a href="/2022/02/03/clickHouse%E7%9A%84SQL%E6%93%8D%E4%BD%9C/" target="_self">
+          clickHouse的SQL操作
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2022/02/03/ClickHouse%E7%9A%84SQL%E6%93%8D%E4%BD%9C/" target="_self">
+        <a href="/2022/02/03/clickHouse%E7%9A%84SQL%E6%93%8D%E4%BD%9C/" target="_self">
           
           
             
@@ -623,124 +738,11 @@ rdb就是快照，是redis默认的持久化方式，就是把所有的数据持
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/26/redis/" target="_self">
-          redis 核心数据结构
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/12/26/redis/" target="_self">
-          
-          
-            
-          
-          redis 是什么？
-redis是一个高性能的key-value 数据库，它可以用来存储字符串，哈希，列表，集合，有序集合。
-
-
-
-StringString 是redis中最基础的数据结构，主要用在常规计数，如：统计网站访问数据量，当前在线人数等
-应用场景
-
-单值缓存
-1234127.0.0.1:6379&gt; set key1 &quot;zhangsan&quot;OK127.0.0.1:6
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-26 19:07" pubdate>
-              2021-12-26
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/redis/">redis</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/redis-%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">redis 核心数据结构</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/25/%E7%AC%AC%E4%B8%80%E4%B8%AAspringboot%E9%A1%B9%E7%9B%AE/" target="_self">
-          第一个SpringBoot项目
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/12/25/%E7%AC%AC%E4%B8%80%E4%B8%AAspringboot%E9%A1%B9%E7%9B%AE/" target="_self">
-          
-          
-            
-          
-          编写代码
-进入官网 Spring Initializr 初始化项目
-编写控制HelloController
-
-12345678910111213package com.pyr.spring.cloud.weather.controller;import org.springframework.web.bind.annotation.RequestMapping;import org.springf
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-25 20:13" pubdate>
-              2021-12-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/springboot/">springboot</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/springboot/">springboot</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
