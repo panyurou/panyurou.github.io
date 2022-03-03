@@ -190,6 +190,167 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/03/03/ElasticSearch%E6%96%87%E6%A1%A3%E6%98%A0%E5%B0%84/" target="_self">
+          ElasticSearch文档映射
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/03/03/ElasticSearch%E6%96%87%E6%A1%A3%E6%98%A0%E5%B0%84/" target="_self">
+          
+          
+            
+          
+          文档映射
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-03 22:07" pubdate>
+              2022-03-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ElasticSearch/">ElasticSearch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/22/ElasticSearch-DSL%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2/" target="_self">
+          ElasticSearch-DSL语言高级查询
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/22/ElasticSearch-DSL%E8%AF%AD%E8%A8%80%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2/" target="_self">
+          
+          
+            
+          
+          DSL语言高级查询
+Elasticsearch提供了基于JSON的DSL来定义查询。 
+DSL由叶子查询子句和复合查询子句两种子句组成
+
+
+DSL(Domain Specific Language)领域专用语言 
+
+无查询条件无查询条件是查询所有，默认是查询所有的，或者使用match_all表示所有 
+123456GET /es_db/_doc/_search&#123;  &quot;query
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-22 22:23" pubdate>
+              2022-02-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ElasticSearch/">ElasticSearch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/02/21/ElasticSearch%E6%96%87%E6%A1%A3%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/" target="_self">
+          ElasticSearch文档批量操作
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2022/02/21/ElasticSearch%E6%96%87%E6%A1%A3%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/" target="_self">
+          
+          
+            
+          
+          文档批量操作批量获取文档数据
+批量获取文档数据是通过_mget的API来实现的 
+
+在URL中不指定index和type123456789101112131415GET _mget&#123;  &quot;docs&quot;: [    &#123;      &quot;_index&quot;: &quot;es_db&quot;,      &quot;_type&quot;: &quo
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-02-21 21:53" pubdate>
+              2022-02-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/ElasticSearch/">ElasticSearch</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/02/12/ES%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/" target="_self">
           Elasticsearch数据管理
         </a>
@@ -566,171 +727,6 @@ Int64 - [-9223372036854775808 : 9223372036854775807]
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/02/01/clickhouse%E5%85%A5%E9%97%A8/" target="_self">
-          clickhouse入门
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2022/02/01/clickhouse%E5%85%A5%E9%97%A8/" target="_self">
-          
-          
-            
-          
-          ClickHouse 是什么？ClickHouse 是俄罗斯的 Yandex 于 2016 年开源的列式存储数据库（DBMS），使用 C++
-语言编写，主要用于在线分析处理查询（OLAP），能够使用 SQL 查询实时生成分析数据报
-告。
-
-
-OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle这种传统的关系型数据库的主要应用，适合做
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-02-01 14:27" pubdate>
-              2022-02-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/clickhouse/">clickhouse</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/28/Redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84/" target="_self">
-          Redis主从架构
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/12/28/Redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84/" target="_self">
-          
-          
-            
-          
-          Redis主从架构介绍单机的 redis，能够承载的 QPS 大概就在上万到几万不等。对于缓存来说，一般都是用来支撑读高并发的。因此架构做成主从(master-slave)架构，一主多从，主负责写，并且将数据复制到其它的 slave 节点，从节点负责读。所有的读请求全部走从节点。这样也可以很轻松实现水平扩容，支撑读高并发。
-
-
-主从复制(全量复制)流程
-
-如果你为master配置了一个slave，
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-28 22:45" pubdate>
-              2021-12-28
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/redis/">redis</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84/">redis主从架构</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/27/redis%E6%8C%81%E4%B9%85%E5%8C%96/" target="_self">
-          redis持久化
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/12/27/redis%E6%8C%81%E4%B9%85%E5%8C%96/" target="_self">
-          
-          
-            
-          
-          
-redis 持久化主要有2种方式：RDB 和AOF
-
-RDB快照什么是RDB快照
-rdb就是快照，是redis默认的持久化方式，就是把所有的数据持久化到磁盘，隔一段时间持久化一次到 dump.rdb 的二进制文件中，在服务器重启后只需要把文件中的数据恢复即可。 
-你可以对 Redis 进行设置， 让它在“ N 秒内数据集至少有 M 个改动”这一条件被满足时， 自动保存一次数据集。 比如说， sa
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-27 22:40" pubdate>
-              2021-12-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/redis/">redis</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/redis%E6%8C%81%E4%B9%85%E5%8C%96/">redis持久化</a>
             
           </div>
         
