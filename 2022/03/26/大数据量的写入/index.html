@@ -16,20 +16,24 @@
   <meta name="description" content="">
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
-  <meta name="description" content="Elasticsearch乐观并发控制Elasticsearch 中使用的这种乐观的方式假定冲突是不可能发生的，并且不会阻塞正在 尝试的操作。 然而，如果源数据在读写当中被修改，更新将会失败。应用程序接下来将决定该如何解决冲突。 例如，可以重试更新、使用新的数据、或者将相关情况报告给用户。   在数据库领域中，有两种方法来确保并发更新，不会丢失数据： 分别为乐观和悲观  举例以创建一个文档为例">
+  <meta name="description" content="大数据量的写入HSSF(03版) 优点：过程中数据全部写入缓存，不操作磁盘，最后一次写入缓存，速度快  缺点：最多只能处理65536行，否则会抛出异常 12Invalid row number (65536) outside allowable range (0..65535)java.lang.IllegalArgumentException: Invalid row number (65536">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ElasticSearch乐观并发控制">
-<meta property="og:url" content="http://example.com/2022/03/07/ElasticSearch%E4%B9%90%E8%A7%82%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:title" content="excel大数据量的写入">
+<meta property="og:url" content="http://example.com/2022/03/26/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E7%9A%84%E5%86%99%E5%85%A5/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="Elasticsearch乐观并发控制Elasticsearch 中使用的这种乐观的方式假定冲突是不可能发生的，并且不会阻塞正在 尝试的操作。 然而，如果源数据在读写当中被修改，更新将会失败。应用程序接下来将决定该如何解决冲突。 例如，可以重试更新、使用新的数据、或者将相关情况报告给用户。   在数据库领域中，有两种方法来确保并发更新，不会丢失数据： 分别为乐观和悲观  举例以创建一个文档为例">
+<meta property="og:description" content="大数据量的写入HSSF(03版) 优点：过程中数据全部写入缓存，不操作磁盘，最后一次写入缓存，速度快  缺点：最多只能处理65536行，否则会抛出异常 12Invalid row number (65536) outside allowable range (0..65535)java.lang.IllegalArgumentException: Invalid row number (65536">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-07T13:59:29.000Z">
-<meta property="article:modified_time" content="2022-03-08T12:37:56.353Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0gq3hs5kyj22520hq44v.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0gq6x1kfuj21720a6dgq.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0nlyeermoj211409wgme.jpg">
+<meta property="article:published_time" content="2022-03-26T08:39:20.000Z">
+<meta property="article:modified_time" content="2022-03-27T13:03:05.469Z">
 <meta property="article:author" content="Panyurou">
-<meta property="article:tag" content="分布式框架">
+<meta property="article:tag" content="poi">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0gq3hs5kyj22520hq44v.jpg">
   
-  <title>ElasticSearch乐观并发控制 - 楼上有只喵</title>
+  <title>excel大数据量的写入 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -175,7 +179,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ElasticSearch乐观并发控制">
+            <span class="h2" id="subtitle" title="excel大数据量的写入">
               
             </span>
 
@@ -185,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-07 21:59" pubdate>
-        2022年3月7日 晚上
+      <time datetime="2022-03-26 16:39" pubdate>
+        2022年3月26日 下午
       </time>
     </span>
   
@@ -196,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      2k 字
     </span>
   
 
@@ -205,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      6 分钟
     </span>
   
 
@@ -234,32 +238,37 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ElasticSearch乐观并发控制</h1>
+            <h1 style="display: none">excel大数据量的写入</h1>
             
             <div class="markdown-body">
-              <h1><span id="elasticsearch乐观并发控制">Elasticsearch乐观并发控制</span></h1><p>Elasticsearch 中使用的这种乐观的方式假定冲突是不可能发生的，并且不会阻塞正在 尝试的操作。 然而，如果源数据在读写当中被修改，更新将会失败。应用程序接下来将决定该如何解决冲突。 例如，可以重试更新、使用新的数据、或者将相关情况报告给用户。 </p>
-<blockquote>
-<p>在数据库领域中，有两种方法来确保并发更新，不会丢失数据： 分别为乐观和悲观</p>
-</blockquote>
-<h2><span id="举例">举例</span></h2><p>以创建一个文档为例 </p>
-<p>step1: 创建文档</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">POST /test1/_doc/<span class="hljs-number">1</span><br>&#123;<br>  <span class="hljs-string">&quot;Id&quot;</span>: <span class="hljs-number">1</span>,<br>  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;张三丰&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>  <span class="hljs-string">&quot;_index&quot;</span> : <span class="hljs-string">&quot;test1&quot;</span>,<br>  <span class="hljs-string">&quot;_type&quot;</span> : <span class="hljs-string">&quot;_doc&quot;</span>,<br>  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,<br>  <span class="hljs-string">&quot;_version&quot;</span> : <span class="hljs-number">1</span>,<br>  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-string">&quot;created&quot;</span>,<br>  <span class="hljs-string">&quot;_shards&quot;</span> : &#123;<br>    <span class="hljs-string">&quot;total&quot;</span> : <span class="hljs-number">2</span>,<br>    <span class="hljs-string">&quot;successful&quot;</span> : <span class="hljs-number">1</span>,<br>    <span class="hljs-string">&quot;failed&quot;</span> : <span class="hljs-number">0</span><br>  &#125;,<br>  <span class="hljs-string">&quot;_seq_no&quot;</span> : <span class="hljs-number">0</span>,<br>  <span class="hljs-string">&quot;_primary_term&quot;</span> : <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>使用if_seq_no=版本值 &amp;if_primary_term=文档位置进行并发版本控制</strong></p>
-<ul>
-<li><p>_seq_no：文档版本号，<strong>version属于当个文档，而seq_no属于整个index</strong></p>
+              <h1><span id="大数据量的写入">大数据量的写入</span></h1><h2><span id="hssf03版">HSSF(03版)</span></h2><ul>
+<li><p>优点：过程中数据全部写入缓存，不操作磁盘，最后一次写入缓存，速度快</p>
 </li>
-<li><p>_primary_term：_primary_term也和_seq_no一样都是整数，每当Primary Shard发生重新分配时，比如重启，Primary选举等，_primary_term会递增1</p>
+<li><p>缺点：最多只能处理65536行，否则会抛出异常</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function">Invalid row <span class="hljs-title">number</span> <span class="hljs-params">(<span class="hljs-number">65536</span>)</span> outside allowable <span class="hljs-title">range</span> <span class="hljs-params">(<span class="hljs-number">0.</span><span class="hljs-number">.65535</span>)</span></span><br><span class="hljs-function">java.lang.IllegalArgumentException: Invalid row <span class="hljs-title">number</span> <span class="hljs-params">(<span class="hljs-number">65536</span>)</span> outside allowable <span class="hljs-title">range</span> <span class="hljs-params">(<span class="hljs-number">0.</span><span class="hljs-number">.65535</span>)</span></span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h4><span id="实战">实战</span></h4><p><strong>抛出异常测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExcelBigData</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String PATH = <span class="hljs-string">&quot;/Users/panyurou/IdeaProjects/exceldemo&quot;</span>;<br><br>  <span class="hljs-meta">@Test</span><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">excelWrite03</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>    Workbook workbook = <span class="hljs-keyword">new</span> HSSFWorkbook();<br>    <span class="hljs-keyword">final</span> Sheet sheet = workbook.createSheet(<span class="hljs-string">&quot;测试大数据量&quot;</span>);<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> begin = System.currentTimeMillis();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">65537</span>; i++) &#123;<br>      <span class="hljs-keyword">final</span> Row row = sheet.createRow(i);<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">10</span>; j++) &#123;<br>        <span class="hljs-keyword">final</span> Cell cell = row.createCell(j);<br>        cell.setCellValue(<span class="hljs-string">&quot;$&#123;i,j&#125;&quot;</span>);<br>      &#125;<br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;over!&quot;</span>);<br>    FileOutputStream outputStream = <span class="hljs-keyword">new</span> FileOutputStream(PATH + <span class="hljs-string">&quot;/excel大数据写入01.xls&quot;</span>);<br>    workbook.write(outputStream);<br>    outputStream.close();<br>    System.out.println(<span class="hljs-string">&quot;excel 写入完毕！&quot;</span>);<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> end = System.currentTimeMillis();<br>    System.out.println(<span class="hljs-string">&quot;写入时间：&quot;</span>+(<span class="hljs-keyword">double</span>) ((end - begin) / <span class="hljs-number">1000</span>));<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0gq3hs5kyj22520hq44v.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>将上面的65537改成65536，输出写入时长，可看出花费了1秒</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0gq6x1kfuj21720a6dgq.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2><span id="sxssfworkbook">SXSSFWorkbook</span></h2><ul>
+<li>优点：可以写非常大的数据量，写速度更快，占用更少的内存</li>
+<li>注意：<ul>
+<li>过程中会产生临时文件，需要清理临时文件</li>
+<li>默认100条数据会被保留在内存中，如果超过这数量，则数据会被写入临时文件<ul>
+<li>如果想自定义内存中的数量，可以使用<code>new SXSSFWorkbook(数量);</code></li>
+</ul>
 </li>
 </ul>
-<p>step2: 更新文档</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">POST /test1/_update/<span class="hljs-number">1</span>/?if_seq_no=<span class="hljs-number">0</span>&amp;if_primary_term=<span class="hljs-number">1</span><br>&#123;<br>  <span class="hljs-string">&quot;doc&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;张三丰666&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4><span id="实战">实战</span></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">excelWriteSXSSF</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>    SXSSFWorkbook workbook = <span class="hljs-keyword">new</span> SXSSFWorkbook();<br>    <span class="hljs-keyword">final</span> Sheet sheet = workbook.createSheet(<span class="hljs-string">&quot;测试大数据量&quot;</span>);<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> begin = System.currentTimeMillis();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">65537</span>; i++) &#123;<br>      <span class="hljs-keyword">final</span> Row row = sheet.createRow(i);<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">120</span>; j++) &#123;<br>        <span class="hljs-keyword">final</span> Cell cell = row.createCell(j);<br>        cell.setCellValue(<span class="hljs-string">&quot;$&#123;i,j&#125;&quot;</span>);<br>      &#125;<br>    &#125;<br>    System.out.println(<span class="hljs-string">&quot;over!&quot;</span>);<br>    FileOutputStream outputStream = <span class="hljs-keyword">new</span> FileOutputStream(PATH + <span class="hljs-string">&quot;/excel大数据写入09s.xlsx&quot;</span>);<br>    workbook.write(outputStream);<br>    outputStream.close();<br>    <span class="hljs-comment">// 清除临时文件！！！</span><br>    workbook.dispose();<br>    System.out.println(<span class="hljs-string">&quot;excel 写入完毕！&quot;</span>);<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> end = System.currentTimeMillis();<br>    System.out.println(<span class="hljs-string">&quot;写入时间：&quot;</span>+(<span class="hljs-keyword">double</span>) ((end - begin) / <span class="hljs-number">1000</span>));<br>  &#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>  <span class="hljs-string">&quot;_index&quot;</span> : <span class="hljs-string">&quot;test1&quot;</span>,<br>  <span class="hljs-string">&quot;_type&quot;</span> : <span class="hljs-string">&quot;_doc&quot;</span>,<br>  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,<br>  <span class="hljs-string">&quot;_version&quot;</span> : <span class="hljs-number">2</span>,<br>  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-string">&quot;updated&quot;</span>,<br>  <span class="hljs-string">&quot;_shards&quot;</span> : &#123;<br>    <span class="hljs-string">&quot;total&quot;</span> : <span class="hljs-number">2</span>,<br>    <span class="hljs-string">&quot;successful&quot;</span> : <span class="hljs-number">1</span>,<br>    <span class="hljs-string">&quot;failed&quot;</span> : <span class="hljs-number">0</span><br>  &#125;,<br>  <span class="hljs-string">&quot;_seq_no&quot;</span> : <span class="hljs-number">1</span>,<br>  <span class="hljs-string">&quot;_primary_term&quot;</span> : <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以看出即使现在有120列，也只需要10秒，速度很快。</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0nlyeermoj211409wgme.jpg" srcset="/img/loading.gif" lazyload></p>
 
-<h2><span id></span></h2>
             </div>
             <hr>
             <div>
@@ -268,7 +277,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/ElasticSearch/">ElasticSearch</a>
+                      <a class="hover-with-bg" href="/categories/excel/">excel</a>
                     
                   </div>
                 
@@ -276,7 +285,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+                      <a class="hover-with-bg" href="/tags/poi/">poi</a>
                     
                   </div>
                 
@@ -293,9 +302,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/20/excel%E6%93%8D%E4%BD%9C/">
+                      <a href="/2022/03/26/excel%E8%AF%BB%E5%8F%96%E6%93%8D%E4%BD%9C/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Excel基本写操作</span>
+                        <span class="hidden-mobile">excel读取操作</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -303,8 +312,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/03/ElasticSearch%E6%96%87%E6%A1%A3%E6%98%A0%E5%B0%84/">
-                        <span class="hidden-mobile">ElasticSearch文档映射</span>
+                      <a href="/2022/03/20/excel%E6%93%8D%E4%BD%9C/">
+                        <span class="hidden-mobile">Excel基本写操作</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

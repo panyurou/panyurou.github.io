@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h00k181remj21fm0jqgn5.jpg">
 <meta property="article:published_time" content="2022-03-03T14:07:42.000Z">
-<meta property="article:modified_time" content="2022-03-07T13:57:32.442Z">
+<meta property="article:modified_time" content="2022-03-08T12:42:12.995Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="分布式框架">
 <meta name="twitter:card" content="summary_large_image">
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.5k 字
+      3.8k 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11 分钟
+      12 分钟
     </span>
   
 
@@ -289,18 +289,34 @@
 <li>日期型：date </li>
 <li>布尔型：boolean </li>
 </ul>
-<h2><span id="对已存在的mapping映射进行修改">对已存在的mapping映射进行修改</span></h2><ul>
-<li>重新建立一个静态索引 </li>
+<p><strong>通过term 和 match查询数据时细节点以及数据类型keyword与text区别</strong></p>
+<ul>
+<li><strong>term查询</strong><ul>
+<li>term查询keyword字段: term不会分词。而keyword字段也不分词。需要完全匹配才可</li>
+<li>term查询text字段: 因为text字段会分词，而term不分词，所以term查询的条件必须是text字段分词后的某一个</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>  <span class="hljs-string">&quot;source&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;index&quot;</span>: <span class="hljs-string">&quot;es_db&quot;</span><br>  &#125;,<br>  <span class="hljs-string">&quot;dest&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;index&quot;</span>: <span class="hljs-string">&quot;es_db_2&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><strong>match查询</strong><ul>
+<li>match会被分词，而keyword不会被分词，match的需要跟keyword的完全匹配可以。</li>
+<li>match分词，text也分词，只要match的分词结果和text的分词结果有相同的就匹配</li>
+</ul>
+</li>
+</ul>
+<h2><span id="对已存在的mapping映射进行修改">对已存在的mapping映射进行修改</span></h2><ul>
+<li>重新建立一个静态索引 ,把之前索引里的数据导入到新的索引里 </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java">POST _reindex<br>&#123;<br>  <span class="hljs-string">&quot;source&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;index&quot;</span>: <span class="hljs-string">&quot;es_db&quot;</span><br>  &#125;,<br>  <span class="hljs-string">&quot;dest&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;index&quot;</span>: <span class="hljs-string">&quot;es_db_2&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：_reindex 会同时把之前索引里的数据导入到新的索引里 </p>
+</blockquote>
+<ul>
+<li>删除原创建的索引</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs hava">DELETE /es_db<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li><p>然后把之前索引里的数据导入到新的索引里 </p>
-</li>
-<li><p>删除原创建的索引</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs hava">DELETE /es_db<br></code></pre></td></tr></table></figure></li>
-<li><p>为新索引起个别名, 为原索引名 </p>
-</li>
+<li>为新索引起个别名, 为原索引名 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">PUT /es_db_2/_alias/es_db<br></code></pre></td></tr></table></figure>
 

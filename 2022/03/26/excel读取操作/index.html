@@ -16,20 +16,20 @@
   <meta name="description" content="">
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
-  <meta name="description" content="Elasticsearch乐观并发控制Elasticsearch 中使用的这种乐观的方式假定冲突是不可能发生的，并且不会阻塞正在 尝试的操作。 然而，如果源数据在读写当中被修改，更新将会失败。应用程序接下来将决定该如何解决冲突。 例如，可以重试更新、使用新的数据、或者将相关情况报告给用户。   在数据库领域中，有两种方法来确保并发更新，不会丢失数据： 分别为乐观和悲观  举例以创建一个文档为例">
+  <meta name="description" content="excel 读取HSSF(03)123456789101112@Testpublic void testRead03() throws IOException &amp;#123;  InputStream inputStream &#x3D; new FileInputStream(PATH+&quot;&#x2F;excel写入.xls&quot;);  final HSSFWorkbook workbook &#x3D; new">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ElasticSearch乐观并发控制">
-<meta property="og:url" content="http://example.com/2022/03/07/ElasticSearch%E4%B9%90%E8%A7%82%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/index.html">
+<meta property="og:title" content="excel读取操作">
+<meta property="og:url" content="http://example.com/2022/03/26/excel%E8%AF%BB%E5%8F%96%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="Elasticsearch乐观并发控制Elasticsearch 中使用的这种乐观的方式假定冲突是不可能发生的，并且不会阻塞正在 尝试的操作。 然而，如果源数据在读写当中被修改，更新将会失败。应用程序接下来将决定该如何解决冲突。 例如，可以重试更新、使用新的数据、或者将相关情况报告给用户。   在数据库领域中，有两种方法来确保并发更新，不会丢失数据： 分别为乐观和悲观  举例以创建一个文档为例">
+<meta property="og:description" content="excel 读取HSSF(03)123456789101112@Testpublic void testRead03() throws IOException &amp;#123;  InputStream inputStream &#x3D; new FileInputStream(PATH+&quot;&#x2F;excel写入.xls&quot;);  final HSSFWorkbook workbook &#x3D; new">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-07T13:59:29.000Z">
-<meta property="article:modified_time" content="2022-03-08T12:37:56.353Z">
+<meta property="article:published_time" content="2022-03-26T14:25:52.000Z">
+<meta property="article:modified_time" content="2022-03-27T13:00:56.627Z">
 <meta property="article:author" content="Panyurou">
-<meta property="article:tag" content="分布式框架">
+<meta property="article:tag" content="poi">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>ElasticSearch乐观并发控制 - 楼上有只喵</title>
+  <title>excel读取操作 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -175,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ElasticSearch乐观并发控制">
+            <span class="h2" id="subtitle" title="excel读取操作">
               
             </span>
 
@@ -185,8 +185,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-07 21:59" pubdate>
-        2022年3月7日 晚上
+      <time datetime="2022-03-26 22:25" pubdate>
+        2022年3月26日 晚上
       </time>
     </span>
   
@@ -196,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      2.6k 字
     </span>
   
 
@@ -205,7 +205,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      8 分钟
     </span>
   
 
@@ -234,32 +234,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ElasticSearch乐观并发控制</h1>
+            <h1 style="display: none">excel读取操作</h1>
             
             <div class="markdown-body">
-              <h1><span id="elasticsearch乐观并发控制">Elasticsearch乐观并发控制</span></h1><p>Elasticsearch 中使用的这种乐观的方式假定冲突是不可能发生的，并且不会阻塞正在 尝试的操作。 然而，如果源数据在读写当中被修改，更新将会失败。应用程序接下来将决定该如何解决冲突。 例如，可以重试更新、使用新的数据、或者将相关情况报告给用户。 </p>
-<blockquote>
-<p>在数据库领域中，有两种方法来确保并发更新，不会丢失数据： 分别为乐观和悲观</p>
-</blockquote>
-<h2><span id="举例">举例</span></h2><p>以创建一个文档为例 </p>
-<p>step1: 创建文档</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">POST /test1/_doc/<span class="hljs-number">1</span><br>&#123;<br>  <span class="hljs-string">&quot;Id&quot;</span>: <span class="hljs-number">1</span>,<br>  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;张三丰&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+              <h1><span id="excel-读取">excel 读取</span></h1><h2><span id="hssf03">HSSF(03)</span></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testRead03</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>  InputStream inputStream = <span class="hljs-keyword">new</span> FileInputStream(PATH+<span class="hljs-string">&quot;/excel写入.xls&quot;</span>);<br>  <span class="hljs-keyword">final</span> HSSFWorkbook workbook = <span class="hljs-keyword">new</span> HSSFWorkbook(inputStream);<br>  <span class="hljs-keyword">final</span> HSSFSheet sheet = workbook.getSheetAt(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">final</span> HSSFRow row = sheet.getRow(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">final</span> HSSFCell cell = row.getCell(<span class="hljs-number">0</span>);<br>  <span class="hljs-comment">// 读取值的时候，一定要注意类型！！</span><br>  <span class="hljs-keyword">final</span> String cellValue = cell.getStringCellValue();<br>  System.out.println(cellValue);<br>  inputStream.close();<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>  <span class="hljs-string">&quot;_index&quot;</span> : <span class="hljs-string">&quot;test1&quot;</span>,<br>  <span class="hljs-string">&quot;_type&quot;</span> : <span class="hljs-string">&quot;_doc&quot;</span>,<br>  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,<br>  <span class="hljs-string">&quot;_version&quot;</span> : <span class="hljs-number">1</span>,<br>  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-string">&quot;created&quot;</span>,<br>  <span class="hljs-string">&quot;_shards&quot;</span> : &#123;<br>    <span class="hljs-string">&quot;total&quot;</span> : <span class="hljs-number">2</span>,<br>    <span class="hljs-string">&quot;successful&quot;</span> : <span class="hljs-number">1</span>,<br>    <span class="hljs-string">&quot;failed&quot;</span> : <span class="hljs-number">0</span><br>  &#125;,<br>  <span class="hljs-string">&quot;_seq_no&quot;</span> : <span class="hljs-number">0</span>,<br>  <span class="hljs-string">&quot;_primary_term&quot;</span> : <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2><span id="xssf07">XSSF(07)</span></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testRead07</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>  InputStream inputStream = <span class="hljs-keyword">new</span> FileInputStream(PATH+<span class="hljs-string">&quot;/excel写入.xlsx&quot;</span>);<br>  <span class="hljs-keyword">final</span> XSSFWorkbook workbook = <span class="hljs-keyword">new</span> XSSFWorkbook(inputStream);<br>  <span class="hljs-keyword">final</span> XSSFSheet sheet = workbook.getSheetAt(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">final</span> XSSFRow row = sheet.getRow(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">final</span> XSSFCell cell = row.getCell(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">final</span> String cellValue = cell.getStringCellValue();<br>  System.out.println(cellValue);<br>  inputStream.close();<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><strong>使用if_seq_no=版本值 &amp;if_primary_term=文档位置进行并发版本控制</strong></p>
-<ul>
-<li><p>_seq_no：文档版本号，<strong>version属于当个文档，而seq_no属于整个index</strong></p>
-</li>
-<li><p>_primary_term：_primary_term也和_seq_no一样都是整数，每当Primary Shard发生重新分配时，比如重启，Primary选举等，_primary_term会递增1</p>
-</li>
-</ul>
-<p>step2: 更新文档</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">POST /test1/_update/<span class="hljs-number">1</span>/?if_seq_no=<span class="hljs-number">0</span>&amp;if_primary_term=<span class="hljs-number">1</span><br>&#123;<br>  <span class="hljs-string">&quot;doc&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;张三丰666&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2><span id="读取不同类型的数据">读取不同类型的数据</span></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testCellType</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>    InputStream inputStream = <span class="hljs-keyword">new</span> FileInputStream(<span class="hljs-string">&quot;/Users/panyurou/IdeaProjects/exceldemo/src/test/resources/明细表.xlsx&quot;</span>);<br>    <span class="hljs-keyword">final</span> XSSFWorkbook workbook = <span class="hljs-keyword">new</span> XSSFWorkbook(inputStream);<br>    <span class="hljs-comment">// 读取标题行</span><br>    <span class="hljs-keyword">final</span> XSSFSheet sheet = workbook.getSheetAt(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">final</span> XSSFRow headerRow = sheet.getRow(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> colCount = headerRow.getPhysicalNumberOfCells();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; colCount; i++) &#123;<br>      <span class="hljs-keyword">final</span> XSSFCell cell = headerRow.getCell(i);<br>      <span class="hljs-keyword">if</span>(cell != <span class="hljs-keyword">null</span>)&#123;<br>        <span class="hljs-keyword">final</span> String cellValue = cell.getStringCellValue();<br>        System.out.print(cellValue + <span class="hljs-string">&quot;|&quot;</span>);<br>      &#125;<br>    &#125;<br>    System.out.println();<br>    <span class="hljs-comment">// 读取内容</span><br>    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> rowsCount = sheet.getPhysicalNumberOfRows();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; rowsCount; i++) &#123;<br>      <span class="hljs-keyword">final</span> XSSFRow row = sheet.getRow(i);<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; colCount; j++) &#123;<br>        <span class="hljs-keyword">final</span> XSSFCell cell = row.getCell(j);<br>        <span class="hljs-keyword">if</span>(cell != <span class="hljs-keyword">null</span>)&#123;<br>          <span class="hljs-keyword">final</span> CellType cellType = cell.getCellType();<br>          String cellValue = getCellValue(cell, cellType);<br>          System.out.print(cellValue + <span class="hljs-string">&quot;|&quot;</span>);<br>        &#125;<br>      &#125;<br>      System.out.println();<br>    &#125;<br>    inputStream.close();<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">getCellValue</span><span class="hljs-params">(XSSFCell cell, CellType cellType)</span> </span>&#123;<br>    String cellValue = <span class="hljs-string">&quot;&quot;</span>;<br>     <span class="hljs-keyword">switch</span> (cellType)&#123;<br>      <span class="hljs-keyword">case</span> STRING:<br>        cellValue = cell.getStringCellValue();<br>         <span class="hljs-keyword">break</span>;<br>       <span class="hljs-keyword">case</span> NUMERIC:<br>         <span class="hljs-keyword">if</span>(DateUtil.isCellDateFormatted(cell))&#123;<br>           <span class="hljs-keyword">final</span> Date date = cell.getDateCellValue();<br>           cellValue = <span class="hljs-keyword">new</span> DateTime(date).toString(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>         &#125;<span class="hljs-keyword">else</span>&#123;<br>           cellValue = String.valueOf(cell.getNumericCellValue());<br>         &#125;<br>         <span class="hljs-keyword">break</span>;<br>       <span class="hljs-keyword">case</span> FORMULA:<br>        cellValue = cell.getCellFormula();<br>         <span class="hljs-keyword">break</span>;<br>       <span class="hljs-keyword">case</span> BOOLEAN:<br>        cellValue = String.valueOf(cell.getBooleanCellValue());<br>         <span class="hljs-keyword">break</span>;<br>       <span class="hljs-keyword">case</span> ERROR:<br>         System.out.println(<span class="hljs-string">&quot;类型错误&quot;</span>);<br>         <span class="hljs-keyword">break</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> cellValue;<br>  &#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java">&#123;<br>  <span class="hljs-string">&quot;_index&quot;</span> : <span class="hljs-string">&quot;test1&quot;</span>,<br>  <span class="hljs-string">&quot;_type&quot;</span> : <span class="hljs-string">&quot;_doc&quot;</span>,<br>  <span class="hljs-string">&quot;_id&quot;</span> : <span class="hljs-string">&quot;1&quot;</span>,<br>  <span class="hljs-string">&quot;_version&quot;</span> : <span class="hljs-number">2</span>,<br>  <span class="hljs-string">&quot;result&quot;</span> : <span class="hljs-string">&quot;updated&quot;</span>,<br>  <span class="hljs-string">&quot;_shards&quot;</span> : &#123;<br>    <span class="hljs-string">&quot;total&quot;</span> : <span class="hljs-number">2</span>,<br>    <span class="hljs-string">&quot;successful&quot;</span> : <span class="hljs-number">1</span>,<br>    <span class="hljs-string">&quot;failed&quot;</span> : <span class="hljs-number">0</span><br>  &#125;,<br>  <span class="hljs-string">&quot;_seq_no&quot;</span> : <span class="hljs-number">1</span>,<br>  <span class="hljs-string">&quot;_primary_term&quot;</span> : <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h2><span id></span></h2>
             </div>
             <hr>
             <div>
@@ -268,7 +252,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/ElasticSearch/">ElasticSearch</a>
+                      <a class="hover-with-bg" href="/categories/excel/">excel</a>
                     
                   </div>
                 
@@ -276,7 +260,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+                      <a class="hover-with-bg" href="/tags/poi/">poi</a>
                     
                   </div>
                 
@@ -293,9 +277,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/20/excel%E6%93%8D%E4%BD%9C/">
+                      <a href="/2022/03/27/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Excel基本写操作</span>
+                        <span class="hidden-mobile">如何精准命名</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -303,8 +287,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/03/ElasticSearch%E6%96%87%E6%A1%A3%E6%98%A0%E5%B0%84/">
-                        <span class="hidden-mobile">ElasticSearch文档映射</span>
+                      <a href="/2022/03/26/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%87%8F%E7%9A%84%E5%86%99%E5%85%A5/">
+                        <span class="hidden-mobile">excel大数据量的写入</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
