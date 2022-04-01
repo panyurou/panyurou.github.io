@@ -16,22 +16,22 @@
   <meta name="description" content="">
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
-  <meta name="description" content="如何精准命名避免命名过于宽泛案例112345678910public void processChapter(long chapterId) &amp;#123;  Chapter chapter &#x3D; this.repository.findByChapterId(chapterId);  if (chapter &#x3D;&#x3D; null) &amp;#123;    throw new IllegalArgumentEx">
+  <meta name="description" content="避免写出难以理解的大类 原因：一个人理解的东西是有限的，没人能面对所有的细节 大类的产生： 职责不单一  字段未分组   操作要点：把类写小，越小越好  案例1:123456789101112public class User &amp;#123;  private long userId;  private String name;  private String nickname;  private">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何精准命名">
-<meta property="og:url" content="http://example.com/2022/03/27/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="避免写出难以理解的大类">
+<meta property="og:url" content="http://example.com/2022/03/27/%E9%81%BF%E5%85%8D%E5%86%99%E5%87%BA%E9%9A%BE%E4%BB%A5%E7%90%86%E8%A7%A3%E7%9A%84%E5%A4%A7%E7%B1%BB%20/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="如何精准命名避免命名过于宽泛案例112345678910public void processChapter(long chapterId) &amp;#123;  Chapter chapter &#x3D; this.repository.findByChapterId(chapterId);  if (chapter &#x3D;&#x3D; null) &amp;#123;    throw new IllegalArgumentEx">
+<meta property="og:description" content="避免写出难以理解的大类 原因：一个人理解的东西是有限的，没人能面对所有的细节 大类的产生： 职责不单一  字段未分组   操作要点：把类写小，越小越好  案例1:123456789101112public class User &amp;#123;  private long userId;  private String name;  private String nickname;  private">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0oruapf6nj20u012ggpo.jpg">
-<meta property="article:published_time" content="2022-03-27T13:04:59.000Z">
-<meta property="article:modified_time" content="2022-03-31T14:32:23.533Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0tekaz2v6j20u0144gow.jpg">
+<meta property="article:published_time" content="2022-03-27T13:44:37.000Z">
+<meta property="article:modified_time" content="2022-03-31T14:03:49.150Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="代码坏味道">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0oruapf6nj20u012ggpo.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h0tekaz2v6j20u0144gow.jpg">
   
-  <title>如何精准命名 - 楼上有只喵</title>
+  <title>避免写出难以理解的大类 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -177,7 +177,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="如何精准命名">
+            <span class="h2" id="subtitle" title="避免写出难以理解的大类">
               
             </span>
 
@@ -187,7 +187,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-03-27 21:04" pubdate>
+      <time datetime="2022-03-27 21:44" pubdate>
         2022年3月27日 晚上
       </time>
     </span>
@@ -198,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      1.1k 字
     </span>
   
 
@@ -207,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      3 分钟
     </span>
   
 
@@ -236,64 +236,37 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">如何精准命名</h1>
+            <h1 style="display: none">避免写出难以理解的大类</h1>
             
             <div class="markdown-body">
-              <h1><span id="如何精准命名">如何精准命名</span></h1><h2><span id="避免命名过于宽泛">避免命名过于宽泛</span></h2><h3><span id="案例1">案例1</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">processChapter</span><span class="hljs-params">(<span class="hljs-keyword">long</span> chapterId)</span> </span>&#123;<br>  Chapter chapter = <span class="hljs-keyword">this</span>.repository.findByChapterId(chapterId);<br>  <span class="hljs-keyword">if</span> (chapter == <span class="hljs-keyword">null</span>) &#123;<br>    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;Unknown chapter [&quot;</span> + chapterId + <span class="hljs-string">&quot;]&quot;</span>);  <br>  &#125;<br>  <br>  chapter.setTranslationState(TranslationState.TRANSLATING);<br>  <span class="hljs-keyword">this</span>.repository.save(chapter);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li><p>问题：命名过于宽泛，不能精准描述，只有阅读这段代码，才可以知道这段代码做了什么。</p>
+              <h2><span id="避免写出难以理解的大类">避免写出难以理解的大类</span></h2><ul>
+<li>原因：一个人理解的东西是有限的，没人能面对所有的细节</li>
+<li>大类的产生：<ul>
+<li>职责不单一 </li>
+<li>字段未分组</li>
+</ul>
 </li>
-<li><p>修正：具体到这里的业务，其实是把翻译状态改为了翻译中，是因为我们在这里开启了一个翻译过程，所以这段代码应该命名为satrtTranslation</p>
-</li>
+<li>操作要点：<strong>把类写小，越小越好</strong></li>
 </ul>
-<blockquote>
-<p> 类似的：data,info,handle,build,maintain,modify等等，都是过于宽泛的名词</p>
-</blockquote>
-<blockquote>
-<p>一个好的名字，应该描述意图，而不是细节。</p>
-</blockquote>
-<h2><span id="避免使用技术术语命名">避免使用技术术语命名</span></h2><h3><span id="案例1">案例1</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Book&gt; bookList = service.getBooks();<br></code></pre></td></tr></table></figure>
+<h3><span id="案例1">案例1:</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> userId;<br>  <span class="hljs-keyword">private</span> String name;<br>  <span class="hljs-keyword">private</span> String nickname;<br>  <span class="hljs-keyword">private</span> String email;<br>  <span class="hljs-keyword">private</span> String phoneNumber;<br>  <span class="hljs-keyword">private</span> AuthorType authorType;<br>  <span class="hljs-keyword">private</span> ReviewStatus authorReviewStatus;<br>  <span class="hljs-keyword">private</span> EditorType editorType;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<ul>
-<li>问题：这是一种基于实现的命名，编程的一个重要原则是面向接口编程。即接口是稳定的，实现是易变的。假设这里我现在需要的是一个不重复的作品集合，也就是说这里需要把List改成Set，变量类型一定会改，但是你不一定会记得改变量名，一旦遗忘，就会出现一个bookList变量，它的类型是set,就会产生混淆。</li>
-<li>修正：这里要表达的是拿到一堆书，所以这个命名改为books。</li>
-</ul>
-<h3><span id="案例2">案例2</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> Book <span class="hljs-title">getByIsbn</span><span class="hljs-params">(String isbn)</span> </span>&#123;<br>  Book cachedBook = redisBookStore.get(isbn);<br>  <span class="hljs-keyword">if</span> (cachedBook != <span class="hljs-keyword">null</span>) &#123;<br>    <span class="hljs-keyword">return</span> cachedBook;<br>  &#125;<br>  <br>  Book book = doGetByIsbn(isbn);<br>  redisBookStore.put(isbn, book);<br>  <span class="hljs-keyword">return</span> book;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>问题：userId,name这些是和用户关联的，后面的AuthorType，ReviewStatus，EditorType和用户信息无关</p>
+<p>修正：AuthorType，ReviewStatus，EditorType和用户信息无关 拆成单独的类，通过userId去关联</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> userId;<br>  <span class="hljs-keyword">private</span> AuthorType authorType;<br>  <span class="hljs-keyword">private</span> ReviewStatus authorReviewStatus;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<ul>
-<li>问题：这段代码里直接出现了redis，通常来说这里真正需要的只是一个缓存，redi s只是一种实现</li>
-</ul>
-<blockquote>
-<p>缓存只是一种技术术语，不应该出现在业务代码中</p>
-</blockquote>
-<blockquote>
-<p>程序猿之所以喜欢用技术语言去命名，是因为程序员写代码很大程度上会参考别人写的代码，而行业里比较优秀的一些代码，往往是一些开源的技术项目。</p>
-</blockquote>
-<blockquote>
-<p>在一个技术类项目里，这些技术术语其实就是他们的业务语言，但是在业务项目里，这个说法就要另当别论了。</p>
-</blockquote>
-<h2><span id="避免违反语法规则的命名">避免违反语法规则的命名</span></h2><h3><span id="案例1">案例1</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">completedTranslate</span><span class="hljs-params">(<span class="hljs-keyword">final</span> List&lt;ChapterId&gt; chapterIds)</span> </span>&#123;<br>  List&lt;Chapter&gt; chapters = repository.findByChapterIdIn(chapterIds);<br>  chapters.forEach(Chapter::completedTranslate);<br>  repository.saveAll(chapters); <br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Editor</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> userId;<br>  <span class="hljs-keyword">private</span> EditorType editorType;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>问题：completedTranslate不是一个正常的英语函数名</p>
-<p>修正: completeTranslation</p>
-<blockquote>
-<p>常见的命名规则是：类是一个名词，表示一个对象。方法名是一个动词或者是动宾短语，表示一个动作。</p>
-</blockquote>
-<p>另外还有两个常见的坏味道这里就不举例了。</p>
-<ul>
-<li>不准确的英语词汇（对于业务上会用到的一些名词，可以整个团队一起，建立一个业务词汇表，用集体的智慧）</li>
-<li>单词拼写错误</li>
-</ul>
-<h2><span id="用业务语言写代码">用业务语言写代码</span></h2><h3><span id="案例1">案例1</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">approveChapter</span><span class="hljs-params">(<span class="hljs-keyword">long</span> chapterId, <span class="hljs-keyword">long</span> userId)</span> </span>&#123;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3><span id="案例2">案例2</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> userId;<br>  <span class="hljs-keyword">private</span> String name;<br>  <span class="hljs-keyword">private</span> String nickname;<br>  <span class="hljs-keyword">private</span> String email;<br>  <span class="hljs-keyword">private</span> String phoneNumber;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>问题：这个函数的意图是确认章节通过，chapterId是章节id，但是userId是什么？了解了背景才知道这里是需要记录下审核人的信息，这个userId就是审核人的userId，</p>
-<p>修正：因为用户在这个场景下的身份是审核人，所以修改userId为reviewerUserId</p>
-<blockquote>
-<p>好的命名，是体现业务含义的命名。</p>
-</blockquote>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0oruapf6nj20u012ggpo.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;">
+<p>问题：这个类中userId，name，nickname是属于用户的基本信息，而email，phoneNumber其实是属于用户的联系方式</p>
+<p>修正：对字段进行分组，把email，phoneNumber放在单独的contact类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> userId;<br>  <span class="hljs-keyword">private</span> String name;<br>  <span class="hljs-keyword">private</span> String nickname;<br>  <span class="hljs-keyword">private</span> Contact contact;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Contact</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> String email;<br>  <span class="hljs-keyword">private</span> String phoneNumber;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0tekaz2v6j20u0144gow.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;">
 
             </div>
             <hr>
@@ -328,9 +301,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/03/27/%E9%81%BF%E5%85%8D%E5%86%99%E5%87%BA%E9%9A%BE%E4%BB%A5%E7%90%86%E8%A7%A3%E7%9A%84%E5%A4%A7%E7%B1%BB%20/">
+                      <a href="/2022/03/31/%E9%95%BF%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">避免写出难以理解的大类</span>
+                        <span class="hidden-mobile">长参数列表</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -338,8 +311,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/03/26/excel%E8%AF%BB%E5%8F%96%E6%93%8D%E4%BD%9C/">
-                        <span class="hidden-mobile">excel读取操作</span>
+                      <a href="/2022/03/27/%E4%BB%A3%E7%A0%81%E4%B9%8B%E4%B8%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">如何精准命名</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
