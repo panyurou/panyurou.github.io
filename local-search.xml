@@ -4,11 +4,136 @@
   
   
   <entry>
+    <title>git修改指定的提交</title>
+    <link href="/2022/05/10/git%E4%BF%AE%E6%94%B9%E6%8C%87%E5%AE%9A%E7%9A%84%E6%8F%90%E4%BA%A4/"/>
+    <url>/2022/05/10/git%E4%BF%AE%E6%94%B9%E6%8C%87%E5%AE%9A%E7%9A%84%E6%8F%90%E4%BA%A4/</url>
+    
+    <content type="html"><![CDATA[<ul><li><code>git rebase --interactive &#39;cffa46f19811496d9165cf2c32250943f94f0099^&#39;</code></li><li>修改</li><li><code>git add .</code></li><li><code>git commit --amend</code></li><li><code>git rebase --continue</code></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>git</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>react初体验</title>
+    <link href="/2022/04/27/react%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <url>/2022/04/27/react%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="react是什么">React是什么？</span></h1><p>React 是一个声明式，高效且灵活的用于构建用户界面的 JavaScript 库。</p><blockquote><p>使用最原生的HTML、CSS、JavaScript可以构建完整的用户界面吗？当然可以，但是会存在很多问题</p><ul><li>操作DOM兼容性的问题；</li><li>过多兼容性代码的冗余问题；</li><li>代码组织和规范的问题；</li></ul></blockquote><h1><span id="react的特点">React的特点</span></h1><h2><span id="声明式编程">声明式编程</span></h2><ul><li>声明式编程是目前整个大前端开发的模式：Vue、React、Flutter、SwiftUI</li><li>它允许我们只需要维护自己的状态，当状态改变时，React可以根据最新的状态去渲染我们的UI界面；</li></ul><h2><span id="组件化开发">组件化开发</span></h2><ul><li>组件化开发页面目前前端的流行趋势</li></ul><h2><span id="多平台适配">多平台适配</span></h2><ul><li>2013年，React发布之初主要是开发Web页面</li><li>2015年，Facebook推出了ReactNative，用于开发移动端跨平台（虽然目前Flutter非常火爆，但是还是有很多公司在使用ReactNative）</li><li>2017年，Facebook推出ReactVR，用于开发虚拟现实Web应用程序</li></ul><h2><span id="react-开发依赖">react 开发依赖</span></h2><h3><span id="开发react必须依赖三个库">开发React必须依赖三个库：</span></h3><ul><li>react：包含react所必须的核心代码</li><li>react-dom：react渲染在不同平台所需要的核心代码</li><li>babel：将jsx转换成React代码的工具</li></ul><h2><span id="如何引入">如何引入</span></h2><ul><li>cdn引入</li><li>下载后，添加本地依赖</li><li>npm依赖（脚手架使用）</li></ul><h2><span id="认识babel">认识Babel</span></h2><ul><li>babel是目前前端使用非常广泛的编辑器、转移器。</li><li>比如当下很多浏览器并不支持ES6的语法，但是确实ES6的语法非常的简洁和方便，我们开发时希望使用它。</li><li>那么编写源码时我们就可以使用ES6来编写，之后通过Babel工具，将ES6转成大多数浏览器都支持的ES5的语法。</li></ul><blockquote><p>React和Babel的关系：</p><ul><li>默认情况下开发React其实可以不使用babel。</li><li>但是前提是我们自己使用React.createElement来编写源代码，它编写的代码非常的繁琐和可读性差。</li><li>那么我们就可以直接编写jsx（JavaScriptXML）的语法，并且让babel帮助我们转换成React.createElement。</li></ul></blockquote><h1><span id="hello-world案例">Hello world案例</span></h1><ul><li>这里我们编写React的script代码中，必须添加type=”text/babel”，作用是可以让babel解析jsx的语法</li><li>ReactDOM.render函数：<ul><li>参数一：传递要渲染的内容，这个内容可以是HTML元素，也可以是React的组件</li><li>参数二：将渲染的内容，挂载到哪一个HTML元素上</li></ul></li><li>通过{}语法来引入外部的变量或者表达式</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs react">&lt;body&gt;<br>  &lt;!--添加react 依赖--&gt;<br>  &lt;!-- // crossorigin 将远程js的一些错误，显示到本地 --&gt;<br>  &lt;script src=&quot;https://unpkg.com/react@17/umd/react.development.js&quot; crossorigin&gt;&lt;/script&gt;<br>  &lt;script src=&quot;https://unpkg.com/react-dom@17/umd/react-dom.development.js&quot; crossorigin&gt;&lt;/script&gt;<br>  &lt;script src=&quot;https://unpkg.com/babel-standalone@6/babel.min.js&quot;&gt;&lt;/script&gt;<br>&lt;div id=&quot;app&quot;&gt;【内容会被覆盖】&lt;/div&gt;<br>&lt;script type=&quot;text/babel&quot;&gt;<br>  // render（渲染的内容，挂载的位置）<br>  // ReactDOM.render(&lt;h2&gt;hello World&lt;/h2&gt;,document.getElementById(&quot;app&quot;))<br><br>  let message = &quot;hello world&quot;<br>  ReactDOM.render(&lt;h2&gt;&#123;message&#125;&lt;/h2&gt;,document.getElementById(&quot;app&quot;))<br>&lt;/script&gt;<br>&lt;/body&gt;<br></code></pre></td></tr></table></figure><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h1ps9n22m7j20b204gmx2.jpg" style="zoom:50%;"><h1><span id="helloreact-组件化开发">HelloReact– 组件化开发</span></h1><ul><li>这里我们暂时使用类的方式封装组件：<ul><li>1.定义一个类（类名大写，组件的名称是必须大写的，小写会被认为是HTML元素），继承自React.Component</li><li>2.实现当前组件的render函数。render当中返回的jsx内容，就是之后React会帮助我们渲染的内容</li></ul></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs react">&lt;script type=&quot;text/babel&quot;&gt;<br> class App extends React.Component &#123;<br>   render()&#123;<br>     return (<br>        &lt;h2&gt;hello world&lt;/h2&gt;<br>     )<br>   &#125;<br> &#125;<br> ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;))<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure><h2><span id="组件化-数据依赖">组件化 - 数据依赖</span></h2><ul><li>组件中的数据，我们可以分成两类：<ul><li>参与界面更新的数据：当数据变量时，需要更新组件渲染的内容</li><li>不参与界面更新的数据：当数据变量时，不需要更新将组建渲染的内容</li></ul></li><li>参与界面更新的数据我们也可以称之为是参与数据流，这个数据是定义在当前对象的state中<ul><li>我们可以通过在构造函数中this.state={定义的数据}</li><li>当我们的数据发生变化时，我们可以调用this.setState来更新数据，并且通知React进行update操作。</li><li>在进行update操作时，就会重新调用render函数，并且使用最新的数据，来渲染界面</li></ul></li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs react">class App extends React.Component &#123;<br>  constructor()&#123;<br>    super()<br>    this.state = &#123;<br>     message: &quot;hello world&quot;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2><span id="组件化-事件绑定">组件化 – 事件绑定</span></h2><ul><li><p>在类中直接定义一个函数，并且将这个函数绑定到html原生的onClick事件上，当前这个函数的this指向默认情况下是undefined</p><ul><li>因为在正常的DOM操作中，监听点击，监听函数中的this其实是节点对象（比如说是button对象）；</li><li>React并不是直接渲染成真实的DOM，我们所编写的button只是一个语法糖，它的本质React的Element对象；</li></ul></li><li><p>我们在绑定的函数中，可能想要使用当前对象，比如执行this.setState函数，就必须拿到当前对象的this</p><ul><li><p>我们就需要在传入函数时，给这个函数直接绑定this</p></li><li><p>类似于下面的写法：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs react">&lt;button onClick=&#123;this.btnClick.bind(this)&#125;&gt;改变文本&lt;/button&gt;<br></code></pre></td></tr></table></figure></li></ul></li></ul><h1><span id="电影列表案例">电影列表案例</span></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs react">&lt;script type=&quot;text/babel&quot;&gt;<br> class App extends React.Component &#123;<br>   constructor()&#123;<br>     super()<br>     this.state = &#123;<br>      movies: [&quot;大话西游&quot;, &quot;开心农场&quot;]<br>     &#125;<br>   &#125;<br>   render()&#123;<br>     return (<br>       &lt;div&gt;<br>        &lt;h2&gt;电影列表&lt;/h2&gt;<br>        &lt;ul&gt;<br>          &#123;<br>            this.state.movies.map((item, index)=&gt;&#123;<br>            return (&lt;li&gt;&#123;item&#125;&lt;/li&gt;)<br>            &#125;)<br>          &#125;<br>        &lt;/ul&gt;<br>       &lt;/div&gt;<br>     )<br>   &#125;<br> &#125;<br> ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;))<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h1pub9n1n9j209o07ut8s.jpg" style="zoom:50%;"><h1><span id="计数器案例">计数器案例</span></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs react">&lt;script type=&quot;text/babel&quot;&gt;<br> class App extends React.Component &#123;<br>   constructor()&#123;<br>     super()<br>     this.state = &#123;<br>      count: 0<br>     &#125;<br>   &#125;<br>   render()&#123;<br>     return (<br>       &lt;div&gt;<br>        &lt;h2&gt;当前计数:&#123;this.state.count&#125;&lt;/h2&gt;<br>        &lt;button onClick = &#123;this.incr.bind(this)&#125;&gt;+1&lt;/button&gt;<br>        &lt;button onClick = &#123;this.decr.bind(this)&#125;&gt;-1&lt;/button&gt;<br>       &lt;/div&gt;<br>     )<br>   &#125;<br><br>   incr()&#123;<br>     this.setState(&#123;<br>       count: this.state.count + 1<br>     &#125;)<br>   &#125;<br><br>   decr()&#123;<br>     this.setState(&#123;<br>       count: this.state.count - 1<br>     &#125;)<br>   &#125;<br><br> &#125;<br> ReactDOM.render(&lt;App/&gt;, document.getElementById(&quot;app&quot;))<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h1puc680j4j20bk090dfu.jpg" style="zoom:50%;"><p>2ED3-DF39</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>概念</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>重构-改善代码已有的设计</title>
+    <link href="/2022/04/14/%E9%87%8D%E6%9E%84-%E6%94%B9%E5%96%84%E4%BB%A3%E7%A0%81%E5%B7%B2%E6%9C%89%E7%9A%84%E8%AE%BE%E8%AE%A1/"/>
+    <url>/2022/04/14/%E9%87%8D%E6%9E%84-%E6%94%B9%E5%96%84%E4%BB%A3%E7%A0%81%E5%B7%B2%E6%9C%89%E7%9A%84%E8%AE%BE%E8%AE%A1/</url>
+    
+    <content type="html"><![CDATA[<h3><span id="重新组织函数">重新组织函数</span></h3><h3><span id="replace-temp-with-query以查询取代临时变量">replace temp with query(以查询取代临时变量)</span></h3><ul><li><p>临时变量的问题在于：它们是暂时的，而且只能在所属函数内使用。由于临时变量只在所属函数内可见，所以它们会驱使你写出更长的函数，因为只有这样你才能访问到需要的临时变量。</p></li><li><p>如果把临时变量替换为一个查询，那么同一个类中的所有函数都将可以获得这份信息。这将带给你极大帮助，使你能够为这个类编写更清晰的代码。 </p></li></ul><h3><span id="65-introduce-explaining-variable引入解释性变量"><strong>6.5 Introduce Explaining Variable</strong>（引入解释性变量）</span></h3><ul><li>将该复杂表达式（或其中一部分）的结果放进一个临时变量，以此变量名称来解释表达式用途。</li><li>表达式有可能非常复杂而难以阅读。这种情况下，临时变量可以帮助你将表达式分解为比较容易管理的形式。</li></ul><h3><span id="67-remove-assignments-to-parameters移除对参数的赋值"><strong>6.7 Remove Assignments to Parameters</strong>（移除对参数的赋值）</span></h3><ul><li><p>参数肤质，降低了代码的清晰度，而且混用了按值传递和按引用传递这两种 参数传递方式。</p></li><li><p>做法建立一个临时变量，把待处理的参数值赋予它。</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>重构</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>重构</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>react基础</title>
+    <link href="/2022/04/04/react%E5%9F%BA%E7%A1%80/"/>
+    <url>/2022/04/04/react%E5%9F%BA%E7%A1%80/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="react组件基础">react组件基础</span></h1><h2><span id="组件概念">组件概念</span></h2><ul><li>使用 React 可以将一些简短、独立的代码片段组合成复杂的 UI 界面，这些代码片段被称作“组件”。</li><li>所谓组件，即封装起来的具有独立功能的UI部件。组件就是页面上的一部分，大大小小的各种组件拼在一起就变成了一个完整的页面，就像我们玩的拼图，需要一块一块的拼接在一起才能变成一副完整的拼图。</li></ul><h2><span id="函数组件">函数组件</span></h2><h3><span id="概念">概念</span></h3><p>使用 JS 的函数（或箭头函数）创建的组件，就叫做<code>函数组件</code></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs react">function HelloComponent()&#123;<br>  return (<br>    &lt;div&gt;hello Componnet&lt;/div&gt;<br>  )<br>&#125;<br></code></pre></td></tr></table></figure><ul><li><p>组件的名称<strong>必须首字母大写</strong>，react内部会根据这个来判断是组件还是普通的HTML标签</p></li><li><p>函数组件<strong>必须有返回值</strong>，表示该组件的 UI 结构；如果不需要渲染任何内容，则返回 null</p></li><li><p>组件就像 HTML 标签一样可以被渲染到页面中。组件表示的是一段结构内容，对于函数组件来说，渲染的内容是函数的<strong>返回值</strong>就是对应的内容</p></li><li><p>使用函数名称作为组件标签名称，可以成对出现也可以自闭合</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs react">function App() &#123;<br>  return (<br>    &lt;div&gt;<br>    &lt;HelloComponent/&gt;<br>    &lt;HelloComponent&gt;&lt;/HelloComponent&gt;<br>    &lt;/div&gt;<br>  );<br>&#125;<br></code></pre></td></tr></table></figure></li></ul><h2><span id="类组件">类组件</span></h2><p>使用 ES6 的 class 创建的组件，叫做类（class）组件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs react">class HelloComponent2 extends React.Component&#123;<br>  //必须有一个render方法<br>  //在这个方法里有return UI 结构<br>  render()&#123;<br>    return (<br>      &lt;div&gt;hello Componnet2&lt;/div&gt;<br>    )<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><ul><li><strong>类名称也必须以大写字母开头</strong></li><li>类组件应该继承 React.Component 父类，从而使用父类中提供的方法或属性</li><li>类组件必须提供 render 方法<strong>render 方法必须有返回值，表示该组件的 UI 结构</strong></li></ul><h2><span id="事件绑定">事件绑定</span></h2><p>react事件采用驼峰命名法</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs react">// 事件触发函数组件<br>function EventDemoClass1()&#123;<br>  function handle()&#123;<br>    console.log(&quot;事件触发了EventDemoClass1&quot;)<br>  &#125;<br>  return (<br>    &lt;button onClick=&#123;handle&#125;&gt;事件触发函数组件&lt;/button&gt;<br>  )<br>&#125;<br><br><br>//事件触发类组件<br>class EventDemoClass2 extends React.Component&#123;<br>  clickHandler = () =&gt; &#123;<br>    console.log(&quot;事件触发了EventDemoClass2&quot;)<br>  &#125;<br>  render()&#123;<br>    return (<br>      &lt;div&gt;<br>        &lt;button onClick=&#123;this.clickHandler&#125;&gt;事件触发类组件&lt;/button&gt;<br>      &lt;/div&gt;<br>    )<br>  &#125;<br>&#125;<br><br>// 根组件<br>function App() &#123;<br>  return (<br>    &lt;div&gt;<br>      &lt;EventDemoClass1&gt;&lt;/EventDemoClass1&gt;<br>     &lt;EventDemoClass2&gt;&lt;/EventDemoClass2&gt;<br>    &lt;/div&gt;<br>  );<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>组件</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>依赖混乱</title>
+    <link href="/2022/04/04/%E4%BE%9D%E8%B5%96%E6%B7%B7%E4%B9%B1/"/>
+    <url>/2022/04/04/%E4%BE%9D%E8%B5%96%E6%B7%B7%E4%B9%B1/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="依赖混乱">依赖混乱</span></h1>]]></content>
+    
+    
+    <categories>
+      
+      <category>代码之丑</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>代码坏味道</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>变量的初始化</title>
     <link href="/2022/04/01/%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
     <url>/2022/04/01/%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
     
-    <content type="html"><![CDATA[<h1><span id="变量初始化">变量初始化</span></h1><blockquote><ul><li><strong>重构手法</strong><ul><li>变量初始化最好一次完成</li></ul></li></ul></blockquote><h3><span id="案例1">案例1</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">EpubStatus status = <span class="hljs-keyword">null</span>;<br>CreateEpubResponse response = createEpub(request);<br><span class="hljs-keyword">if</span> (response.getCode() == <span class="hljs-number">201</span>) &#123;<br>  status = EpubStatus.CREATED;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  status = EpubStatus.TO_CREATE;<br>&#125;<br></code></pre></td></tr></table></figure><ul><li>问题：第一行的初始化没有意义，他真正有值是在第4行或者第6行。也就是说声明变量后很久才赋值。变量初始化和业务混在了一起</li><li>修正：</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">final</span> CreateEpubResponse response = createEpub(request);<br><span class="hljs-keyword">final</span> EpubStatus status = toEpubStatus(response);<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> EpubStatus <span class="hljs-title">toEpubStatus</span><span class="hljs-params">(<span class="hljs-keyword">final</span> CreateEpubResponse response)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (response.getCode() == <span class="hljs-number">201</span>) &#123;<br>    <span class="hljs-keyword">return</span> EpubStatus.CREATED;<br>  &#125;<br>  <span class="hljs-keyword">return</span> EpubStatus.TO_CREATE;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1><span id="变量初始化">变量初始化</span></h1><blockquote><ul><li><p><strong>重构手法</strong></p><ul><li><p>变量初始化最好一次完成</p></li><li><blockquote><p>能用final的地方建议都用final，包括变量声明，参数声明，类声明，方法声明</p></blockquote></li></ul></li></ul></blockquote><h3><span id="案例1">案例1</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">EpubStatus status = <span class="hljs-keyword">null</span>;<br>CreateEpubResponse response = createEpub(request);<br><span class="hljs-keyword">if</span> (response.getCode() == <span class="hljs-number">201</span>) &#123;<br>  status = EpubStatus.CREATED;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>  status = EpubStatus.TO_CREATE;<br>&#125;<br></code></pre></td></tr></table></figure><ul><li>问题：第一行的初始化没有意义，他真正有值是在第4行或者第6行。也就是说声明变量后很久才赋值。变量初始化和业务混在了一起，我们只有在一大堆逻辑中抽丝剥茧，才可以知道变量是如何初始化的。</li><li>修正：</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">final</span> CreateEpubResponse response = createEpub(request);<br><span class="hljs-keyword">final</span> EpubStatus status = toEpubStatus(response);<br><br><span class="hljs-function"><span class="hljs-keyword">private</span> EpubStatus <span class="hljs-title">toEpubStatus</span><span class="hljs-params">(<span class="hljs-keyword">final</span> CreateEpubResponse response)</span> </span>&#123;<br>  <span class="hljs-keyword">if</span> (response.getCode() == <span class="hljs-number">201</span>) &#123;<br>    <span class="hljs-keyword">return</span> EpubStatus.CREATED;<br>  &#125;<br>  <span class="hljs-keyword">return</span> EpubStatus.TO_CREATE;<br>&#125;<br></code></pre></td></tr></table></figure><h3><span id="案例2异常处理">案例2（异常处理）</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java">InputStream is = <span class="hljs-keyword">null</span>;<br><br><span class="hljs-keyword">try</span> &#123;<br>  is = <span class="hljs-keyword">new</span> FileInputStream(...);<br>  ...<br>&#125; <span class="hljs-keyword">catch</span> (IOException e) &#123;<br>  ...<br>&#125; <span class="hljs-keyword">finally</span> &#123;<br>  <span class="hljs-keyword">if</span> (is != <span class="hljs-keyword">null</span>) &#123;<br>    is.close(); <br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>这里把is单独声明，是为了在finally里面可以访问到，在早期的版本只能写成这样，java7之后的版本，可以采用<code>try-with-resource</code></p><p>的写法，代码更加简洁。</p><p>修正：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> (InputStream is = <span class="hljs-keyword">new</span> FileInputStream(...)) &#123;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure><h3><span id="案例3-集合初始化">案例3 集合初始化</span></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Map&lt;Locale, String&gt; CODE_MAPPING = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>...<br><br><br><span class="hljs-keyword">static</span> &#123;<br>  CODE_MAPPING.put(LOCALE.ENGLISH, <span class="hljs-string">&quot;EN&quot;</span>);<br>  CODE_MAPPING.put(LOCALE.CHINESE, <span class="hljs-string">&quot;CH&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure><p>问题： 隔了很久后才向这个集合中添加元素，如果我们可以使用一次性声明的方式，这个static块是不需要的</p><p>修正：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Map&lt;Locale, String&gt; CODE_MAPPING = ImmutableMap.of(<br>  LOCALE.ENGLISH, <span class="hljs-string">&quot;EN&quot;</span>,<br>  LOCALE.CHINESE, <span class="hljs-string">&quot;CH&quot;</span><br>);<br></code></pre></td></tr></table></figure><blockquote><p>前者是命令式的代码，告诉你“怎么做”，比如先创建一个集合，集合中添加一个元素，再添加一个元素。</p><p>后者是声明式代码，告诉你“做什么”，比如我要一个包含了这两个元素的集合。</p></blockquote><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h0xl4gnkf5j20u011vn0m.jpg" style="zoom:50%;">]]></content>
     
     
     <categories>
