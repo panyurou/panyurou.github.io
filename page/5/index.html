@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="楼上有只喵">
 <meta property="og:url" content="http://example.com/page/5/index.html">
 <meta property="og:site_name" content="楼上有只喵">
@@ -24,15 +24,22 @@
 <meta property="article:author" content="Panyurou">
 <meta name="twitter:card" content="summary_large_image">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>楼上有只喵</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -41,21 +48,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>楼上有只喵</strong>
@@ -137,6 +163,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -149,34 +176,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello World">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Hello World"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -195,28 +228,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/07/%E4%BD%BF%E7%94%A8Spock%E6%A1%86%E6%9E%B6%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81/" target="_self">
+      <a class="index-excerpt" href="/2021/10/07/%E4%BD%BF%E7%94%A8Spock%E6%A1%86%E6%9E%B6%E7%BC%96%E5%86%99%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81/" target="_self">
+        <div>
           
-          
-            
-          
-          Spock 介绍
-
-Spock是一个为groovy和java语言应用程序来测试和规范的框架。
-
-这个框架的突出点在于它美妙和高效表达规范的语言。
-
-得益于JUnit runner，Spock能够在大多数IDE、编译工具、持续集成服务下工作。
-
-Spock的灵感源于JUnit,jMock, RSpec, Groovy, Scala, Vulcans以及其他优秀的框架形态。
-
-
-
-基本操作
-a sim
-        </a>
-      </p>
+          Spock 介绍  Spock是一个为groovy和java语言应用程序来测试和规范的框架。  这个框架的突出点在于它美妙和高效表达规范的语言。  得益于JUnit runner，Spock能够在大多数IDE、编译工具、持续集成服务下工作。  Spock的灵感源于JUnit,jMock, RSpec, Groovy, Scala, Vulcans以及其他优秀的框架形态。    基本操作 a sim
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -228,11 +245,25 @@ a sim
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/spock/">spock</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/spock/" class="category-chain-item">spock</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
@@ -251,20 +282,12 @@ a sim
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/06/kotlin%E5%AD%A6%E4%B9%A0/" target="_self">
+      <a class="index-excerpt" href="/2021/10/06/kotlin%E5%AD%A6%E4%B9%A0/" target="_self">
+        <div>
           
-          
-            
-          
-          1.Kotlin 是什么？Kotlin 是一种在 Java 虚拟机上运行的静态类型编程语言，被称之为 Android 世界的Swift，由 JetBrains 设计开发并开源。
-在Google I/O 2017中，Google 宣布 Kotlin 成为 Android 官方开发语言。
-2.为什么选择 Kotlin？
-简洁: 大大减少样板代码的数量。
-安全: 避免空指针异常等整个类的错误。
-互操作性
-        </a>
-      </p>
+          1.Kotlin 是什么？Kotlin 是一种在 Java 虚拟机上运行的静态类型编程语言，被称之为 Android 世界的Swift，由 JetBrains 设计开发并开源。 在Google I&#x2F;O 2017中，Google 宣布 Kotlin 成为 Android 官方开发语言。 2.为什么选择 Kotlin？ 简洁: 大大减少样板代码的数量。 安全: 避免空指针异常等整个类的错误。 互操作性
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -276,11 +299,25 @@ a sim
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/kotlin/">kotlin</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/kotlin/" class="category-chain-item">kotlin</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
@@ -299,16 +336,12 @@ a sim
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/06/springboot%E6%95%B4%E5%90%88graphql/" target="_self">
+      <a class="index-excerpt" href="/2021/10/06/springboot%E6%95%B4%E5%90%88graphql/" target="_self">
+        <div>
           
-          
-            
-          
-          GraphQL是比REST更高效、强大和灵活的新一代API标准。详细的可以看官网GraphQL。
-下面介绍一个Spring boot整合graphql简单的例子。
-        </a>
-      </p>
+          GraphQL是比REST更高效、强大和灵活的新一代API标准。详细的可以看官网GraphQL。 下面介绍一个Spring boot整合graphql简单的例子。
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -320,18 +353,32 @@ a sim
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/springboot/">springboot</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/springboot/" class="category-chain-item">springboot</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/graphql/">graphql</a>
+              <a href="/tags/graphql/">#graphql</a>
             
           </div>
         
@@ -350,21 +397,12 @@ a sim
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/05/%20Spring%20Webflux/" target="_self">
+      <a class="index-excerpt" href="/2021/10/05/%20Spring%20Webflux/" target="_self">
+        <div>
           
-          
-            
-          
-          1.响应式编程是什么？
-
-响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式
-本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的,如：
-1int sum2 = IntStream.of(nums).parallel().sum();
-
-​      将数组中的数据变成数据流，通过显
-        </a>
-      </p>
+          1.响应式编程是什么？  响应式编程（reactive programming）是一种基于数据流和变化传递的声明式的编程范式 本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过API去处理数据流中的数据（是声明式的,如： 1int sum2 &#x3D; IntStream.of(nums).parallel().sum();  ​      将数组中的数据变成数据流，通过显
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -376,20 +414,34 @@ a sim
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/SpringWebflux/">SpringWebflux</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SpringWebflux/" class="category-chain-item">SpringWebflux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/spring/">spring</a>
+              <a href="/tags/spring/">#spring</a>
             
-              <a href="/tags/java/">java</a>
+              <a href="/tags/java/">#java</a>
             
           </div>
         
@@ -408,16 +460,12 @@ a sim
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/04/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BStream%E6%B5%81/" target="_self">
+      <a class="index-excerpt" href="/2021/10/04/Java8%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8BStream%E6%B5%81/" target="_self">
+        <div>
           
-          
-            
-          
-          Java8新特性之Stream流1.什么是Stream？Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。通过声明性方式，能够对集合中的每个元素进行一系列并行或串行的流水线操作。例：
-1234567public class StreamDemo1 &#123;    public static void main(String[] args) &#123;
-        </a>
-      </p>
+          Java8新特性之Stream流1.什么是Stream？Java 8 API添加了一个新的抽象称为流Stream，可以让你以一种声明的方式处理数据。通过声明性方式，能够对集合中的每个元素进行一系列并行或串行的流水线操作。例： 1234567public class StreamDemo1 &amp;#123;    public static void main(String[] args) &amp;#123;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -429,18 +477,32 @@ a sim
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/">java8新特性</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/" class="category-chain-item">java8新特性</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/stream%E6%B5%81/">stream流</a>
+              <a href="/tags/stream%E6%B5%81/">#stream流</a>
             
           </div>
         
@@ -459,23 +521,12 @@ a sim
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/04/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Blambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
+      <a class="index-excerpt" href="/2021/10/04/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8Blambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_self">
+        <div>
           
-          
-            
-          
-          1.函数接口函数接口（@FunctionalInterface）需要满足两个条件：
-
-类型是接口
-有且只有一个抽象方法
-
-例如：Runnable接口
-1234@FunctionalInterfacepublic interface Runnable &#123;    public abstract void run();&#125;
-
-其实这也是要求我们接口的设计尽量小，符合单一责任制，一个接口
-        </a>
-      </p>
+          1.函数接口函数接口（@FunctionalInterface）需要满足两个条件：  类型是接口 有且只有一个抽象方法  例如：Runnable接口 1234@FunctionalInterfacepublic interface Runnable &amp;#123;    public abstract void run();&amp;#125;  其实这也是要求我们接口的设计尽量小，符合单一责任制，一个接口
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -487,18 +538,32 @@ a sim
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/">java8新特性</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/" class="category-chain-item">java8新特性</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">lambda表达式</a>
+              <a href="/tags/lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">#lambda表达式</a>
             
           </div>
         
@@ -517,26 +582,12 @@ a sim
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/04/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" target="_self">
+      <a class="index-excerpt" href="/2021/10/04/Java8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E4%B9%8B%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/" target="_self">
+        <div>
           
-          
-            
-          
-          1.方法引用是什么？
-Java8的新特性之二：方法引用。方法引用其实也离不开Lambda表达式。
-
-
-方法引用通过方法的名字来指向一个方法。
-
-方法引用可以使语言的构造更紧凑简洁，减少冗余代码。
-
-方法引用使用一对冒号 :: 。
-
-
-2、方法引用的分类下面，我们在 Car 类中定义了 4 个方法作为例子来区分 Java 中 4 种不同方法的引用。
-        </a>
-      </p>
+          1.方法引用是什么？ Java8的新特性之二：方法引用。方法引用其实也离不开Lambda表达式。   方法引用通过方法的名字来指向一个方法。  方法引用可以使语言的构造更紧凑简洁，减少冗余代码。  方法引用使用一对冒号 :: 。   2、方法引用的分类下面，我们在 Car 类中定义了 4 个方法作为例子来区分 Java 中 4 种不同方法的引用。
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -548,18 +599,32 @@ Java8的新特性之二：方法引用。方法引用其实也离不开Lambda表
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/">java8新特性</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/" class="category-chain-item">java8新特性</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">方法引用</a>
+              <a href="/tags/%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8/">#方法引用</a>
             
           </div>
         
@@ -578,26 +643,12 @@ Java8的新特性之二：方法引用。方法引用其实也离不开Lambda表
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/09/28/ElasticSearch%E7%AE%80%E4%BB%8B/" target="_self">
+      <a class="index-excerpt" href="/2021/09/28/ElasticSearch%E7%AE%80%E4%BB%8B/" target="_self">
+        <div>
           
-          
-            
-          
-          ElasticSearch简介Es是什么？
-Elasticsearch是用Java开发并且是当前最流行的开源的企业级搜索引擎。
-能够达到实时搜索，稳定，可靠，快速，安装使用方便。
-客户端支持Java、.NET（C#）、PHP、Python、Ruby等多种语言。
-
-应用场景关键词搜索。
-
-
-从上面的搜索结果，可以看出不是根据模糊匹配去进行搜索的
-
-ElasticSearch与Lucene的关系
-Lu
-        </a>
-      </p>
+          ElasticSearch简介Es是什么？ Elasticsearch是用Java开发并且是当前最流行的开源的企业级搜索引擎。 能够达到实时搜索，稳定，可靠，快速，安装使用方便。 客户端支持Java、.NET（C#）、PHP、Python、Ruby等多种语言。  应用场景关键词搜索。   从上面的搜索结果，可以看出不是根据模糊匹配去进行搜索的  ElasticSearch与Lucene的关系 Lu
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -609,18 +660,32 @@ Lu
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/ElasticSearch/">ElasticSearch</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ElasticSearch/" class="category-chain-item">ElasticSearch</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -639,29 +704,12 @@ Lu
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/09/26/oauth2/" target="_self">
+      <a class="index-excerpt" href="/2021/09/26/oauth2/" target="_self">
+        <div>
           
-          
-            
-          
-          
-oauth2.0一. oauth2.0 产生
-传统方式：用户和第三方共享密码
-不安全。未来可能会持久访问资源，第三方存储用户密码不安全，因为他可以访问用户的所有资源
-改密码的话，第三方会失效
-
-
-
-二. oauth2.0是什么？
-
-oauth2.0 是一种授权方式，使第三方可以获得对用户资源的访问
-
-他的核心就是：向第三方应用颁发令牌
-
-不管哪一种授权方式，第三方应用申请令牌之前，都必须先到系统
-        </a>
-      </p>
+          oauth2.0一. oauth2.0 产生 传统方式：用户和第三方共享密码 不安全。未来可能会持久访问资源，第三方存储用户密码不安全，因为他可以访问用户的所有资源 改密码的话，第三方会失效    二. oauth2.0是什么？  oauth2.0 是一种授权方式，使第三方可以获得对用户资源的访问  他的核心就是：向第三方应用颁发令牌  不管哪一种授权方式，第三方应用申请令牌之前，都必须先到系统
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -673,18 +721,32 @@ oauth2.0 是一种授权方式，使第三方可以获得对用户资源的访�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/oauth2/">oauth2</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/oauth2/" class="category-chain-item">oauth2</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/oauth2/">oauth2</a>
+              <a href="/tags/oauth2/">#oauth2</a>
             
           </div>
         
@@ -703,22 +765,12 @@ oauth2.0 是一种授权方式，使第三方可以获得对用户资源的访�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/09/24/zookeeper%E9%9B%86%E7%BE%A4%E7%89%B9%E6%80%A7/" target="_self">
+      <a class="index-excerpt" href="/2021/09/24/zookeeper%E9%9B%86%E7%BE%A4%E7%89%B9%E6%80%A7/" target="_self">
+        <div>
           
-          
-            
-          
-          Zookeeper集群
-目的zookeeper集群是为了保证系统的性能，能够承载更多的客户端连接。通过集群可以实现以下功能：
-
-读写分离：提高承载，为更多的客户端提供连接，并保障性能。
-主从自动切换：提高服务容错性，部分节点故障不会影响整个服务集群。
-
-半数以上运行机制说明集群至少需要三台服务器，并且强烈建议使用奇数个服务器。
-因为zookeeper 通过判断大多数节点的存活来判断整个服务是否可用
-        </a>
-      </p>
+          Zookeeper集群 目的zookeeper集群是为了保证系统的性能，能够承载更多的客户端连接。通过集群可以实现以下功能：  读写分离：提高承载，为更多的客户端提供连接，并保障性能。 主从自动切换：提高服务容错性，部分节点故障不会影响整个服务集群。  半数以上运行机制说明集群至少需要三台服务器，并且强烈建议使用奇数个服务器。 因为zookeeper 通过判断大多数节点的存活来判断整个服务是否可用
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -730,18 +782,32 @@ oauth2.0 是一种授权方式，使第三方可以获得对用户资源的访�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/zookeeper/">zookeeper</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/zookeeper/" class="category-chain-item">zookeeper</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -786,59 +852,61 @@ oauth2.0 是一种授权方式，使第三方可以获得对用户资源的访�
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
-
-
-  <!-- SCRIPTS -->
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -849,69 +917,53 @@ oauth2.0 是一种授权方式，使第三方可以获得对用户资源的访�
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-      jQuery.ajax({
-        type: 'GET',
-        url: 'https://v1.hitokoto.cn/',
-        headers: {},
-        dataType: 'json',
-        success: function (result) {
-          var text;
-          if (result) {
-            var keys = 'hitokoto'.split('.')
-            if (result instanceof Array) {
-              result = result[0]
-            }
-            for (const k of keys) {
-              var value = result[k]
-              if (typeof value === 'string') {
-                text = value
-                break
-              } else if (value instanceof Object) {
-                result = value
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://v1.hitokoto.cn/',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'hitokoto'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
               }
             }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://v1.hitokoto.cn/:', error);
+            }
+            typing(text);
           }
-          text ? typing(text) : typing(title);
-        },
-        error: function () {
-          typing(title)
-        }
-      })
+        })
       
     })(window, document);
   </script>
@@ -921,18 +973,30 @@ oauth2.0 是一种授权方式，使第三方可以获得对用户资源的访�
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

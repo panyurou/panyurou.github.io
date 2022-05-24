@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="楼上有只喵">
 <meta property="og:url" content="http://example.com/page/3/index.html">
 <meta property="og:site_name" content="楼上有只喵">
@@ -24,15 +24,22 @@
 <meta property="article:author" content="Panyurou">
 <meta name="twitter:card" content="summary_large_image">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>楼上有只喵</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -41,21 +48,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>楼上有只喵</strong>
@@ -137,6 +163,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -149,34 +176,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hello World">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="Hello World"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -195,18 +228,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/21/ElasticSearch%E6%96%87%E6%A1%A3%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/" target="_self">
+      <a class="index-excerpt" href="/2022/02/21/ElasticSearch%E6%96%87%E6%A1%A3%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/" target="_self">
+        <div>
           
-          
-            
-          
-          文档批量操作批量获取文档数据
-批量获取文档数据是通过_mget的API来实现的 
-
-在URL中不指定index和type123456789101112131415GET _mget&#123;  &quot;docs&quot;: [    &#123;      &quot;_index&quot;: &quot;es_db&quot;,      &quot;_type&quot;: &quo
-        </a>
-      </p>
+          文档批量操作批量获取文档数据 批量获取文档数据是通过_mget的API来实现的   在URL中不指定index和type123456789101112131415GET _mget&amp;#123;  &quot;docs&quot;: [    &amp;#123;      &quot;_index&quot;: &quot;es_db&quot;,      &quot;_type&quot;: &amp;quo
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -218,18 +245,32 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/ElasticSearch/">ElasticSearch</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ElasticSearch/" class="category-chain-item">ElasticSearch</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -248,22 +289,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/12/ES%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/" target="_self">
+      <a class="index-excerpt" href="/2022/02/12/ES%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/" target="_self">
+        <div>
           
-          
-            
-          
-          ES数据管理ES数据管理概述
-ES是面向文档(document oriented)的，这意味着它可以存储整个对象或文档 (document)。
-然而它不仅仅是存储，还会索引(index)每个文档的内容使之可以被搜索。
-在ES中，你可以对文档（而非成行成列的数据）进行索引、搜索、排序、过滤。
-ES使用JSON作为文档序列化格式。 
-
-ES存储的一个员工文档的格式示例： 
-123456&#123;  
-        </a>
-      </p>
+          ES数据管理ES数据管理概述 ES是面向文档(document oriented)的，这意味着它可以存储整个对象或文档 (document)。 然而它不仅仅是存储，还会索引(index)每个文档的内容使之可以被搜索。 在ES中，你可以对文档（而非成行成列的数据）进行索引、搜索、排序、过滤。 ES使用JSON作为文档序列化格式。   ES存储的一个员工文档的格式示例：  123456&amp;#123;
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -275,18 +306,32 @@ ES存储的一个员工文档的格式示例：
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/ElasticSearch/">ElasticSearch</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ElasticSearch/" class="category-chain-item">ElasticSearch</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -305,23 +350,12 @@ ES存储的一个员工文档的格式示例：
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/05/Elasticsearch%E5%AE%89%E8%A3%85/" target="_self">
+      <a class="index-excerpt" href="/2022/02/05/Elasticsearch%E5%AE%89%E8%A3%85/" target="_self">
+        <div>
           
-          
-            
-          
-          Elasticsearch安装1.下载es.  Es 下载链接： Download Elasticsearch | Elastic
-
-2.解压后在bin路径下，运行
-1➜  bin ./elasticsearch -d
-
-3.访问localhost:9200,看到下面的页面即启动成功
-
-Kibana安装
-Kibana 下载链接：Download Kibana Free | Get Started 
-        </a>
-      </p>
+          Elasticsearch安装1.下载es.  Es 下载链接： Download Elasticsearch | Elastic  2.解压后在bin路径下，运行 1➜  bin .&#x2F;elasticsearch -d  3.访问localhost:9200,看到下面的页面即启动成功  Kibana安装 Kibana 下载链接：Download Kibana Free | Get Started
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -333,18 +367,32 @@ Kibana 下载链接：Download Kibana Free | Get Started
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/ElasticSearch/">ElasticSearch</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ElasticSearch/" class="category-chain-item">ElasticSearch</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -363,18 +411,12 @@ Kibana 下载链接：Download Kibana Free | Get Started
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/05/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" target="_self">
+      <a class="index-excerpt" href="/2022/02/05/ElasticSearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" target="_self">
+        <div>
           
-          
-            
-          
-          ElasticSearch集群搭建相关概念集群cluster一个集群就是由一个或多个节点组织在一起，它们共同持有整个的数据，并一起提供索引和搜索功能
-节点node
-一个节点是集群中的一个服务器，作为集群的一部分，它存储数据。参与集群的索引和搜索功能。
-一个节点可以通过配置集群名称的方式来加入一个指定的集群。默认情况下，每个节点都会被安排加入到一个叫做“elasticsearch”的集群中。这意味着
-        </a>
-      </p>
+          ElasticSearch集群搭建相关概念集群cluster一个集群就是由一个或多个节点组织在一起，它们共同持有整个的数据，并一起提供索引和搜索功能 节点node 一个节点是集群中的一个服务器，作为集群的一部分，它存储数据。参与集群的索引和搜索功能。 一个节点可以通过配置集群名称的方式来加入一个指定的集群。默认情况下，每个节点都会被安排加入到一个叫做“elasticsearch”的集群中。这意味着
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -386,18 +428,32 @@ Kibana 下载链接：Download Kibana Free | Get Started
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/ElasticSearch/">ElasticSearch</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ElasticSearch/" class="category-chain-item">ElasticSearch</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -416,20 +472,12 @@ Kibana 下载链接：Download Kibana Free | Get Started
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/04/clickHouse%E7%9A%84SQL%E6%93%8D%E4%BD%9C-1/" target="_self">
+      <a class="index-excerpt" href="/2022/02/04/clickHouse%E7%9A%84SQL%E6%93%8D%E4%BD%9C-1/" target="_self">
+        <div>
           
-          
-            
-          
-          ClickHouse的SQL操作基本上来说传统关系型数据库（以 MySQL 为例）的 SQL 语句，ClickHouse 基本都支持，这里不会从头讲解 SQL 语法只介绍 ClickHouse 与标准 SQL（MySQL）不一致的地方
-Insert基本与标准 SQL（MySQL）基本一致
-（1）标准
-1insert into [table_name] values(…),(….)
-
-（2）从表到表
-        </a>
-      </p>
+          ClickHouse的SQL操作基本上来说传统关系型数据库（以 MySQL 为例）的 SQL 语句，ClickHouse 基本都支持，这里不会从头讲解 SQL 语法只介绍 ClickHouse 与标准 SQL（MySQL）不一致的地方 Insert基本与标准 SQL（MySQL）基本一致 （1）标准 1insert into [table_name] values(…),(….)  （2）从表到表
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -441,18 +489,32 @@ Insert基本与标准 SQL（MySQL）基本一致
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/clickhouse/">clickhouse</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/clickhouse/" class="category-chain-item">clickhouse</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
             
           </div>
         
@@ -471,17 +533,12 @@ Insert基本与标准 SQL（MySQL）基本一致
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/03/clickhouse%E8%A1%A8%E5%BC%95%E6%93%8E/" target="_self">
+      <a class="index-excerpt" href="/2022/02/03/clickhouse%E8%A1%A8%E5%BC%95%E6%93%8E/" target="_self">
+        <div>
           
-          
-            
-          
-          表引擎介绍表引擎是 ClickHouse 的一大特色。不同的引擎有不同的作用，可以说， 表引擎决定了如何存储表的数据。包括：
-➢ 数据的存储方式和位置，写到哪里以及从哪里读取数据。 （一般的引擎都存在磁盘中，但是存在与其他数据库继承的场景，比如和mysql集成，数据放在mysql服务端。）
-➢ 支持哪些查询以及如何支持。（有些语法只有在特定的引擎才可以使用，比如不能在 MergeTree 表中存储
-        </a>
-      </p>
+          表引擎介绍表引擎是 ClickHouse 的一大特色。不同的引擎有不同的作用，可以说， 表引擎决定了如何存储表的数据。包括： ➢ 数据的存储方式和位置，写到哪里以及从哪里读取数据。 （一般的引擎都存在磁盘中，但是存在与其他数据库继承的场景，比如和mysql集成，数据放在mysql服务端。） ➢ 支持哪些查询以及如何支持。（有些语法只有在特定的引擎才可以使用，比如不能在 MergeTree 表中存储
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -493,18 +550,32 @@ Insert基本与标准 SQL（MySQL）基本一致
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/clickhouse/">clickhouse</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/clickhouse/" class="category-chain-item">clickhouse</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">#数据库</a>
             
           </div>
         
@@ -523,21 +594,12 @@ Insert基本与标准 SQL（MySQL）基本一致
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/01/clickhouse%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
+      <a class="index-excerpt" href="/2022/02/01/clickhouse%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_self">
+        <div>
           
-          
-            
-          
-          clickhouse基本数据类型整型固定长度的整型，包括有符号整型或无符号整型。
-整型范围（-2n-1~2n-1-1）：
-Int8 - [-128 : 127]
-Int16 - [-32768 : 32767]
-Int32 - [-2147483648 : 2147483647]
-Int64 - [-9223372036854775808 : 9223372036854775807]
-无符号整型范
-        </a>
-      </p>
+          clickhouse基本数据类型整型固定长度的整型，包括有符号整型或无符号整型。 整型范围（-2n-1~2n-1-1）： Int8 - [-128 : 127] Int16 - [-32768 : 32767] Int32 - [-2147483648 : 2147483647] Int64 - [-9223372036854775808 : 9223372036854775807] 无符号整型范
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -549,18 +611,32 @@ Int64 - [-9223372036854775808 : 9223372036854775807]
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/clickhouse/">clickhouse</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/clickhouse/" class="category-chain-item">clickhouse</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -579,23 +655,12 @@ Int64 - [-9223372036854775808 : 9223372036854775807]
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/01/docker-%E5%AE%89%E8%A3%85clickhouse/" target="_self">
+      <a class="index-excerpt" href="/2022/02/01/docker-%E5%AE%89%E8%A3%85clickhouse/" target="_self">
+        <div>
           
-          
-            
-          
-          1.启动容器服务，加载镜像
-1➜  ~ docker run -d --name ch-server --ulimit nofile=262144:262144 -p 8123:8123 -p 9000:9000 -p 9009:9009 yandex/clickhouse-server
-
-
-2.查看服务
-1➜  ~ docker ps
-
-
-3.进入docker容器内，使用用户名和密码连接数据库。
-        </a>
-      </p>
+          1.启动容器服务，加载镜像 1➜  ~ docker run -d --name ch-server --ulimit nofile&#x3D;262144:262144 -p 8123:8123 -p 9000:9000 -p 9009:9009 yandex&#x2F;clickhouse-server   2.查看服务 1➜  ~ docker ps   3.进入docker容器内，使用用户名和密码连接数据库。
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -607,18 +672,32 @@ Int64 - [-9223372036854775808 : 9223372036854775807]
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/clickhouse/">clickhouse</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/clickhouse/" class="category-chain-item">clickhouse</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -637,20 +716,12 @@ Int64 - [-9223372036854775808 : 9223372036854775807]
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/02/01/clickhouse%E5%85%A5%E9%97%A8/" target="_self">
+      <a class="index-excerpt" href="/2022/02/01/clickhouse%E5%85%A5%E9%97%A8/" target="_self">
+        <div>
           
-          
-            
-          
-          ClickHouse 是什么？ClickHouse 是俄罗斯的 Yandex 于 2016 年开源的列式存储数据库（DBMS），使用 C++
-语言编写，主要用于在线分析处理查询（OLAP），能够使用 SQL 查询实时生成分析数据报
-告。
-
-
-OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle这种传统的关系型数据库的主要应用，适合做
-        </a>
-      </p>
+          ClickHouse 是什么？ClickHouse 是俄罗斯的 Yandex 于 2016 年开源的列式存储数据库（DBMS），使用 C++ 语言编写，主要用于在线分析处理查询（OLAP），能够使用 SQL 查询实时生成分析数据报 告。   OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle这种传统的关系型数据库的主要应用，适合做
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -662,18 +733,32 @@ OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/clickhouse/">clickhouse</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/clickhouse/" class="category-chain-item">clickhouse</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">分布式框架</a>
+              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
             
           </div>
         
@@ -692,20 +777,12 @@ OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle�
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/12/28/Redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84/" target="_self">
+      <a class="index-excerpt" href="/2021/12/28/Redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84/" target="_self">
+        <div>
           
-          
-            
-          
-          Redis主从架构介绍单机的 redis，能够承载的 QPS 大概就在上万到几万不等。对于缓存来说，一般都是用来支撑读高并发的。因此架构做成主从(master-slave)架构，一主多从，主负责写，并且将数据复制到其它的 slave 节点，从节点负责读。所有的读请求全部走从节点。这样也可以很轻松实现水平扩容，支撑读高并发。
-
-
-主从复制(全量复制)流程
-
-如果你为master配置了一个slave，
-        </a>
-      </p>
+          Redis主从架构介绍单机的 redis，能够承载的 QPS 大概就在上万到几万不等。对于缓存来说，一般都是用来支撑读高并发的。因此架构做成主从(master-slave)架构，一主多从，主负责写，并且将数据复制到其它的 slave 节点，从节点负责读。所有的读请求全部走从节点。这样也可以很轻松实现水平扩容，支撑读高并发。   主从复制(全量复制)流程  如果你为master配置了一个slave，
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -717,18 +794,32 @@ OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle�
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/redis/">redis</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/redis/" class="category-chain-item">redis</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84/">redis主从架构</a>
+              <a href="/tags/redis%E4%B8%BB%E4%BB%8E%E6%9E%B6%E6%9E%84/">#redis主从架构</a>
             
           </div>
         
@@ -773,59 +864,61 @@ OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle�
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
-
-
-  <!-- SCRIPTS -->
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -836,69 +929,53 @@ OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle�
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-      jQuery.ajax({
-        type: 'GET',
-        url: 'https://v1.hitokoto.cn/',
-        headers: {},
-        dataType: 'json',
-        success: function (result) {
-          var text;
-          if (result) {
-            var keys = 'hitokoto'.split('.')
-            if (result instanceof Array) {
-              result = result[0]
-            }
-            for (const k of keys) {
-              var value = result[k]
-              if (typeof value === 'string') {
-                text = value
-                break
-              } else if (value instanceof Object) {
-                result = value
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://v1.hitokoto.cn/',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'hitokoto'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
               }
             }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://v1.hitokoto.cn/:', error);
+            }
+            typing(text);
           }
-          text ? typing(text) : typing(title);
-        },
-        error: function () {
-          typing(title)
-        }
-      })
+        })
       
     })(window, document);
   </script>
@@ -908,18 +985,30 @@ OLTP:   联机事务处理（Online Transaction Processing)。是mysql，oracle�
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
