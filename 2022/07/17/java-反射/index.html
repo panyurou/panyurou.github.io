@@ -16,27 +16,24 @@
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
   
-    <meta name="description" content="mysql事务隔离性的实现MVCC机制（多版本并发控制） Mysql在读已提交和可重复读隔离级别下都实现了MVCC机制。  主要是保存数据在某个时间点的快照实现的。 mysql在每行记录后面，保存了两个隐藏列，分别为：创建事务id和删除事务id MVCC机制的实现就是通过read-view机制与undo版本链比对机制，使得不同的事务会根据数据版本链对比规则读取同一条数据在版本链上的不同版本数据。">
+    <meta name="description" content="反射是什么？ 反射就是指在运行状态中，对于任何一个类，能够知道这个类的所有属性和方法。  对于任何一个对象，都能调用它的任意属性和方法，并且可以改变他的属性。  反射是java被市委准动态语言的关键，反射机制允许程序在执行期间借助反射Api来获取任何类的内部信息，并能够直接操作任意对象的内部属性及方法。  加载完类后，在堆内存的方法区就产生了一个Class类型的对象，对应这个类。这个对象就包含了这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql事务隔离性的实现">
-<meta property="og:url" content="http://example.com/2022/06/13/mvcc%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:title" content="java 反射">
+<meta property="og:url" content="http://example.com/2022/07/17/java-%E5%8F%8D%E5%B0%84/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="mysql事务隔离性的实现MVCC机制（多版本并发控制） Mysql在读已提交和可重复读隔离级别下都实现了MVCC机制。  主要是保存数据在某个时间点的快照实现的。 mysql在每行记录后面，保存了两个隐藏列，分别为：创建事务id和删除事务id MVCC机制的实现就是通过read-view机制与undo版本链比对机制，使得不同的事务会根据数据版本链对比规则读取同一条数据在版本链上的不同版本数据。">
+<meta property="og:description" content="反射是什么？ 反射就是指在运行状态中，对于任何一个类，能够知道这个类的所有属性和方法。  对于任何一个对象，都能调用它的任意属性和方法，并且可以改变他的属性。  反射是java被市委准动态语言的关键，反射机制允许程序在执行期间借助反射Api来获取任何类的内部信息，并能够直接操作任意对象的内部属性及方法。  加载完类后，在堆内存的方法区就产生了一个Class类型的对象，对应这个类。这个对象就包含了这">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h385eu22j0j218m0u042n.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h385hvu2m4j210w0c2myc.jpg">
-<meta property="article:published_time" content="2022-06-13T13:43:17.000Z">
-<meta property="article:modified_time" content="2022-07-17T08:17:13.470Z">
+<meta property="article:published_time" content="2022-07-17T08:43:34.000Z">
+<meta property="article:modified_time" content="2022-07-17T09:01:21.114Z">
 <meta property="article:author" content="Panyurou">
-<meta property="article:tag" content="mysql事务">
+<meta property="article:tag" content="java基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h385eu22j0j218m0u042n.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>mysql事务隔离性的实现 - 楼上有只喵</title>
+  <title>java 反射 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="mysql事务隔离性的实现"></span>
+            <span id="subtitle" data-typed-text="java 反射"></span>
           
         </div>
 
@@ -210,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-13 21:43" pubdate>
-          2022年6月13日 晚上
+        <time datetime="2022-07-17 16:43" pubdate>
+          2022年7月17日 下午
         </time>
       </span>
     
@@ -223,7 +220,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.6k 字
+          343 字
         
       </span>
     
@@ -235,7 +232,7 @@
         
         
           <!-- compatible with older versions-->
-          5 分钟
+          2 分钟
         
       </span>
     
@@ -273,61 +270,23 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">mysql事务隔离性的实现</h1>
+            <h1 style="display: none">java 反射</h1>
             
             <div class="markdown-body">
               
-              <h1><span id="mysql事务隔离性的实现">mysql事务隔离性的实现</span></h1><h2><span id="mvcc机制多版本并发控制">MVCC机制（多版本并发控制）</span></h2><ul>
-<li>Mysql在读已提交和可重复读隔离级别下都实现了MVCC机制。 </li>
-<li>主要是保存数据在某个时间点的快照实现的。</li>
-<li>mysql在每行记录后面，保存了两个隐藏列，分别为：创建事务id和删除事务id</li>
-<li>MVCC机制的实现就是通过read-view机制与undo版本链比对机制，使得不同的事务会根据数据版本链对比规则读取同一条数据在版本链上的不同版本数据。</li>
-</ul>
-<ul>
-<li><p>当执行select操作的时候，mysql底层会带上过滤条件：</p>
-<ul>
-<li><p>创建事务id &lt;= max(当前事务id, 已提交的最大事务id)，保证该事务读到的数据，要么是开始前就已经存在的，要么是自身插入或修改后的。</p>
+              <h1><span id="反射是什么">反射是什么？</span></h1><ul>
+<li><p>反射就是指在运行状态中，对于任何一个类，能够知道这个类的所有属性和方法。</p>
 </li>
-<li><p>删除事务id  &gt;  max (当前事务id, 已提交的最大事务id) 或  删除事务id未定义。保证事务读到的行，在事务开始前没有被删除</p>
+<li><p>对于任何一个对象，都能调用它的任意属性和方法，并且可以改变他的属性。</p>
+</li>
+<li><p>反射是java被市委准动态语言的关键，反射机制允许程序在执行期间借助反射Api来获取任何类的内部信息，并能够直接操作任意对象的内部属性及方法。</p>
+</li>
+<li><p>加载完类后，在堆内存的方法区就产生了一个Class类型的对象，对应这个类。这个对象就包含了这个类的完整结构信息，我们可以通过这个对象看到类的结构。这个对象就像一面镜子，通过这面镜子我们可以看到类的结构，所以我们称之为：反射。</p>
 </li>
 </ul>
-</li>
-</ul>
-<h2><span id="undo日志版本链"><strong>undo日志版本链</strong></span></h2><p>undo日志版本链是指一行数据被多个事务依次修改过后，在每个事务修改完后，Mysql会保留修改前的数据undo回滚日志，并且用两个隐藏字段trx_id和roll_pointer把这些undo日志串联起来形成一个历史记录版本链。</p>
-<ul>
-<li>roll_pointer： 可以根据roll_pointer找到之前的老数据，如果事务失败，就可以找到之前的老数据</li>
-<li>每次修改，就是写进新的事务id,以及把回滚指针指向上一条数据的位置</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h385eu22j0j218m0u042n.jpg" srcset="/img/loading.gif" lazyload></p>
-<h2><span id="read-view机制详解"><strong>read view机制详解</strong></span></h2><ul>
-<li><p>在<strong>可重复读隔离级别</strong>，当事务开启，执行任何查询sql时会生成当前事务的<strong>一致性视图read-view，</strong>该视图在事务结束 之前都不会变化(<strong>如果是读已提交隔离级别在每次执行查询sql时都会重新生成</strong>)。</p>
-</li>
-<li><p>这个视图由执行查询时所有未提交事务id<strong>数组</strong>（数组里最小的id为min_id）和已创建的最大事务id（max_id）组成，事务里的任何sql查询结果需要从对应版本链里的最新数据开始逐条跟read-view做比对从而得到最终的快照结果。 </p>
-</li>
-</ul>
-<h2><span id><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h385hvu2m4j210w0c2myc.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;"></span></h2><p>Eg:</p>
-<p>假设当前新开启了一个事务A，事务id为300，在该事务之前有两个事务B和C，均id分别为100和200。</p>
-<p>当事务A执行第一个select的时候，事务B已经提交了，而事务C还没有提交，那么此时的read-view为【200】，300</p>
-<p><strong>版本链比对规则：</strong> </p>
-<ol>
-<li><p>如果 row 的 trx_id 落在绿色部分( trx_id&lt;min_id )，表示这个版本是已提交的事务生成的，这个数据是可见的； </p>
-</li>
-<li><p>如果 row 的 trx_id 落在红色部分( trx_id&gt;max_id )，表示这个版本是由将来启动的事务生成的，是不可见的(若 </p>
-</li>
-</ol>
-<p>row 的 trx_id 就是当前自己的事务是可见的）；</p>
-<ol start="3">
-<li>如果 row 的 trx_id 落在黄色部分(min_id &lt;=trx_id&lt;= max_id)，那就包括两种情况 </li>
-</ol>
-<p>​        a. 若 row 的 trx_id 在视图数组中，表示这个版本是由还没提交的事务生成的，不可见(若 row 的 trx_id 就是当前自己的事务是可见的)； </p>
-<p>​        b. 若 row 的 trx_id 不在视图数组中，表示这个版本是已经提交了的事务生成的，可见。</p>
-<p><strong>删除的情况</strong>：</p>
-<p>对于删除的情况可以认为是update的特殊情况，会将版本链上最新的数据复制一份，然后将trx_id修改成删除操作的 trx_id，同时在该条记录的头信息（record header）里的（deleted_flag）标记位写上true，来表示当前记录已经被删除，在查询时按照上面的规则查到对应的记录如果delete_flag标记位为true，意味着记录已被删除，则不返回数据。</p>
-<p><strong>注意：</strong></p>
-<p>begin/start transaction 命令并不是一个事务的起点，在执行到它们之后的第一个修改操作InnoDB表的语句， </p>
-<p>事务才真正启动，才会向mysql申请事务id，mysql内部是严格按照事务的启动顺序来分配事务id的。 </p>
-<h2><span id="加锁">加锁</span></h2><p>串行化隔离级别为了保证较高的隔离性是通过将所有操 作加锁互斥来实现的。</p>
-
+<h1><span id="反射可以做什么">反射可以做什么</span></h1><p>反射允许我们在程序运行时，取得任何一个已知class的内部信息，包括其属性，方法等，并可以在运行时改变他们呢。</p>
+<p>获取class对象的五种方式：</p>
+<h1><span id="反射的具体实现">反射的具体实现</span></h1>
               
             </div>
             <hr/>
@@ -344,7 +303,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
 
@@ -359,7 +318,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/mysql%E4%BA%8B%E5%8A%A1/">#mysql事务</a>
+        <a href="/tags/java%E5%9F%BA%E7%A1%80/">#java基础</a>
       
     </div>
   
@@ -371,8 +330,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>mysql事务隔离性的实现</div>
-      <div>http://example.com/2022/06/13/mvcc介绍/</div>
+      <div>java 反射</div>
+      <div>http://example.com/2022/07/17/java-反射/</div>
     </div>
     <div class="license-meta">
       
@@ -384,7 +343,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年6月13日</div>
+          <div>2022年7月17日</div>
         </div>
       
       
@@ -414,18 +373,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/14/mysql%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" title="mysql事务隔离级别">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">mysql事务隔离级别</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/01/postgresql%E5%9F%BA%E7%A1%80/" title="postgresql索引基础">
-                        <span class="hidden-mobile">postgresql索引基础</span>
+                      <a href="/2022/07/17/isAssignableFrom-%E5%92%8Cinstanceof/" title="isAssignableFrom()">
+                        <span class="hidden-mobile">isAssignableFrom()</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
