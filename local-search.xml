@@ -8,7 +8,7 @@
     <link href="/2022/08/18/springCloud%E4%B9%8BFeign%E6%90%AD%E5%BB%BA/"/>
     <url>/2022/08/18/springCloud%E4%B9%8BFeign%E6%90%AD%E5%BB%BA/</url>
     
-    <content type="html"><![CDATA[<h1><span id="feign是什么">Feign是什么？</span></h1><ul><li><a href="https://so.csdn.net/so/search?q=Feign&spm=1001.2101.3001.7020">Feign</a>是Netflix开发的一款声明式服务调用组件</li><li>Feign可以帮助我们更快捷、优雅地调用HTTP API。</li><li>Feign 是 Spring Cloud Netflix 模块的子模块，它是 Spring Cloud 对 Netflix Feign 的二次封装，主要负责 Spring Cloud 的服务调用功能。</li></ul><h1><span id="springcloud-集成feign">SpringCloud 集成Feign</span></h1><ol><li>搭建Eureka Client</li></ol>]]></content>
+    <content type="html"><![CDATA[<h1><span id="feign是什么">Feign是什么？</span></h1><ul><li><a href="https://so.csdn.net/so/search?q=Feign&spm=1001.2101.3001.7020">Feign</a>是Netflix开发的一款声明式服务调用组件</li><li>Feign可以帮助我们更快捷、优雅地调用HTTP API。</li><li>Feign 是 Spring Cloud Netflix 模块的子模块，它是 Spring Cloud 对 Netflix Feign 的二次封装，主要负责 Spring Cloud 的服务调用功能。</li></ul><h1><span id="springcloud-集成feign">SpringCloud 集成Feign</span></h1><ol><li><p>搭建Eureka Client</p></li><li><p>引入依赖</p></li></ol><p>3.</p>]]></content>
     
     
     <categories>
