@@ -4,6 +4,120 @@
   
   
   <entry>
+    <title>springCloud之Feign搭建</title>
+    <link href="/2022/08/18/springCloud%E4%B9%8BFeign%E6%90%AD%E5%BB%BA/"/>
+    <url>/2022/08/18/springCloud%E4%B9%8BFeign%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="feign是什么">Feign是什么？</span></h1><ul><li><a href="https://so.csdn.net/so/search?q=Feign&spm=1001.2101.3001.7020">Feign</a>是Netflix开发的一款声明式服务调用组件</li><li>Feign可以帮助我们更快捷、优雅地调用HTTP API。</li><li>Feign 是 Spring Cloud Netflix 模块的子模块，它是 Spring Cloud 对 Netflix Feign 的二次封装，主要负责 Spring Cloud 的服务调用功能。</li></ul><h1><span id="springcloud-集成feign">SpringCloud 集成Feign</span></h1><ol><li>搭建Eureka Client</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>springCloud</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分布式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>springCloud之Eureka搭建</title>
+    <link href="/2022/08/17/springCloud%E4%B9%8BEureka%E6%90%AD%E5%BB%BA/"/>
+    <url>/2022/08/17/springCloud%E4%B9%8BEureka%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="eureka是什么">Eureka是什么？</span></h1><ul><li>Eureka是 Netflix 公司开发的一款开源的服务注册与发现组件。</li><li>Spring Cloud 将 Eureka 与 Netflix 中的其他开源服务组件（例如 Ribbon、Feign 以及 Hystrix 等）一起整合进 Spring Cloud Netflix 模块中，整合后的组件全称为 Spring Cloud Netflix Eureka。</li><li>Eureka 是 Spring Cloud Netflix 模块的子模块，它是 Spring Cloud 对 Netflix Eureka 的二次封装，主要负责 Spring Cloud 的服务注册与发现功能。</li></ul><h1><span id="eureka-两大组件">Eureka 两大组件</span></h1><p>Eureka 采用 CS（Client/Server，客户端/服务器） 架构，它包括以下两大组件：</p><ul><li><p><strong>Eureka Server</strong>：Eureka 服务注册中心，主要用于提供服务注册功能。当微服务启动时，会将自己的服务注册到 Eureka Server。Eureka Server 维护了一个可用服务列表，存储了所有注册到 Eureka Server 的可用服务的信息，这些可用服务可以在 Eureka Server 的管理界面中直观看到。</p></li><li><p><strong>Eureka Client</strong>：Eureka 客户端，通常指的是微服务系统中各个微服务，主要用于和 Eureka Server 进行交互。在微服务应用启动后，Eureka Client 会向 Eureka Server 发送心跳（默认周期为 30 秒）。若 Eureka Server 在多个心跳周期内没有接收到某个 Eureka Client 的心跳，Eureka Server 将它从可用服务列表中移除（默认 90 秒</p></li></ul><h1><span id="eureka-自我保护机制">Eureka 自我保护机制</span></h1><h2><span id="原理">原理</span></h2><ul><li>默认情况下,EurekaClient会定时向EurekaServer端发送心跳，如果EurekaServer在一定时间内没有收到EurekaClient发送的心跳，便会把该实例从注册服务列表中剔除（默认是90秒</li><li>但是在短时间内丢失大量的实例心跳，这时候EurekaServer会开启自我保护机制，<a href="https://so.csdn.net/so/search?q=Eureka&spm=1001.2101.3001.7020">Eureka</a>不会踢出该服务。</li></ul><h2><span id="产生原因">产生原因</span></h2><p>为了防止EurekaClient正常运行，但是与EurekaServer网络不通的情况下，EurekaServer不会对EurekaClient服务进行剔除。</p><h2><span id="何时使用">何时使用</span></h2><p>本地环境建议禁止自我保护，生产环境建议开启自我保护。</p><h1><span id="eureka-server搭建">Eureka Server搭建</span></h1><p>参考<a href="https://github.com/spring-cloud-samples/eureka">GitHub - spring-cloud-samples/eureka</a></p><ul><li><p>Step1: 新建一个springBoot项目</p></li><li><p>Step2: 修改依赖</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java">plugins&#123;<br>id <span class="hljs-string">&#x27;org.springframework.boot&#x27;</span> version <span class="hljs-string">&#x27;2.6.1&#x27;</span><br>id <span class="hljs-string">&#x27;io.spring.dependency-management&#x27;</span> version <span class="hljs-string">&#x27;1.0.8.RELEASE&#x27;</span><br>id <span class="hljs-string">&#x27;java&#x27;</span><br>&#125;<br><br>ext &#123;<br>set(<span class="hljs-string">&#x27;springCloudVersion&#x27;</span>, <span class="hljs-string">&quot;2021.0.0&quot;</span>)<br>name = <span class="hljs-string">&#x27;Eureka Server&#x27;</span><br>description = <span class="hljs-string">&#x27;Eureka Server demo project&#x27;</span><br>version=<span class="hljs-string">&#x27;0.0.1-SNAPSHOT&#x27;</span><br>sourceEncoding=<span class="hljs-string">&#x27;UTF-8&#x27;</span><br>&#125;<br><br>repositories &#123;<br>mavenCentral()<br>maven &#123; url <span class="hljs-string">&#x27;https://repo.spring.io/release/&#x27;</span> &#125;<br>maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-snapshot-local&quot;</span> &#125;<br>maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-milestone-local&quot;</span> &#125;<br>maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-release-local&quot;</span> &#125;<br>maven &#123; url <span class="hljs-string">&quot;https://repo.springsource.org/plugins-release&quot;</span> &#125;<br>&#125;<br><br>dependencyManagement &#123;<br>imports &#123;<br>mavenBom <span class="hljs-string">&quot;org.springframework.cloud:spring-cloud-dependencies:$&#123;springCloudVersion&#125;&quot;</span><br>&#125;<br>&#125;<br><br>dependencies &#123;<br>implementation <span class="hljs-string">&#x27;org.springframework.cloud:spring-cloud-starter-netflix-eureka-server&#x27;</span><br>testImplementation <span class="hljs-string">&#x27;org.springframework.boot:spring-boot-starter-test&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure></li><li><p>Step3: application配置</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml">server.port: 8761<br><br>eureka.instance.hostname: localhost<br>#eureka可以同时作为服务端和客户端，这里禁用掉他客户端的能力<br>eureka.client.registerWithEureka: false<br>eureka.client.fetchRegistry: false<br>eureka.client.serviceUrl.defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/<br><br>#关闭自我保护机制，以确保注册中心将不可用的实例及时正确剔除<br>eureka.server.enable-self-preservation=false<br></code></pre></td></tr></table></figure></li><li><p>step4.启动类加上@EnableEurekaServer注解</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><span class="hljs-keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableEurekaServer</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>&#123;<br><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    SpringApplication.run(Application.class, args);<br>  &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure></li></ul><h1><span id="eureka-client搭建">Eureka Client搭建</span></h1><ul><li><p>Step1: 新建一个springBoot项目</p></li><li><p>Step2: 修改依赖</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java">plugins&#123;<br>id <span class="hljs-string">&#x27;org.springframework.boot&#x27;</span> version <span class="hljs-string">&#x27;2.6.1&#x27;</span><br>id <span class="hljs-string">&#x27;io.spring.dependency-management&#x27;</span> version <span class="hljs-string">&#x27;1.0.8.RELEASE&#x27;</span><br>id <span class="hljs-string">&#x27;java&#x27;</span><br>&#125;<br><br>ext &#123;<br>set(<span class="hljs-string">&#x27;springCloudVersion&#x27;</span>, <span class="hljs-string">&quot;2021.0.0&quot;</span>)<br>name = <span class="hljs-string">&#x27;Eureka Server&#x27;</span><br>description = <span class="hljs-string">&#x27;Eureka Server demo project&#x27;</span><br>version=<span class="hljs-string">&#x27;0.0.1-SNAPSHOT&#x27;</span><br>    <br>sourceEncoding=<span class="hljs-string">&#x27;UTF-8&#x27;</span><br>&#125;<br><br>repositories &#123;<br>mavenCentral()<br>maven &#123; url <span class="hljs-string">&#x27;https://repo.spring.io/release/&#x27;</span> &#125;<br>maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-snapshot-local&quot;</span> &#125;<br>maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-milestone-local&quot;</span> &#125;<br>maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-release-local&quot;</span> &#125;<br>maven &#123; url <span class="hljs-string">&quot;https://repo.springsource.org/plugins-release&quot;</span> &#125;<br>&#125;<br><br>dependencyManagement &#123;<br>imports &#123;<br>mavenBom <span class="hljs-string">&quot;org.springframework.cloud:spring-cloud-dependencies:$&#123;springCloudVersion&#125;&quot;</span><br>&#125;<br>&#125;<br><br>dependencies &#123;<br>implementation <span class="hljs-string">&#x27;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&#x27;</span><br>implementation <span class="hljs-string">&#x27;org.springframework.boot:spring-boot-starter-web&#x27;</span><br><br>testImplementation <span class="hljs-string">&#x27;org.springframework.boot:spring-boot-starter-test&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure></li><li><p>Step3: application配置</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">spring.application.name: micro-weather-eureka-client<br>eureka.client.serviceUrl.defaultZone: http:<span class="hljs-comment">//localhost:8761//eureka/</span><br></code></pre></td></tr></table></figure></li><li><p>step4.启动类加上@EnableDiscoveryClient注解</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><span class="hljs-keyword">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableDiscoveryClient</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    SpringApplication.run(Application.class, args);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>springCloud</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>微服务</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>springCloud</title>
+    <link href="/2022/08/17/springCloud/"/>
+    <url>/2022/08/17/springCloud/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="springcloud">springcloud</span></h1><h2><span id="springcloud和springboot">springCloud和springboot</span></h2><ul><li>springCloud 是基于Springboot 构建的，他里面的每个子项目就是一个springboot项目</li></ul><p>spring cloud config</p><ul><li>配置中心，利用gi t</li></ul><p>访问服务的方式</p><ul><li>通过url访问服务 : <a href="http://localhost:8081/weather/cityId/101280101">http://localhost:8081/weather/cityId/101280101</a>: ip地址+端口号+资源的位置<ul><li>缺点：<ul><li>IP地址需要绑定主机，而且是固定的，动态的就不行</li><li>IP难记</li><li>2个IP很难做负载均衡</li></ul></li></ul></li><li>服务的注册和发现：用名称来访问 eueka<ul><li>名字好记</li><li>一个名字可以映射到多个IP</li></ul></li></ul><p>![image-20220817224413639](/Users/panyurou/Library/Application Support/typora-user-images/image-20220817224413639.png)</p><p>负载均衡器在客户端</p><p>![image-20220817224557171](/Users/panyurou/Library/Application Support/typora-user-images/image-20220817224557171.png)</p><p>![image-20220817224619763](/Users/panyurou/Library/Application Support/typora-user-images/image-20220817224619763.png)</p><p>负载均衡器在服务端</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>微服务项目实战</title>
+    <link href="/2022/08/17/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/"/>
+    <url>/2022/08/17/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</url>
+    
+    <content type="html"><![CDATA[<ul><li>msa-weather- city-server:  城市列表的获取</li><li>msa-weather- collection-server: 天气数据采集微服务：定时任务获取到不同城市的天气信息，写入redis</li><li>msa-weather- data-server: 天气数据APi，根据city_id/cityName获取city的天气</li><li>msa-weather- report-server: 用户访问后，页面的展示</li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>单体架构的优缺点</title>
+    <link href="/2022/08/17/%E5%8D%95%E4%BD%93%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9/"/>
+    <url>/2022/08/17/%E5%8D%95%E4%BD%93%E6%9E%B6%E6%9E%84%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="单体架构的优缺点">单体架构的优缺点</span></h1><p>优点：</p><ul><li><p>部署简单：只有一个包</p></li><li><p>技术单一：同一个架构来说，基本上是一个一种技术，类似springboot + java</p></li><li><p>用人成本低：因为只需要一种技术</p></li></ul><p>缺点：</p><ul><li><p>代码结构混乱：业务复杂，导致代码量很大，管理会越来越困难。</p></li><li><p>开发效率低：开发人员同时维护同一套代码，很难避免代码冲突。开发过程中会伴随解决冲突，严重影响开发效率。</p></li><li><p>排查解决问题成本高：线上发现了bug，可能bu g很简单，但是由于只有一套代码，需要编译打包上线，成本很高。</p></li><li><p>监控很难：很多功能点，杂在一个系统中。</p></li></ul><h1><span id="微服务">微服务</span></h1><ul><li>由很多服务组成，每个服务都可以独立部署，每个服务之间以一种轻量级的通讯方式进行交互，例如http。这些服务之间没有很强的技术关联，可以A用java，B用Go.</li><li>设计原则：<ul><li>拆分足够的微。颗粒太大，没法发挥微服务的优势，颗粒太小，管理混乱。</li><li>轻量级通信。rest，消息中间件</li><li>领域驱动原则。比如客户是一个领域，表单是一个领域</li><li>单一指责。服务应该尽可能不依赖其他服务，边界应该足够清晰，而且接口应该妥善设计，隐藏内部细节。</li><li>DevOps</li><li>不限技术栈。比如mongo, pg</li></ul></li><li>如何设计：<ul><li>服务拆分</li><li>服务注册。多个服务间的通信，需要一个服务注册机制。服务启动的时候，要将服务注册到注册中心；服务中心和微服务之间通过某种机制关联，例如心跳机制；不同服务之间可以进行发现，从服务注册中心，获取要调用的服务的信息。</li><li>服务消费，调用其他服务，调用方相当于是服务消费者，被调用方是服务供应商</li><li>统一入口，服务数量多起来之后，每一个消费者要记住所有服务的名称是比较困难的，所以需要一个统一的入口，我们只需要知道入口的名称，而不需要知道具体服务提供者的名称。</li><li>配置的管理。配置文件里写上不同服务需要的配置，不同服务去做个性化配置。</li><li>熔断机制：某个微服务出现异常时（请求反应慢或宕机），其整个流程还是可以友好的进行下去。即向调用方返回一个符合预期的、可处理的备选响应(FallBack)，而不是长时间的等待或者抛出调用方无法处理的异常，这样就可以保证调用方的线程不会被长时间、无厘头滴占用，从而保护整个系统，避免崩溃。</li><li>自动扩展：服务可以根据当前附在状况可以自动扩展。比如当前有10个实例，当负荷突然增大，比如请求数增大，可以自动扩展成20个。</li></ul></li><li>拆分的意义<ul><li>易于实现：服务更小，代码更少，更加利于理解，实现。</li><li>易于维护：更少的代码，更容易维护</li><li>易于部署：每个服务都是轻量级实现，jar包比较小</li><li>易于更新：服务之间都是隔离的，所以每个服务都可以独立更新，不会影响其他服务。</li></ul></li><li>拆分的方法<ul><li>横向拆分。数据采集，数据存储，数据查询，数据展示</li><li>纵向拆分。基础设施层，领域层，应用层，用户界面</li><li>使用DDD。不同的领域</li></ul></li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>postgresql的区别</title>
+    <link href="/2022/08/16/postgresql%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <url>/2022/08/16/postgresql%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    
+    <content type="html"><![CDATA[<p>postgreSQL 和 mysql的对比</p><ul><li><p>PostgreSQL是进程模式，MySQL是线程模式。进程模式对多CPU利用率比较高。</p></li><li><p>事务的支持：PostgreSQL支持事务的强一致性，事务保证性好，完全支持ACID特性。MySQL只有innodb引擎支持事务，mysiam不支持事务。</p></li><li><p>分区的实现：MySQL分区表的实现要优于PG的基于继承表的分区实现，主要体现在分区个数达到上千上万后的处理性能差异较大。</p></li><li><p>PG主表采用堆表存放，MySQL采用索引组织表，能够支持比MySQL更大的数据量。</p></li><li><p>MySQL不支持XML 数据类型，PostgreSQL支持</p></li><li><p>PostgreSQL完全免费，而且是BSD协议，如果把PostgreSQL改一改，然后再拿去卖钱，也没有人管你，这一点很重要，这表明了PostgreSQL数据库不会被其他公司控制。相反，MySQL现在主要是被Oracle公司控制。</p></li></ul><p> postgresql 和Mongoldb对比</p><ul><li>postgresql是关系型数据库，Mongoldb 是非关系型数据库，</li><li>postgresql支持多表联合查询，mongoDB不支持多Collection联合查询</li><li>mongodb的优势就是文档存储，业务经常变动，需要不时的添加字段，那么mongodb比较适合</li></ul><p>Redis:</p><ul><li>非常丰富的数据结构</li><li>Redis提供了事务的功能，可以保证一串 命令的原子性，中间不会被任何操作打断；</li><li>数据存在内存中，读写非常的高速，可以达到10w/s的频率</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>postgreSQL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>面试题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>kafka常见面试题</title>
     <link href="/2022/08/16/kafka%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <url>/2022/08/16/kafka%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
