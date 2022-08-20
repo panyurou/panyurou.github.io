@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>springCloud之zidongkuozhan</title>
+    <link href="/2022/08/20/springCloud%E4%B9%8B%E8%87%AA%E5%8A%A8%E6%89%A9%E5%B1%95/"/>
+    <url>/2022/08/20/springCloud%E4%B9%8B%E8%87%AA%E5%8A%A8%E6%89%A9%E5%B1%95/</url>
+    
+    <content type="html"><![CDATA[<h1><span id="什么是自动扩展">什么是自动扩展？</span></h1><p>自动扩展分为水平扩展和垂直扩展</p><ul><li>水平扩展就是一台机子不够了，就再搞几台</li><li>垂直扩展是硬件层面的，比如双核不够了，就4核</li></ul><h1><span id="自动扩展的意义">自动扩展的意义</span></h1><ul><li>提高了高可用性和容错能力。比如某个服务不可用了，自动扩展可以再增加一个新服务来替换他。</li><li>增加了可伸缩性。允许访问流量可以自动选择水平扩展的规模。</li><li>具有最佳使用率，并节约成本。按需使用，需要几台就部署几台</li><li>优先考虑某些服务或服务组。低优先级服务中实例移除，添加到高优先级的服务实例中。</li></ul><h1><span id="自动扩展的常用方法">自动扩展的常用方法</span></h1><ul><li>资源限制。比如Cpu使用率&gt;60%</li><li>特定时间段。指定时间去扩展</li><li>消息长度。消息队列的长度&gt; 设置的长度（此时队列里堆积的消息太多了）就去扩展</li><li>业务事件。比如新产生了10笔订单，就增加一个实例</li><li>根据预测<ul><li>历史信息</li><li>当前趋势</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>springCloud</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>分布式</tag>
+      
+      <tag>自动扩展</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>springCloud之集成Hystrix</title>
     <link href="/2022/08/20/springCloud%E4%B9%8B%E9%9B%86%E6%88%90Hystrix/"/>
     <url>/2022/08/20/springCloud%E4%B9%8B%E9%9B%86%E6%88%90Hystrix/</url>
