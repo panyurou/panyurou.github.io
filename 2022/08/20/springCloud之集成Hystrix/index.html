@@ -16,27 +16,28 @@
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Eureka是什么？ Eureka是 Netflix 公司开发的一款开源的服务注册与发现组件。 Spring Cloud 将 Eureka 与 Netflix 中的其他开源服务组件（例如 Ribbon、Feign 以及 Hystrix 等）一起整合进 Spring Cloud Netflix 模块中，整合后的组件全称为 Spring Cloud Netflix Eureka。 Eureka 是 S">
+    <meta name="description" content="服务熔断什么是服务熔断？ 服务熔断就是对服务的调用执行熔断，对于后续的请求，不再调用目标服务，而是直接返回一个合理的信息，比如说请求量太大，返回一个”此时服务过载”，从而可以快速释放资源  保护系统   为什么会有这种熔断机制的出现?在微服务相互调用的时候可能会出现服务调用发生异常或调用超时,多此请求造成服务积压导致服务无法使用后接着级联导致调用此服务的消费者也出现异常或调用超时,最后导致整个系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="springCloud之Eureka搭建">
-<meta property="og:url" content="http://example.com/2022/08/17/springCloud%E4%B9%8BEureka%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:title" content="springCloud之集成Hystrix">
+<meta property="og:url" content="http://example.com/2022/08/20/springCloud%E4%B9%8B%E9%9B%86%E6%88%90Hystrix/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="Eureka是什么？ Eureka是 Netflix 公司开发的一款开源的服务注册与发现组件。 Spring Cloud 将 Eureka 与 Netflix 中的其他开源服务组件（例如 Ribbon、Feign 以及 Hystrix 等）一起整合进 Spring Cloud Netflix 模块中，整合后的组件全称为 Spring Cloud Netflix Eureka。 Eureka 是 S">
+<meta property="og:description" content="服务熔断什么是服务熔断？ 服务熔断就是对服务的调用执行熔断，对于后续的请求，不再调用目标服务，而是直接返回一个合理的信息，比如说请求量太大，返回一个”此时服务过载”，从而可以快速释放资源  保护系统   为什么会有这种熔断机制的出现?在微服务相互调用的时候可能会出现服务调用发生异常或调用超时,多此请求造成服务积压导致服务无法使用后接着级联导致调用此服务的消费者也出现异常或调用超时,最后导致整个系统">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5ap4xbr46j21ex0u0jvx.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5aordxc7lj21dz0u0434.jpg">
-<meta property="article:published_time" content="2022-08-17T15:02:31.000Z">
-<meta property="article:modified_time" content="2022-08-18T02:12:34.732Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5dkaubuqbj20iw07yjro.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5dbm2suxzj20lm08c74q.jpg">
+<meta property="article:published_time" content="2022-08-20T06:34:54.000Z">
+<meta property="article:modified_time" content="2022-08-20T13:52:20.605Z">
 <meta property="article:author" content="Panyurou">
-<meta property="article:tag" content="微服务">
+<meta property="article:tag" content="分布式">
+<meta property="article:tag" content="服务熔断">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5ap4xbr46j21ex0u0jvx.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5dkaubuqbj20iw07yjro.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>springCloud之Eureka搭建 - 楼上有只喵</title>
+  <title>springCloud之集成Hystrix - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="springCloud之Eureka搭建"></span>
+            <span id="subtitle" data-typed-text="springCloud之集成Hystrix"></span>
           
         </div>
 
@@ -210,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-17 23:02" pubdate>
-          2022年8月17日 晚上
+        <time datetime="2022-08-20 14:34" pubdate>
+          2022年8月20日 下午
         </time>
       </span>
     
@@ -223,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5k 字
+          3.6k 字
         
       </span>
     
@@ -235,7 +236,7 @@
         
         
           <!-- compatible with older versions-->
-          16 分钟
+          12 分钟
         
       </span>
     
@@ -273,55 +274,97 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">springCloud之Eureka搭建</h1>
+            <h1 style="display: none">springCloud之集成Hystrix</h1>
             
             <div class="markdown-body">
               
-              <h1><span id="eureka是什么">Eureka是什么？</span></h1><ul>
-<li>Eureka是 Netflix 公司开发的一款开源的服务注册与发现组件。</li>
-<li>Spring Cloud 将 Eureka 与 Netflix 中的其他开源服务组件（例如 Ribbon、Feign 以及 Hystrix 等）一起整合进 Spring Cloud Netflix 模块中，整合后的组件全称为 Spring Cloud Netflix Eureka。</li>
-<li>Eureka 是 Spring Cloud Netflix 模块的子模块，它是 Spring Cloud 对 Netflix Eureka 的二次封装，主要负责 Spring Cloud 的服务注册与发现功能。</li>
+              <h1><span id="服务熔断">服务熔断</span></h1><h2><span id="什么是服务熔断">什么是服务熔断？</span></h2><ul>
+<li><p>服务熔断就是对服务的调用执行熔断，对于后续的请求，不再调用目标服务，而是直接返回一个合理的信息，比如说请求量太大，返回一个”此时服务过载”，从而可以快速释放资源</p>
+</li>
+<li><p>保护系统</p>
+</li>
 </ul>
-<h1><span id="eureka-两大组件">Eureka 两大组件</span></h1><p>Eureka 采用 CS（Client/Server，客户端/服务器） 架构，它包括以下两大组件：</p>
+<h2><span id="为什么会有这种熔断机制的出现">为什么会有这种熔断机制的出现?</span></h2><p>在微服务相互调用的时候可能会出现服务调用发生异常或调用超时,多此请求造成服务积压导致服务无法使用后接着级联导致调用此服务的消费者也出现异常或调用超时,最后导致整个系统的全部崩溃.这就是雪崩效应.</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E7%BA%A7%E8%81%94&spm=1001.2101.3001.7020">级联</a>(失败)雪崩：一个服务失败，导致整条链路的服务都失败的情形。</p>
+</blockquote>
+<h2><span id="熔断的意义">熔断的意义？</span></h2><ul>
+<li>让系统更加稳定</li>
+<li>减少性能损耗<ul>
+<li>响应很简单，所以产生的性能很小。</li>
+<li>用户知道服务有问题了，就不再调用，避免一直重试，也可以减少性能损耗。</li>
+</ul>
+</li>
+<li>及时响应。不需要其他计算，直接就可以返回一个简单的响应。</li>
+<li>阀值可定制，比如请求到达10000，就开启熔断器</li>
+</ul>
+<h2><span id="熔断器的功能">熔断器的功能</span></h2><ul>
+<li>异常处理。需要可以根据异常的类型，去处理异常</li>
+<li>日志记录。记录失败的数目，才可以开启熔断</li>
+<li>测试失败的操作。周期性的检查来测试服务是否健康。</li>
+<li>手动复位。管理员可以强行关闭断路器，重置故障的计数器</li>
+<li>并发。断路器可以支持大并发量</li>
+<li>加速断路：检测出问题的速度要快，及时响应</li>
+<li>重试失败请求：在服务可用时，可以安排重试</li>
+</ul>
+<h2><span id="熔断和降级的区别">熔断和降级的区别</span></h2><p>相同点：</p>
 <ul>
-<li><p><strong>Eureka Server</strong>：Eureka 服务注册中心，主要用于提供服务注册功能。当微服务启动时，会将自己的服务注册到 Eureka Server。Eureka Server 维护了一个可用服务列表，存储了所有注册到 Eureka Server 的可用服务的信息，这些可用服务可以在 Eureka Server 的管理界面中直观看到。</p>
-</li>
-<li><p><strong>Eureka Client</strong>：Eureka 客户端，通常指的是微服务系统中各个微服务，主要用于和 Eureka Server 进行交互。在微服务应用启动后，Eureka Client 会向 Eureka Server 发送心跳（默认周期为 30 秒）。若 Eureka Server 在多个心跳周期内没有接收到某个 Eureka Client 的心跳，Eureka Server 将它从可用服务列表中移除（默认 90 秒</p>
-</li>
+<li>目的一致。通过技术手段来保护系统</li>
+<li>表现类似：让用户体验到某些服务暂时不可用</li>
+<li>粒度相同：都是基于服务的</li>
 </ul>
-<h1><span id="eureka-自我保护机制">Eureka 自我保护机制</span></h1><h2><span id="原理">原理</span></h2><ul>
-<li>默认情况下,EurekaClient会定时向EurekaServer端发送心跳，如果EurekaServer在一定时间内没有收到EurekaClient发送的心跳，便会把该实例从注册服务列表中剔除（默认是90秒</li>
-<li>但是在短时间内丢失大量的实例心跳，这时候EurekaServer会开启自我保护机制，<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Eureka&spm=1001.2101.3001.7020">Eureka</a>不会踢出该服务。</li>
-</ul>
-<h2><span id="产生原因">产生原因</span></h2><p>为了防止EurekaClient正常运行，但是与EurekaServer网络不通的情况下，EurekaServer不会对EurekaClient服务进行剔除。</p>
-<h2><span id="何时使用">何时使用</span></h2><p>本地环境建议禁止自我保护，生产环境建议开启自我保护。</p>
-<h1><span id="eureka-server搭建">Eureka Server搭建</span></h1><p>参考<a target="_blank" rel="noopener" href="https://github.com/spring-cloud-samples/eureka">GitHub - spring-cloud-samples/eureka</a></p>
+<p>不同点</p>
 <ul>
-<li><p>Step1: 新建一个springBoot项目</p>
+<li>触发条件不同<ul>
+<li>服务熔断：服务熔断由链路上某个服务故障引起的</li>
+<li>服务降级，整体负荷来考虑。比如：原本有一个系统可以承载100个请求，但是后面由于请求数降低，相应的服务数量也需要降低</li>
+</ul>
 </li>
-<li><p>Step2: 修改依赖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java">plugins&#123;<br>	id <span class="hljs-string">&#x27;org.springframework.boot&#x27;</span> version <span class="hljs-string">&#x27;2.6.1&#x27;</span><br>	id <span class="hljs-string">&#x27;io.spring.dependency-management&#x27;</span> version <span class="hljs-string">&#x27;1.0.8.RELEASE&#x27;</span><br>	id <span class="hljs-string">&#x27;java&#x27;</span><br>&#125;<br><br>ext &#123;<br>	set(<span class="hljs-string">&#x27;springCloudVersion&#x27;</span>, <span class="hljs-string">&quot;2021.0.0&quot;</span>)<br>	name = <span class="hljs-string">&#x27;Eureka Server&#x27;</span><br>	description = <span class="hljs-string">&#x27;Eureka Server demo project&#x27;</span><br>	version=<span class="hljs-string">&#x27;0.0.1-SNAPSHOT&#x27;</span><br>	sourceEncoding=<span class="hljs-string">&#x27;UTF-8&#x27;</span><br>&#125;<br><br>repositories &#123;<br>	mavenCentral()<br>	maven &#123; url <span class="hljs-string">&#x27;https://repo.spring.io/release/&#x27;</span> &#125;<br>	maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-snapshot-local&quot;</span> &#125;<br>	maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-milestone-local&quot;</span> &#125;<br>	maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-release-local&quot;</span> &#125;<br>	maven &#123; url <span class="hljs-string">&quot;https://repo.springsource.org/plugins-release&quot;</span> &#125;<br>&#125;<br><br>dependencyManagement &#123;<br>	imports &#123;<br>		mavenBom <span class="hljs-string">&quot;org.springframework.cloud:spring-cloud-dependencies:$&#123;springCloudVersion&#125;&quot;</span><br>	&#125;<br>&#125;<br><br>dependencies &#123;<br>	implementation <span class="hljs-string">&#x27;org.springframework.cloud:spring-cloud-starter-netflix-eureka-server&#x27;</span><br>	testImplementation <span class="hljs-string">&#x27;org.springframework.boot:spring-boot-starter-test&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li><p>Step3: application配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml">server.port: 8761<br><br>eureka.instance.hostname: localhost<br>#eureka可以同时作为服务端和客户端，这里禁用掉他客户端的能力<br>eureka.client.registerWithEureka: false<br>eureka.client.fetchRegistry: false<br>eureka.client.serviceUrl.defaultZone: http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/<br><br>#关闭自我保护机制，以确保注册中心将不可用的实例及时正确剔除<br>eureka.server.enable-self-preservation=false<br></code></pre></td></tr></table></figure></li>
-<li><p>step4.启动类加上@EnableEurekaServer注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><span class="hljs-keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableEurekaServer</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>&#123;<br><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    SpringApplication.run(Application.class, args);<br>  &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure></li>
-<li><p>启动成功后，访问<a target="_blank" rel="noopener" href="http://localhost:8761/">Eureka</a>可以看到如下页面，可以看出此时还没有实例注册到该服务上。</p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5ap4xbr46j21ex0u0jvx.jpg" srcset="/img/loading.gif" lazyload></p>
+<li>管理目标层级不同<ul>
+<li>服务熔断：服务熔断是一个框架层次的处理，</li>
+<li>服务降级：服务降级是业务层次的处理。降级一般是从外围服务开始</li>
+</ul>
 </li>
 </ul>
-<h1><span id="eureka-client搭建">Eureka Client搭建</span></h1><ul>
-<li><p>Step1: 新建一个springBoot项目</p>
-</li>
-<li><p>Step2: 修改依赖</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java">plugins&#123;<br>	id <span class="hljs-string">&#x27;org.springframework.boot&#x27;</span> version <span class="hljs-string">&#x27;2.6.1&#x27;</span><br>	id <span class="hljs-string">&#x27;io.spring.dependency-management&#x27;</span> version <span class="hljs-string">&#x27;1.0.8.RELEASE&#x27;</span><br>	id <span class="hljs-string">&#x27;java&#x27;</span><br>&#125;<br><br>ext &#123;<br>	set(<span class="hljs-string">&#x27;springCloudVersion&#x27;</span>, <span class="hljs-string">&quot;2021.0.0&quot;</span>)<br>	name = <span class="hljs-string">&#x27;Eureka Server&#x27;</span><br>	description = <span class="hljs-string">&#x27;Eureka Server demo project&#x27;</span><br>	version=<span class="hljs-string">&#x27;0.0.1-SNAPSHOT&#x27;</span><br>    <br>	sourceEncoding=<span class="hljs-string">&#x27;UTF-8&#x27;</span><br>&#125;<br><br>repositories &#123;<br>	mavenCentral()<br>	maven &#123; url <span class="hljs-string">&#x27;https://repo.spring.io/release/&#x27;</span> &#125;<br>	maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-snapshot-local&quot;</span> &#125;<br>	maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-milestone-local&quot;</span> &#125;<br>	maven &#123; url <span class="hljs-string">&quot;https://repo.spring.io/libs-release-local&quot;</span> &#125;<br>	maven &#123; url <span class="hljs-string">&quot;https://repo.springsource.org/plugins-release&quot;</span> &#125;<br>&#125;<br><br>dependencyManagement &#123;<br>	imports &#123;<br>		mavenBom <span class="hljs-string">&quot;org.springframework.cloud:spring-cloud-dependencies:$&#123;springCloudVersion&#125;&quot;</span><br>	&#125;<br>&#125;<br><br>dependencies &#123;<br>	implementation <span class="hljs-string">&#x27;org.springframework.cloud:spring-cloud-starter-netflix-eureka-client&#x27;</span><br>	implementation <span class="hljs-string">&#x27;org.springframework.boot:spring-boot-starter-web&#x27;</span><br><br>	testImplementation <span class="hljs-string">&#x27;org.springframework.boot:spring-boot-starter-test&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li><p>Step3: application配置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">spring.application.name: micro-weather-eureka-client<br>eureka.client.serviceUrl.defaultZone: http:<span class="hljs-comment">//localhost:8761//eureka/</span><br></code></pre></td></tr></table></figure></li>
-<li><p>step4.启动类加上@EnableDiscoveryClient注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><span class="hljs-keyword">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableDiscoveryClient</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    SpringApplication.run(Application.class, args);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
-<li><p>刷新</p>
-<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5aordxc7lj21dz0u0434.jpg" srcset="/img/loading.gif" lazyload></p>
-</li>
+<h1><span id="hystrix">hystrix</span></h1><h2><span id="hystrix是什么">hystrix是什么？</span></h2><ul>
+<li>Feign是Netflix开发的一款服务容错和保护组件</li>
 </ul>
+<h2><span id="springcloud-集成hystrix">SpringCloud 集成hystrix</span></h2><ol>
+<li><p>搭建Eureka Client并集成Feign ：<a target="_blank" rel="noopener" href="https://panyurou.github.io/2022/08/18/springCloud%E4%B9%8BFeign%E6%90%AD%E5%BB%BA/">springCloud之Feign搭建 - 楼上有只喵 (panyurou.github.io)</a></p>
+</li>
+<li><p>导入依赖</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">implementation <span class="hljs-string">&#x27;org.springframework.cloud:spring-cloud-starter-netflix-hystrix&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>启动类加上@EnableCircuitBreaker注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><span class="hljs-keyword">import</span> org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;<br><span class="hljs-keyword">import</span> org.springframework.cloud.client.discovery.EnableDiscoveryClient;<br><span class="hljs-keyword">import</span> org.springframework.cloud.openfeign.EnableFeignClients;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableDiscoveryClient</span><br><span class="hljs-meta">@EnableFeignClients</span><br><span class="hljs-meta">@EnableCircuitBreaker</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Application</span> </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    SpringApplication.run(Application.class, args);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>properties修改配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml">server.port=8085<br>spring.application.name: micro-weather-eureka-client-feign-hystrix<br>eureka.client.serviceUrl.defaultZone: http://localhost:8761//eureka/<br>feign.client.config.feignName.connectTimeout: 5000<br>feign.client.config.feignName.readTimeout: 5000<br><br># 开启feign.hystrix<br>feign.hystrix.enabled=true<br></code></pre></td></tr></table></figure></li>
+<li><p>修改CityClient</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FeignClient(name=&quot;micro-weather-city-eureka&quot;, fallback = CityClientFallBack.class)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">CityClient</span> </span>&#123;<br>  <span class="hljs-meta">@RequestMapping(&quot;/cities&quot;)</span><br>  <span class="hljs-function">String <span class="hljs-title">listCity</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p> 定义CityClientFallBack实现CityClient</p>
+</li>
+</ol>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather.service;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CityClientFallBack</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">CityClient</span></span>&#123;<br>  <span class="hljs-meta">@Override</span><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">listCity</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;City is empty!&quot;</span>;<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><p>访问<a target="_blank" rel="noopener" href="http://localhost:8085/cities">localhost:8085/cities</a></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5dkaubuqbj20iw07yjro.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;"></li>
+</ol>
+<p><strong>另一种实现方式</strong></p>
+<ol>
+<li><p>修改业务类，使用@HystrixCommand(fallbackMethod=XXX)，指明熔断时调用的方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather.controller;<br><br><span class="hljs-keyword">import</span> com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;<br><span class="hljs-keyword">import</span> com.pyr.spring.cloud.weather.service.CityClient;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RestController;<br><br><span class="hljs-meta">@RestController</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CityController</span> </span>&#123;<br>  <span class="hljs-meta">@Autowired</span><br>  <span class="hljs-keyword">private</span> CityClient cityClient;<br><br>  <span class="hljs-meta">@RequestMapping(&quot;/cities&quot;)</span><br>  <span class="hljs-meta">@HystrixCommand(fallbackMethod=&quot;defaultCities&quot;)</span><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">listCity</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">return</span> cityClient.listCity();<br>  &#125;<br><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">defaultCities</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Micro weather city eureka is down!&quot;</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p>CityClient不需要修改</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.pyr.spring.cloud.weather.service;<br><br><span class="hljs-keyword">import</span> org.springframework.cloud.openfeign.FeignClient;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;<br><br><span class="hljs-meta">@FeignClient(name=&quot;micro-weather-city-eureka&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">CityClient</span> </span>&#123;<br>  <span class="hljs-meta">@RequestMapping(&quot;/cities&quot;)</span><br>  <span class="hljs-function">String <span class="hljs-title">listCity</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<ol start="5">
+<li><p>停止micro-weather-city-eureka服务，访问<a target="_blank" rel="noopener" href="http://localhost:8085/cities">localhost:8085/cities</a></p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5dbm2suxzj20lm08c74q.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;"></li>
+</ol>
+<p>注：这种方式不需要添加</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">feign.hystrix.enabled=<span class="hljs-keyword">true</span><br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -354,7 +397,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">#微服务</a>
+        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>
+      
+        <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/">#服务熔断</a>
       
     </div>
   
@@ -366,8 +411,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>springCloud之Eureka搭建</div>
-      <div>http://example.com/2022/08/17/springCloud之Eureka搭建/</div>
+      <div>springCloud之集成Hystrix</div>
+      <div>http://example.com/2022/08/20/springCloud之集成Hystrix/</div>
     </div>
     <div class="license-meta">
       
@@ -379,7 +424,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月17日</div>
+          <div>2022年8月20日</div>
         </div>
       
       
@@ -409,18 +454,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/18/springCloud%E4%B9%8BFeign%E6%90%AD%E5%BB%BA/" title="springCloud之集成Feign">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">springCloud之集成Feign</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/17/springCloud/" title="springCloud">
-                        <span class="hidden-mobile">springCloud</span>
+                      <a href="/2022/08/18/springCloud%E4%B9%8B%E9%9B%86%E6%88%90SpringCloud-Config/" title="springCloud之集成SpringCloud Config">
+                        <span class="hidden-mobile">springCloud之集成SpringCloud Config</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
