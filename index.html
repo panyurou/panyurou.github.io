@@ -223,15 +223,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/08/20/springCloud%E4%B9%8B%E8%87%AA%E5%8A%A8%E6%89%A9%E5%B1%95/" target="_self">
-          springCloud之zidongkuozhan
+        <a href="/2022/08/23/springCloud%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/" target="_self">
+          springCloud面试题整理
         </a>
       </h1>
 
-      <a class="index-excerpt" href="/2022/08/20/springCloud%E4%B9%8B%E8%87%AA%E5%8A%A8%E6%89%A9%E5%B1%95/" target="_self">
+      <a class="index-excerpt" href="/2022/08/23/springCloud%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/" target="_self">
         <div>
           
-          什么是自动扩展？自动扩展分为水平扩展和垂直扩展  水平扩展就是一台机子不够了，就再搞几台 垂直扩展是硬件层面的，比如双核不够了，就4核  自动扩展的意义 提高了高可用性和容错能力。比如某个服务不可用了，自动扩展可以再增加一个新服务来替换他。 增加了可伸缩性。允许访问流量可以自动选择水平扩展的规模。 具有最佳使用率，并节约成本。按需使用，需要几台就部署几台 优先考虑某些服务或服务组。低优先级服务中实
+          Ribbon 和 Feign 的区别和联系 相同点：二者都是Netflix开发的，可以用来实现服务间的调用以及负载均衡。Feign 是在 Ribbon的基础上进行了一次改进，是一个使用起来更加方便的 HTTP 客户端。  调用方式不同  ribbon是一个基于 HTTP 和 TCP 客户端的负载均衡的工具。简单来说，rubbon &#x3D; 负载均衡+ restTemplate，需要自己构建请求，步骤相当
         </div>
       </a>
 
@@ -239,8 +239,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-20 21:52" pubdate>
-              2022-08-20
+            <time datetime="2022-08-23 09:39" pubdate>
+              2022-08-23
             </time>
           </div>
         
@@ -272,384 +272,9 @@
             
               <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>
             
-              <a href="/tags/%E8%87%AA%E5%8A%A8%E6%89%A9%E5%B1%95/">#自动扩展</a>
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">#面试题</a>
             
           </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/20/springCloud%E4%B9%8B%E9%9B%86%E6%88%90Hystrix/" target="_self">
-          springCloud之集成Hystrix
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/08/20/springCloud%E4%B9%8B%E9%9B%86%E6%88%90Hystrix/" target="_self">
-        <div>
-          
-          服务熔断什么是服务熔断？ 服务熔断就是对服务的调用执行熔断，对于后续的请求，不再调用目标服务，而是直接返回一个合理的信息，比如说请求量太大，返回一个”此时服务过载”，从而可以快速释放资源  保护系统   为什么会有这种熔断机制的出现?在微服务相互调用的时候可能会出现服务调用发生异常或调用超时,多此请求造成服务积压导致服务无法使用后接着级联导致调用此服务的消费者也出现异常或调用超时,最后导致整个系统
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-20 14:34" pubdate>
-              2022-08-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/springCloud/" class="category-chain-item">springCloud</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>
-            
-              <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD/">#服务熔断</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/18/springCloud%E4%B9%8B%E9%9B%86%E6%88%90SpringCloud-Config/" target="_self">
-          springCloud之集成SpringCloud Config
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/08/18/springCloud%E4%B9%8B%E9%9B%86%E6%88%90SpringCloud-Config/" target="_self">
-        <div>
-          
-          集中化配置为什么要集中化配置？ 微服务数量多，配置多 手工管理配置繁琐  配置分类 按照来源，分为：源代码，文件，数据库连接，服务调用等 按照配置环境，分为开发环境，测试环境，生产环境 集成阶段，编译，打包，运行  配置中心的要求 面向可配置的编码：避免硬编码，设置常量，运行时可读取 个理性：生产环境的配置和测试环境配置不一样 一致性：相同部署环境下，应该配置相同 集中化配置：分布式环境下，应用的
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-18 17:37" pubdate>
-              2022-08-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/springCloud/" class="category-chain-item">springCloud</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>
-            
-              <a href="/tags/%E9%9B%86%E4%B8%AD%E5%8C%96%E9%85%8D%E7%BD%AE/">#集中化配置</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/18/springCloud%E4%B9%8BZuul%E6%90%AD%E5%BB%BA/" target="_self">
-          springCloud之集成Zuul
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/08/18/springCloud%E4%B9%8BZuul%E6%90%AD%E5%BB%BA/" target="_self">
-        <div>
-          
-          API 网关API网关是什么？在微服务架构中，每个微服务通常会以RESTFUL API的形式对外提供服务，API网关就是集合多个API，统一API入口， 优点和缺点好处 集合多个API 统一API入口 为微服务提供额外的安全层 支持混合通信协议  坏处 在架构上需要考虑更多的管理，比如哪些API放在哪个网关上 路由上需要进行统一的配置 可能引发单点故障，API是一个独立的入口，很容易出现高并发，设
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-18 14:06" pubdate>
-              2022-08-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/springCloud/" class="category-chain-item">springCloud</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/18/springCloud%E4%B9%8BFeign%E6%90%AD%E5%BB%BA/" target="_self">
-          springCloud之集成Feign
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/08/18/springCloud%E4%B9%8BFeign%E6%90%AD%E5%BB%BA/" target="_self">
-        <div>
-          
-          Feign是什么？ Feign是Netflix开发的一款声明式服务调用组件 Feign可以帮助我们更快捷、优雅地调用HTTP API。 Feign 是 Spring Cloud Netflix 模块的子模块，它是 Spring Cloud 对 Netflix Feign 的二次封装，主要负责 Spring Cloud 的服务调用功能。  SpringCloud 集成Feign 搭建Eureka C
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-18 09:13" pubdate>
-              2022-08-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/springCloud/" class="category-chain-item">springCloud</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">#分布式</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/17/springCloud%E4%B9%8BEureka%E6%90%AD%E5%BB%BA/" target="_self">
-          springCloud之Eureka搭建
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/08/17/springCloud%E4%B9%8BEureka%E6%90%AD%E5%BB%BA/" target="_self">
-        <div>
-          
-          Eureka是什么？ Eureka是 Netflix 公司开发的一款开源的服务注册与发现组件。 Spring Cloud 将 Eureka 与 Netflix 中的其他开源服务组件（例如 Ribbon、Feign 以及 Hystrix 等）一起整合进 Spring Cloud Netflix 模块中，整合后的组件全称为 Spring Cloud Netflix Eureka。 Eureka 是 S
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-17 23:02" pubdate>
-              2022-08-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/springCloud/" class="category-chain-item">springCloud</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">#微服务</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/17/springCloud/" target="_self">
-          springCloud
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/08/17/springCloud/" target="_self">
-        <div>
-          
-          springcloudspringCloud和springboot springCloud 是基于Springboot 构建的，他里面的每个子项目就是一个springboot项目  spring cloud config  配置中心，利用gi t  访问服务的方式  通过url访问服务 : http:&#x2F;&#x2F;localhost:8081&#x2F;weather&#x2F;cityId&#x2F;101280101: ip地址+端
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-17 14:06" pubdate>
-              2022-08-17
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/17/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" target="_self">
-          微服务项目实战
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/08/17/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" target="_self">
-        <div>
-          
-          msa-weather- city-server:  城市列表的获取 msa-weather- collection-server: 天气数据采集微服务：定时任务获取到不同城市的天气信息，写入redis msa-weather- data-server: 天气数据APi，根据city_id&#x2F;cityName获取city的天气 msa-weather- report-server: 用户访问后，页
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-17 11:56" pubdate>
-              2022-08-17
-            </time>
-          </div>
-        
-        
         
       </div>
     </article>
@@ -695,7 +320,7 @@
       <h1 class="index-header">
         
         <a href="/2022/08/16/postgresql%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_self">
-          postgresql的区别
+          postgreSQL、mysql、Mongoldb、redis的对比
         </a>
       </h1>
 
@@ -742,6 +367,426 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">#面试题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/16/kafka%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          kafka常见面试题
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/08/16/kafka%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+        <div>
+          
+          kafka和RabbitMq的对比 应用场景上：  RabbitMQ,遵循AMQP协议，用在实时的对可靠性要求比较高的消息传递上。 kafka它主要用于处理活跃的流式数据,大数据量的数据处理上。   在架构模型上：  RabbitMQ遵循AMQP协议，RabbitMQ的broker由Exchange,Binding,queue组成。其中exchange和binding组成了消息的路由键；客户端Pr
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-16 14:48" pubdate>
+              2022-08-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/kaaka/" class="category-chain-item">kaaka</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">#面试题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/16/java-%E4%BB%A3%E7%90%86/" target="_self">
+          java 代理
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/08/16/java-%E4%BB%A3%E7%90%86/" target="_self">
+        <div>
+          
+          代理 代理是一种设计模式  定义：通过代理对象访问目标对象。 好处：可以在不修改目标对象的基础上，扩展目标对象的功能   代理类可以分为静态代理和动态代理。 1.静态代理和动态代理静态代理 定义： 通过声明一个明确的代理类来访问源对象。需要和目标对象一起实现相同的接口或者继承相同的父类。  特点：在编译器确定代理对象，在程序运行前，代理类的.class文件就已经存在了。  优点：可以做到不修改目标
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-16 11:11" pubdate>
+              2022-08-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">#面试题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/16/Spring%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          Spring面试题
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/08/16/Spring%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+        <div>
+          
+          Spring是什么？有什么优点 Spring是一个轻量级的java框架，Spring的核心是IOC和AOP。主要的优点包括： 方便解耦，简化开发。通过Spring提供的IOC容器，我们可以将对象的依赖关系交给Spring进行控制，避免硬编码造成的耦合性高。简单来说，之前，如果我们controller 需要一个service，则需要new service，现在是Spring发现你的controlle
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-16 09:51" pubdate>
+              2022-08-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%A1%86%E6%9E%B6/">#框架</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/16/java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          java基础面试题
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/08/16/java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+        <div>
+          
+          死锁 定义：死锁是两个或两个以上的线程互相都持有对方所需要的资源，导致这些线程都处于等待状态。  死锁产生的条件：  互斥条件：一个资源只能被一个进程占用。 请求和保持条件：一个进程因请求被占用资源而发生阻塞时，对已获得的资源保持不变。 不剥夺条件：任何一个资源在没被该进程释放之前，其他线程都无法对他剥夺占用。 循环等待：当发生死锁时，所等待的线程会进入一个类似死循环，造成阻塞。   如何避免
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-16 09:28" pubdate>
+              2022-08-16
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">#面试题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/15/NIO-BIO-AIO/" target="_self">
+          NIO,BIO,AIO
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/08/15/NIO-BIO-AIO/" target="_self">
+        <div>
+          
+          1.BIO、NIO、AIO定义Java共支持3种网络编程模型IO模式  BIO：(blocking io）同步并阻塞（传统阻塞型），服务器实现模式为一个连接一个线程，即客户端有连接请求时，服务器就要启动一个线程进行处理，如果这个链接不做任何事，就容易造成不必要的线程开销。当一个线程调用 read() 或 write() 时，该线程被阻塞，直到有一些数据被读取，或数据完全写入。该线程在此期间不能再干
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-15 18:03" pubdate>
+              2022-08-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/java/" class="category-chain-item">java</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+          计算机网络面试题
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/08/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E8%AF%95%E9%A2%98/" target="_self">
+        <div>
+          
+          1. get和post的区别 表现形式 get 请求的数据会附在url之后，以？形式分割URL和传输的数据，参数之间以&amp;连接。 post请求的数据是提交在HTTP的包体中。   对数据长度的限制 get是通过URl提交数据，所以他的长度受浏览器的限制 post是没有数据长度的限制的，起限制作用的是：服务器的处理能力。   安全性 与post相比，Get安全性较差。get提交数据的时候，用户
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-15 15:21" pubdate>
+              2022-08-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">#面试题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/08/15/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/" target="_self">
+          三次握手
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/08/15/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/" target="_self">
+        <div>
+          
+          三次握手 定义：三次握手，顾名思义，就是客户端与服务端的三次通信  流程：    第一次握手：建立连接。客户端发送请求连接报文段，然后客户端进入SYN_SEND（连接请求）状态，等待服务端的确认。 第二次握手：服务端收到客户端的SYN报文段，对这个报文段进行确认，同时，自己还要发送请求建立连接信息，服务端要将所有的信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务端进入SY
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-15 11:28" pubdate>
+              2022-08-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/TCP/">#TCP</a>
             
           </div>
         
