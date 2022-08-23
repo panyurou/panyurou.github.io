@@ -4,7 +4,7 @@
   
   
   <entry>
-    <title>springCloud面试题整理</title>
+    <title>springCloud知识点整理</title>
     <link href="/2022/08/23/springCloud%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/"/>
     <url>/2022/08/23/springCloud%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/</url>
     
@@ -22,7 +22,7 @@
       
       <tag>分布式</tag>
       
-      <tag>面试题</tag>
+      <tag>整理</tag>
       
     </tags>
     
@@ -69,7 +69,7 @@
   
   
   <entry>
-    <title>kafka常见面试题</title>
+    <title>kafka知识点整理</title>
     <link href="/2022/08/16/kafka%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <url>/2022/08/16/kafka%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
     
@@ -85,7 +85,7 @@
     
     <tags>
       
-      <tag>面试题</tag>
+      <tag>整理</tag>
       
     </tags>
     
@@ -119,7 +119,7 @@
   
   
   <entry>
-    <title>Spring面试题</title>
+    <title>Spring知识点整理</title>
     <link href="/2022/08/16/Spring%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <url>/2022/08/16/Spring%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
     
@@ -135,7 +135,7 @@
     
     <tags>
       
-      <tag>框架</tag>
+      <tag>整理</tag>
       
     </tags>
     
@@ -144,7 +144,7 @@
   
   
   <entry>
-    <title>java基础面试题</title>
+    <title>java知识点整理</title>
     <link href="/2022/08/16/java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <url>/2022/08/16/java%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
     
@@ -160,7 +160,7 @@
     
     <tags>
       
-      <tag>面试题</tag>
+      <tag>整理</tag>
       
     </tags>
     
@@ -188,7 +188,7 @@
   
   
   <entry>
-    <title>计算机网络面试题</title>
+    <title>计算机网络知识点整理</title>
     <link href="/2022/08/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <url>/2022/08/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
     
@@ -204,7 +204,7 @@
     
     <tags>
       
-      <tag>面试题</tag>
+      <tag>整理</tag>
       
     </tags>
     
@@ -268,19 +268,6 @@
     <url>/2022/08/14/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/</url>
     
     <content type="html"><![CDATA[<p>User_setting 的表结构(last_visted_project_id)+ 切面(el-&gt; app -&gt;) </p><p>动态代理： c g li b+ jdk</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">InvocationHandler</span> ： 该类必须有接口<br></code></pre></td></tr></table></figure><p> c g li b：Enhancer ：是基于<strong>父子类</strong>的，被代理类（UserService）是父类，代 </p><p>理类是子类，代理对象就是代理类的实例对象</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">invoke</span><br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>springboot整合kafka</title>
-    <link href="/2022/08/14/springboot%E6%95%B4%E5%90%88kafka/"/>
-    <url>/2022/08/14/springboot%E6%95%B4%E5%90%88kafka/</url>
-    
-    <content type="html"><![CDATA[]]></content>
     
     
     
