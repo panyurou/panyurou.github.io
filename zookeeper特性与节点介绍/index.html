@@ -1,0 +1,1036 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Panyurou">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="zookeeper产生背景 单体向分布式服务转变，会产生多个节点间协同问题，如：   假设有3个节点，1个job，该job该由哪个节点执行？  若该job由节点1执行，要是1挂了，现在该2还是3执行？     上游和下游服务的发现，如：   上游挂了，下游怎么知道？ 下游服务新增，上游怎么知道？    多节点的协调问题，如：并发产生了请求，该怎么保证请求的幂等性？    由于节点自身协调不可靠，性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zookeeper特性与节点介绍">
+<meta property="og:url" content="http://example.com/zookeeper%E7%89%B9%E6%80%A7%E4%B8%8E%E8%8A%82%E7%82%B9%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:site_name" content="楼上有只喵">
+<meta property="og:description" content="zookeeper产生背景 单体向分布式服务转变，会产生多个节点间协同问题，如：   假设有3个节点，1个job，该job该由哪个节点执行？  若该job由节点1执行，要是1挂了，现在该2还是3执行？     上游和下游服务的发现，如：   上游挂了，下游怎么知道？ 下游服务新增，上游怎么知道？    多节点的协调问题，如：并发产生了请求，该怎么保证请求的幂等性？    由于节点自身协调不可靠，性">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gycegg0aihj30u00v0wgk.jpg">
+<meta property="og:image" content="http://example.com/Users/panyurou/Library/Application%20Support/typora-user-images/image-20220116230200083.png">
+<meta property="article:published_time" content="2021-09-22T14:43:51.000Z">
+<meta property="article:modified_time" content="2022-01-26T14:49:55.756Z">
+<meta property="article:author" content="Panyurou">
+<meta property="article:tag" content="分布式框架">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gycegg0aihj30u00v0wgk.jpg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>zookeeper特性与节点介绍 - 楼上有只喵</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>楼上有只喵</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/05.jpeg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="zookeeper特性与节点介绍"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-09-22 22:43" pubdate>
+          2021年9月22日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          6.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">zookeeper特性与节点介绍</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h1><h2 id="产生背景"><a href="#产生背景" class="headerlink" title="产生背景"></a>产生背景</h2><ol>
+<li><p>单体向分布式服务转变，会产生多个节点间协同问题，如：</p>
+<blockquote>
+<ul>
+<li><p>假设有3个节点，1个job，该job该由哪个节点执行？</p>
+</li>
+<li><p>若该job由节点1执行，要是1挂了，现在该2还是3执行？</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>上游和下游服务的发现，如：</p>
+<blockquote>
+<ul>
+<li>上游挂了，下游怎么知道？</li>
+<li>下游服务新增，上游怎么知道？</li>
+</ul>
+</blockquote>
+</li>
+<li><p>多节点的协调问题，如：并发产生了请求，该怎么保证请求的幂等性？</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>由于节点自身协调不可靠，性能不高，故需要一个独立服务来做协调，他必须可靠且保证性能。</strong></p>
+</blockquote>
+<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ol>
+<li>zookeeper是用于分布式服务的协调服务。</li>
+<li>它对外公布了一组简单的API，分布式应用程序可以基于这些API，用于同步节点状态，节点配置，服务注册等信息</li>
+<li>它支持java和c两种语言。</li>
+</ol>
+<h2 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h2><p>从设计模式的角度理解，zookeeper基于观察者模式。他负责存储和管路大家都关心的数据，然后接受观察，一旦数据状态发生变化，zookeeper就通知注册者。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li>zookeeper是由一个leader和多个follower组成的集群</li>
+<li>半数以上节点存活，zookeeper 即可以正常服务</li>
+<li>每个server的数据一致</li>
+<li>来自同一个client的请求依次执行</li>
+<li>原子性，数据更新要么成功，要么失败</li>
+<li>zookeeper数据量少，故同步快，一定时间内，client可以读到最新数据</li>
+</ol>
+<h2 id="zookeeper-启动"><a href="#zookeeper-启动" class="headerlink" title="zookeeper 启动"></a>zookeeper 启动</h2><ul>
+<li>官网下载最新版本 <a target="_blank" rel="noopener" href="https://www.apache.org/dyn/closer.lua/zookeeper/zookeeper-3.7.0/apache-zookeeper-3.7.0-bin.tar.gz">Apache Downloads</a>，并解压</li>
+<li>进入conf目录，拷贝默认配置  <code>cp zoo_sample.cfg   zoo.cfg</code></li>
+<li>进入bin目录，启动服务端<code>./zkServer.sh start</code></li>
+<li>进入bin目录，进入客户端<code>./zkCli.sh</code></li>
+</ul>
+<h2 id="常规配置文件说明"><a href="#常规配置文件说明" class="headerlink" title="常规配置文件说明"></a>常规配置文件说明</h2><blockquote>
+<p>tickTime&#x3D;2000   #zookeeper时间配置中的基本单位 (毫秒) </p>
+</blockquote>
+<blockquote>
+<p>initLimit&#x3D;10     #允许follower初始化连接到leader最大时长，它表示tickTime时间倍数 即:initLimit*tickTime</p>
+</blockquote>
+<blockquote>
+<p>syncLimit&#x3D;5 	#允许follower与leader数据同步最大时长,它表示tickTime时间倍数</p>
+</blockquote>
+<blockquote>
+<p>dataDir&#x3D;&#x2F;tmp&#x2F;zookeeper  #zookeper 数据存储目录</p>
+</blockquote>
+<blockquote>
+<p>clientPort&#x3D;2181  #对客户端提供的端口号</p>
+</blockquote>
+<blockquote>
+<p>maxClientCnxns&#x3D;60  #单个客户端与zookeeper最大并发连接数</p>
+</blockquote>
+<blockquote>
+<p>autopurge.snapRetainCount&#x3D;3. #保存的数据快照数量，之外的将会被清除</p>
+</blockquote>
+<blockquote>
+<p>autopurge.purgeInterval&#x3D;1  #自动触发清除任务时间间隔，小时为单位。默认为0，表示不自动清除。</p>
+</blockquote>
+<h2 id="客户端命令"><a href="#客户端命令" class="headerlink" title="客户端命令"></a>客户端命令</h2><ul>
+<li><p>close     关闭当前会话</p>
+</li>
+<li><p>connect host:port        重新连接指定Zookeeper服务</p>
+</li>
+<li><p>create [-s] [-e] [-c] [-t ttl] path [data] [acl]          创建节点</p>
+</li>
+<li><p>delete [-v version] path             删除节点，(不能存在子节点） </p>
+</li>
+<li><p>deleteall path [-b batch size]      删除路径及所有子节点</p>
+</li>
+<li><p>get [-s] [-w] path.        查看节点数据 -s 包含节点状态 -w 添加监听 </p>
+</li>
+<li><p>getAcl [-s] path.      列出子节点 -s状态 -R 递归查看所有子节点 -w 添加监听</p>
+</li>
+<li><p>history     查看执行的历史记录</p>
+</li>
+<li><p>redo cmdno  重复 执行命令，history 中命令编号确定</p>
+</li>
+<li><p>quit  退出客户端</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">1</span>] ls <span class="hljs-operator">/</span><br>[zookeeper]<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">2</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">/</span>node1<br>Created <span class="hljs-operator">/</span>node1<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">3</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>node1<br><span class="hljs-keyword">null</span><br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">4</span>] <span class="hljs-keyword">set</span> <span class="hljs-operator">/</span>node1 &quot;node1 value&quot;<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">5</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>node1<br>node1 <span class="hljs-keyword">value</span><br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">6</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1<br>Created <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">7</span>] <span class="hljs-keyword">set</span>  <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1 &quot;child1&quot;<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">8</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1 &quot;child1&quot;<br><span class="hljs-string">&#x27;get path [watch]&#x27;</span> has been deprecated. Please use <span class="hljs-string">&#x27;get [-s] [-w] path&#x27;</span> instead.<br>child1<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">9</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1<br>child1<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">10</span>] <span class="hljs-keyword">delete</span> <span class="hljs-operator">/</span>node1<br>Node <span class="hljs-keyword">not</span> <span class="hljs-keyword">empty</span>: <span class="hljs-operator">/</span>node1<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">11</span>] deleteall <span class="hljs-operator">/</span>node1<br>WATCHER::<br>WatchedEvent state:SyncConnected type:NodeDeleted path:<span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">12</span>] ls <span class="hljs-operator">/</span><br>[zookeeper]<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">13</span>] history<br><span class="hljs-number">3</span> <span class="hljs-operator">-</span> <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>node1<br><span class="hljs-number">4</span> <span class="hljs-operator">-</span> <span class="hljs-keyword">set</span> <span class="hljs-operator">/</span>node1 &quot;node1 value&quot;<br><span class="hljs-number">5</span> <span class="hljs-operator">-</span> <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>node1<br><span class="hljs-number">6</span> <span class="hljs-operator">-</span> <span class="hljs-keyword">create</span> <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1<br><span class="hljs-number">7</span> <span class="hljs-operator">-</span> <span class="hljs-keyword">set</span>  <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1 &quot;child1&quot;<br><span class="hljs-number">8</span> <span class="hljs-operator">-</span> <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1 &quot;child1&quot;<br><span class="hljs-number">9</span> <span class="hljs-operator">-</span> <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>node1<span class="hljs-operator">/</span>child1<br><span class="hljs-number">10</span> <span class="hljs-operator">-</span> <span class="hljs-keyword">delete</span> <span class="hljs-operator">/</span>node1<br><span class="hljs-number">11</span> <span class="hljs-operator">-</span> deleteall <span class="hljs-operator">/</span>node1<br><span class="hljs-number">12</span> <span class="hljs-operator">-</span> ls <span class="hljs-operator">/</span><br><span class="hljs-number">13</span> <span class="hljs-operator">-</span> history<br><br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">16</span>] redo <span class="hljs-number">2</span><br>Created <span class="hljs-operator">/</span>node1<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">17</span>] ls <span class="hljs-operator">/</span><br>[node1, zookeeper]<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">18</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>node1<br><span class="hljs-keyword">null</span><br>cZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x8</span><br>ctime <span class="hljs-operator">=</span> Thu Jan <span class="hljs-number">13</span> <span class="hljs-number">22</span>:<span class="hljs-number">49</span>:<span class="hljs-number">37</span> CST <span class="hljs-number">2022</span><br>mZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x8</span><br>mtime <span class="hljs-operator">=</span> Thu Jan <span class="hljs-number">13</span> <span class="hljs-number">22</span>:<span class="hljs-number">49</span>:<span class="hljs-number">37</span> CST <span class="hljs-number">2022</span><br>pZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x8</span><br>cversion <span class="hljs-operator">=</span> <span class="hljs-number">0</span><br>dataVersion <span class="hljs-operator">=</span> <span class="hljs-number">0</span><br>aclVersion <span class="hljs-operator">=</span> <span class="hljs-number">0</span><br>ephemeralOwner <span class="hljs-operator">=</span> <span class="hljs-number">0x0</span><br>dataLength <span class="hljs-operator">=</span> <span class="hljs-number">0</span><br>numChildren <span class="hljs-operator">=</span> <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="节点介绍"><a href="#节点介绍" class="headerlink" title="节点介绍"></a>节点介绍</h2><h3 id="数据基本单元"><a href="#数据基本单元" class="headerlink" title="数据基本单元"></a>数据基本单元</h3><ul>
+<li>zookeepe中的基本数据单元是——节点（znode）。节点之下可以包含子节点，最后以树级方式呈现。</li>
+</ul>
+<ul>
+<li>每个节点拥有唯一的路径path.</li>
+<li>客户端基于path上传节点数据，zookeepe收到数据后，会通知监听该节点的客户端（一个或多个）。</li>
+<li>之前，各个节点的数据是相互孤立的（也可以自己同步，但是没有zookeeper性能高，可靠）。现在，有了zookeeper,各节点的数据可以通过zookeeper可以得到一个高性能高可靠的同步。</li>
+</ul>
+<img src="https://tva1.sinaimg.cn/large/008i3skNly1gycegg0aihj30u00v0wgk.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;" />
+
+<h3 id="节点的结构"><a href="#节点的结构" class="headerlink" title="节点的结构"></a>节点的结构</h3><ul>
+<li><strong>path</strong>:唯一路径 </li>
+<li><strong>childNode</strong>：子节点</li>
+<li><strong>stat</strong>:状态属性:即path对应的值</li>
+<li><strong>type</strong>:节点类型</li>
+</ul>
+<h3 id="节点类型"><a href="#节点类型" class="headerlink" title="节点类型"></a>节点类型</h3><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">PERSISTENT</td>
+<td align="left">持久节点</td>
+</tr>
+<tr>
+<td align="left">PERSISTENT_SEQUENTIAL</td>
+<td align="left">持久序号节点</td>
+</tr>
+<tr>
+<td align="left">EPHEMERAL</td>
+<td align="left">临时节点(不可在拥有子节点)</td>
+</tr>
+<tr>
+<td align="left">EPHEMERAL_SEQUENTIAL</td>
+<td align="left">临时序号节点(不可在拥有子节点)</td>
+</tr>
+</tbody></table>
+<h4 id="PERSISTENT（持久节点）"><a href="#PERSISTENT（持久节点）" class="headerlink" title="PERSISTENT（持久节点）"></a>PERSISTENT（持久节点）</h4><ul>
+<li>持久化保存的节点，也是默认创建的</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-operator">/</span>test<br></code></pre></td></tr></table></figure>
+
+<h4 id="PERSISTENT-SEQUENTIAL-持久序号节点"><a href="#PERSISTENT-SEQUENTIAL-持久序号节点" class="headerlink" title="PERSISTENT_SEQUENTIAL(持久序号节点)"></a>PERSISTENT_SEQUENTIAL(持久序号节点)</h4><p>创建时zookeeper 会在路径上加上序号作为后缀，。非常适合用于分布式锁、分布式选举等场景。创建时添加 -s 参数即可。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>s  <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>seq<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">13</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<br>Created <span class="hljs-operator">/</span>temp0000000004<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">14</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<br>Created <span class="hljs-operator">/</span>temp0000000005<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">15</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<br>Created <span class="hljs-operator">/</span>temp0000000006<br></code></pre></td></tr></table></figure>
+
+<h4 id="EPHEMERAL（临时节点）"><a href="#EPHEMERAL（临时节点）" class="headerlink" title="EPHEMERAL（临时节点）"></a>EPHEMERAL（临时节点）</h4><ul>
+<li>只存在于当前会话，当对话断开后会被删除。创建的时候增加 -e</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>seq<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>适用于心跳，服务发现等场景。如下图当node1挂掉了，它zookeeper1中创建的临时节点和其存储的数据就会就会被删除，zookeeper1就知道node1挂掉了。</li>
+</ul>
+<img src="/Users/panyurou/Library/Application Support/typora-user-images/image-20220116230200083.png" srcset="/img/loading.gif" lazyload alt="image-20220116230200083" style="zoom:50%;" />
+
+<h4 id="EPHEMERAL-SEQUENTIAL（临时序号节点）"><a href="#EPHEMERAL-SEQUENTIAL（临时序号节点）" class="headerlink" title="EPHEMERAL_SEQUENTIAL（临时序号节点）"></a>EPHEMERAL_SEQUENTIAL（临时序号节点）</h4><p>与持久序号节点类似，不同之处在于EPHEMERAL_SEQUENTIAL是临时的会在会话断开后删除。创建时添加 -e -s </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>seq<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">2</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c1<br>Created <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c10000000000<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">3</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c1<br>Created <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c10000000001<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">4</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c1<br>Created <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c10000000002<br></code></pre></td></tr></table></figure>
+
+<h3 id="节点属性"><a href="#节点属性" class="headerlink" title="节点属性"></a>节点属性</h3><ul>
+<li>查看节点属性</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">stat <span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>属性说明</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sql">cZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x2</span>   #创建节点的事务ID<br>ctime <span class="hljs-operator">=</span> Mon Jan <span class="hljs-number">17</span> <span class="hljs-number">21</span>:<span class="hljs-number">09</span>:<span class="hljs-number">16</span> CST <span class="hljs-number">2022</span> #创建节点的时间<br>mZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x2</span> #修改当前节点数据的事务ID<br>mtime <span class="hljs-operator">=</span> Mon Jan <span class="hljs-number">17</span> <span class="hljs-number">21</span>:<span class="hljs-number">09</span>:<span class="hljs-number">16</span> CST <span class="hljs-number">2022</span> #最后修改时间<br>pZxid <span class="hljs-operator">=</span> <span class="hljs-number">0x5</span> #子节点变更（包括自节点的删除和增加，不包括修改）的事务ID<br>cversion <span class="hljs-operator">=</span> <span class="hljs-number">3</span>  #这表示对此znode的子节点进行的更改次数，只包括自节点的删除和增加<br>dataVersion <span class="hljs-operator">=</span> <span class="hljs-number">0</span> #数据版本，当前节点数据变更次数<br>aclVersion <span class="hljs-operator">=</span> <span class="hljs-number">0</span> #权限版本，变更次数<br>ephemeralOwner <span class="hljs-operator">=</span> <span class="hljs-number">0x0</span> #临时节点所属会话ID，永久节点值为<span class="hljs-number">0x0</span><br>dataLength <span class="hljs-operator">=</span> <span class="hljs-number">0</span> #数据长度<br>numChildren <span class="hljs-operator">=</span> <span class="hljs-number">3</span> #子节点数(不包括子子节点)<br></code></pre></td></tr></table></figure>
+
+<h3 id="节点的监听"><a href="#节点的监听" class="headerlink" title="节点的监听"></a>节点的监听</h3><p>客户添加 -w 参数可实时监听节点与子节点的变化，并且实时收到通知。非常适用保障分布式情况下的数据一致性。其使用方式如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ls -w path</td>
+<td align="left">监听子节点的变化（增，删）</td>
+</tr>
+<tr>
+<td align="left">get -w path</td>
+<td align="left">监听节点数据的变化</td>
+</tr>
+<tr>
+<td align="left">stat -w path</td>
+<td align="left">监听节点属性的变化</td>
+</tr>
+<tr>
+<td align="left">printwatches on|off</td>
+<td align="left">触发监听后，是否打印监听事件(默认on)</td>
+</tr>
+</tbody></table>
+<h4 id="监听节点数据的变化"><a href="#监听节点数据的变化" class="headerlink" title="监听节点数据的变化"></a>监听节点数据的变化</h4><ul>
+<li><p>step1：打开客户端A</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">get</span> <span class="hljs-operator">-</span>w  <span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Step2：打开客户端B:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> <span class="hljs-operator">/</span>temp &quot;aaa&quot;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>此时客户端A，出现：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">8</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">-</span>w  <span class="hljs-operator">/</span>temp<br><span class="hljs-keyword">null</span><br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">9</span>]<br>WATCHER::<br><br>WatchedEvent state:SyncConnected type:NodeDataChanged path:<span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>再次在客户端B输入：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> <span class="hljs-operator">/</span>temp &quot;ddd&quot;<br></code></pre></td></tr></table></figure>
+
+<p>此时可以发现，客户端A没有收到任何通知，故这里的watch是一次性的，第二次触发不再生效。</p>
+</li>
+</ul>
+<h4 id="监听子节点的变化"><a href="#监听子节点的变化" class="headerlink" title="监听子节点的变化"></a>监听子节点的变化</h4><ul>
+<li><p>step1：打开客户端A</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">ls <span class="hljs-operator">-</span>w  <span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Step2：打开客户端B:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">-</span>s <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>c1<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>此时客户端A，出现：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">9</span>] ls <span class="hljs-operator">-</span>w <span class="hljs-operator">/</span>temp<br>[c10000000000, c10000000001, c10000000002]<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">10</span>]<br>WATCHER::<br><br>WatchedEvent state:SyncConnected type:NodeChildrenChanged path:<span class="hljs-operator">/</span>temp<br></code></pre></td></tr></table></figure>
+
+<h3 id="ACL权限设置"><a href="#ACL权限设置" class="headerlink" title="ACL权限设置"></a>ACL权限设置</h3></li>
+<li><p>ACL全称为Access Control List（访问控制列表），用于控制资源的访问权限。   </p>
+</li>
+<li><p>ZooKeeper使用ACL来控制对其znode的防问。</p>
+</li>
+<li><p>基于<code>scheme:id:permission</code>的方式进行权限控制。scheme表示授权模式、id模式对应值、permission即具体的增删改权限位。</p>
+</li>
+</ul>
+<h4 id="scheme-授权模型"><a href="#scheme-授权模型" class="headerlink" title="scheme:授权模型"></a>scheme:授权模型</h4><table>
+<thead>
+<tr>
+<th align="left">方案</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">world</td>
+<td align="left">开放模式，world表示全世界都可以访问（这是默认设置）</td>
+</tr>
+<tr>
+<td align="left">ip</td>
+<td align="left">ip模式，限定客户端IP防问</td>
+</tr>
+<tr>
+<td align="left">auth</td>
+<td align="left">用户密码认证模式，只有在会话中添加了认证才可以防问</td>
+</tr>
+<tr>
+<td align="left">digest</td>
+<td align="left">与auth类似，区别在于auth用明文密码，而digest 用sha-1+base64加密后的密码。在实际使用中digest 更常见。</td>
+</tr>
+</tbody></table>
+<h4 id="permission权限位"><a href="#permission权限位" class="headerlink" title="permission权限位"></a><strong>permission权限位</strong></h4><table>
+<thead>
+<tr>
+<th align="left">权限位</th>
+<th align="left">权限</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">c</td>
+<td align="left">CREATE</td>
+<td align="left">可以创建子节点</td>
+</tr>
+<tr>
+<td align="left">d</td>
+<td align="left">DELETE</td>
+<td align="left">可以删除子节点（仅下一级节点）</td>
+</tr>
+<tr>
+<td align="left">r</td>
+<td align="left">READ</td>
+<td align="left">可以读取节点数据及显示子节点列表</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="left">WRITE</td>
+<td align="left">可以设置节点数据</td>
+</tr>
+<tr>
+<td align="left">a</td>
+<td align="left">ADMIN</td>
+<td align="left">可以设置节点访问控制列表权限</td>
+</tr>
+</tbody></table>
+<h4 id="acl-相关命令"><a href="#acl-相关命令" class="headerlink" title="acl 相关命令"></a>acl 相关命令</h4><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">使用方式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">getAcl</td>
+<td align="left">getAcl <path></td>
+<td align="left">读取ACL权限</td>
+</tr>
+<tr>
+<td align="left">setAcl</td>
+<td align="left">setAcl <path> <acl></td>
+<td align="left">设置ACL权限</td>
+</tr>
+<tr>
+<td align="left">addauth</td>
+<td align="left">addauth <scheme> <auth></td>
+<td align="left">添加认证用户</td>
+</tr>
+</tbody></table>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><ul>
+<li>world</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql">[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">11</span>] getAcl <span class="hljs-operator">/</span>temp<br><span class="hljs-string">&#x27;world,&#x27;</span>anyone<br>: cdrwa<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">12</span>] setAcl <span class="hljs-operator">/</span>temp world:anyone:rwa<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">13</span>] getAcl <span class="hljs-operator">/</span>temp<br><span class="hljs-string">&#x27;world,&#x27;</span>anyone<br>: rwa<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">14</span>] <span class="hljs-keyword">get</span> <span class="hljs-operator">/</span>temp<br>ddd<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">15</span>] <span class="hljs-keyword">set</span> <span class="hljs-operator">/</span>temp &quot;bbb&quot;<br>[zk: localhost:<span class="hljs-number">2181</span>(CONNECTED) <span class="hljs-number">16</span>] <span class="hljs-keyword">create</span> <span class="hljs-operator">-</span>e <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>t<br>Insufficient permission : <span class="hljs-operator">/</span>temp<span class="hljs-operator">/</span>t<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>IP</p>
+<p>语法： setAcl <path> ip:&lt;ip地址|地址段&gt;:&lt;权限位&gt;</p>
+</li>
+</ul>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">[zk: localhost<span class="hljs-function">:2181</span><span class="hljs-params">(CONNECTED)</span> 18] <span class="hljs-keyword">set</span>Acl <span class="hljs-string">/temp</span> ip<span class="hljs-function">:192.168.2.103</span><span class="hljs-function">:ra</span><br>[zk: localhost<span class="hljs-function">:2181</span><span class="hljs-params">(CONNECTED)</span> 19] getAcl <span class="hljs-string">/temp</span><br>Insufficient permission : <span class="hljs-string">/temp</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>auth</p>
+<p>语法： </p>
+<ol>
+<li>setAcl <path> auth:&lt;用户名&gt;:&lt;密码&gt;:&lt;权限位&gt;</li>
+<li>addauth digest &lt;用户名&gt;:&lt;密码&gt;</li>
+</ol>
+</li>
+<li><p>digest</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql">➜  <span class="hljs-operator">~</span> echo <span class="hljs-operator">-</span>n pyr:<span class="hljs-number">123456</span> <span class="hljs-operator">|</span> openssl dgst <span class="hljs-operator">-</span><span class="hljs-type">binary</span> <span class="hljs-operator">-</span>sha1 <span class="hljs-operator">|</span> openssl base64<br>zj9LbzdoKijw<span class="hljs-operator">/</span>kCo1pQJnXBFiq4<span class="hljs-operator">=</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs csharp">[<span class="hljs-meta">zk: localhost:2181(CONNECTED) 28</span>] create /temp2<br>Created /temp2<br>[<span class="hljs-meta">zk: localhost:2181(CONNECTED) 30</span>] getAcl /temp2<br><span class="hljs-string">&#x27;world,&#x27;</span>anyone<br>: cdrwa<br>[<span class="hljs-meta">zk: localhost:2181(CONNECTED) 31</span>] setAcl /temp2 digest:pyr:zj9LbzdoKijw/kCo1pQJnXBFiq4=:rwa<br>[<span class="hljs-meta">zk: localhost:2181(CONNECTED) 32</span>] getAcl /temp2<br>Insufficient permission : /temp2<br>[<span class="hljs-meta">zk: 127.0.0.1:2181(CONNECTED) 45</span>] addauth digest pyr:<span class="hljs-number">123456</span><br>[<span class="hljs-meta">zk: 127.0.0.1:2181(CONNECTED) 46</span>] <span class="hljs-keyword">get</span> /temp2<br><span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/zookeeper/" class="category-chain-item">zookeeper</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%A1%86%E6%9E%B6/">#分布式框架</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>zookeeper特性与节点介绍</div>
+      <div>http://example.com/zookeeper特性与节点介绍/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Panyurou</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年9月22日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/zookeeper%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8/" title="zookeeper客户端使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">zookeeper客户端使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
