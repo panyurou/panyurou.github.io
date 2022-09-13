@@ -16,25 +16,25 @@
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
   
-    <meta name="description" content="RabbitMQ如何保证消息不丢失？哪些环节会有丢消息的可能？   1，2，4三个场景，都是跨网络的，而跨网络就肯定会有丢消息的可能。 关于3这个环节，通常MQ存盘时都会先写入操作系统的缓存page cache中，然后再由操作系统异步的将消息写入硬盘。这个中间有个时间差，就可能会造成消息丢失。如果服务挂了，缓存中还没有来得及写入硬盘的消息就会丢失。这也是任何用户态的应用程序无法避免的。 对于任何M">
+    <meta name="description" content="RabbitMQ如何保证消息的可靠性？哪些环节会有丢消息的可能？RabbitMQ的消息零丢失方案 - 楼上有只喵 (panyurou.github.io) RabbitMQ怎么保证消息可靠性?1. 生产者保证消息正确发送到RibbitMQ?Kafka通过配置request.required.acks属性来确认消息的生产：  0 生产者将数据发送出去就不管了，不去等待任何返回。这种情况下数据传输效率">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RabbitMQ的消息零丢失方案">
-<meta property="og:url" content="http://example.com/RabbitMQ%E7%9A%84%E6%B6%88%E6%81%AF%E9%9B%B6%E4%B8%A2%E5%A4%B1%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:title" content="kafka的消息零丢失方案">
+<meta property="og:url" content="http://example.com/kafka%E7%9A%84%E6%B6%88%E6%81%AF%E9%9B%B6%E4%B8%A2%E5%A4%B1%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="RabbitMQ如何保证消息不丢失？哪些环节会有丢消息的可能？   1，2，4三个场景，都是跨网络的，而跨网络就肯定会有丢消息的可能。 关于3这个环节，通常MQ存盘时都会先写入操作系统的缓存page cache中，然后再由操作系统异步的将消息写入硬盘。这个中间有个时间差，就可能会造成消息丢失。如果服务挂了，缓存中还没有来得及写入硬盘的消息就会丢失。这也是任何用户态的应用程序无法避免的。 对于任何M">
+<meta property="og:description" content="RabbitMQ如何保证消息的可靠性？哪些环节会有丢消息的可能？RabbitMQ的消息零丢失方案 - 楼上有只喵 (panyurou.github.io) RabbitMQ怎么保证消息可靠性?1. 生产者保证消息正确发送到RibbitMQ?Kafka通过配置request.required.acks属性来确认消息的生产：  0 生产者将数据发送出去就不管了，不去等待任何返回。这种情况下数据传输效率">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h63pq7alokj219l0u0gpa.jpg">
-<meta property="article:published_time" content="2022-09-12T04:37:48.000Z">
-<meta property="article:modified_time" content="2022-09-12T05:31:27.266Z">
+<meta property="article:published_time" content="2022-09-13T02:05:03.000Z">
+<meta property="article:modified_time" content="2022-09-13T03:08:37.882Z">
 <meta property="article:author" content="Panyurou">
+<meta property="article:tag" content="MQ">
+<meta property="article:tag" content="消息可靠性">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h63pq7alokj219l0u0gpa.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>RabbitMQ的消息零丢失方案 - 楼上有只喵</title>
+  <title>kafka的消息零丢失方案 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="RabbitMQ的消息零丢失方案"></span>
+            <span id="subtitle" data-typed-text="kafka的消息零丢失方案"></span>
           
         </div>
 
@@ -208,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-12 12:37" pubdate>
-          2022年9月12日 下午
+        <time datetime="2022-09-13 10:05" pubdate>
+          2022年9月13日 上午
         </time>
       </span>
     
@@ -221,7 +221,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.3k 字
+          1k 字
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
           <!-- compatible with older versions-->
-          8 分钟
+          4 分钟
         
       </span>
     
@@ -271,86 +271,31 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">RabbitMQ的消息零丢失方案</h1>
+            <h1 style="display: none">kafka的消息零丢失方案</h1>
             
             <div class="markdown-body">
               
-              <h1 id="RabbitMQ如何保证消息不丢失？"><a href="#RabbitMQ如何保证消息不丢失？" class="headerlink" title="RabbitMQ如何保证消息不丢失？"></a>RabbitMQ如何保证消息不丢失？</h1><h2 id="哪些环节会有丢消息的可能？"><a href="#哪些环节会有丢消息的可能？" class="headerlink" title="哪些环节会有丢消息的可能？"></a>哪些环节会有丢消息的可能？</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h63pq7alokj219l0u0gpa.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;" />
-
+              <h1 id="RabbitMQ如何保证消息的可靠性？"><a href="#RabbitMQ如何保证消息的可靠性？" class="headerlink" title="RabbitMQ如何保证消息的可靠性？"></a>RabbitMQ如何保证消息的可靠性？</h1><h2 id="哪些环节会有丢消息的可能？"><a href="#哪些环节会有丢消息的可能？" class="headerlink" title="哪些环节会有丢消息的可能？"></a>哪些环节会有丢消息的可能？</h2><p><a target="_blank" rel="noopener" href="https://panyurou.github.io/RabbitMQ%E7%9A%84%E6%B6%88%E6%81%AF%E9%9B%B6%E4%B8%A2%E5%A4%B1%E6%96%B9%E6%A1%88/#%E5%93%AA%E4%BA%9B%E7%8E%AF%E8%8A%82%E4%BC%9A%E6%9C%89%E4%B8%A2%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E8%83%BD%EF%BC%9F">RabbitMQ的消息零丢失方案 - 楼上有只喵 (panyurou.github.io)</a></p>
+<h2 id="RabbitMQ怎么保证消息可靠性"><a href="#RabbitMQ怎么保证消息可靠性" class="headerlink" title="RabbitMQ怎么保证消息可靠性?"></a>RabbitMQ怎么保证消息可靠性?</h2><h3 id="1-生产者保证消息正确发送到RibbitMQ"><a href="#1-生产者保证消息正确发送到RibbitMQ" class="headerlink" title="1. 生产者保证消息正确发送到RibbitMQ?"></a>1. 生产者保证消息正确发送到RibbitMQ?</h3><p>Kafka通过配置request.required.acks属性来确认消息的生产：</p>
 <ul>
-<li>1，2，4三个场景，都是跨网络的，而跨网络就肯定会有丢消息的可能。</li>
-<li>关于3这个环节，通常MQ存盘时都会先写入操作系统的缓存page cache中，然后再由操作系统异步的将消息写入硬盘。这个中间有个时间差，就可能会造成消息丢失。如果服务挂了，缓存中还没有来得及写入硬盘的消息就会丢失。这也是任何用户态的应用程序无法避免的。</li>
-<li>对于任何MQ产品，都应该从这四个方面来考虑数据的安全性。那我们看看用RabbitMQ时要如何解决这个问题。</li>
+<li>0 生产者将数据发送出去就不管了，不去等待任何返回。这种情况下数据传输效率最高，但是数据可靠性确是最低的，存在丢消息：数据还没写入leader，leader就挂了</li>
+<li>1（默认） 数据发送到Kafka后，经过leader成功接收消息的的确认，就算是发送成功了。在这种情况下，如果leader宕机了，则会丢失数据。</li>
+<li>-1或all producer需要等待ISR中的所有副本都确认接收到数据后才算一次发送完成，可靠性最高。当ISR中所有副本都向Leader发送ACK时，leader才commit，这时候producer才能认为一个请求中的消息都commit了。这种性能不高，一般是金融级别或者和钱打交道的时候采用。</li>
 </ul>
-<h2 id="RabbitMQ消息零丢失方案"><a href="#RabbitMQ消息零丢失方案" class="headerlink" title="RabbitMQ消息零丢失方案?"></a>RabbitMQ消息零丢失方案?</h2><h3 id="1-生产者保证消息正确发送到RibbitMQ"><a href="#1-生产者保证消息正确发送到RibbitMQ" class="headerlink" title="1. 生产者保证消息正确发送到RibbitMQ?"></a>1. 生产者保证消息正确发送到RibbitMQ?</h3><ul>
-<li><p><strong>方案一：</strong>可以使用生产者确认机制。</p>
-<p>通过多次确认的方式，保证生产者的消息能够正确的发送到RabbitMQ中。RabbitMQ的生产者确认机制分为同步确认和异步确认。</p>
-<ul>
-<li><p>同步确认主要是通过在生产者端使用Channel.waitForConfirmsOrDie()指定一个等待确认的完成时间。</p>
-</li>
-<li><p>异步确认机制则是通过在生产者端注入两个回调确认函数。第一个函数是在生产者发送消息时调用，第二个函数则是生产者收到Broker的消息确认请求时调用。两个函数需要通过sequenceNumber自行完成消息的前后对应。sequenceNumber的生成方式需要通过channel的序列获取。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">channel.addConfirmListener(ConfirmCallback var1,ConfirmCallback var2)<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>方案二：</strong>手动事务</p>
-<ul>
-<li><p>手动事务机制主要有几个关键的方法： channel.txSelect() 开启事务；channel.txCommit() 提交事务； channel.txRollback() 回滚事务。用这几个方法来进行事务管理。比如在创建订单后开启事务，减库存成功后提交事务，失败时回滚。</p>
-</li>
-<li><p>这种方式需要手动控制事务逻辑，并且手动事务会对channel产生阻塞，造成吞吐量下降</p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-RabbitMQ-主从消息同步时不丢消息"><a href="#2-RabbitMQ-主从消息同步时不丢消息" class="headerlink" title="2. RabbitMQ 主从消息同步时不丢消息?"></a>2. <strong>RabbitMQ 主从消息同步时不丢消息</strong>?</h3><ul>
-<li>不使用普通集群模式， 使用镜像集群模式</li>
+<p><strong>避免消息丢失就可以将ack设置成-1或all</strong></p>
+<blockquote>
+<p>ISR**(InSyncRepli)** ：与leader保持一定同步程度的副本们（包括leader）。是replicas的一个子集</p>
+</blockquote>
+<h3 id="2-Kafka消息备份和同步"><a href="#2-Kafka消息备份和同步" class="headerlink" title="2. Kafka消息备份和同步"></a>2. Kafka消息备份和同步</h3><ul>
+<li>afka通过分区的多副本策略来解决消息的备份问题。在kafka中，实现副本的目的就是冗余备份，且仅仅是冗余备份，所有的读写请求都是由leader副本进行处理的。follower副本仅有一个功能，那就是从leader副本拉取消息，尽量让自己跟leader副本的内容一致。</li>
 <li>给包含重要消息的队列建立一个远端备份。</li>
 </ul>
-<blockquote>
-<ul>
-<li><p>普通集群模式</p>
-<ul>
-<li><strong>queue的消息</strong>，只会放在<strong>一个rabbtimq实例</strong>上。<strong>每个实例都同步queue的结构和queue消息的真正位置</strong>。</li>
-<li>消费的时候，实际上如果连接到了另外一个实例，那么那个实例会从queue所在实例上拉取数据过来。</li>
-<li>这种集群模式的消息可靠性不是很高。因为如果其中有个节点服务宕机了，那这个节点上的数据就无法消费了，需要等到这个节点服务恢复后才能消费。</li>
-</ul>
-</li>
-<li><p>镜像集群模式</p>
-<ul>
-<li><p>这种模式是在普通集群模式基础上的一种增强方案，这也就是RabbitMQ的官方HA高可用方案。</p>
-</li>
-<li><p>这种模式会在镜像节点中间主动进行消息同步，而不是在客户端拉取消息时临时同步。这种模式的消息可靠性更高，因为每个节点上都存着全量的消息。</p>
-</li>
-<li><p>他的弊端也是明显的，集群内部的网络带宽会被这种同步通讯大量的消耗，进而降低整个集群的性能。这种模式下，队列数量最好不要过多。</p>
-</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h3 id="3-RabbitMQ消息存盘不丢消息"><a href="#3-RabbitMQ消息存盘不丢消息" class="headerlink" title="3. RabbitMQ消息存盘不丢消息?"></a>3. RabbitMQ消息存盘不丢消息?</h3><p>对于Classic经典队列，直接将队列声明成为持久化队列即可。</p>
-<p>而新增的Quorum（[ˈkwɔrəm] 仲裁）队列和Stream队列，都是明显的持久化队列，能更好的保证服务端消息不会丢失。</p>
-<blockquote>
-<p>Quorum队列实现了持久化，多备份的FIFO队列，主要就是针对RabbitMQ的镜像模式设计的。大部分功能都是在Classic队列基础上做减法，比如不支持是非持久化的内存队列。某些功能（例如有害消息处理）是特定于仲裁队列的。</p>
-<p>Stream队列是RabbitMQ自3.9.0版本开始引入的一种新的数据队列类型，更适合于消费者多，读消息非常频繁的场景。</p>
-</blockquote>
-<blockquote>
-<p>毒消息是指消息一直不能被消费者正常消费(可能是由于消费者失败或者消费逻辑有问题等)，就会导致消息不断的重新入队，这样这些消息就成为了毒消息。这些读消息应该有保障机制进行标记并及时删除。Quorum队列会持续跟踪消息的失败投递尝试次数，并记录在”x-delivery-count”这样一个头部参数中。然后，就可以通过设置 Delivery limit参数来定制一个毒消息的删除策略。当消息的重复投递次数超过了Delivery limit参数阈值时，RabbitMQ就会删除这些毒消息。当然，如果配置了死信队列的话，就会进入对应的死信队列。</p>
-</blockquote>
-<h3 id="4-RabbitMQ消费者不丢失消息"><a href="#4-RabbitMQ消费者不丢失消息" class="headerlink" title="4. RabbitMQ消费者不丢失消息?"></a>4. <strong>RabbitMQ消费者不丢失消息</strong>?</h3><ul>
-<li><p>RabbitMQ在消费消息时可以指定是自动应答，还是手动应答。将RabbitMQ的应答模式设定为手动应答可以提高消息消费的可靠性。</p>
-</li>
-<li><p>设置了手动确认，则需要在业务处理成成功后，手动调用<code>channer.basicAck()</code>,如果出现异常则调用<code>channer.basicNAck()</code>,设置消息是重新返回队列，还是直接丢掉。</p>
-</li>
+<h3 id="3-Kafka消息存盘不丢消息"><a href="#3-Kafka消息存盘不丢消息" class="headerlink" title="3. Kafka消息存盘不丢消息?"></a>3. Kafka消息存盘不丢消息?</h3><p>Kafka提供消息持久化，所有数据都会立即被写入文件系统的持久化日志中。kafka一般不会删除消息，不管这些消息有没有被消费。只会根据配置的日志保留时间(log.retention.hours)确认消息多久被删除，默认保留最近一周的日志消息。</p>
+<h3 id="4-Kafka消费者不丢失消息"><a href="#4-Kafka消费者不丢失消息" class="headerlink" title="4. Kafka消费者不丢失消息?"></a>4. <strong>Kafka消费者不丢失消息</strong>?</h3><ul>
+<li>RabbitMQ在消费消息时可以指定是自动应答，还是手动应答。将Kafka的应答模式设定为手动应答可以提高消息消费的可靠性。</li>
+<li>设置了手动确认，则需要在业务处理成成功后，手动调用<code>consumer.commitSync()</code></li>
 </ul>
 <p><strong>最后，任何用户态的应用程序都无法保证绝对的数据安全，所以，备份与恢复的方案也需要考虑到。</strong></p>
-<h2 id="Consumer-Ack-消费端收到消息后的确认方式"><a href="#Consumer-Ack-消费端收到消息后的确认方式" class="headerlink" title="Consumer Ack 消费端收到消息后的确认方式"></a>Consumer Ack 消费端收到消息后的确认方式</h2><ol>
-<li><p>有三种确认方式</p>
-<ul>
-<li>自动确认 acknowledge &#x3D; “none”。 消息一旦到达consumer就会被确认，并将对应的message 从消息缓存中移除，实际场景中，很可能消息被收到，但是处理业务时异常，这种确认机制下，消息就会丢失。</li>
-<li>手动确认acknowledge &#x3D; “manual”。设置了手动确认，则需要在业务处理成成功后，手动调用<code>channer.basicAck()</code>,如果出现异常则调用<code>channer.basicNAck()</code>,设置消息是重新返回队列，还是直接丢掉。</li>
-<li>根据异常情况确认 acknowledge &#x3D; “auto”</li>
-</ul>
-</li>
-</ol>
 
               
             </div>
@@ -358,27 +303,15 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/rabbitMQ/" class="category-chain-item">rabbitMQ</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
+        <a href="/tags/MQ/">#MQ</a>
+      
+        <a href="/tags/%E6%B6%88%E6%81%AF%E5%8F%AF%E9%9D%A0%E6%80%A7/">#消息可靠性</a>
+      
     </div>
-  
   
 </div>
 
@@ -388,8 +321,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>RabbitMQ的消息零丢失方案</div>
-      <div>http://example.com/RabbitMQ的消息零丢失方案/</div>
+      <div>kafka的消息零丢失方案</div>
+      <div>http://example.com/kafka的消息零丢失方案/</div>
     </div>
     <div class="license-meta">
       
@@ -401,7 +334,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月12日</div>
+          <div>2022年9月13日</div>
         </div>
       
       
@@ -435,8 +368,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="RabbitMQ的高级特性">
-                        <span class="hidden-mobile">RabbitMQ的高级特性</span>
+                      <a href="/RabbitMQ%E7%9A%84%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/" title="RabbitMQ的消息零丢失方案">
+                        <span class="hidden-mobile">RabbitMQ的消息零丢失方案</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

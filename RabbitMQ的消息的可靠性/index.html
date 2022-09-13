@@ -16,32 +16,27 @@
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
   
-    <meta name="description" content="索引的本质 索引是帮助Mysql高效获取数据的排好序的数据结构  索引的数据结构二叉树：单边增长的场景会导致全表扫描。">
+    <meta name="description" content="RabbitMQ如何保证消息的可靠性？哪些环节会有丢消息的可能？  普通消息处理流程 消息生成者发送消息 MQ收到消息，将消息进行存储（持久化到硬盘）。 返回ACK给生产者 MQ push 消息给对应的消费者，然后等待消费者返回ACK 如果消息消费者在指定时间内成功返回ack，那么MQ认为消息消费成功，在存储中删除消息，即执行第6步；如果MQ在指定时间内没有收到ACK，则认为消息消费失败，会尝试重">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql索引介绍">
-<meta property="og:url" content="http://example.com/mysql%E7%B4%A2%E5%BC%95%E4%BB%8B%E7%BB%8D/index.html">
+<meta property="og:title" content="RabbitMQ的消息零丢失方案">
+<meta property="og:url" content="http://example.com/RabbitMQ%E7%9A%84%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="索引的本质 索引是帮助Mysql高效获取数据的排好序的数据结构  索引的数据结构二叉树：单边增长的场景会导致全表扫描。">
+<meta property="og:description" content="RabbitMQ如何保证消息的可靠性？哪些环节会有丢消息的可能？  普通消息处理流程 消息生成者发送消息 MQ收到消息，将消息进行存储（持久化到硬盘）。 返回ACK给生产者 MQ push 消息给对应的消费者，然后等待消费者返回ACK 如果消息消费者在指定时间内成功返回ack，那么MQ认为消息消费成功，在存储中删除消息，即执行第6步；如果MQ在指定时间内没有收到ACK，则认为消息消费失败，会尝试重">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoa8e7thzj30am0dkwek.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoabk973sj30dy08cjrf.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoaf7s92lj30ne07oq3a.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoarcvziwj30r80bwjs3.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwqkxbz5qvj30j80f8mxz.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwql7jmw80j30si0dmgmn.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwqm2wi1m8j30og0c8dgy.jpg">
-<meta property="article:published_time" content="2021-11-04T13:22:22.000Z">
-<meta property="article:modified_time" content="2022-01-17T14:44:05.923Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h63pq7alokj219l0u0gpa.jpg">
+<meta property="article:published_time" content="2022-09-12T04:37:48.000Z">
+<meta property="article:modified_time" content="2022-09-13T02:05:33.472Z">
 <meta property="article:author" content="Panyurou">
-<meta property="article:tag" content="mysql索引">
+<meta property="article:tag" content="MQ">
+<meta property="article:tag" content="消息可靠性">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gwoa8e7thzj30am0dkwek.jpg">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h63pq7alokj219l0u0gpa.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Mysql索引介绍 - 楼上有只喵</title>
+  <title>RabbitMQ的消息零丢失方案 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Mysql索引介绍"></span>
+            <span id="subtitle" data-typed-text="RabbitMQ的消息零丢失方案"></span>
           
         </div>
 
@@ -215,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-11-04 21:22" pubdate>
-          2021年11月4日 晚上
+        <time datetime="2022-09-12 12:37" pubdate>
+          2022年9月12日 下午
         </time>
       </span>
     
@@ -228,7 +223,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.4k 字
+          2.5k 字
         
       </span>
     
@@ -240,7 +235,7 @@
         
         
           <!-- compatible with older versions-->
-          5 分钟
+          8 分钟
         
       </span>
     
@@ -278,99 +273,94 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Mysql索引介绍</h1>
+            <h1 style="display: none">RabbitMQ的消息零丢失方案</h1>
             
             <div class="markdown-body">
               
-              <h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="索引的本质"><a href="#索引的本质" class="headerlink" title="索引的本质"></a>索引的本质</h2><blockquote>
-<p>索引是帮助Mysql高效获取数据的排好序的数据结构</p>
-</blockquote>
-<h2 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h2><h4 id="二叉树：单边增长的场景会导致全表扫描。"><a href="#二叉树：单边增长的场景会导致全表扫描。" class="headerlink" title="二叉树：单边增长的场景会导致全表扫描。"></a>二叉树：单边增长的场景会导致全表扫描。</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwoa8e7thzj30am0dkwek.jpg" srcset="/img/loading.gif" lazyload style="zoom: 67%;" />
+              <h1 id="RabbitMQ如何保证消息的可靠性？"><a href="#RabbitMQ如何保证消息的可靠性？" class="headerlink" title="RabbitMQ如何保证消息的可靠性？"></a>RabbitMQ如何保证消息的可靠性？</h1><h2 id="哪些环节会有丢消息的可能？"><a href="#哪些环节会有丢消息的可能？" class="headerlink" title="哪些环节会有丢消息的可能？"></a>哪些环节会有丢消息的可能？</h2><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h63pq7alokj219l0u0gpa.jpg" srcset="/img/loading.gif" lazyload style="zoom:50%;" />
 
-<span id="more"></span>
-
-<h4 id="红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。"><a href="#红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。" class="headerlink" title="红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。"></a>红黑树：相对平衡，比二叉树性能好，大数据下，红黑树的高度过高，会造成磁盘IO频繁。</h4><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwoabk973sj30dy08cjrf.jpg" srcset="/img/loading.gif" lazyload  />
-
-<h4 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h4><p>一次hash算法就可以定位到文件的位置，但存在缺点：</p>
-<ul>
-<li>不支持范围查找</li>
-<li>不支持排序</li>
-</ul>
-<p>数据库如果比较大，只用到精确查找就可以用hash</p>
-<h4 id="B-tree："><a href="#B-tree：" class="headerlink" title="B-tree："></a>B-tree：</h4><ol>
-<li><strong>特点：</strong></li>
+<h3 id="普通消息处理流程"><a href="#普通消息处理流程" class="headerlink" title="普通消息处理流程"></a>普通消息处理流程</h3><ol>
+<li>消息生成者发送消息</li>
+<li>MQ收到消息，将消息进行存储（持久化到硬盘）。</li>
+<li>返回ACK给生产者</li>
+<li>MQ push 消息给对应的消费者，然后等待消费者返回ACK</li>
+<li>如果消息消费者在指定时间内成功返回ack，那么MQ认为消息消费成功，在存储中删除消息，即执行第6步；如果MQ在指定时间内没有收到ACK，则认为消息消费失败，会尝试重新push消息,重复执行4、5、6步骤</li>
+<li>MQ删除消息</li>
 </ol>
+<h3 id="丢消息的场景"><a href="#丢消息的场景" class="headerlink" title="丢消息的场景"></a>丢消息的场景</h3><ul>
+<li>1，2，4三个场景，都是跨网络的，而跨网络就肯定会有丢消息的可能。</li>
+<li>关于3这个环节，通常MQ存盘时都会先写入操作系统的缓存page cache中，然后再由操作系统异步的将消息写入硬盘。这个中间有个时间差，就可能会造成消息丢失。如果服务挂了，缓存中还没有来得及写入硬盘的消息就会丢失。这也是任何用户态的应用程序无法避免的。</li>
+<li>对于任何MQ产品，都应该从这四个方面来考虑数据的安全性。那我们看看用RabbitMQ时要如何解决这个问题。</li>
+</ul>
+<h2 id="RabbitMQ消息零丢失方案"><a href="#RabbitMQ消息零丢失方案" class="headerlink" title="RabbitMQ消息零丢失方案?"></a>RabbitMQ消息零丢失方案?</h2><h3 id="1-生产者保证消息正确发送到RibbitMQ"><a href="#1-生产者保证消息正确发送到RibbitMQ" class="headerlink" title="1. 生产者保证消息正确发送到RibbitMQ?"></a>1. 生产者保证消息正确发送到RibbitMQ?</h3><ul>
+<li><p><strong>方案一：</strong>可以使用生产者确认机制。</p>
+<p>通过多次确认的方式，保证生产者的消息能够正确的发送到RabbitMQ中。RabbitMQ的生产者确认机制分为同步确认和异步确认。</p>
+<ul>
+<li><p>同步确认主要是通过在生产者端使用Channel.waitForConfirmsOrDie()指定一个等待确认的完成时间。</p>
+</li>
+<li><p>异步确认机制则是通过在生产者端注入两个回调确认函数。第一个函数是在生产者发送消息时调用，第二个函数则是生产者收到Broker的消息确认请求时调用。两个函数需要通过sequenceNumber自行完成消息的前后对应。sequenceNumber的生成方式需要通过channel的序列获取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">channel.addConfirmListener(ConfirmCallback var1,ConfirmCallback var2)<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>方案二：</strong>手动事务</p>
+<ul>
+<li><p>手动事务机制主要有几个关键的方法： channel.txSelect() 开启事务；channel.txCommit() 提交事务； channel.txRollback() 回滚事务。用这几个方法来进行事务管理。比如在创建订单后开启事务，减库存成功后提交事务，失败时回滚。</p>
+</li>
+<li><p>这种方式需要手动控制事务逻辑，并且手动事务会对channel产生阻塞，造成吞吐量下降</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-RabbitMQ-主从消息同步时不丢消息"><a href="#2-RabbitMQ-主从消息同步时不丢消息" class="headerlink" title="2. RabbitMQ 主从消息同步时不丢消息?"></a>2. <strong>RabbitMQ 主从消息同步时不丢消息</strong>?</h3><ul>
+<li>不使用普通集群模式， 使用镜像集群模式</li>
+<li>给包含重要消息的队列建立一个远端备份。</li>
+</ul>
 <blockquote>
 <ul>
-<li>叶子结点具有相同的深度，叶子结点指针为空。</li>
-<li>所有索引元素不重复</li>
-<li>节点中的数据索引从左到右递增</li>
-</ul>
-</blockquote>
-<ol start="2">
-<li>如果使用了innoDb存储引擎，结点的data元素就可能存储的是除了索引外的其他所有列，会占用比较大的存储空间，对于一个大结点而言，可以存放的结点数量就会比较小</li>
-</ol>
-<img src="https://tva1.sinaimg.cn/large/008i3skNly1gwoaf7s92lj30ne07oq3a.jpg" srcset="/img/loading.gif" lazyload  />
-
-<h4 id="B-tree-B-tree变种"><a href="#B-tree-B-tree变种" class="headerlink" title="B+tree(B-tree变种)"></a>B+tree(B-tree变种)</h4><ol>
-<li><p>特点：</p>
-<blockquote>
+<li><p>普通集群模式</p>
 <ul>
-<li>非叶子结点不存储data ,只存储索引（冗余），可以存放更多的索引。</li>
-<li>叶子结点包含所有的索引字段。</li>
-<li>叶子结点用指针连接，提高区间访问的性能。</li>
+<li><strong>queue的消息</strong>，只会放在<strong>一个rabbtimq实例</strong>上。<strong>每个实例都同步queue的结构和queue消息的真正位置</strong>。</li>
+<li>消费的时候，实际上如果连接到了另外一个实例，那么那个实例会从queue所在实例上拉取数据过来。</li>
+<li>这种集群模式的消息可靠性不是很高。因为如果其中有个节点服务宕机了，那这个节点上的数据就无法消费了，需要等到这个节点服务恢复后才能消费。</li>
+</ul>
+</li>
+<li><p>镜像集群模式</p>
+<ul>
+<li><p>这种模式是在普通集群模式基础上的一种增强方案，这也就是RabbitMQ的官方HA高可用方案。</p>
+</li>
+<li><p>这种模式会在镜像节点中间主动进行消息同步，而不是在客户端拉取消息时临时同步。这种模式的消息可靠性更高，因为每个节点上都存着全量的消息。</p>
+</li>
+<li><p>他的弊端也是明显的，集群内部的网络带宽会被这种同步通讯大量的消耗，进而降低整个集群的性能。这种模式下，队列数量最好不要过多。</p>
+</li>
+</ul>
+</li>
 </ul>
 </blockquote>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwoarcvziwj30r80bwjs3.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-RabbitMQ消息存盘不丢消息"><a href="#3-RabbitMQ消息存盘不丢消息" class="headerlink" title="3. RabbitMQ消息存盘不丢消息?"></a>3. RabbitMQ消息存盘不丢消息?</h3><p>对于Classic经典队列，直接将队列声明成为持久化队列即可。</p>
+<p>而新增的Quorum（[ˈkwɔrəm] 仲裁）队列和Stream队列，都是明显的持久化队列，能更好的保证服务端消息不会丢失。</p>
+<blockquote>
+<p>Quorum队列实现了持久化，多备份的FIFO队列，主要就是针对RabbitMQ的镜像模式设计的。大部分功能都是在Classic队列基础上做减法，比如不支持是非持久化的内存队列。某些功能（例如有害消息处理）是特定于仲裁队列的。</p>
+<p>Stream队列是RabbitMQ自3.9.0版本开始引入的一种新的数据队列类型，更适合于消费者多，读消息非常频繁的场景。</p>
+</blockquote>
+<blockquote>
+<p>毒消息是指消息一直不能被消费者正常消费(可能是由于消费者失败或者消费逻辑有问题等)，就会导致消息不断的重新入队，这样这些消息就成为了毒消息。这些读消息应该有保障机制进行标记并及时删除。Quorum队列会持续跟踪消息的失败投递尝试次数，并记录在”x-delivery-count”这样一个头部参数中。然后，就可以通过设置 Delivery limit参数来定制一个毒消息的删除策略。当消息的重复投递次数超过了Delivery limit参数阈值时，RabbitMQ就会删除这些毒消息。当然，如果配置了死信队列的话，就会进入对应的死信队列。</p>
+</blockquote>
+<h3 id="4-RabbitMQ消费者不丢失消息"><a href="#4-RabbitMQ消费者不丢失消息" class="headerlink" title="4. RabbitMQ消费者不丢失消息?"></a>4. <strong>RabbitMQ消费者不丢失消息</strong>?</h3><ul>
+<li><p>RabbitMQ在消费消息时可以指定是自动应答，还是手动应答。将RabbitMQ的应答模式设定为手动应答可以提高消息消费的可靠性。</p>
+</li>
+<li><p>设置了手动确认，则需要在业务处理成成功后，手动调用<code>channer.basicAck()</code>,如果出现异常则调用<code>channer.basicNAck()</code>,设置消息是重新返回队列，还是直接丢掉。</p>
+</li>
+</ul>
+<p><strong>最后，任何用户态的应用程序都无法保证绝对的数据安全，所以，备份与恢复的方案也需要考虑到。</strong></p>
+<h2 id="Consumer-Ack-消费端收到消息后的确认方式"><a href="#Consumer-Ack-消费端收到消息后的确认方式" class="headerlink" title="Consumer Ack 消费端收到消息后的确认方式"></a>Consumer Ack 消费端收到消息后的确认方式</h2><ol>
+<li><p>有三种确认方式</p>
+<ul>
+<li>自动确认 acknowledge &#x3D; “none”。 消息一旦到达consumer就会被确认，并将对应的message 从消息缓存中移除，实际场景中，很可能消息被收到，但是处理业务时异常，这种确认机制下，消息就会丢失。</li>
+<li>手动确认acknowledge &#x3D; “manual”。设置了手动确认，则需要在业务处理成成功后，手动调用<code>channer.basicAck()</code>,如果出现异常则调用<code>channer.basicNAck()</code>,设置消息是重新返回队列，还是直接丢掉。</li>
+<li>根据异常情况确认 acknowledge &#x3D; “auto”</li>
+</ul>
 </li>
 </ol>
-<h2 id="索引是怎么支持千万级表快速查找？"><a href="#索引是怎么支持千万级表快速查找？" class="headerlink" title="索引是怎么支持千万级表快速查找？"></a>索引是怎么支持千万级表快速查找？</h2><p>mysql建议一个结点大小为16kb,这样一次iO速度比较快，一个大结点下的一个索引元素大约是14b，所以一个大结点里面约有1170个索引元素，对于一个高度为3的b+树，可以存储<code>16* 1170* 1170 </code>&#x3D; 2000万。</p>
-<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>存储引擎是对于表而言的，不同的表可以设置不同的存储引擎</p>
-<h3 id="MyISAM索引实现-非聚集"><a href="#MyISAM索引实现-非聚集" class="headerlink" title="MyISAM索引实现(非聚集)"></a>MyISAM索引实现(非聚集)</h3><ul>
-<li><p>MyISAM索引文件和数据文件是分离的</p>
-</li>
-<li><p>表结构文件是xxx.frm, 索引文件是xxx.MYI, 数据文件是xxx.MYD</p>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwqkxbz5qvj30j80f8mxz.jpg" srcset="/img/loading.gif" lazyload></p>
-</li>
-</ul>
-<blockquote>
-<p>执行流程：当有一条查询语句：where Col1 &#x3D; 49， 先判断有没有走索引，走索引的话，先根据49快速在MYI文件中定位到结点，获取该结点存储的索引所在行的磁盘文件指针0x90，再去MYD中定位数据。</p>
-</blockquote>
-<h3 id="InnoDb索引实现-聚集"><a href="#InnoDb索引实现-聚集" class="headerlink" title="InnoDb索引实现(聚集)"></a>InnoDb索引实现(聚集)</h3><ul>
-<li><p>表数据文件本身就是按B+tree组织的一个索引文件</p>
-</li>
-<li><p>叶子结点包含了完整的数据记录，data里存储的是：索引所在行的其他所有数据</p>
-</li>
-<li><p>表结构文件是xxx.frm, 索引文件+ 数据文件 是xxx.ibd</p>
-</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwql7jmw80j30si0dmgmn.jpg" srcset="/img/loading.gif" lazyload></p>
-<h4 id="为什么InnoDb表要尽量设定一个主键"><a href="#为什么InnoDb表要尽量设定一个主键" class="headerlink" title="为什么InnoDb表要尽量设定一个主键"></a>为什么InnoDb表要尽量设定一个主键</h4><ul>
-<li>innnoDb表数据文件本身就是按B+tree组织的一个索引文件</li>
-<li>主键是数据库确保数据行在整张表唯一性的保障.</li>
-<li>设定了主键之后，在后续的删改查的时候可能更加快速以及确保操作数据范围安全。 </li>
-<li>如果没有主键，InnoDB会选择一个唯一键来作为聚簇索 引，如果没有唯一键，会生成一个隐式的主键。</li>
-</ul>
-<h4 id="主键使用整型的自增ID而不是UUID？"><a href="#主键使用整型的自增ID而不是UUID？" class="headerlink" title="主键使用整型的自增ID而不是UUID？"></a>主键使用整型的自增ID而不是UUID？</h4><ul>
-<li>查找元素的时候会涉及到大量的数据比较，整型比字符串快</li>
-<li>UUID占用的存储空间会大于整形</li>
-<li>叶子结点是按顺序排列的，如果主键索 引是自增ID，那么只需要不断向后排列即可，如果是UUID，由于到来的ID与原来的大小不确定，在维护B+树的过程中，会造成非常多的数据插入，数据移动，然后导致产生很多的内 存碎片，进而造成插入性能的下降。</li>
-</ul>
-<h3 id="辅助索引（非主键索引）"><a href="#辅助索引（非主键索引）" class="headerlink" title="辅助索引（非主键索引）"></a>辅助索引（非主键索引）</h3><ul>
-<li><p>叶子结点存储的是索引所在数据行的主键。</p>
-</li>
-<li><p>辅助索引访问数据总是需要二次查找，先遍历非主键索引再遍历主键索引</p>
-</li>
-</ul>
-<h4 id="为什么非主键索引结构叶子结点存储的是主键值"><a href="#为什么非主键索引结构叶子结点存储的是主键值" class="headerlink" title="为什么非主键索引结构叶子结点存储的是主键值?"></a>为什么非主键索引结构叶子结点存储的是主键值?</h4><ul>
-<li>一致性，完整的数据只在主键索引上维护一份就可以，不用考虑分布式的问题。</li>
-<li>节省存储空间.</li>
-</ul>
-<h2 id="联合索引"><a href="#联合索引" class="headerlink" title="联合索引"></a>联合索引</h2><ul>
-<li>5个单值索引，对应5棵B+树，联合索引就只需要一棵树，所以日常推荐使用联合索引而不是单值索引。</li>
-<li>索引排序的时候会按照字段顺序，逐个去排序</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gwqm2wi1m8j30og0c8dgy.jpg" srcset="/img/loading.gif" lazyload></p>
 
               
             </div>
@@ -388,7 +378,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/sql%E4%BC%98%E5%8C%96/" class="category-chain-item">sql优化</a>
+  <a href="/categories/rabbitMQ/" class="category-chain-item">rabbitMQ</a>
   
   
 
@@ -403,7 +393,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/mysql%E7%B4%A2%E5%BC%95/">#mysql索引</a>
+        <a href="/tags/MQ/">#MQ</a>
+      
+        <a href="/tags/%E6%B6%88%E6%81%AF%E5%8F%AF%E9%9D%A0%E6%80%A7/">#消息可靠性</a>
       
     </div>
   
@@ -415,8 +407,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Mysql索引介绍</div>
-      <div>http://example.com/mysql索引介绍/</div>
+      <div>RabbitMQ的消息零丢失方案</div>
+      <div>http://example.com/RabbitMQ的消息的可靠性/</div>
     </div>
     <div class="license-meta">
       
@@ -428,7 +420,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年11月4日</div>
+          <div>2022年9月12日</div>
         </div>
       
       
@@ -458,9 +450,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/Explain-%E8%AF%A6%E8%A7%A3/" title="Explain详解">
+                      <a href="/kafka%E7%9A%84%E6%B6%88%E6%81%AF%E9%9B%B6%E4%B8%A2%E5%A4%B1%E6%96%B9%E6%A1%88/" title="kafka的消息零丢失方案">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Explain详解</span>
+                        <span class="hidden-mobile">kafka的消息零丢失方案</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -468,8 +460,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/RabbitMQ%E7%9A%847%E7%A7%8D%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/" title="RabbitMQ的7种工作模式">
-                        <span class="hidden-mobile">RabbitMQ的7种工作模式</span>
+                      <a href="/RabbitMQ%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/" title="RabbitMQ的高级特性">
+                        <span class="hidden-mobile">RabbitMQ的高级特性</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
