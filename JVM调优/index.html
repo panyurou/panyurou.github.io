@@ -16,17 +16,24 @@
   <meta name="author" content="Panyurou">
   <meta name="keywords" content="">
   
-    <meta name="description" content="JVM调优调优时机 Full GC 次数频繁 应⽤用出现OutOfMemory 等内存异常   JVM调优的方式其实就是减少Full GC,  调整参数类似年轻代大小，老年代大小，eden和survivor的比例，大对象的大小 老年代的触发比例大小 1. 场景天气预报系统，有一个展示所有城市天气预报的页面，由于城市比较多，需要分页去展示，于是先设置了一次查询5000条，由于每一条城市都需要再去给他">
+    <meta name="description" content="1 调优原则 多数导致GC问题的Java应⽤，都不是因为我们参数设置错误，⽽是代码问题；  实际使用中，分析GC优化代码，比优化JVM参数效果要好，JVM 参数的默认（推荐）值都是经过 JVM 团队的反复测试和前人的充分验证得出的比较合理的值，因此通常来说是比较靠谱和通用的，一般不会出大问题。  如果满足下面的指标，则一般不需要进行GC：  Minor GC执行时间不到50ms，不低于10秒一次；">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM调优">
 <meta property="og:url" content="http://example.com/JVM%E8%B0%83%E4%BC%98/index.html">
 <meta property="og:site_name" content="楼上有只喵">
-<meta property="og:description" content="JVM调优调优时机 Full GC 次数频繁 应⽤用出现OutOfMemory 等内存异常   JVM调优的方式其实就是减少Full GC,  调整参数类似年轻代大小，老年代大小，eden和survivor的比例，大对象的大小 老年代的触发比例大小 1. 场景天气预报系统，有一个展示所有城市天气预报的页面，由于城市比较多，需要分页去展示，于是先设置了一次查询5000条，由于每一条城市都需要再去给他">
+<meta property="og:description" content="1 调优原则 多数导致GC问题的Java应⽤，都不是因为我们参数设置错误，⽽是代码问题；  实际使用中，分析GC优化代码，比优化JVM参数效果要好，JVM 参数的默认（推荐）值都是经过 JVM 团队的反复测试和前人的充分验证得出的比较合理的值，因此通常来说是比较靠谱和通用的，一般不会出大问题。  如果满足下面的指标，则一般不需要进行GC：  Minor GC执行时间不到50ms，不低于10秒一次；">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h68t6kw94aj20bs05m0sx.jpg">
-<meta property="article:published_time" content="2022-09-15T07:08:48.000Z">
-<meta property="article:modified_time" content="2022-09-17T07:32:29.360Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avlmvphuj21pc0lmdql.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avmoyunkj21nf0u0tnc.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avoot12aj21k80u0q9y.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avprtd0tj21h20u012w.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avzmzupaj21ru0mqgwc.jpg">
+<meta property="article:published_time" content="2022-09-17T08:57:45.000Z">
+<meta property="article:modified_time" content="2022-09-19T01:28:17.058Z">
 <meta property="article:author" content="Panyurou">
+<meta property="article:tag" content="性能调优">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h68t6kw94aj20bs05m0sx.jpg">
   
@@ -208,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-15 15:08" pubdate>
-          2022年9月15日 下午
+        <time datetime="2022-09-17 16:57" pubdate>
+          2022年9月17日 下午
         </time>
       </span>
     
@@ -221,7 +228,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          3.3k 字
+          4.8k 字
         
       </span>
     
@@ -233,7 +240,7 @@
         
         
           <!-- compatible with older versions-->
-          11 分钟
+          15 分钟
         
       </span>
     
@@ -285,47 +292,93 @@
             
             <div class="markdown-body">
               
-              <h1 id="JVM调优"><a href="#JVM调优" class="headerlink" title="JVM调优"></a>JVM调优</h1><h2 id="调优时机"><a href="#调优时机" class="headerlink" title="调优时机"></a>调优时机</h2><ul>
-<li>Full GC 次数频繁</li>
-<li>应⽤用出现OutOfMemory 等内存异常</li>
-<li></li>
-</ul>
-<p>JVM调优的方式其实就是减少Full GC, </p>
-<p>调整参数类似年轻代大小，老年代大小，eden和survivor的比例，大对象的大小</p>
-<p>老年代的触发比例大小</p>
-<h2 id="1-场景"><a href="#1-场景" class="headerlink" title="1. 场景"></a>1. 场景</h2><p>天气预报系统，有一个展示所有城市天气预报的页面，由于城市比较多，需要分页去展示，于是先设置了一次查询5000条，由于每一条城市都需要再去给他设置对应的天气信息，所以搞了一个foreach每一条记录都需要new City()，然后再去set天气信息</p>
-<p>初始参数是：</p>
-<p>堆的最大和最小容量都设置了1536M, 年轻代是512M，使用的ParNew+CMS垃圾收集器，元空间256M</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">-Xms1536M -Xmx1536M -Xmn512M -Xss256K -XX:<span class="hljs-attribute">SurvivorRatio</span>=6 -XX:<span class="hljs-attribute">MetaspaceSize</span>=256M -XX:<span class="hljs-attribute">MaxMetaspaceSize</span>=256M <br>‐XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:<span class="hljs-attribute">CMSInitiatingOccupancyFraction</span>=75 XX:+UseCMSInitiatingOccupancyOnly<br></code></pre></td></tr></table></figure>
-
-<h2 id="2-观察GC整体情况"><a href="#2-观察GC整体情况" class="headerlink" title="2. 观察GC整体情况"></a>2. 观察GC整体情况</h2><ul>
-<li>Step1 : 运行<code> jps</code>看下, 查看当前java进程PID</li>
-</ul>
-<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h68t6kw94aj20bs05m0sx.jpg" srcset="/img/loading.gif" lazyload style="zoom:67%;" />
-
+              <h1 id="1-调优原则"><a href="#1-调优原则" class="headerlink" title="1 调优原则"></a>1 调优原则</h1><ul>
+<li><p><strong>多数导致GC问题的Java应⽤，都不是因为我们参数设置错误，⽽是代码问题</strong>；</p>
+</li>
+<li><p>实际使用中，分析GC优化代码，比优化JVM参数效果要好，JVM 参数的默认（推荐）值都是经过 JVM 团队的反复测试和前人的充分验证得出的比较合理的值，因此通常来说是比较靠谱和通用的，一般不会出大问题。</p>
+</li>
+<li><p>如果满足下面的指标，则一般不需要进行GC：</p>
 <ul>
-<li>step2: 运行 <code>jstat -gc 2593 3000 10000</code>，每隔3秒，打印下GC压力整体情况。观察可发现，程序突然开始频繁Young Gc 和Full GC。</li>
-</ul>
-<p>![image-20220916222011035](&#x2F;Users&#x2F;panyurou&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20220916222011035.png)</p>
-<h2 id="2-思考Minor-Gc-和Full-Gc-触发条件"><a href="#2-思考Minor-Gc-和Full-Gc-触发条件" class="headerlink" title="2. 思考Minor Gc 和Full Gc 触发条件"></a>2. 思考Minor Gc 和Full Gc 触发条件</h2><ul>
-<li><p>Minor Gc 触发条件：当Eden区满时</p>
-</li>
-<li><p>Full Gc 触发条件：</p>
-<ul>
-<li><p>调用System.gc()方法的调用。   <strong>-&gt; 不可能，系统中没这样调用</strong></p>
-<p>此方法的调用是建议JVM进行Full GC,虽然只是建议而非一定,但很多情况下它会触发 Full GC,从而增加Full GC的频率,强烈影响系建议能不使用此方法就别使用，让虚拟机自己去管理它的内存</p>
-</li>
-<li><p>方法区空间不足 <strong>-&gt; 可能性不大</strong>，<strong>静态信息没有很多，不过可以试着将方法区改大试试</strong></p>
-<p>方法区存放的为一些class的信息、常量、静态变量等数据，当系统中要加载的类、反射的类和调用的方法较多时，方法区可能会被占满，从而执行Full GC。</p>
-</li>
-<li><p>老年代空间不足，对象转入老年代的场景有：</p>
-<ul>
-<li>大对象直接进入老年代：为了避免为大对象GC时，多次在survivor上来回复制而降低效率。   <strong>-&gt; 不可能，系统中没很多大对象</strong></li>
-<li>长期存活的对象进入老年代：默认是经历了15次minor GC ，CMS是6次**-&gt; 可能，代码在频繁生成对象，且占用周期比较长。有可能是代码有问题，其实我们可以频繁生成对象，但是应该让他朝生夕死。**</li>
-<li><strong>对象动态年龄判断</strong>：survivor区域里，对象年龄从小到大排序，当累加到某个年龄时，占用 survivor区域 的50%，就会把这个年龄大的对象都晋升到老年代。  <strong>-&gt; 可能，因为现在是频繁生成了对象，可以考虑年轻代调大一些。</strong></li>
+<li>Minor GC执行时间不到50ms，不低于10秒一次；</li>
+<li>Full GC执行时间不到1s，不低于一小时1次；</li>
 </ul>
 </li>
-<li><p>老年代空间分配担保机制。**-&gt; 可能性不大，因为老年代挺大的**</p>
+</ul>
+<h1 id="2-调优步骤"><a href="#2-调优步骤" class="headerlink" title="2 调优步骤"></a>2 调优步骤</h1><h2 id="2-1-内存分析"><a href="#2-1-内存分析" class="headerlink" title="2.1 内存分析"></a>2.1 内存分析</h2><ul>
+<li>方式： 检查是否有OutOfMemory 等内存异常， 检查哪些对象在系统中数量最大，避免频繁生成新对象，类似天气预报系统里有一个分页展示，每次批量去操作5000个对象，会频繁触发Minor GC 和 Full GC，后面调成500个，基本上就没有Full GC了。</li>
+<li>工具：jmap ‐dump，生成Java虚拟机的堆转储快照dump文件，用jvisualvm命令工具导入该dump文件分析，最多的类是哪些</li>
+<li>参考地址：</li>
+</ul>
+<h2 id="2-2-死锁检查"><a href="#2-2-死锁检查" class="headerlink" title="2.2 死锁检查"></a>2.2 死锁检查</h2><ul>
+<li><p>方式一：jps+jstack</p>
+<ul>
+<li>运行<code>jps</code>，查看当前所有java进程的pid</li>
+<li><code>jstack pid</code> 查看当前进程的堆栈状态，如果有死锁会打印出来found 1 deadLock</li>
+</ul>
+</li>
+<li><p>方式二：jvisualvm</p>
+<p> 代码运行起来后，启动jvisualvm，在线程页面会直接有一个红色的显示：监测到死锁</p>
+</li>
+<li><p>参考地址：</p>
+</li>
+</ul>
+<h2 id="2-3-CPU分析，哪些方法占用的大量CPU时间"><a href="#2-3-CPU分析，哪些方法占用的大量CPU时间" class="headerlink" title="2.3 CPU分析，哪些方法占用的大量CPU时间"></a>2.3 CPU分析，哪些方法占用的大量CPU时间</h2><ul>
+<li>方式：<ul>
+<li>命令top -p ，显示你的java进程的内存情况，找到当前进程的PID</li>
+<li>top -Hp，获取每个线程的内存情况，获取CPU比较高的线程id，并专成16进制</li>
+<li>执行 <code>jstack PID|grep -A 10 4cd0</code>得到线程堆栈信息，找出可能存在问题的代码，比如大量计算，或者循环new 对象</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-垃圾回收器选择"><a href="#2-4-垃圾回收器选择" class="headerlink" title="2.4  垃圾回收器选择"></a>2.4  垃圾回收器选择</h2><ul>
+<li><strong>JDK 1.8默认使用 Parallel</strong>，<strong>JDK 1.9默之后认使用 G1</strong></li>
+<li>100M以下用Serial，简单+高效</li>
+<li>4G以下可以用parallel，并发收集 + 高吞吐量。（标记整理，STW）</li>
+<li>4-8G可以用ParNew+CMS，并发收集 + 低停顿(注重用户体验）</li>
+<li>8G以上可以用G1，避免长时间的停顿+可预期的GC停顿周期 + 高吞吐量(筛选回收时需要STW)</li>
+<li>几百G以上用ZGC，支持TB量级的堆+ 最大GC停顿时间不超10ms</li>
+</ul>
+<h2 id="2-5-Full-GC-次数频繁"><a href="#2-5-Full-GC-次数频繁" class="headerlink" title="2.5 Full GC 次数频繁"></a>2.5 Full GC 次数频繁</h2><p>可以通过<code>jstat -gc pid interval count</code>，每隔interval秒，打印count次，pid进程下GC压力整体情况。观察是否出现频繁Full GC</p>
+<h3 id="2-5-1-调用System-gc-方法的调用"><a href="#2-5-1-调用System-gc-方法的调用" class="headerlink" title="2.5.1 调用System.gc()方法的调用"></a>2.5.1 调用System.gc()方法的调用</h3><ul>
+<li>此方法的调用是建议JVM进行Full GC,虽然只是建议而非一定,但很多情况下它会触发 Full GC,从而增加Full GC的频率</li>
+<li><strong>调优建议</strong>：能不使用此方法就别使用，让虚拟机自己去管理它的内存</li>
+</ul>
+<h3 id="2-5-2-方法区空间不足"><a href="#2-5-2-方法区空间不足" class="headerlink" title="2.5.2 方法区空间不足"></a>2.5.2 方法区空间不足</h3><ul>
+<li>方法区存放的为一些class的信息、常量、静态变量等数据，当系统中要加载的类、反射的类和调用的方法较多时，方法区可能会被占满，从而执行Full GC。</li>
+<li>元空间的初始阈值设置太小，垃圾收集器调整元空间的大小需要Full GC。比如初始值是21M，full gc后，释放了20M，只剩1M，那么垃圾收集器就会将该值调成2M；相反，如果释放了1M，还剩20M，下次就会调整到40M，这个过程会多次触发full GC.</li>
+<li>一般建议在JVM参数中将MetaspaceSize和MaxMetaspaceSize设置成一样的值，并设置得比初始值要大。</li>
+<li><strong>调优建议：</strong>对于8G物理内存的机器来说，一般我会将这两个值都设置为256M。常见的问题：项目jar包只有1G，但是启动了好久，就可能是因为由于元空间设置的太小，一直在触发full GC。</li>
+</ul>
+<h3 id="2-5-3-老年代空间不足"><a href="#2-5-3-老年代空间不足" class="headerlink" title="2.5.3 老年代空间不足"></a>2.5.3 老年代空间不足</h3><p><strong>对象转入老年代的场景有：</strong></p>
+<ul>
+<li><p>大对象直接进入老年代：为了避免为大对象GC时，多次在survivor上来回复制而降低效率。</p>
+<ul>
+<li><strong>调优建议：</strong><ul>
+<li>尽量避免写大对象，</li>
+<li>结合你自己系统看下有没有什么大对象 生成，预估下大对象的大小，设置XX:PretenureSizeThreshold的值，一般来说设置为1M就差不多了，很少有超过1M的大对象，这些对象一般就是你系统初始 化分配的缓存对象，比如大的缓存List，Map之类的对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>长期存活的对象进入老年代：默认是经历了15次minor GC ，CMS是6次。</p>
+<ul>
+<li><strong>调优建议：</strong><ul>
+<li>调整Eden和survivor的比例，默认时8:1:1，避免Eden区域过小，导致频繁minor GC，增大系统消耗</li>
+<li>如果我们可以确定大多数对象都是很快会被回收的，可以将该值调小，比如大多数对象都是3次左右就可以被回收，我们可以设置成5，如果超过了5，就说明剩下的应该是一些类似java bean 这种，会长期存活的对象，我们就没必要，让他再待在survivor占用空间了，提前让他们进入老年代。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>对象动态年龄判断</strong>：survivor区域里，对象年龄从小到大排序，当累加到某个年龄时，占用 survivor区域 的50%，就会把这个年龄大的对象都晋升到老年代。 如果系统中朝生夕死的对象比较多，</p>
+<ul>
+<li><strong>调优建议：</strong><ul>
+<li>如果系统中朝生夕死的对象比较多，可以考虑将年轻代参数调大一些，这样对应survivor区域就会对应变大，减少对象因为触发了这个机制，进入到老年代，从而触发Full GC。一般情况，新生代默认是堆大小的1&#x2F;3</li>
+<li>避免Survivor设置过小，导致对象从 eden 直接到达老年代，从而触发Full GC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>老年代空间分配担保机制。 </p>
 <p>在发生 Minor GC 之前，虚拟机先检查老年代最大可用的连续空间是否大于新生代所有对象总空间。</p>
 <ul>
 <li>大于 -&gt; minor GC</li>
@@ -337,33 +390,54 @@
 </ul>
 </li>
 </ul>
-<h2 id="3-可能导致频繁Full-GC-的原因"><a href="#3-可能导致频繁Full-GC-的原因" class="headerlink" title="3. 可能导致频繁Full GC 的原因"></a>3. 可能导致频繁Full GC 的原因</h2></li>
+<h1 id="3-调优案例"><a href="#3-调优案例" class="headerlink" title="3.调优案例"></a>3.调优案例</h1><h2 id="3-1-场景"><a href="#3-1-场景" class="headerlink" title="3.1 场景"></a>3.1 场景</h2><p>天气预报系统，有一个展示所有城市天气预报的页面，由于城市比较多，需要分页去展示，于是先设置了一次查询5000条，由于每一条城市都需要再去给他设置对应的天气信息，所以搞了一个foreach每一条记录都需要new City()，然后再去set天气信息</p>
+<p>初始参数是：</p>
+<p>堆的最大和最小容量都设置了1536M, 年轻代是512M，使用的ParNew+CMS垃圾收集器，元空间256M</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">-Xms1536M -Xmx1536M -Xmn512M -Xss256K -XX:<span class="hljs-attribute">SurvivorRatio</span>=6 -XX:<span class="hljs-attribute">MetaspaceSize</span>=256M -XX:<span class="hljs-attribute">MaxMetaspaceSize</span>=512M  -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:<span class="hljs-attribute">CMSInitiatingOccupancyFraction</span>=75 -XX:+UseCMSInitiatingOccupancyOnly<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-2-观察GC整体情况"><a href="#3-2-观察GC整体情况" class="headerlink" title="3.2 观察GC整体情况"></a>3.2 观察GC整体情况</h2><ul>
+<li><p>step1 : 运行<code> jps</code>看下, 查看当前java进程PID</p>
+<img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h68t6kw94aj20bs05m0sx.jpg" srcset="/img/loading.gif" lazyload style="zoom:100%;" />
+</li>
+<li><p>step2: 运行 <code>jstat -gc 2593 3000 10000</code>，每隔3秒，打印下GC压力整体情况。观察可发现，程序突然开始频繁Young Gc 和Full GC。</p>
+</li>
 </ul>
-<h2 id="元空间参数调优"><a href="#元空间参数调优" class="headerlink" title="元空间参数调优"></a>元空间参数调优</h2><ul>
-<li>-XX:MetaspaceSize&#x3D;N和 -XX:MaxMetaspaceSize&#x3D;N<ul>
-<li><strong>-XX：MaxMetaspaceSize</strong>： 设置元空间最大值， 默认是-1， 即不限制， 或者说只受限于本地内存大小。</li>
-<li><strong>-XX：MetaspaceSize</strong>： 指定元空间触发Fullgc的初始阈值(元空间无固定初始大小)， 以字节为单位，默认是21M，达到该值就会触发full gc， 同时收集器会对该值进行调整： 如果释放了大量的空间， 就适当降低该值； 如果释放了很少的空间， 那么在不超过-XX：MaxMetaspaceSize（如果设置了的话） 的情况下， 适当提高该值。（比如初始值是21M，full gc后，释放了20M，只剩1M，那么垃圾收集器就会将该值调成2M；相反，如果释放了1M，还剩20M，下次就会调整到40M）</li>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avlmvphuj21pc0lmdql.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-2-思考频繁Full-Gc-触发条件"><a href="#3-2-思考频繁Full-Gc-触发条件" class="headerlink" title="3.2 思考频繁Full Gc 触发条件"></a>3.2 思考频繁Full Gc 触发条件</h2><ul>
+<li><p>调用System.gc()方法的调用。   <strong>-&gt; 不可能，系统中没这样调用</strong></p>
+</li>
+<li><p>云空间，方法区空间不足  <strong>-&gt; 不可能，观察MU并没有很大变化，说明元空间没有一直扩容，所以空间是够的</strong></p>
+</li>
+<li><p>老年代空间不足，对象转入老年代的场景有：</p>
+<ul>
+<li>大对象直接进入老年代：为了避免为大对象GC时，多次在survivor上来回复制而降低效率。   <strong>-&gt; 不可能，系统中没很多大对象</strong></li>
+<li>长期存活的对象进入老年代：默认是经历了15次minor GC ，CMS是6次 <strong>-&gt; 可能，代码在频繁生成对象，且占用周期比较长。有可能是代码有问题，其实我们可以频繁生成对象，但是应该让他朝生夕死。</strong></li>
+<li><strong>对象动态年龄判断</strong>：survivor区域里，对象年龄从小到大排序，当累加到某个年龄时，占用 survivor区域 的50%，就会把这个年龄大的对象都晋升到老年代。  <strong>-&gt; 可能，因为现在是频繁生成了对象，可以考虑年轻代调大一些。</strong></li>
 </ul>
 </li>
-<li>由于调整元空间的大小需要Full GC，这是非常昂贵的操作，如果应用在启动的时候发生大量Full GC，通常都是由于永久代或元空间发生 了大小调整，基于这种情况，一般建议在JVM参数中将MetaspaceSize和MaxMetaspaceSize设置成一样的值，并设置得比初始值要大。</li>
+<li><p>老年代空间分配担保机制。 <strong>-&gt; 可能性不大，因为老年代挺大的</strong></p>
+</li>
 </ul>
-<h3 id="长期存活的对象进入老年代"><a href="#长期存活的对象进入老年代" class="headerlink" title="长期存活的对象进入老年代"></a>长期存活的对象进入老年代</h3><p>XX:MaxTenuringThreshold ： 对象晋升到老年代的年龄阈值.默认 15 岁，CMS收集器默认6岁</p>
-<p>如果我们可以确定大多数对象都是很快会被回收的，可以将该值调小，比如大多数对象都是3次左右就可以被回收，我们可以设置成5，如果超过了5，就说明剩下的应该是一些类似java bean 这种，会长期存活的对象，我们就没必要，让他再待在survivor占用空间了，提前让他们进入老年代</p>
-<p>XX:PretenureSizeThreshold: 大对象的大小</p>
-<p>这个一般可以结合你自己系统看下有没有什么大对象 生成，预估下大对象的大小，一般来说设置为1M就差不多了，很少有超过1M的大对象，这些对象一般就是你系统初始 化分配的缓存对象，比如大的缓存List，Map之类的对象。 </p>
-<h3 id="对象逃逸分析"><a href="#对象逃逸分析" class="headerlink" title="对象逃逸分析"></a>对象逃逸分析</h3><p>-XX:+DoEscapeAnalysis: 开启逃逸分析</p>
-<p> -XX:+EliminateAllocations： 开启标量替换参数</p>
-<p><strong>对象逃逸分析</strong>：就是分析对象动态作用域，当一个对象在方法中被定义后，它可能被外部方法所引用，例如作为调用参数传递到其他地方中。</p>
-<p>JVM对于对象没有被其他地方引用，只在方法作用域有效。可以通过开启逃逸分析参数(-XX:+DoEscapeAnalysis)来优化对象内存分配位置，使其通过<strong>标量替换</strong>优先分配在栈上(<strong>栈上分配</strong>）</p>
-<h3 id="新生代设置过小"><a href="#新生代设置过小" class="headerlink" title="新生代设置过小"></a>新生代设置过小</h3><p> -Xmn 堆内新生代的大小。</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">‐Xms<span class="hljs-number">3072</span>M ‐Xmx<span class="hljs-number">3072</span>M ‐Xm<span class="hljs-symbol">n2048</span>M<br></code></pre></td></tr></table></figure>
+<h2 id="3-3-调优步骤"><a href="#3-3-调优步骤" class="headerlink" title="3.3 调优步骤"></a>3.3 调优步骤</h2><p>如果是对于对象动态年龄判断机制导致的full gc较为频繁可以先试着优化下JVM参数，把年轻代适当调大点： -Xmn1024M</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">-Xms1536M -Xmx1536M -Xmn1024M -Xss256K -XX:SurvivorRatio=<span class="hljs-number">6</span> -XX:MetaspaceSize=256M -XX:MaxMetaspaceSize=512M  -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=<span class="hljs-number">75</span> -XX:+UseCMSInitiatingOccupancyOnly<br></code></pre></td></tr></table></figure>
 
-<p>-Xms 堆内存的初始大小.   -Xmx 堆内存的最大大小</p>
-<p>新生代设置太小，导致频繁进行minor GC，增大系统消耗</p>
-<p>导致大对象直接进入旧生代，占据了旧生代剩余空间，诱发Full GC</p>
-<h2 id="垃圾收集器选择"><a href="#垃圾收集器选择" class="headerlink" title="垃圾收集器选择"></a>垃圾收集器选择</h2><p>大内存垃圾回收，使用G1</p>
-<p>对于类似Kafka的系统，因为他需要支持每秒处理百万级的消息，所以一般需要大内存机器来部署，比如三四十G，对于这么大的内存，minor GC 即使使用复制算法，也就不再快了，很可能会出现系统每运行一两分钟就会因为minor gc卡顿几秒钟没法处理新消息，这显然是不可以的。使用G1收集器就可以消除长时间的GC停顿，比如设置停顿时间是50ms，后50ms的卡顿其实完全能够接受，用户几乎无感知，那么整个系统就可以在卡顿几乎无感知的情况下一边处理业务一边收集垃圾。</p>
-<p>调优手段主要是通过控制堆内存的各个部分的比例和GC策略来实现。<br>1）新生代设置过小<br>一是新生代GC次数非常频繁，增大系统消耗；二是导致大对象直接进入旧生代，占据了旧生代剩余空间，诱发Full GC<br>2）新生代设置过大<br>一是新生代设置过大会导致旧生代过小（堆总量一定），从而诱发Full GC；二是新生代GC耗时大幅度增加<br>一般说来新生代占整个堆1&#x2F;3比较合适<br>3）Survivor设置过小<br>导致对象从 eden 直接到达旧生代，降低了在新生代的存活时间<br>4）Survivor 设置过大<br>导致eden过小，增加了GC频率</p>
+<p>我们发现young gc和full gc依然很频繁了，而且看到有大量的对象频繁的被挪动到老年代</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avmoyunkj21nf0u0tnc.jpg" srcset="/img/loading.gif" lazyload>这种情况我们可以借助jmap或者jvisualvm命令大概看下是什么对象</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avoot12aj21k80u0q9y.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>查到了有大量User对象产生，这个可能是问题所在，但不确定，还必须找到对应的代码确认，如何去找对应的代码了？ </p>
+<p>1、代码里全文搜索生成User对象的地方(适合只有少数几处地方的情况) </p>
+<p>2、如果生成User对象的地方太多，无法定位具体代码，我们可以同时分析下占用cpu较高的线程，一般有大量对象不断产生，对应的方法 代码肯定会被频繁调用，占用的cpu必然较高 </p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avprtd0tj21h20u012w.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>可以用上面讲过的jstack或jvisualvm来定位cpu使用较高的代码，最终定位到的代码如下： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/report&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WeatherReportController</span> </span>&#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 模拟批量查询城市天气预报场景</span><br><span class="hljs-comment">   */</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> ArrayList&lt;City&gt; <span class="hljs-title">queryCities</span><span class="hljs-params">()</span> </span>&#123;<br>    ArrayList&lt;City&gt; cities = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5000</span>; i++) &#123;<br>      cities.add(<span class="hljs-keyword">new</span> City(String.valueOf(i),<span class="hljs-string">&quot;深圳&quot;</span>));<br>    &#125;<br>    <span class="hljs-keyword">return</span> cities;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">City</span> </span>&#123;<br>  <span class="hljs-keyword">private</span> String id;<br><br>  <span class="hljs-keyword">private</span> String name;<br><br>  <span class="hljs-keyword">private</span> String code;<br><br>  <span class="hljs-keyword">byte</span>[] info = <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">1024</span>*<span class="hljs-number">100</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>同时，java的代码也是需要优化的，一次查询出500M的对象出来，明显不合适，要根据之前说的各种原则尽量优化到合适的值，尽量消除这种朝生夕死的对象导致的full gc</p>
+<p>改成批量查询500后，Full GC 基本不再发生</p>
+<p><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h6avzmzupaj21ru0mqgwc.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="4-内存泄露到底是怎么回事"><a href="#4-内存泄露到底是怎么回事" class="headerlink" title="4 内存泄露到底是怎么回事"></a>4 <strong>内存泄露到底是怎么回事</strong></h1><p>一般电商架构可能会使用多级缓存架构，就是redis加上JVM级缓存，大多数同学可能为了图方便对于JVM级缓存就简单使用一个hashmap，于是不断往里面放缓存数据，但是很少考虑这个map的容量问题，结果这个缓存map越来越大，一直占用着老年代的很多空间，时间长了就会导致full gc非常频繁，这就是一种内存泄漏，对于一些老旧数据没有及时清理导致一直占用着宝贵的内存资源，时间长了除了导致full gc，还有可能导致OOM。 </p>
+<p>这种情况完全可以考虑采用一些成熟的JVM级缓存框架来解决，比如ehcache等自带一些LRU数据淘汰算法的框架来作为JVM级的缓存。</p>
 
               
             </div>
@@ -371,6 +445,36 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JVM%E8%B0%83%E4%BC%98/" class="category-chain-item">JVM调优</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/">#性能调优</a>
+      
+        <a href="/tags/JVM/">#JVM</a>
+      
+    </div>
   
 </div>
 
@@ -393,7 +497,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月15日</div>
+          <div>2022年9月17日</div>
         </div>
       
       
@@ -423,18 +527,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B9%8BG1%E6%94%B6%E9%9B%86%E5%99%A8/" title="垃圾收集器之G1收集器">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">垃圾收集器之G1收集器</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/java%E5%91%BD%E4%BB%A4-jinfo&amp;jstat%E5%B7%A5%E5%85%B7/" title="java命令--jinfo&amp;jstat">
-                        <span class="hidden-mobile">java命令--jinfo&amp;jstat</span>
+                      <a href="/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B9%8BZGC%E6%94%B6%E9%9B%86%E5%99%A8/" title="垃圾收集器之ZGC收集器">
+                        <span class="hidden-mobile">垃圾收集器之ZGC收集器</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
