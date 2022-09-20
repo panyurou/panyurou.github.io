@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5ap4xbr46j21ex0u0jvx.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5aordxc7lj21dz0u0434.jpg">
 <meta property="article:published_time" content="2022-07-17T15:02:31.000Z">
-<meta property="article:modified_time" content="2022-08-23T07:18:26.975Z">
+<meta property="article:modified_time" content="2022-09-20T06:39:23.689Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="微服务">
 <meta name="twitter:card" content="summary_large_image">
@@ -224,7 +224,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.1k 字
+          5.2k 字
         
       </span>
     
@@ -236,7 +236,7 @@
         
         
           <!-- compatible with older versions-->
-          16 分钟
+          17 分钟
         
       </span>
     
@@ -303,6 +303,8 @@
 <h1 id="Eureka-自我保护机制"><a href="#Eureka-自我保护机制" class="headerlink" title="Eureka 自我保护机制"></a>Eureka 自我保护机制</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ul>
 <li>默认情况下,EurekaClient会定时向EurekaServer端发送心跳，如果EurekaServer在一定时间内没有收到EurekaClient发送的心跳，便会把该实例从注册服务列表中剔除（默认是90秒)</li>
 <li>但是在短时间内丢失大量的实例心跳，这时候EurekaServer会开启自我保护机制，<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Eureka&spm=1001.2101.3001.7020">Eureka</a>不会踢出该服务，而是会对该服务的信息进行保存。</li>
+<li>Eureka仍然能够接受新服务的注册和查询请求，但是不会被同步到其他节点上 (即保证当前节点依然可用)</li>
+<li>当网络稳定时，当前实例新的注册信息会被同步到其他节点中</li>
 </ul>
 <h2 id="产生原因"><a href="#产生原因" class="headerlink" title="产生原因"></a>产生原因</h2><p>为了防止EurekaClient正常运行，但是与EurekaServer网络不通（延迟、拥堵、卡顿）的情况下，EurekaServer不会对EurekaClient服务进行剔除，因为微服务本身是建康的，此时不应该注销这个微服务。</p>
 <h2 id="何时使用"><a href="#何时使用" class="headerlink" title="何时使用"></a>何时使用</h2><p>本地环境建议禁止自我保护，生产环境建议开启自我保护。</p>
