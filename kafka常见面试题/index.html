@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h645mwunu9j214i0msn0o.jpg">
 <meta property="article:published_time" content="2022-08-16T06:48:37.000Z">
-<meta property="article:modified_time" content="2022-09-13T03:37:19.174Z">
+<meta property="article:modified_time" content="2022-09-21T15:22:58.117Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="整理">
 <meta name="twitter:card" content="summary_large_image">
@@ -222,7 +222,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5.6k 字
+          6.1k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
           <!-- compatible with older versions-->
-          18 分钟
+          20 分钟
         
       </span>
     
@@ -345,18 +345,6 @@
 <h3 id="kafka的消费者是-pull-拉-还是push-推-模式，这种模式有什么好处？"><a href="#kafka的消费者是-pull-拉-还是push-推-模式，这种模式有什么好处？" class="headerlink" title="kafka的消费者是**pull(拉)还是push(推)**模式，这种模式有什么好处？"></a><strong>kafka</strong>的消费者是**pull(<strong>拉</strong>)<strong>还是</strong>push(<strong>推</strong>)**模式，这种模式有什么好处？</h3><p>Kafka 遵循了一种大部分消息系统共同的传统的设计：producer 将消息推送到 broker，consumer 从broker 拉取消息。</p>
 <p>优点：pull模式消费者自主决定是否批量从broker拉取数据，而push模式在无法知道消费者消费能力情况下，不易控制推送速度，太快可能造成消费者奔溃，太慢又可能造成浪费。</p>
 <p>缺点：如果 broker 没有可供消费的消息，将导致 consumer 不断在循环中轮询，直到新消息到到达。为了避免这点，Kafka 有个参数可以让 consumer阻塞直到新消息到达，当然也可以阻塞直到消息的数量达到某个特定的量这样就可以批量发送。</p>
-<h2 id="消费进度Offset的理解"><a href="#消费进度Offset的理解" class="headerlink" title="消费进度Offset的理解"></a>消费进度Offset的理解</h2><ul>
-<li><p>在消费者对指定消息分区进行消息消费的过程中，<strong>需要定时地将分区消息的消费进度Offset记录到Zookeeper上</strong>，以便在该消费者进行重启或者其他消费者重新接管该消息分区的消息消费后，能够从之前的进度开始继续进行消息消费。</p>
-</li>
-<li><p>现在是放在了一个叫做__consumer_offset 的topic 里，<strong>key是</strong> consumerGroupId+topic+分区号，value就是当前offset的值。默认是50个分区，由consumer自己管理。 </p>
-</li>
-<li><p><strong>每个consumer是基于自己在commit log中的消费进度(offset)来进行工作的</strong>。</p>
-</li>
-<li><p>这意味kafka中的consumer对集群的影响是非常小的，添加一个或者减少一个consumer，对于集群或者其他consumer 来说，都是没有影响的，因为每个consumer维护各自的消费offset。</p>
-</li>
-<li><p>一般情况下我们按照顺序逐条消费commit log中的消息，当然我可以通过指定offset来重复消费某些消息， 或者跳过某些消息。</p>
-</li>
-</ul>
 <h2 id="集群消费"><a href="#集群消费" class="headerlink" title="集群消费"></a>集群消费</h2><ul>
 <li>leader处理所有的针对这个partition的读写请求。</li>
 <li>而followers被动复制leader的结果，不提供读写(主要是为了保证多副本数据与消费的一致性）。如果这个leader失效了，其中的一个follower将会自动的变成新的leader。</li>
@@ -401,14 +389,29 @@
 </li>
 <li><p>redis分布式锁</p>
 </li>
+<li><h1 id="6-Zookeeper-在-Kafka-中的作用"><a href="#6-Zookeeper-在-Kafka-中的作用" class="headerlink" title="6 Zookeeper 在 Kafka 中的作用?"></a>6 Zookeeper 在 Kafka 中的作用?</h1><p>ZooKeeper 主要为 Kafka 提供元数据的管理的功能。</p>
+<ol>
+<li><p><strong>Broker 注册</strong> ：在Zookeeper上会有一个专门<strong>用来进行Broker服务器列表记录</strong>的节点&#x2F;brokers&#x2F;ids，每个Broker在启动时，都会到Zookeeper上进行注册，即到&#x2F;brokers&#x2F;ids下创建属于自己的节点，如&#x2F;brokers&#x2F;ids&#x2F;[0…N]。Kafka使用了全局唯一的数字来指代每个Broker服务器，不同的Broker必须使用不同的Broker ID进行注册，创建完节点后，<strong>每个Broker就会将自己的IP地址和端口信息记录</strong>到该节点中去。其中，Broker创建的节点类型是临时节点，一旦Broker宕机，则对应的临时节点也会被自动删除。</p>
+</li>
+<li><p><strong>Topic 注册</strong>： 在 Kafka 中，同一个<strong>Topic 的消息会被分成多个分区</strong>并将其分布在多个 Broker 上，<strong>这些分区信息及与 Broker 的对应关系</strong>也都是由 Zookeeper 在维护。比如我创建了一个名字为 my-topic 的主题并且它有两个分区，对应到 zookeeper 中会创建这些文件夹：<code>/brokers/topics/my-topic/Partitions/0</code>、<code>/brokers/topics/my-topic/Partitions/1</code></p>
+</li>
+<li><p><strong>负载均衡</strong> ：Kafka 通过给特定 Topic 指定多个 Partition, 而各个 Partition 可以分布在不同的 Broker 上, 这样便能提供比较好的并发能力。 对于同一个 Topic 的不同 Partition，Kafka 会尽力将这些 Partition 分布到不同的 Broker 服务器上。当生产者产生消息后也会尽量投递到不同 Broker 的 Partition 里面。<strong>当 Consumer 消费的时候，Zookeeper 可以根据当前的 Partition 数量以及 Consumer 数量来实现动态负载均衡。</strong></p>
+</li>
+<li><p>之前，在消费者对指定消息分区进行消息消费的过程中，<strong>需要定时地将分区消息的消费进度Offset记录到Zookeeper上</strong>，以便在该消费者进行重启或者其他消费者重新接管该消息分区的消息消费后，能够从之前的进度开始继续进行消息消费。</p>
+</li>
+</ol>
+</li>
 </ul>
-<h4 id="Zookeeper-在-Kafka-中的作用"><a href="#Zookeeper-在-Kafka-中的作用" class="headerlink" title="Zookeeper 在 Kafka 中的作用?"></a>Zookeeper 在 Kafka 中的作用?</h4><p>Zookeeper 主要用于在集群中不同节点之间进行通信</p>
-<ul>
-<li><p>在Zookeeper上会有一个专门<strong>用来进行Broker服务器列表记录</strong>的节点&#x2F;brokers&#x2F;ids</p>
+<h2 id="消费进度Offset的理解"><a href="#消费进度Offset的理解" class="headerlink" title="消费进度Offset的理解"></a>消费进度Offset的理解</h2><ul>
+<li><p>在消费者对指定消息分区进行消息消费的过程中，<strong>需要定时地将分区消息的消费进度Offset记录到Zookeeper上</strong>，以便在该消费者进行重启或者其他消费者重新接管该消息分区的消息消费后，能够从之前的进度开始继续进行消息消费。</p>
 </li>
-<li><p>每个Broker在启动时，都会到Zookeeper上进行注册，即到&#x2F;brokers&#x2F;ids下创建属于自己的节点，如&#x2F;brokers&#x2F;ids&#x2F;[0…N]。</p>
+<li><p>现在是放在了一个叫做__consumer_offset 的topic 里，<strong>key是</strong> consumerGroupId+topic+分区号，value就是当前offset的值。默认是50个分区，由consumer自己管理。 </p>
 </li>
-<li><p>Kafka使用了全局唯一的数字来指代每个Broker服务器，不同的Broker必须使用不同的Broker ID进行注册，创建完节点后，<strong>每个Broker就会将自己的IP地址和端口信息记录</strong>到该节点中去。其中，Broker创建的节点类型是临时节点，一旦Broker宕机，则对应的临时节点也会被自动删除。</p>
+<li><p><strong>每个consumer是基于自己在commit log中的消费进度(offset)来进行工作的</strong>。</p>
+</li>
+<li><p>这意味kafka中的consumer对集群的影响是非常小的，添加一个或者减少一个consumer，对于集群或者其他consumer 来说，都是没有影响的，因为每个consumer维护各自的消费offset。</p>
+</li>
+<li><p>一般情况下我们按照顺序逐条消费commit log中的消息，当然我可以通过指定offset来重复消费某些消息， 或者跳过某些消息。</p>
 </li>
 </ul>
 <h2 id="延迟队列的实现"><a href="#延迟队列的实现" class="headerlink" title="延迟队列的实现"></a>延迟队列的实现</h2><ol>
