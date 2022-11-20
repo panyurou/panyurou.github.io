@@ -8,19 +8,44 @@
     <link href="/%E8%A7%A3%E5%86%B3%E6%89%8B%E6%9C%BA%E7%AB%AF1%E5%83%8F%E7%B4%A0%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/"/>
     <url>/%E8%A7%A3%E5%86%B3%E6%89%8B%E6%9C%BA%E7%AB%AF1%E5%83%8F%E7%B4%A0%E8%BE%B9%E6%A1%86%E9%97%AE%E9%A2%98/</url>
     
-    <content type="html"><![CDATA[<h1 id="1-定义border-css文件"><a href="#1-定义border-css文件" class="headerlink" title="1. 定义border.css文件"></a>1. 定义border.css文件</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@charset</span> <span class="hljs-string">&quot;utf-8&quot;</span>;<br><span class="hljs-selector-class">.border</span>,<br><span class="hljs-selector-class">.border-top</span>,<br><span class="hljs-selector-class">.border-right</span>,<br><span class="hljs-selector-class">.border-bottom</span>,<br><span class="hljs-selector-class">.border-left</span>,<br><span class="hljs-selector-class">.border-topbottom</span>,<br><span class="hljs-selector-class">.border-rightleft</span>,<br><span class="hljs-selector-class">.border-topleft</span>,<br><span class="hljs-selector-class">.border-rightbottom</span>,<br><span class="hljs-selector-class">.border-topright</span>,<br><span class="hljs-selector-class">.border-bottomleft</span> &#123;<br>  <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><br><span class="hljs-selector-class">.border</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;\0020&quot;</span>;<br>  <span class="hljs-attribute">overflow</span>: hidden;<br>  <span class="hljs-attribute">position</span>: absolute;<br>&#125;<br><br><span class="hljs-comment">/* border</span><br><span class="hljs-comment"> * 因，边框是由伪元素区域遮盖在父级</span><br><span class="hljs-comment"> * 故，子级若有交互，需要对子级设置</span><br><span class="hljs-comment"> * 定位 及 z轴</span><br><span class="hljs-comment"> */</span><br><span class="hljs-selector-class">.border</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">box-sizing</span>: border-box;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>  <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">1px</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>  <span class="hljs-attribute">width</span>: <span class="hljs-number">1px</span>;<br>  <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">border-top</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>  <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>  <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">100%</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>  <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">100%</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">border-left</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#eaeaea</span>;<br>  <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>  <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br><span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br><span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>  <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max--moz-device-pixel-ratio</span>: <span class="hljs-number">1.49</span>), (<span class="hljs-attribute">-webkit-max-device-pixel-ratio</span>: <span class="hljs-number">1.49</span>), (<span class="hljs-attribute">max-device-pixel-ratio</span>: <span class="hljs-number">1.49</span>), (<span class="hljs-attribute">max-resolution</span>: <span class="hljs-number">143dpi</span>), (<span class="hljs-attribute">max-resolution</span>: <span class="hljs-number">1.49dppx</span>) &#123;<br>  <span class="hljs-comment">/* 默认值，无需重置 */</span><br>&#125;<br><br><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min--moz-device-pixel-ratio</span>: <span class="hljs-number">1.5</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max--moz-device-pixel-ratio</span>: <span class="hljs-number">2.49</span>), (<span class="hljs-attribute">-webkit-min-device-pixel-ratio</span>: <span class="hljs-number">1.5</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">-webkit-max-device-pixel-ratio</span>: <span class="hljs-number">2.49</span>), (<span class="hljs-attribute">min-device-pixel-ratio</span>: <span class="hljs-number">1.5</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-device-pixel-ratio</span>: <span class="hljs-number">2.49</span>), (<span class="hljs-attribute">min-resolution</span>: <span class="hljs-number">144dpi</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-resolution</span>: <span class="hljs-number">239dpi</span>), (<span class="hljs-attribute">min-resolution</span>: <span class="hljs-number">1.5dppx</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-resolution</span>: <span class="hljs-number">2.49dppx</span>) &#123;<br>  <span class="hljs-selector-class">.border</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">200%</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">200%</span>;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(.<span class="hljs-number">5</span>);<br>  &#125;<br><br>  <span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(.<span class="hljs-number">5</span>);<br>  &#125;<br><br>  <span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleX</span>(.<span class="hljs-number">5</span>);<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min--moz-device-pixel-ratio</span>: <span class="hljs-number">2.5</span>), (<span class="hljs-attribute">-webkit-min-device-pixel-ratio</span>: <span class="hljs-number">2.5</span>), (<span class="hljs-attribute">min-device-pixel-ratio</span>: <span class="hljs-number">2.5</span>), (<span class="hljs-attribute">min-resolution</span>: <span class="hljs-number">240dpi</span>), (<span class="hljs-attribute">min-resolution</span>: <span class="hljs-number">2.5dppx</span>) &#123;<br>  <span class="hljs-selector-class">.border</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">300%</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">300%</span>;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(.<span class="hljs-number">33333</span>);<br>  &#125;<br><br>  <span class="hljs-selector-class">.border-top</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-bottom</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-topbottom</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleY</span>(.<span class="hljs-number">33333</span>);<br>  &#125;<br><br>  <span class="hljs-selector-class">.border-right</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-left</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-rightleft</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-topleft</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-rightbottom</span><span class="hljs-selector-pseudo">::before</span>,<br>  <span class="hljs-selector-class">.border-topright</span><span class="hljs-selector-pseudo">::after</span>,<br>  <span class="hljs-selector-class">.border-bottomleft</span><span class="hljs-selector-pseudo">::after</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scaleX</span>(.<span class="hljs-number">33333</span>);<br>  &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure><h1 id="2-在main-js引入"><a href="#2-在main-js引入" class="headerlink" title="2. 在main.js引入"></a>2. 在main.js引入</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./assets/styles/border.css&#x27;</span><br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-定义border-css文件"><a href="#1-定义border-css文件" class="headerlink" title="1. 定义border.css文件"></a>1. 定义border.css文件</h1><p><a href="https://github.com/panyuro/Travel/blob/main/src/assets/styles/border.css">Travel&#x2F;border.css at main · panyuro&#x2F;Travel (github.com)</a></p><h1 id="2-在main-js引入"><a href="#2-在main-js引入" class="headerlink" title="2. 在main.js引入"></a>2. 在main.js引入</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./assets/styles/border.css&#x27;</span><br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
       
-      <category>CSS</category>
+      <category>前端</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>前端</tag>
+      <tag>CSS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CSS浮动</title>
+    <link href="/CSS%E6%B5%AE%E5%8A%A8/"/>
+    <url>/CSS%E6%B5%AE%E5%8A%A8/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CSS</tag>
       
     </tags>
     
@@ -38,14 +63,14 @@
     
     <categories>
       
-      <category>CSS</category>
+      <category>前端</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>前端</tag>
+      <tag>CSS</tag>
       
     </tags>
     
@@ -92,7 +117,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -108,49 +133,11 @@
   
   
   <entry>
-    <title>UML类图</title>
-    <link href="/UML%E7%B1%BB%E5%9B%BE/"/>
-    <url>/UML%E7%B1%BB%E5%9B%BE/</url>
+    <title>ES6语法学习笔记</title>
+    <link href="/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <url>/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<img src="/Users/panyurou/Library/Application Support/typora-user-images/image-20221107104816638.png" alt="image-20221107104816638" style="zoom: 67%;" /><img src="/Users/panyurou/Library/Application Support/typora-user-images/image-20221107105004086.png" alt="image-20221107105004086" style="zoom:50%;" />]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>ES6语法学习笔记(二)</title>
-    <link href="/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-er/"/>
-    <url>/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-er/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-ES6-对象的新增方法"><a href="#1-ES6-对象的新增方法" class="headerlink" title="1 ES6 对象的新增方法"></a>1 ES6 对象的新增方法</h1><h2 id="1-1-Object-is"><a href="#1-1-Object-is" class="headerlink" title="1.1 Object.is()"></a>1.1 Object.is()</h2><ul><li><p><code>严格相等运算符</code>（ &#x3D;&#x3D;&#x3D; ） </p><ul><li>类型不同，直接返回false</li><li>两个复合类型（对象、数组、函数）的数据比较时，不是比较它们的值是否相等，而是比较它们是否指向同一个对象。</li><li>同一类型的原始类型的值（数值、字符串、布尔值）比较时，值相同就返回true，值不同就返回false</li><li>undefined 和 null 与自身严格相等</li></ul></li><li><p><code>相等运算符</code>（ &#x3D;&#x3D; ）</p><ul><li>在比较不同类型的数据时，相等运算符会先将数据进行类型转换，然后再用严格相等运算符比较</li></ul></li><li><p>Object.is()</p><ul><li><p>它用来比较两个值是否严格相等，与严格比较运算符（&#x3D;&#x3D;&#x3D;）的行为基本一致。</p></li><li><p>不同之处只有两个：一是 +0 不等于 -0 ，二是 NaN 等于自身。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Object</span>.is(+<span class="hljs-number">0</span>, -<span class="hljs-number">0</span>) <span class="hljs-comment">// false</span><br><span class="hljs-built_in">Object</span>.is(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>) <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure></li></ul></li></ul><h2 id="1-2-Object-assign"><a href="#1-2-Object-assign" class="headerlink" title="1.2 Object.assign()"></a>1.2 Object.assign()</h2><p>Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）</p><ul><li><code>Object.assign</code>方法实行的是<code>浅拷贝</code>，</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span> &#125;;<br><span class="hljs-keyword">const</span> source1 = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125;;<br><span class="hljs-keyword">const</span> source2 = &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">3</span> &#125;;<br><span class="hljs-built_in">Object</span>.assign(target, source1, source2);<br>target <span class="hljs-comment">// &#123;a:1, b:2, c:3&#125;</span><br></code></pre></td></tr></table></figure><h1 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h1><ul><li>Promise 相当于一个容器，保存着异步操作的结果。有三个状态：pending（进行），resolved（成功），rejected（失败）</li></ul>]]></content>
-    
-    
-    <categories>
-      
-      <category>前端</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>es6</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>ES6语法学习笔记(一)</title>
-    <link href="/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/"/>
-    <url>/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/</url>
-    
-    <content type="html"><![CDATA[<h1 id="1-Let和const"><a href="#1-Let和const" class="headerlink" title="1 Let和const"></a>1 Let和const</h1><ul><li>Let:  所声明的变量，只在let命令所在的代码块内有效。</li><li><code>const</code>声明一个只读的<code>常量</code>。一旦声明，常量的值就不能改变。const一旦声明变量，就必须立即<code>初始化</code>，不能留到以后赋值。类似final</li></ul><h1 id="2-解构赋值"><a href="#2-解构赋值" class="headerlink" title="2 解构赋值"></a>2 解构赋值</h1><ul><li>ES6 允许按照一定模式，从<strong>数组和对象</strong>中提取值，对变量进行赋值，这被称为<code>解构</code>（Destructuring）。</li><li>本质上，这种写法属于<code>“模式匹配”</code>，只要等号两边的模式相同，左边的变量就会被赋予对应的值</li></ul><h2 id="2-1-数组的解构赋值"><a href="#2-1-数组的解构赋值" class="headerlink" title="2.1  数组的解构赋值"></a>2.1  数组的解构赋值</h2><ul><li><p>可以从数组中提取值，按照对应位置，对变量赋值。</p></li><li><p>数组的元素是按次序排列的，变量的取值由它的位置决定</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> [a, b, c] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br><span class="hljs-keyword">let</span> [ , , third] = [<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>, <span class="hljs-string">&quot;baz&quot;</span>];<br><br><span class="hljs-keyword">let</span> [head, ...tail] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];<br>head <span class="hljs-comment">// 1</span><br>tail <span class="hljs-comment">// [2, 3, 4]</span><br><br><span class="hljs-keyword">let</span> [x, y, ...z] = [<span class="hljs-string">&#x27;a&#x27;</span>];<br>x <span class="hljs-comment">// &quot;a&quot;</span><br>y <span class="hljs-comment">// undefined</span><br>z <span class="hljs-comment">// []</span><br><br><span class="hljs-keyword">let</span> [x, y, z] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>])<br></code></pre></td></tr></table></figure></li><li><p>解构赋值<code>允许指定</code>默认值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> [foo = <span class="hljs-literal">true</span>] = [];<br>foo <span class="hljs-comment">// true</span><br><span class="hljs-keyword">let</span> [x, y = <span class="hljs-string">&#x27;b&#x27;</span>] = [<span class="hljs-string">&#x27;a&#x27;</span>]; <span class="hljs-comment">// x=&#x27;a&#x27;, y=&#x27;b&#x27;</span><br><br><span class="hljs-comment">// 只有当一个数组成员严格等于undefined，默认值才会生效。</span><br><span class="hljs-keyword">let</span> [x, y = <span class="hljs-string">&#x27;b&#x27;</span>] = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-literal">undefined</span>]; <span class="hljs-comment">// x=&#x27;a&#x27;, y=&#x27;b&#x27;</span><br><br><span class="hljs-keyword">let</span> [x = <span class="hljs-number">1</span>] = [<span class="hljs-literal">null</span>];<br>x <span class="hljs-comment">// null</span><br></code></pre></td></tr></table></figure><h2 id="2-2-对象的解构赋值"><a href="#2-2-对象的解构赋值" class="headerlink" title="2.2 对象的解构赋值"></a>2.2 对象的解构赋值</h2><ul><li>对象的属性没有次序，<code>变量</code>必须与<code>属性</code>同名，才能取到正确的值。</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="hljs-attr">foo</span>: <span class="hljs-string">&#x27;aaa&#x27;</span>, <span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;bbb&#x27;</span> &#125;;<br>foo <span class="hljs-comment">// &quot;aaa&quot;</span><br>bar <span class="hljs-comment">// &quot;bbb&quot;</span><br><br><span class="hljs-keyword">let</span> &#123;foo&#125; = &#123;<span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;baz&#x27;</span>&#125;;<br>foo <span class="hljs-comment">// undefined</span><br><br><span class="hljs-keyword">const</span> &#123; log &#125; = <span class="hljs-built_in">console</span>;<br>log(<span class="hljs-string">&#x27;hello&#x27;</span>) <span class="hljs-comment">// hello</span><br></code></pre></td></tr></table></figure><p>如果变量名与属性名不一致，必须写成下面这样。</p><p>foo是匹配的模式，baz才是变量。真正被赋值的是变量baz，而不是模式foo。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123; <span class="hljs-attr">foo</span>: baz &#125; = &#123; <span class="hljs-attr">foo</span>: <span class="hljs-string">&#x27;aaa&#x27;</span>, <span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;bbb&#x27;</span> &#125;;<br>baz <span class="hljs-comment">// &quot;aaa&quot;</span><br></code></pre></td></tr></table></figure></li><li><p>解构也可以用于嵌套结构的对象</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">p</span>: [<br>    <span class="hljs-string">&#x27;Hello&#x27;</span>,<br>    &#123; <span class="hljs-attr">y</span>: <span class="hljs-string">&#x27;World&#x27;</span> &#125;<br>  ]<br>&#125;;<br><span class="hljs-keyword">let</span> &#123; <span class="hljs-attr">p</span>: [x, &#123; y &#125;] &#125; = obj;<br>x <span class="hljs-comment">// &quot;Hello&quot;</span><br>y <span class="hljs-comment">// &quot;World&quot;</span><br></code></pre></td></tr></table></figure></li><li><p>对象<code>的</code>解构<code>也可以指定</code>默认值</p><ul><li>默认值生效的条件是，对象的<code>属性值</code>严格等于<code>undefined</code>。</li><li>null与undefined不严格相等，所以是个有效的赋值，导致默认值不会生效。</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> &#123;x, y = <span class="hljs-number">5</span>&#125; = &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>&#125;;<br>x <span class="hljs-comment">// 1</span><br>y <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure></li></ul><h2 id="2-3-字符串的解构赋值"><a href="#2-3-字符串的解构赋值" class="headerlink" title="2.3 字符串的解构赋值"></a>2.3 字符串的解构赋值</h2><ul><li>字符串被转换成了一个类似数组的对象</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [a, b, c, d, e] = <span class="hljs-string">&#x27;hello&#x27;</span>;<br></code></pre></td></tr></table></figure><ul><li>类似数组的对象都有一个<code>length</code>属性，因此还可以对这个属性解构赋值</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123;<span class="hljs-attr">length</span> : len&#125; = <span class="hljs-string">&#x27;hello&#x27;</span>;<br>len <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure><h2 id="2-4-用途"><a href="#2-4-用途" class="headerlink" title="2.4 用途"></a>2.4 用途</h2><ol><li><strong>交换变量的值</strong></li></ol><p>交换变量<code>x</code>和<code>y</code>的值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">[x, y] = [y, x];<br></code></pre></td></tr></table></figure><ol start="2"><li><p><strong>从函数返回多个值</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 返回一个数组</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">example</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br>&#125;<br><span class="hljs-keyword">let</span> [a, b, c] = example();<br><br><span class="hljs-comment">// 返回一个对象</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">example</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">foo</span>: <span class="hljs-number">1</span>,<br>    <span class="hljs-attr">bar</span>: <span class="hljs-number">2</span><br>  &#125;;<br>&#125;<br><span class="hljs-keyword">let</span> &#123; foo, bar &#125; = example();<br></code></pre></td></tr></table></figure></li><li><p><strong>提取 JSON 数据</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> jsonData = &#123;<br>  <span class="hljs-attr">id</span>: <span class="hljs-number">42</span>,<br>  <span class="hljs-attr">status</span>: <span class="hljs-string">&quot;OK&quot;</span>,<br>  <span class="hljs-attr">data</span>: [<span class="hljs-number">867</span>, <span class="hljs-number">5309</span>]<br>&#125;;<br><span class="hljs-keyword">let</span> &#123; id, status, <span class="hljs-attr">data</span>: number &#125; = jsonData;<br><span class="hljs-built_in">console</span>.log(id, status, number);<br><span class="hljs-comment">// 42, &quot;OK&quot;, [867, 5309]</span><br></code></pre></td></tr></table></figure></li><li><p><strong>遍历 Map 结构</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [key, value] <span class="hljs-keyword">of</span> map) &#123;<br>  <span class="hljs-built_in">console</span>.log(key + <span class="hljs-string">&quot; is &quot;</span> + value);<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 获取键名</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [key] <span class="hljs-keyword">of</span> map) &#123;<br>  <span class="hljs-comment">// ...</span><br>&#125;<br><span class="hljs-comment">// 获取键值</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [,value] <span class="hljs-keyword">of</span> map) &#123;<br>  <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure></li><li><p><strong>输入模块的指定方法</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; SourceMapConsumer, SourceNode &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;source-map&quot;</span>);<br></code></pre></td></tr></table></figure></li></ol><h1 id="3-函数的扩展"><a href="#3-函数的扩展" class="headerlink" title="3. 函数的扩展"></a>3. 函数的扩展</h1><h2 id="3-1-参数设置默认值"><a href="#3-1-参数设置默认值" class="headerlink" title="3.1 参数设置默认值"></a>3.1 参数设置默认值</h2><ul><li><p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params">x, y = <span class="hljs-string">&#x27;World&#x27;</span></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(x, y);<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">&#123;x, y = <span class="hljs-number">5</span>&#125;</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(x, y);<br>&#125;<br>foo(&#123;&#125;) <span class="hljs-comment">// undefined 5</span><br>foo(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>&#125;) <span class="hljs-comment">// 1 5</span><br>foo(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>&#125;) <span class="hljs-comment">// 1 2</span><br></code></pre></td></tr></table></figure></li><li><p>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号，否则会报错。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> getTempItem = <span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> (&#123; <span class="hljs-attr">id</span>: id, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Temp&quot;</span> &#125;);<br></code></pre></td></tr></table></figure></li><li><p>ES6 引入<code>rest 参数</code>（形式为 …变量名 ），用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数搭配的变量是一个<code>数组</code>，该变量将多余的参数放入数组中。</p><p>⚠️： rest 参数之后不能再有其他参数（即只能是最后一个参数），否则会报错。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">...values</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> val <span class="hljs-keyword">of</span> values) &#123;<br>    sum += val;<br>  &#125;<br>    <span class="hljs-keyword">return</span> sum;<br>&#125;<br><br><span class="hljs-comment">// 利用 rest 参数，可以向该函数传入任意数目的参数。</span><br>add(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure></li></ul><h1 id="4-数组的扩展"><a href="#4-数组的扩展" class="headerlink" title="4 数组的扩展"></a>4 数组的扩展</h1><p><code>扩展运算符</code>（spread）是三个点（ … ）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。</p><p><strong>任何定义了遍历器（Iterator）接口的对象（参阅 Iterator 一章），都可以用扩展运算符转为真正的数组。</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(...[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br><span class="hljs-comment">// 1 2 3</span><br></code></pre></td></tr></table></figure><p>用途：</p><ul><li><p>该运算符主要用于<code>函数调用</code>。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> x + y;<br>&#125;<br><br><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">4</span>, <span class="hljs-number">38</span>];<br>add(...numbers) <span class="hljs-comment">// 42</span><br></code></pre></td></tr></table></figure></li><li><p>应用 Math.max 方法，简化求出一个数组最大元素的写法。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Math</span>.max(...[<span class="hljs-number">14</span>, <span class="hljs-number">3</span>, <span class="hljs-number">77</span>])<br></code></pre></td></tr></table></figure></li><li><p>push 函数，将一个数组添加到另一个数组的尾部。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr1 = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-keyword">let</span> arr2 = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br>arr1.push(...arr2);<br></code></pre></td></tr></table></figure></li><li><p>复制数组</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-comment">// 写法一</span><br><span class="hljs-keyword">const</span> a2 = [...a1];<br><span class="hljs-comment">// 写法二</span><br><span class="hljs-keyword">const</span> [...a2] = a1;<br></code></pre></td></tr></table></figure></li><li><p><strong>合并数组</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>];<br><span class="hljs-keyword">const</span> arr2 = [<span class="hljs-string">&#x27;c&#x27;</span>];<br><span class="hljs-keyword">const</span> arr3 = [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>];<br>[...arr1, ...arr2, ...arr3]<br><span class="hljs-comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27; ]</span><br></code></pre></td></tr></table></figure></li><li><p><strong>与解构赋值结合</strong>，<strong>生成数组</strong></p><p>如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [first, ...rest] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br>first <span class="hljs-comment">// 1</span><br>rest  <span class="hljs-comment">// [2, 3, 4, 5]</span><br><br><span class="hljs-keyword">const</span> [first, ...rest] = [];<br>first <span class="hljs-comment">// undefined</span><br>rest  <span class="hljs-comment">// []</span><br><br><span class="hljs-keyword">const</span> [first, ...rest] = [<span class="hljs-string">&quot;foo&quot;</span>];<br>first  <span class="hljs-comment">// &quot;foo&quot;</span><br>rest   <span class="hljs-comment">// []</span><br></code></pre></td></tr></table></figure></li><li><p>将<code>字符串</code>转为真正的<code>数组</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">[...<span class="hljs-string">&#x27;hello&#x27;</span>]<br><span class="hljs-comment">// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]</span><br></code></pre></td></tr></table></figure></li><li><p>map获取key</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([<br>  [<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;one&#x27;</span>],<br>  [<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;two&#x27;</span>],<br>  [<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;three&#x27;</span>],<br>]);<br><span class="hljs-keyword">let</span> arr = [...map.keys()]; <span class="hljs-comment">// [1, 2, 3]</span><br></code></pre></td></tr></table></figure></li></ul><h1 id="5-对象的扩展"><a href="#5-对象的扩展" class="headerlink" title="5 对象的扩展"></a>5 对象的扩展</h1><h2 id="5-1-属性的简洁表示法"><a href="#5-1-属性的简洁表示法" class="headerlink" title="5.1 属性的简洁表示法"></a>5.1 属性的简洁表示法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;x, y&#125;;<br>&#125;<br><br><span class="hljs-comment">// 等同于</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">x</span>: x, <span class="hljs-attr">y</span>: y&#125;;<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> Person = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;张三&#x27;</span>,<br>  <span class="hljs-comment">//等同于birth: birth</span><br>  birth,<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="5-2-日志的打印"><a href="#5-2-日志的打印" class="headerlink" title="5.2 日志的打印"></a>5.2 日志的打印</h2><p>输出 user 和 foo 两个对象时，就是两组键值对，可能会混淆。把它们放在大括号里面输出，就变成了对象的简洁表示法，每组键值对前面会打印对象名，这样就比较清晰</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> user = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;test&#x27;</span><br>&#125;;<br><span class="hljs-keyword">let</span> foo = &#123;<br>  <span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;baz&#x27;</span><br>&#125;;<br><br><span class="hljs-built_in">console</span>.log(user, foo)<br><span class="hljs-comment">// &#123;name: &quot;test&quot;&#125; &#123;bar: &quot;baz&quot;&#125;</span><br><span class="hljs-built_in">console</span>.log(&#123;user, foo&#125;)<br><span class="hljs-comment">// &#123;user: &#123;name: &quot;test&quot;&#125;, foo: &#123;bar: &quot;baz&quot;&#125;&#125;</span><br></code></pre></td></tr></table></figure><h2 id="5-3-解构赋值"><a href="#5-3-解构赋值" class="headerlink" title="5.3 解构赋值"></a>5.3 解构赋值</h2><ul><li><p>对象的<code>解构赋值</code>用于从一个对象<code>取值</code>，所有的键和它们的值，都会拷贝到新对象上面。</p></li><li><p>解构赋值要求等号右边是一个对象，所以如果等号右边是 undefined 或 null ，就会报错，因为它们无法转为对象。</p></li><li><p>解构赋值必须是最后一个参数，否则会报错。</p></li><li><p>解构赋值<code>的拷贝是</code>浅拷贝</p></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123; x, y, ...z &#125; = &#123; <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">a</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">4</span> &#125;;<br>x <span class="hljs-comment">// 1</span><br>y <span class="hljs-comment">// 2</span><br>z <span class="hljs-comment">// &#123; a: 3, b: 4 &#125;</span><br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> z = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">4</span> &#125;;<br><span class="hljs-keyword">let</span> n = &#123; ...z &#125;;<br>n <span class="hljs-comment">// &#123; a: 3, b: 4 &#125;</span><br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> foo = &#123; ...[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>] &#125;;<br>foo<br><span class="hljs-comment">// &#123;0: &quot;a&quot;, 1: &quot;b&quot;, 2: &quot;c&quot;&#125;</span><br></code></pre></td></tr></table></figure><ul><li>如果扩展运算符后面是字符串，它会自动转成一个类似数组的对象</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;...<span class="hljs-string">&#x27;hello&#x27;</span>&#125;<br><span class="hljs-comment">// &#123;0: &quot;h&quot;, 1: &quot;e&quot;, 2: &quot;l&quot;, 3: &quot;l&quot;, 4: &quot;o&quot;&#125;</span><br></code></pre></td></tr></table></figure><h2 id="5-4-链判断运算符"><a href="#5-4-链判断运算符" class="headerlink" title="5.4 链判断运算符"></a>5.4 链判断运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> firstName = message?.body?.user?.firstName || <span class="hljs-string">&#x27;default&#x27;</span>;<br></code></pre></td></tr></table></figure><p>?. 运算符，直接在链式调用的时候判断，左侧的对象是否为 null 或 undefined 。如果是的，就不再往下运算，而是返回 undefined </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js">a?.b<br><span class="hljs-comment">// 等同于</span><br>a == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : a.b<br>a?.[x]<br><span class="hljs-comment">// 等同于</span><br>a == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : a[x]<br>a?.b()<br><span class="hljs-comment">// 等同于</span><br>a == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : a.b()<br>a?.()<br><span class="hljs-comment">// 等同于</span><br>a == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : a()<br><br>表单可能没有 checkValidity 这个方法，这时 ?. 运算符就会返回 <span class="hljs-literal">undefined</span> ，判断语句就变成了 <span class="hljs-literal">undefined</span> === <span class="hljs-literal">false</span> ，所以就会跳过下面的代码。<br><span class="hljs-keyword">if</span> (myForm.checkValidity?.() === <span class="hljs-literal">false</span>) &#123;<br>  <span class="hljs-comment">// 表单校验失败</span><br>  <span class="hljs-keyword">return</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="5-5-判断运算符"><a href="#5-5-判断运算符" class="headerlink" title="5.5   ?? 判断运算符"></a>5.5   ?? 判断运算符</h2><p> <code>||</code>: 左侧的值如果为 null，undefined，空字符串， false ， 0 ，默认值会生效</p><p><code>??</code>: 左侧的值为 null 或 undefined 时，默认值会生效</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> headerText = response.settings.headerText || <span class="hljs-string">&#x27;Hello, world!&#x27;</span>;<br><span class="hljs-keyword">const</span> headerText = response.settings.headerText ?? <span class="hljs-string">&#x27;Hello, world!&#x27;</span>;<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-Let和const"><a href="#1-Let和const" class="headerlink" title="1 Let和const"></a>1 Let和const</h1><ul><li>Let:  所声明的变量，只在let命令所在的代码块内有效。</li><li><code>const</code>声明一个只读的<code>常量</code>。一旦声明，常量的值就不能改变。const一旦声明变量，就必须立即<code>初始化</code>，不能留到以后赋值。类似final</li></ul><h1 id="2-解构赋值"><a href="#2-解构赋值" class="headerlink" title="2 解构赋值"></a>2 解构赋值</h1><ul><li>ES6 允许按照一定模式，从<strong>数组和对象</strong>中提取值，对变量进行赋值，这被称为<code>解构</code>（Destructuring）。</li><li>本质上，这种写法属于<code>“模式匹配”</code>，只要等号两边的模式相同，左边的变量就会被赋予对应的值</li></ul><h2 id="2-1-数组的解构赋值"><a href="#2-1-数组的解构赋值" class="headerlink" title="2.1  数组的解构赋值"></a>2.1  数组的解构赋值</h2><ul><li><p>可以从数组中提取值，按照对应位置，对变量赋值。</p></li><li><p>数组的元素是按次序排列的，变量的取值由它的位置决定</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> [a, b, c] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><br><span class="hljs-keyword">let</span> [ , , third] = [<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;bar&quot;</span>, <span class="hljs-string">&quot;baz&quot;</span>];<br><br><span class="hljs-keyword">let</span> [head, ...tail] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];<br>head <span class="hljs-comment">// 1</span><br>tail <span class="hljs-comment">// [2, 3, 4]</span><br><br><span class="hljs-keyword">let</span> [x, y, ...z] = [<span class="hljs-string">&#x27;a&#x27;</span>];<br>x <span class="hljs-comment">// &quot;a&quot;</span><br>y <span class="hljs-comment">// undefined</span><br>z <span class="hljs-comment">// []</span><br><br><span class="hljs-keyword">let</span> [x, y, z] = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>])<br></code></pre></td></tr></table></figure></li><li><p>解构赋值<code>允许指定</code>默认值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> [foo = <span class="hljs-literal">true</span>] = [];<br>foo <span class="hljs-comment">// true</span><br><span class="hljs-keyword">let</span> [x, y = <span class="hljs-string">&#x27;b&#x27;</span>] = [<span class="hljs-string">&#x27;a&#x27;</span>]; <span class="hljs-comment">// x=&#x27;a&#x27;, y=&#x27;b&#x27;</span><br><br><span class="hljs-comment">// 只有当一个数组成员严格等于undefined，默认值才会生效。</span><br><span class="hljs-keyword">let</span> [x, y = <span class="hljs-string">&#x27;b&#x27;</span>] = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-literal">undefined</span>]; <span class="hljs-comment">// x=&#x27;a&#x27;, y=&#x27;b&#x27;</span><br><br><span class="hljs-keyword">let</span> [x = <span class="hljs-number">1</span>] = [<span class="hljs-literal">null</span>];<br>x <span class="hljs-comment">// null</span><br></code></pre></td></tr></table></figure><h2 id="2-2-对象的解构赋值"><a href="#2-2-对象的解构赋值" class="headerlink" title="2.2 对象的解构赋值"></a>2.2 对象的解构赋值</h2><ul><li>对象的属性没有次序，<code>变量</code>必须与<code>属性</code>同名，才能取到正确的值。</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123; foo, bar &#125; = &#123; <span class="hljs-attr">foo</span>: <span class="hljs-string">&#x27;aaa&#x27;</span>, <span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;bbb&#x27;</span> &#125;;<br>foo <span class="hljs-comment">// &quot;aaa&quot;</span><br>bar <span class="hljs-comment">// &quot;bbb&quot;</span><br><br><span class="hljs-keyword">let</span> &#123;foo&#125; = &#123;<span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;baz&#x27;</span>&#125;;<br>foo <span class="hljs-comment">// undefined</span><br><br><span class="hljs-keyword">const</span> &#123; log &#125; = <span class="hljs-built_in">console</span>;<br>log(<span class="hljs-string">&#x27;hello&#x27;</span>) <span class="hljs-comment">// hello</span><br></code></pre></td></tr></table></figure><p>如果变量名与属性名不一致，必须写成下面这样。</p><p>foo是匹配的模式，baz才是变量。真正被赋值的是变量baz，而不是模式foo。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123; <span class="hljs-attr">foo</span>: baz &#125; = &#123; <span class="hljs-attr">foo</span>: <span class="hljs-string">&#x27;aaa&#x27;</span>, <span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;bbb&#x27;</span> &#125;;<br>baz <span class="hljs-comment">// &quot;aaa&quot;</span><br></code></pre></td></tr></table></figure></li><li><p>解构也可以用于嵌套结构的对象</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;<br>  <span class="hljs-attr">p</span>: [<br>    <span class="hljs-string">&#x27;Hello&#x27;</span>,<br>    &#123; <span class="hljs-attr">y</span>: <span class="hljs-string">&#x27;World&#x27;</span> &#125;<br>  ]<br>&#125;;<br><span class="hljs-keyword">let</span> &#123; <span class="hljs-attr">p</span>: [x, &#123; y &#125;] &#125; = obj;<br>x <span class="hljs-comment">// &quot;Hello&quot;</span><br>y <span class="hljs-comment">// &quot;World&quot;</span><br></code></pre></td></tr></table></figure></li><li><p>对象<code>的</code>解构<code>也可以指定</code>默认值</p><ul><li>默认值生效的条件是，对象的<code>属性值</code>严格等于<code>undefined</code>。</li><li>null与undefined不严格相等，所以是个有效的赋值，导致默认值不会生效。</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> &#123;x, y = <span class="hljs-number">5</span>&#125; = &#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>&#125;;<br>x <span class="hljs-comment">// 1</span><br>y <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure></li></ul><h2 id="2-3-字符串的解构赋值"><a href="#2-3-字符串的解构赋值" class="headerlink" title="2.3 字符串的解构赋值"></a>2.3 字符串的解构赋值</h2><ul><li>字符串被转换成了一个类似数组的对象</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [a, b, c, d, e] = <span class="hljs-string">&#x27;hello&#x27;</span>;<br></code></pre></td></tr></table></figure><ul><li>类似数组的对象都有一个<code>length</code>属性，因此还可以对这个属性解构赋值</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123;<span class="hljs-attr">length</span> : len&#125; = <span class="hljs-string">&#x27;hello&#x27;</span>;<br>len <span class="hljs-comment">// 5</span><br></code></pre></td></tr></table></figure><h2 id="2-4-用途"><a href="#2-4-用途" class="headerlink" title="2.4 用途"></a>2.4 用途</h2><ol><li><strong>交换变量的值</strong></li></ol><p>交换变量<code>x</code>和<code>y</code>的值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">[x, y] = [y, x];<br></code></pre></td></tr></table></figure><ol start="2"><li><p><strong>从函数返回多个值</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 返回一个数组</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">example</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];<br>&#125;<br><span class="hljs-keyword">let</span> [a, b, c] = example();<br><br><span class="hljs-comment">// 返回一个对象</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">example</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">foo</span>: <span class="hljs-number">1</span>,<br>    <span class="hljs-attr">bar</span>: <span class="hljs-number">2</span><br>  &#125;;<br>&#125;<br><span class="hljs-keyword">let</span> &#123; foo, bar &#125; = example();<br></code></pre></td></tr></table></figure></li><li><p><strong>提取 JSON 数据</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> jsonData = &#123;<br>  <span class="hljs-attr">id</span>: <span class="hljs-number">42</span>,<br>  <span class="hljs-attr">status</span>: <span class="hljs-string">&quot;OK&quot;</span>,<br>  <span class="hljs-attr">data</span>: [<span class="hljs-number">867</span>, <span class="hljs-number">5309</span>]<br>&#125;;<br><span class="hljs-keyword">let</span> &#123; id, status, <span class="hljs-attr">data</span>: number &#125; = jsonData;<br><span class="hljs-built_in">console</span>.log(id, status, number);<br><span class="hljs-comment">// 42, &quot;OK&quot;, [867, 5309]</span><br></code></pre></td></tr></table></figure></li><li><p><strong>遍历 Map 结构</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [key, value] <span class="hljs-keyword">of</span> map) &#123;<br>  <span class="hljs-built_in">console</span>.log(key + <span class="hljs-string">&quot; is &quot;</span> + value);<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 获取键名</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [key] <span class="hljs-keyword">of</span> map) &#123;<br>  <span class="hljs-comment">// ...</span><br>&#125;<br><span class="hljs-comment">// 获取键值</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> [,value] <span class="hljs-keyword">of</span> map) &#123;<br>  <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure></li><li><p><strong>输入模块的指定方法</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> &#123; SourceMapConsumer, SourceNode &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;source-map&quot;</span>);<br></code></pre></td></tr></table></figure></li></ol><h1 id="3-函数的扩展"><a href="#3-函数的扩展" class="headerlink" title="3. 函数的扩展"></a>3. 函数的扩展</h1><h2 id="3-1-参数设置默认值"><a href="#3-1-参数设置默认值" class="headerlink" title="3.1 参数设置默认值"></a>3.1 参数设置默认值</h2><ul><li><p>ES6 允许为函数的参数设置默认值，即直接写在参数定义的后面。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">log</span>(<span class="hljs-params">x, y = <span class="hljs-string">&#x27;World&#x27;</span></span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(x, y);<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">&#123;x, y = <span class="hljs-number">5</span>&#125;</span>) </span>&#123;<br>  <span class="hljs-built_in">console</span>.log(x, y);<br>&#125;<br>foo(&#123;&#125;) <span class="hljs-comment">// undefined 5</span><br>foo(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>&#125;) <span class="hljs-comment">// 1 5</span><br>foo(&#123;<span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>&#125;) <span class="hljs-comment">// 1 2</span><br></code></pre></td></tr></table></figure></li><li><p>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号，否则会报错。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> getTempItem = <span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> (&#123; <span class="hljs-attr">id</span>: id, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;Temp&quot;</span> &#125;);<br></code></pre></td></tr></table></figure></li><li><p>ES6 引入<code>rest 参数</code>（形式为 …变量名 ），用于获取函数的多余参数，这样就不需要使用 arguments 对象了。rest 参数搭配的变量是一个<code>数组</code>，该变量将多余的参数放入数组中。</p><p>⚠️： rest 参数之后不能再有其他参数（即只能是最后一个参数），否则会报错。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">...values</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> val <span class="hljs-keyword">of</span> values) &#123;<br>    sum += val;<br>  &#125;<br>    <span class="hljs-keyword">return</span> sum;<br>&#125;<br><br><span class="hljs-comment">// 利用 rest 参数，可以向该函数传入任意数目的参数。</span><br>add(<span class="hljs-number">2</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure></li></ul><h1 id="4-数组的扩展"><a href="#4-数组的扩展" class="headerlink" title="4 数组的扩展"></a>4 数组的扩展</h1><p><code>扩展运算符</code>（spread）是三个点（ … ）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。</p><p><strong>任何定义了遍历器（Iterator）接口的对象（参阅 Iterator 一章），都可以用扩展运算符转为真正的数组。</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(...[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])<br><span class="hljs-comment">// 1 2 3</span><br></code></pre></td></tr></table></figure><p>用途：</p><ul><li><p>该运算符主要用于<code>函数调用</code>。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> x + y;<br>&#125;<br><br><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">4</span>, <span class="hljs-number">38</span>];<br>add(...numbers) <span class="hljs-comment">// 42</span><br></code></pre></td></tr></table></figure></li><li><p>应用 Math.max 方法，简化求出一个数组最大元素的写法。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Math</span>.max(...[<span class="hljs-number">14</span>, <span class="hljs-number">3</span>, <span class="hljs-number">77</span>])<br></code></pre></td></tr></table></figure></li><li><p>push 函数，将一个数组添加到另一个数组的尾部。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr1 = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-keyword">let</span> arr2 = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br>arr1.push(...arr2);<br></code></pre></td></tr></table></figure></li><li><p>复制数组</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-comment">// 写法一</span><br><span class="hljs-keyword">const</span> a2 = [...a1];<br><span class="hljs-comment">// 写法二</span><br><span class="hljs-keyword">const</span> [...a2] = a1;<br></code></pre></td></tr></table></figure></li><li><p><strong>合并数组</strong></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>];<br><span class="hljs-keyword">const</span> arr2 = [<span class="hljs-string">&#x27;c&#x27;</span>];<br><span class="hljs-keyword">const</span> arr3 = [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>];<br>[...arr1, ...arr2, ...arr3]<br><span class="hljs-comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27; ]</span><br></code></pre></td></tr></table></figure></li><li><p><strong>与解构赋值结合</strong>，<strong>生成数组</strong></p><p>如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [first, ...rest] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br>first <span class="hljs-comment">// 1</span><br>rest  <span class="hljs-comment">// [2, 3, 4, 5]</span><br><br><span class="hljs-keyword">const</span> [first, ...rest] = [];<br>first <span class="hljs-comment">// undefined</span><br>rest  <span class="hljs-comment">// []</span><br><br><span class="hljs-keyword">const</span> [first, ...rest] = [<span class="hljs-string">&quot;foo&quot;</span>];<br>first  <span class="hljs-comment">// &quot;foo&quot;</span><br>rest   <span class="hljs-comment">// []</span><br></code></pre></td></tr></table></figure></li><li><p>将<code>字符串</code>转为真正的<code>数组</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">[...<span class="hljs-string">&#x27;hello&#x27;</span>]<br><span class="hljs-comment">// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]</span><br></code></pre></td></tr></table></figure></li><li><p>map获取key</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([<br>  [<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;one&#x27;</span>],<br>  [<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;two&#x27;</span>],<br>  [<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;three&#x27;</span>],<br>]);<br><span class="hljs-keyword">let</span> arr = [...map.keys()]; <span class="hljs-comment">// [1, 2, 3]</span><br></code></pre></td></tr></table></figure></li></ul><h1 id="5-对象的扩展"><a href="#5-对象的扩展" class="headerlink" title="5 对象的扩展"></a>5 对象的扩展</h1><h2 id="5-1-属性的简洁表示法"><a href="#5-1-属性的简洁表示法" class="headerlink" title="5.1 属性的简洁表示法"></a>5.1 属性的简洁表示法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;x, y&#125;;<br>&#125;<br><br><span class="hljs-comment">// 等同于</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x, y</span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">x</span>: x, <span class="hljs-attr">y</span>: y&#125;;<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> Person = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;张三&#x27;</span>,<br>  <span class="hljs-comment">//等同于birth: birth</span><br>  birth,<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="5-2-日志的打印"><a href="#5-2-日志的打印" class="headerlink" title="5.2 日志的打印"></a>5.2 日志的打印</h2><p>输出 user 和 foo 两个对象时，就是两组键值对，可能会混淆。把它们放在大括号里面输出，就变成了对象的简洁表示法，每组键值对前面会打印对象名，这样就比较清晰</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> user = &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;test&#x27;</span><br>&#125;;<br><span class="hljs-keyword">let</span> foo = &#123;<br>  <span class="hljs-attr">bar</span>: <span class="hljs-string">&#x27;baz&#x27;</span><br>&#125;;<br><br><span class="hljs-built_in">console</span>.log(user, foo)<br><span class="hljs-comment">// &#123;name: &quot;test&quot;&#125; &#123;bar: &quot;baz&quot;&#125;</span><br><span class="hljs-built_in">console</span>.log(&#123;user, foo&#125;)<br><span class="hljs-comment">// &#123;user: &#123;name: &quot;test&quot;&#125;, foo: &#123;bar: &quot;baz&quot;&#125;&#125;</span><br></code></pre></td></tr></table></figure><h2 id="5-3-解构赋值"><a href="#5-3-解构赋值" class="headerlink" title="5.3 解构赋值"></a>5.3 解构赋值</h2><ul><li><p>对象的<code>解构赋值</code>用于从一个对象<code>取值</code>，所有的键和它们的值，都会拷贝到新对象上面。</p></li><li><p>解构赋值要求等号右边是一个对象，所以如果等号右边是 undefined 或 null ，就会报错，因为它们无法转为对象。</p></li><li><p>解构赋值必须是最后一个参数，否则会报错。</p></li><li><p>解构赋值<code>的拷贝是</code>浅拷贝</p></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123; x, y, ...z &#125; = &#123; <span class="hljs-attr">x</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">a</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">4</span> &#125;;<br>x <span class="hljs-comment">// 1</span><br>y <span class="hljs-comment">// 2</span><br>z <span class="hljs-comment">// &#123; a: 3, b: 4 &#125;</span><br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> z = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">b</span>: <span class="hljs-number">4</span> &#125;;<br><span class="hljs-keyword">let</span> n = &#123; ...z &#125;;<br>n <span class="hljs-comment">// &#123; a: 3, b: 4 &#125;</span><br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> foo = &#123; ...[<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>] &#125;;<br>foo<br><span class="hljs-comment">// &#123;0: &quot;a&quot;, 1: &quot;b&quot;, 2: &quot;c&quot;&#125;</span><br></code></pre></td></tr></table></figure><ul><li>如果扩展运算符后面是字符串，它会自动转成一个类似数组的对象</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;...<span class="hljs-string">&#x27;hello&#x27;</span>&#125;<br><span class="hljs-comment">// &#123;0: &quot;h&quot;, 1: &quot;e&quot;, 2: &quot;l&quot;, 3: &quot;l&quot;, 4: &quot;o&quot;&#125;</span><br></code></pre></td></tr></table></figure><h2 id="5-4-链判断运算符"><a href="#5-4-链判断运算符" class="headerlink" title="5.4 链判断运算符"></a>5.4 链判断运算符</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> firstName = message?.body?.user?.firstName || <span class="hljs-string">&#x27;default&#x27;</span>;<br></code></pre></td></tr></table></figure><p>?. 运算符，直接在链式调用的时候判断，左侧的对象是否为 null 或 undefined 。如果是的，就不再往下运算，而是返回 undefined </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js">a?.b<br><span class="hljs-comment">// 等同于</span><br>a == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : a.b<br>a?.[x]<br><span class="hljs-comment">// 等同于</span><br>a == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : a[x]<br>a?.b()<br><span class="hljs-comment">// 等同于</span><br>a == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : a.b()<br>a?.()<br><span class="hljs-comment">// 等同于</span><br>a == <span class="hljs-literal">null</span> ? <span class="hljs-literal">undefined</span> : a()<br><br>表单可能没有 checkValidity 这个方法，这时 ?. 运算符就会返回 <span class="hljs-literal">undefined</span> ，判断语句就变成了 <span class="hljs-literal">undefined</span> === <span class="hljs-literal">false</span> ，所以就会跳过下面的代码。<br><span class="hljs-keyword">if</span> (myForm.checkValidity?.() === <span class="hljs-literal">false</span>) &#123;<br>  <span class="hljs-comment">// 表单校验失败</span><br>  <span class="hljs-keyword">return</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="5-5-判断运算符"><a href="#5-5-判断运算符" class="headerlink" title="5.5   ?? 判断运算符"></a>5.5   ?? 判断运算符</h2><p> <code>||</code>: 左侧的值如果为 null，undefined，空字符串， false ， 0 ，默认值会生效</p><p><code>??</code>: 左侧的值为 null 或 undefined 时，默认值会生效</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> headerText = response.settings.headerText || <span class="hljs-string">&#x27;Hello, world!&#x27;</span>;<br><span class="hljs-keyword">const</span> headerText = response.settings.headerText ?? <span class="hljs-string">&#x27;Hello, world!&#x27;</span>;<br></code></pre></td></tr></table></figure><h1 id="6-对象的新增方法"><a href="#6-对象的新增方法" class="headerlink" title="6 对象的新增方法"></a>6 对象的新增方法</h1><h2 id="6-1-Object-is"><a href="#6-1-Object-is" class="headerlink" title="6.1 Object.is()"></a>6.1 Object.is()</h2><ul><li><p><code>严格相等运算符</code>（ &#x3D;&#x3D;&#x3D; ） </p><ul><li>类型不同，直接返回false</li><li>两个复合类型（对象、数组、函数）的数据比较时，不是比较它们的值是否相等，而是比较它们是否指向同一个对象。</li><li>同一类型的原始类型的值（数值、字符串、布尔值）比较时，值相同就返回true，值不同就返回false</li><li>undefined 和 null 与自身严格相等</li></ul></li><li><p><code>相等运算符</code>（ &#x3D;&#x3D; ）</p><ul><li>在比较不同类型的数据时，相等运算符会先将数据进行类型转换，然后再用严格相等运算符比较</li></ul></li><li><p>Object.is()</p><ul><li><p>它用来比较两个值是否严格相等，与严格比较运算符（&#x3D;&#x3D;&#x3D;）的行为基本一致。</p></li><li><p>不同之处只有两个：一是 +0 不等于 -0 ，二是 NaN 等于自身。</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Object</span>.is(+<span class="hljs-number">0</span>, -<span class="hljs-number">0</span>) <span class="hljs-comment">// false</span><br><span class="hljs-built_in">Object</span>.is(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>) <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure></li></ul></li></ul><h2 id="6-2-Object-assign"><a href="#6-2-Object-assign" class="headerlink" title="6.2 Object.assign()"></a>6.2 Object.assign()</h2><p>Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）</p><ul><li><code>Object.assign</code>方法实行的是<code>浅拷贝</code>，</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span> &#125;;<br><span class="hljs-keyword">const</span> source1 = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125;;<br><span class="hljs-keyword">const</span> source2 = &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">3</span> &#125;;<br><span class="hljs-built_in">Object</span>.assign(target, source1, source2);<br>target <span class="hljs-comment">// &#123;a:1, b:2, c:3&#125;</span><br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
@@ -180,14 +167,14 @@
     
     <categories>
       
-      <category>CSS</category>
+      <category>前端</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>前端</tag>
+      <tag>CSS</tag>
       
     </tags>
     
@@ -329,7 +316,7 @@
   
   
   <entry>
-    <title>Spring Data jpa 的基本介绍</title>
+    <title>spring data JPA 的基本介绍</title>
     <link href="/Spring%20Data%20jpa%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/"/>
     <url>/Spring%20Data%20jpa%20%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D/</url>
     
@@ -463,7 +450,7 @@
     
     <categories>
       
-      <category>mysql</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -513,7 +500,7 @@
     
     <categories>
       
-      <category>mysql</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -1025,7 +1012,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1119,7 +1106,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -1144,7 +1131,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -1169,7 +1156,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -1194,7 +1181,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -1382,7 +1369,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1401,7 +1388,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1430,7 +1417,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1457,7 +1444,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1486,7 +1473,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1515,7 +1502,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1544,7 +1531,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1573,7 +1560,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1600,7 +1587,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1627,7 +1614,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1652,7 +1639,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1677,7 +1664,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1704,7 +1691,7 @@
     
     <categories>
       
-      <category>springCloud</category>
+      <category>微服务</category>
       
     </categories>
     
@@ -1729,7 +1716,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -1754,7 +1741,7 @@
     
     <categories>
       
-      <category>java</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -1779,14 +1766,14 @@
     
     <categories>
       
-      <category>Java</category>
+      <category>java基础</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>Java基础</tag>
+      <tag>java基础</tag>
       
     </tags>
     
@@ -1900,7 +1887,7 @@
     
     <categories>
       
-      <category>mysql</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -1925,7 +1912,7 @@
     
     <categories>
       
-      <category>mysql</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -2088,7 +2075,7 @@
     
     <categories>
       
-      <category>重构</category>
+      <category>代码之丑</category>
       
     </categories>
     
@@ -2338,14 +2325,14 @@
     
     <categories>
       
-      <category>excel</category>
+      <category>java基础</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>poi</tag>
+      <tag>excel</tag>
       
     </tags>
     
@@ -2363,14 +2350,14 @@
     
     <categories>
       
-      <category>excel</category>
+      <category>java基础</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>poi</tag>
+      <tag>excel</tag>
       
     </tags>
     
@@ -2388,14 +2375,14 @@
     
     <categories>
       
-      <category>excel</category>
+      <category>java基础</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>poi</tag>
+      <tag>excel</tag>
       
     </tags>
     
@@ -2726,7 +2713,7 @@
     
     <categories>
       
-      <category>分布式</category>
+      <category>zookeeper</category>
       
     </categories>
     
@@ -2882,7 +2869,7 @@
     
     <categories>
       
-      <category>mysql</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -2907,7 +2894,7 @@
     
     <categories>
       
-      <category>sql优化</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -2932,7 +2919,7 @@
     
     <categories>
       
-      <category>sql优化</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -2957,7 +2944,7 @@
     
     <categories>
       
-      <category>sql优化</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -2982,7 +2969,7 @@
     
     <categories>
       
-      <category>sql优化</category>
+      <category>数据库</category>
       
     </categories>
     
@@ -3045,10 +3032,16 @@
     
     <categories>
       
-      <category>spock</category>
+      <category>测试框架</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>spock</tag>
+      
+    </tags>
     
   </entry>
   
@@ -3099,16 +3092,16 @@
   
   
   <entry>
-    <title>Spring Webflux</title>
-    <link href="/%20Spring%20Webflux/"/>
-    <url>/%20Spring%20Webflux/</url>
+    <title>响应式编程</title>
+    <link href="/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
+    <url>/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BC%96%E7%A8%8B/</url>
     
     <content type="html"><![CDATA[<p><strong>1.响应式编程是什么？</strong></p><ul><li><p>响应式编程（<strong>reactive programming</strong>）是一种基于数据流和变化传递的声明式的编程范式</p><p>本来数据是我们自行处理的，后来我们把要处理的数据抽象出来（变成了数据流），然后通过<strong>API</strong>去处理数据流中的数据（是声明式的,如：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> sum2 = IntStream.of(nums).parallel().sum();<br></code></pre></td></tr></table></figure></li></ul><p>​      将数组中的数据变成数据流，通过显式声明调用**.sum()**来处理数据流中的数据，得到最终的结果。</p><ul><li><p>响应式编程是关于非阻塞应用程序的，这些应用程序是异步的、事件驱动的，并且需要少量的线程来垂直伸缩(即在 JVM 中)，而不是水平伸缩(即通过集群)。</p><blockquote><p>工作太多，做不完时，水平伸缩就相当于加人，垂直伸缩相当于加班。</p></blockquote></li></ul><h3 id="2-响应式流（Reactive-Streams）-是什么"><a href="#2-响应式流（Reactive-Streams）-是什么" class="headerlink" title="2.响应式流（Reactive Streams） 是什么?"></a>2.响应式流（Reactive Streams） 是什么?</h3><span id="more"></span><ul><li><p>响应式流是JDK9引入的，基于发布-订阅者模式的一套数据处理的机制。</p></li><li><p>响应式流从2013年开始，作为提供非阻塞背压的异步流处理标准的倡议。 它旨在解决处理元素流的问题——如何将元素流从发布者传递到订阅者，而不需要发布者阻塞，或订阅者有无限制的缓冲区或丢弃。</p></li></ul><blockquote><p>背压：说白了就是一种反馈，发布者和订阅者之间的一种互动</p></blockquote><blockquote><p>之前的老模式，订阅者很被动，发布者给订阅者多少他就消费多少，不能多也不能多少。</p><p>Reactive Streams就可以做到发布者和订阅者之间可以进行交流，订阅者可以告诉发布者我需要多少数据，订阅者处理完了，可以再向发布者要，没处理完就不要给我。</p><p>起到了一种调节流量的作用，不会导致发布者数据太多，订阅者处理不完浪费，或者直接把订阅者压垮的场景。</p></blockquote><h3 id="2-Spring-Webflux-是什么？"><a href="#2-Spring-Webflux-是什么？" class="headerlink" title="2. Spring Webflux 是什么？"></a>2. Spring Webflux 是什么？</h3><p>Spring WebFlux是<a href="https://rumenz.com/java-topic/spring-mvc-tutorial/index.html">Spring MVC</a>并行版本，并支持完全无阻塞的反应流的web框架。 它支持背压概念，可以处理大量的并发连接，并使用**<a href="https://netty.io/">Netty</a>**作为内置服务器来运行响应式应用程序。 </p><h3 id="3-Spring-Webflux-和Spring-mvc-的关系"><a href="#3-Spring-Webflux-和Spring-mvc-的关系" class="headerlink" title="3.Spring Webflux 和Spring mvc 的关系"></a>3.Spring Webflux 和Spring mvc 的关系</h3><img src="https://spring.io/images/diagram-reactive-1290533f3f01ec9c57baf2cc9ea9fa2f.svg" style="zoom: 25%;" /><p>Spring MVC</p><ul><li>构建于 Servlet API 之上</li><li>同步阻塞 I&#x2F;O 模型, 认为应用会阻塞当前线程，所以一个 Request 对应一个 Thread，需要有一个含有大量线程的线程池</li></ul><p>Spring WebFlux</p><ul><li>构建于 Reactive Streams Adapters 之上</li><li>异步非阻塞 I&#x2F;O 模型，认为应用不会阻塞当前线程，所以只是需要一个包含少数固定线程数的线程池 (event loop workers) 来处理请求</li></ul>]]></content>
     
     
     <categories>
       
-      <category>SpringWebflux</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -3116,8 +3109,6 @@
     <tags>
       
       <tag>spring</tag>
-      
-      <tag>java</tag>
       
     </tags>
     
@@ -3135,7 +3126,7 @@
     
     <categories>
       
-      <category>java8新特性</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -3160,7 +3151,7 @@
     
     <categories>
       
-      <category>java8新特性</category>
+      <category>java基础</category>
       
     </categories>
     
@@ -3185,7 +3176,7 @@
     
     <categories>
       
-      <category>java8新特性</category>
+      <category>java基础</category>
       
     </categories>
     

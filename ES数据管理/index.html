@@ -24,7 +24,7 @@
 <meta property="og:description" content="ES数据管理ES数据管理概述 ES是面向文档(document oriented)的，这意味着它可以存储整个对象或文档 (document)。 然而它不仅仅是存储，还会索引(index)每个文档的内容使之可以被搜索。 在ES中，你可以对文档（而非成行成列的数据）进行索引、搜索、排序、过滤。 ES使用JSON作为文档序列化格式。  ES存储的一个员工文档的格式示例：  123456&amp;#123;  &amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-12T15:02:34.000Z">
-<meta property="article:modified_time" content="2022-03-08T12:45:29.773Z">
+<meta property="article:modified_time" content="2022-11-20T15:30:04.517Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="分布式框架">
 <meta name="twitter:card" content="summary_large_image">
@@ -489,6 +489,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 

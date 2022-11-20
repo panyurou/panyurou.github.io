@@ -24,7 +24,7 @@
 <meta property="og:description" content="1 QueryDSL 是什么？ QueryDSL是基于ORM框架或SQL平台上的一个通用查询框架。借助QueryDSL可以在任何支持的ORM框架或SQL平台 上以通用API方式构建查询。  JPA是QueryDSL的主要集成技术，是JPQL和Criteria查询的代替方法。目前QueryDSL支持的平台包括 JPA,JDO,SQL,Mongodb 等等  Querydsl扩展能让我们以链式方式代码">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-20T13:52:08.000Z">
-<meta property="article:modified_time" content="2022-10-23T13:48:45.624Z">
+<meta property="article:modified_time" content="2022-11-20T15:36:48.709Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="springdata jpa">
 <meta property="article:tag" content="queryDSL">
@@ -405,6 +405,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 

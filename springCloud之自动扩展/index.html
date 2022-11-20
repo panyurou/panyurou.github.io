@@ -24,7 +24,7 @@
 <meta property="og:description" content="什么是自动扩展？自动扩展分为水平扩展和垂直扩展  水平扩展就是一台机子不够了，就再搞几台 垂直扩展是硬件层面的，比如双核不够了，就4核  自动扩展的意义 提高了高可用性和容错能力。比如某个服务不可用了，自动扩展可以再增加一个新服务来替换他。 增加了可伸缩性。允许访问流量可以自动选择水平扩展的规模。 具有最佳使用率，并节约成本。按需使用，需要几台就部署几台 优先考虑某些服务或服务组。低优先级服务中实">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-20T13:52:57.000Z">
-<meta property="article:modified_time" content="2022-08-23T07:20:17.271Z">
+<meta property="article:modified_time" content="2022-11-20T15:18:57.468Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="分布式">
 <meta property="article:tag" content="自动扩展">
@@ -312,7 +312,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/springCloud/" class="category-chain-item">springCloud</a>
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
   
   
 
@@ -408,6 +408,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 

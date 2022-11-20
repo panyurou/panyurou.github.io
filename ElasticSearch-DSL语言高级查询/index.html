@@ -24,7 +24,7 @@
 <meta property="og:description" content="DSL语言高级查询 Elasticsearch提供了基于JSON的DSL来定义查询。  DSL由叶子查询子句和复合查询子句两种子句组成   DSL(Domain Specific Language)领域专用语言   无查询条件无查询条件是查询所有，默认是查询所有的，或者使用match_all表示所有  123456GET &#x2F;es_db&#x2F;_doc&#x2F;_search&amp;#123;  &quot;query">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-22T14:23:32.000Z">
-<meta property="article:modified_time" content="2022-03-03T14:08:11.100Z">
+<meta property="article:modified_time" content="2022-11-20T15:29:55.676Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="分布式框架">
 <meta name="twitter:card" content="summary_large_image">
@@ -464,6 +464,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 

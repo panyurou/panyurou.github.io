@@ -24,7 +24,7 @@
 <meta property="og:description" content="mysql 事务1.事务定义事务是一个操作集合，这些操作要么都执行，要么都不执行，他是一个不可分割的工作单位。 2.事务的四大特性 原子性：事务是一个原子操作单元，它对数据的修改，要么都执行，要么都不执行。 一致性：一个事务执行前和执行后，数据必须保持一致，如：转账前用户AB的钱加在一起时500，转账后也应该是500 隔离型：事务外的实体不可以知道事务过程中的中间状态 持久性：对数据库的操作是永久">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-14T14:28:21.000Z">
-<meta property="article:modified_time" content="2022-06-14T14:33:21.731Z">
+<meta property="article:modified_time" content="2022-11-20T15:12:41.633Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="mysql事务">
 <meta name="twitter:card" content="summary_large_image">
@@ -446,7 +446,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/mysql/" class="category-chain-item">mysql</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
   
   
 
@@ -540,6 +540,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 

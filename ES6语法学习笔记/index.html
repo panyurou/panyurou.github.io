@@ -18,13 +18,13 @@
   
     <meta name="description" content="1 Let和const Let:  所声明的变量，只在let命令所在的代码块内有效。 const声明一个只读的常量。一旦声明，常量的值就不能改变。const一旦声明变量，就必须立即初始化，不能留到以后赋值。类似final  2 解构赋值 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。 本质上，这种写法属于“模式匹配”，只要等号两边的模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ES6语法学习笔记(一)">
-<meta property="og:url" content="http://example.com/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%80/index.html">
+<meta property="og:title" content="ES6语法学习笔记">
+<meta property="og:url" content="http://example.com/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="楼上有只喵">
 <meta property="og:description" content="1 Let和const Let:  所声明的变量，只在let命令所在的代码块内有效。 const声明一个只读的常量。一旦声明，常量的值就不能改变。const一旦声明变量，就必须立即初始化，不能留到以后赋值。类似final  2 解构赋值 ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构（Destructuring）。 本质上，这种写法属于“模式匹配”，只要等号两边的模式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-04T07:53:43.000Z">
-<meta property="article:modified_time" content="2022-11-05T13:26:36.395Z">
+<meta property="article:modified_time" content="2022-11-20T14:43:53.567Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="es6">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ES6语法学习笔记(一) - 楼上有只喵</title>
+  <title>ES6语法学习笔记 - 楼上有只喵</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -184,7 +184,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ES6语法学习笔记(一)"></span>
+            <span id="subtitle" data-typed-text="ES6语法学习笔记"></span>
           
         </div>
 
@@ -208,7 +208,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          6k 字
+          6.6k 字
         
       </span>
     
@@ -220,7 +220,7 @@
         
         
           <!-- compatible with older versions-->
-          19 分钟
+          21 分钟
         
       </span>
     
@@ -268,7 +268,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ES6语法学习笔记(一)</h1>
+            <h1 style="display: none">ES6语法学习笔记</h1>
             
             <div class="markdown-body">
               
@@ -422,6 +422,35 @@
 <p><code>??</code>: 左侧的值为 null 或 undefined 时，默认值会生效</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> headerText = response.settings.headerText || <span class="hljs-string">&#x27;Hello, world!&#x27;</span>;<br><span class="hljs-keyword">const</span> headerText = response.settings.headerText ?? <span class="hljs-string">&#x27;Hello, world!&#x27;</span>;<br></code></pre></td></tr></table></figure>
 
+<h1 id="6-对象的新增方法"><a href="#6-对象的新增方法" class="headerlink" title="6 对象的新增方法"></a>6 对象的新增方法</h1><h2 id="6-1-Object-is"><a href="#6-1-Object-is" class="headerlink" title="6.1 Object.is()"></a>6.1 Object.is()</h2><ul>
+<li><p><code>严格相等运算符</code>（ &#x3D;&#x3D;&#x3D; ） </p>
+<ul>
+<li>类型不同，直接返回false</li>
+<li>两个复合类型（对象、数组、函数）的数据比较时，不是比较它们的值是否相等，而是比较它们是否指向同一个对象。</li>
+<li>同一类型的原始类型的值（数值、字符串、布尔值）比较时，值相同就返回true，值不同就返回false</li>
+<li>undefined 和 null 与自身严格相等</li>
+</ul>
+</li>
+<li><p><code>相等运算符</code>（ &#x3D;&#x3D; ）</p>
+<ul>
+<li>在比较不同类型的数据时，相等运算符会先将数据进行类型转换，然后再用严格相等运算符比较</li>
+</ul>
+</li>
+<li><p>Object.is()</p>
+<ul>
+<li><p>它用来比较两个值是否严格相等，与严格比较运算符（&#x3D;&#x3D;&#x3D;）的行为基本一致。</p>
+</li>
+<li><p>不同之处只有两个：一是 +0 不等于 -0 ，二是 NaN 等于自身。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Object</span>.is(+<span class="hljs-number">0</span>, -<span class="hljs-number">0</span>) <span class="hljs-comment">// false</span><br><span class="hljs-built_in">Object</span>.is(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>) <span class="hljs-comment">// true	</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="6-2-Object-assign"><a href="#6-2-Object-assign" class="headerlink" title="6.2 Object.assign()"></a>6.2 Object.assign()</h2><p>Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）</p>
+<ul>
+<li><code>Object.assign</code>方法实行的是<code>浅拷贝</code>，</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> target = &#123; <span class="hljs-attr">a</span>: <span class="hljs-number">1</span> &#125;;<br><span class="hljs-keyword">const</span> source1 = &#123; <span class="hljs-attr">b</span>: <span class="hljs-number">2</span> &#125;;<br><span class="hljs-keyword">const</span> source2 = &#123; <span class="hljs-attr">c</span>: <span class="hljs-number">3</span> &#125;;<br><span class="hljs-built_in">Object</span>.assign(target, source1, source2);<br>target <span class="hljs-comment">// &#123;a:1, b:2, c:3&#125;</span><br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -466,8 +495,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ES6语法学习笔记(一)</div>
-      <div>http://example.com/ES6语法学习笔记-一/</div>
+      <div>ES6语法学习笔记</div>
+      <div>http://example.com/ES6语法学习笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -509,9 +538,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/ES6%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-er/" title="ES6语法学习笔记(二)">
+                      <a href="/Java%E6%B3%9B%E5%9E%8B/" title="Java泛型">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ES6语法学习笔记(二)</span>
+                        <span class="hidden-mobile">Java泛型</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -533,6 +562,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 

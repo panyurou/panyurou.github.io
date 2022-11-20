@@ -24,7 +24,7 @@
 <meta property="og:description" content="ElasticSearch集群搭建相关概念集群cluster一个集群就是由一个或多个节点组织在一起，它们共同持有整个的数据，并一起提供索引和搜索功能 节点node 一个节点是集群中的一个服务器，作为集群的一部分，它存储数据。参与集群的索引和搜索功能。 一个节点可以通过配置集群名称的方式来加入一个指定的集群。默认情况下，每个节点都会被安排加入到一个叫做“elasticsearch”的集群中。这意味着">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-05T08:50:20.000Z">
-<meta property="article:modified_time" content="2022-02-05T12:03:41.727Z">
+<meta property="article:modified_time" content="2022-11-20T15:29:55.679Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="分布式框架">
 <meta name="twitter:card" content="summary_large_image">
@@ -389,6 +389,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 

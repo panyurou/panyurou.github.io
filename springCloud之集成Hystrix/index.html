@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5dkaubuqbj20iw07yjro.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/e6c9d24ely1h5dbm2suxzj20lm08c74q.jpg">
 <meta property="article:published_time" content="2022-07-20T06:34:54.000Z">
-<meta property="article:modified_time" content="2022-08-23T07:20:37.335Z">
+<meta property="article:modified_time" content="2022-11-20T15:18:57.471Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="分布式">
 <meta property="article:tag" content="服务熔断">
@@ -384,7 +384,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/springCloud/" class="category-chain-item">springCloud</a>
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
   
   
 
@@ -480,6 +480,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 

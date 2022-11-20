@@ -24,7 +24,7 @@
 <meta property="og:description" content="2 spring Data JPA 使用JPQLJPQL（Java Presistence Query Language ）是EJB3.0中的JPA造出来的对象查询语言。JPQL是完全面向对象的，具备继承、多态和关联等特性，和hibernate HQL很相似。  Repository 方法  123456789101112131415161718192021222324252627282930pa">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-20T13:58:30.000Z">
-<meta property="article:modified_time" content="2022-10-20T14:37:56.363Z">
+<meta property="article:modified_time" content="2022-11-20T15:36:49.147Z">
 <meta property="article:author" content="Panyurou">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="springData JPA">
@@ -407,6 +407,28 @@
             
   <article id="comments" lazyload>
     
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.16/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"qd1LewMysRdi4JAFsksjyM6W-gzGzoHsz","appKey":"4LxNS5VqutWhHwKm1Toa4JBr","path":"window.location.pathname","placeholder":"说点什么吧...","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
 
   </article>
 
